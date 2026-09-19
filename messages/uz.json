@@ -1,0 +1,136 @@
+{
+  "meta": {
+    "siteName": "Xorijiy tillarga ixtisoslashtirilgan maktab-internati",
+    "defaultTitle": "Xorijiy tillarga ixtisoslashtirilgan maktab-internati",
+    "defaultDescription": "Ixtisoslashtirilgan taʼlim muassasalari agentligi tizimidagi yangi maktab-internat: kuchli STEM, ingliz va xitoy tillari, milliy qadriyatlar. 2026/2027 oʻquv yilidan faoliyatda.",
+    "pages": {
+      "home": {
+        "title": "Bosh sahifa",
+        "description": "Kuchli STEM, ingliz va xitoy tillari hamda milliy oʻzlik — bir maktab-internatda. 2026-yil sentabrdan 260 dan ortiq iqtidorli oʻquvchi tahsil olmoqda."
+      },
+      "leadership": {
+        "title": "Rahbariyat",
+        "description": "Maktab-internat direktori va oʻrinbosarlari, qabul kunlari va aloqa maʼlumotlari."
+      },
+      "mission": {
+        "title": "Maqsad va vazifalar",
+        "description": "Maktab-internatning missiyasi, vazifalari va qadriyatlari."
+      },
+      "gallery": {
+        "title": "Fotogalereya",
+        "description": "Dars jarayoni, yotoqxona, tadbirlar, sport va kampus hayotidan suratlar."
+      },
+      "news": {
+        "title": "Yangiliklar",
+        "description": "Maktab-internat hayotidagi voqealar, eʼlonlar va natijalar."
+      },
+      "admission": {
+        "title": "Qabul",
+        "description": "5, 6 va 7-sinflarga qabul tartibi, Cambridge Assessment bilan kirish imtihoni tuzilmasi, hujjatlar va savollar."
+      },
+      "dorm": {
+        "title": "Yotoqxona",
+        "description": "Yotoqxona sharoitlari, kun tartibi, tarbiyachilar, xavfsizlik va ovqatlanish."
+      },
+      "chinese": {
+        "title": "Xitoy tili",
+        "description": "5–11-sinflarda xitoy tilini chuqur oʻrganish: HSK darajalari, madaniyat, toʻgaraklar."
+      },
+      "english": {
+        "title": "Ingliz tili",
+        "description": "Ingliz tilini chuqur oʻrganish: toʻrt koʻnikma, sinflar boʻyicha dastur, xalqaro imtihonlarga yoʻl, toʻgaraklar."
+      },
+      "contact": {
+        "title": "Bogʻlanish",
+        "description": "Manzil, telefon, elektron pochta va murojaat shakli."
+      }
+    }
+  },
+  "nav": {
+    "home": "Bosh sahifa",
+    "about": "Biz haqimizda",
+    "leadership": "Rahbariyat",
+    "leadershipDesc": "Direktor, oʻrinbosarlar va qabul kunlari",
+    "mission": "Maqsad va vazifalar",
+    "missionDesc": "Nima uchun va qanday oʻqitamiz",
+    "gallery": "Fotogalereya",
+    "galleryDesc": "Maktab hayoti suratlarda",
+    "news": "Yangiliklar",
+    "newsDesc": "Voqealar, eʼlonlar va natijalar",
+    "admission": "Qabul",
+    "life": "Maktab hayoti",
+    "dorm": "Yotoqxona",
+    "dormDesc": "Xonalar, kun tartibi, gʻamxoʻrlik va ovqatlanish",
+    "directions": "Yoʻnalishlar",
+    "chinese": "Xitoy tili",
+    "chineseDesc": "Ieroglifdan HSK darajalarigacha",
+    "english": "Ingliz tili",
+    "englishDesc": "Toʻrt koʻnikma va xalqaro imtihonlar",
+    "contact": "Bogʻlanish"
+  },
+  "header": {
+    "skip": "Asosiy mazmunga oʻtish",
+    "menu": "Menyu",
+    "openMenu": "Menyuni ochish",
+    "closeMenu": "Menyuni yopish",
+    "theme": "Mavzu",
+    "themeLight": "Yorugʻ",
+    "themeDark": "Qorongʻi",
+    "themeSystem": "Tizim",
+    "toggleTheme": "Yorugʻ/qorongʻi mavzuni almashtirish",
+    "language": "Til",
+    "scrollProgress": "Sahifa boʻylab siljish"
+  },
+  "loader": {
+    "skip": "Oʻtkazib yuborish",
+    "loading": "Sayt yuklanmoqda"
+  },
+  "common": {
+    "readMore": "Batafsil",
+    "allNews": "Barcha yangiliklar",
+    "toGallery": "Fotogalereyaga oʻtish",
+    "aboutAdmission": "Qabul haqida",
+    "directions": "Yoʻnalishlar",
+    "backToTop": "Yuqoriga",
+    "close": "Yopish",
+    "prev": "Oldingi",
+    "next": "Keyingi",
+    "opensInNewTab": "yangi oynada ochiladi",
+    "placeholder": "Maʼlumot tez orada",
+    "photoSoon": "Surat tez orada",
+    "minutes": "daq. oʻqish",
+    "loadMore": "Yana koʻrsatish",
+    "search": "Qidirish",
+    "all": "Barchasi",
+    "share": "Ulashish",
+    "copyLink": "Havolani nusxalash",
+    "copied": "Nusxalandi",
+    "related": "Mavzuga oid yangiliklar",
+    "noResults": "Hech narsa topilmadi. Boshqa soʻz bilan qidirib koʻring.",
+    "reception": "Qabul kunlari",
+    "phone": "Telefon",
+    "email": "Elektron pochta",
+    "address": "Manzil",
+    "hours": "Ish vaqti",
+    "zoomIn": "Kattalashtirish",
+    "zoomOut": "Kichraytirish"
+  },
+  "footer": {
+    "about": "Ixtisoslashtirilgan taʼlim muassasalari agentligi tizimidagi maktab-internat: aniq fanlar, ikki xorijiy til va milliy qadriyatlar bir maktabda.",
+    "contacts": "Aloqa",
+    "follow": "Ijtimoiy tarmoqlar",
+    "partners": "Foydali havolalar",
+    "piima": "Ixtisoslashtirilgan taʼlim muassasalari agentligi",
+    "ariza": "Ariza topshirish portali",
+    "map": "Xaritada ochish",
+    "rights": "© 2026 Xorijiy tillarga ixtisoslashtirilgan maktab-internati",
+    "placeholderNote": "Aloqa maʼlumotlari vaqtincha — tez orada yangilanadi."
+  },
+  "notFound": {
+    "title": "Bu sahifa halqadan tushib qolgan",
+    "text": "Siz qidirgan sahifa koʻchirilgan yoki hech qachon boʻlmagan. Quyidagi havolalar orqali davom eting.",
+    "home": "Bosh sahifaga",
+    "news": "Yangiliklar",
+    "contact": "Bogʻlanish"
+  }
+}

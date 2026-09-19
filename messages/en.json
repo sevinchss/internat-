@@ -1,0 +1,136 @@
+{
+  "meta": {
+    "siteName": "International Language School",
+    "defaultTitle": "International Language School",
+    "defaultDescription": "A new boarding school of Uzbekistan's Agency of Specialized Educational Institutions: strong STEM, English and Chinese, and national heritage. Open since the 2026/2027 school year.",
+    "pages": {
+      "home": {
+        "title": "Home",
+        "description": "Strong STEM, English and Chinese, and a firm sense of national identity — in one boarding school. Over 260 gifted students have studied here since September 2026."
+      },
+      "leadership": {
+        "title": "Leadership",
+        "description": "The principal and deputy principals, reception hours and contact details."
+      },
+      "mission": {
+        "title": "Mission and goals",
+        "description": "The school's mission, goals and values."
+      },
+      "gallery": {
+        "title": "Photo gallery",
+        "description": "Lessons, boarding house, events, sport and campus life in pictures."
+      },
+      "news": {
+        "title": "News",
+        "description": "Events, announcements and results from school life."
+      },
+      "admission": {
+        "title": "Admissions",
+        "description": "Admission to grades 5, 6 and 7, the entrance exam run with Cambridge Assessment, documents and FAQ."
+      },
+      "dorm": {
+        "title": "Boarding house",
+        "description": "Rooms, daily routine, tutors, safety and meals."
+      },
+      "chinese": {
+        "title": "Chinese",
+        "description": "In-depth Chinese from grade 5 to 11: HSK levels, culture and clubs."
+      },
+      "english": {
+        "title": "English",
+        "description": "In-depth English: four skills, curriculum by grade, the international exam pathway and clubs."
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Address, phone, email and a message form."
+      }
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About us",
+    "leadership": "Leadership",
+    "leadershipDesc": "Principal, deputies and reception hours",
+    "mission": "Mission and goals",
+    "missionDesc": "Why and how we teach",
+    "gallery": "Photo gallery",
+    "galleryDesc": "School life in pictures",
+    "news": "News",
+    "newsDesc": "Events, announcements and results",
+    "admission": "Admissions",
+    "life": "School life",
+    "dorm": "Boarding house",
+    "dormDesc": "Rooms, routine, care and meals",
+    "directions": "Programmes",
+    "chinese": "Chinese",
+    "chineseDesc": "From first characters to HSK levels",
+    "english": "English",
+    "englishDesc": "Four skills and international exams",
+    "contact": "Contact"
+  },
+  "header": {
+    "skip": "Skip to main content",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "theme": "Theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System",
+    "toggleTheme": "Switch light/dark theme",
+    "language": "Language",
+    "scrollProgress": "Page scroll progress"
+  },
+  "loader": {
+    "skip": "Skip",
+    "loading": "Loading the site"
+  },
+  "common": {
+    "readMore": "Read more",
+    "allNews": "All news",
+    "toGallery": "Open the gallery",
+    "aboutAdmission": "About admissions",
+    "directions": "Programmes",
+    "backToTop": "Back to top",
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next",
+    "opensInNewTab": "opens in a new tab",
+    "placeholder": "Details coming soon",
+    "photoSoon": "Photo coming soon",
+    "minutes": "min read",
+    "loadMore": "Show more",
+    "search": "Search",
+    "all": "All",
+    "share": "Share",
+    "copyLink": "Copy link",
+    "copied": "Copied",
+    "related": "Related news",
+    "noResults": "Nothing found. Try another word.",
+    "reception": "Reception hours",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "hours": "Office hours",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out"
+  },
+  "footer": {
+    "about": "A boarding school of the Agency of Specialized Educational Institutions: sciences, two foreign languages and national heritage under one roof.",
+    "contacts": "Contact",
+    "follow": "Follow us",
+    "partners": "Useful links",
+    "piima": "Agency of Specialized Educational Institutions",
+    "ariza": "Application portal",
+    "map": "Open in maps",
+    "rights": "© 2026 International Language School",
+    "placeholderNote": "Contact details are provisional and will be updated soon."
+  },
+  "notFound": {
+    "title": "This page fell out of the ring",
+    "text": "The page you were looking for has moved or never existed. Pick up from one of the links below.",
+    "home": "Home page",
+    "news": "News",
+    "contact": "Contact"
+  }
+}

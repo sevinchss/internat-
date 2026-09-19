@@ -1,26 +1,278 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ───────────────────────── Brand tokens ─────────────────────────
+   Sampled from logo.png by scripts/prepare-logo.mjs (public/brand/colors.json) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy: #024a8a;
+  --purple: #9a66ba;
+  --green: #027256;
+  --orange: #fe621a;
+  --amber: #fea602;
+  --red: #da0202;
+  --ring: #caced2;
+
+  /* surfaces — light */
+  --paper: #fafbfd;
+  --surface: #ffffff;
+  --surface-2: #f1f4f9;
+  --ink: #0b1a33;
+  --ink-2: #44536b;
+  --ink-3: #66748a;
+  --line: #e2e7ef;
+  --primary: #024a8a;
+  --primary-ink: #024a8a; /* primary used as text */
+  --on-primary: #ffffff;
+  --accent: var(--navy); /* per-page accent, overridden by .accent-* */
+  --accent-ink: var(--primary-ink);
+  --shadow: 12 26 51;
+  --header-h: 76px;
+  color-scheme: light;
+}
+
+.dark {
+  --paper: #07152b;
+  --surface: #0c1f3b;
+  --surface-2: #112a4d;
+  --ink: #edf2f9;
+  --ink-2: #a6b4c9;
+  --ink-3: #8595ad;
+  --line: #1c3356;
+  --ring: #3a4f70;
+  --primary: #1d67b8;
+  --primary-ink: #7fb6f0;
+  --on-primary: #ffffff;
+  --shadow: 0 6 18;
+  color-scheme: dark;
+}
+
+/* Per-page accent (small doses only) */
+.accent-red {
+  --accent: var(--red);
+  --accent-ink: #b30000;
+}
+.dark .accent-red {
+  --accent-ink: #ff7a70;
+}
+.accent-amber {
+  --accent: var(--amber);
+  --accent-ink: #8a5a00;
+}
+.dark .accent-amber {
+  --accent-ink: #ffc24d;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-navy: var(--navy);
+  --color-purple: var(--purple);
+  --color-green: var(--green);
+  --color-orange: var(--orange);
+  --color-amber: var(--amber);
+  --color-red: var(--red);
+  --color-ring: var(--ring);
+
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-primary: var(--primary);
+  --color-primary-ink: var(--primary-ink);
+  --color-on-primary: var(--on-primary);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-unbounded), var(--font-manrope), ui-sans-serif, sans-serif;
+  --font-hanzi: var(--font-noto-serif-sc), "Noto Serif SC", "Songti SC", serif;
+
+  --text-display-xl: clamp(2.5rem, 1.2rem + 4.2vw, 4.85rem);
+  --text-display-xl--line-height: 1.02;
+  --text-display-l: clamp(2.1rem, 1.3rem + 3.4vw, 4rem);
+  --text-display-l--line-height: 1.06;
+  --text-display-m: clamp(1.7rem, 1.2rem + 2vw, 2.75rem);
+  --text-display-m--line-height: 1.12;
+  --text-display-s: clamp(1.3rem, 1.1rem + 0.9vw, 1.75rem);
+  --text-display-s--line-height: 1.2;
+  --text-body-l: 1.1875rem;
+  --text-body-l--line-height: 1.65;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --animate-marquee: marquee 60s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ───────────────────────── Base ───────────────────────── */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--navy) 22%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary-ink);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
+/* ───────────────────────── Utilities ───────────────────────── */
+@utility container-x {
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
+  padding-inline: 16px;
+  @media (width >= 640px) {
+    padding-inline: 28px;
+  }
+  @media (width >= 1024px) {
+    padding-inline: 40px;
+  }
+}
+
+@utility hairline {
+  border-color: var(--line);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Soft grain — fixed, pointer-events-none, never on a scrolling container */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.dark .grain::after {
+  opacity: 0.06;
+}
+
+/* Rich text for news articles */
+.prose-news p {
+  margin-block: 1.1em;
+  color: var(--ink-2);
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+.prose-news h2 {
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+  font-size: var(--text-display-s);
+  color: var(--ink);
+}
+.prose-news blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: 1.25rem;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-block: 1.6em;
+}
+.prose-news ul {
+  list-style: none;
+  padding: 0;
+}
+.prose-news li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-block: 0.4em;
+  color: var(--ink-2);
+}
+.prose-news li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  border: 1.5px solid var(--accent);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Skeleton shimmer for loading.tsx */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 0%, var(--line) 50%, var(--surface-2) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: 14px;
+}
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Intro loader: hidden before paint if already played this session */
+html.intro-done #intro {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

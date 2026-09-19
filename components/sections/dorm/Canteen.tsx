@@ -1,0 +1,90 @@
+"use client";
+
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useLocale } from "next-intl";
+import { dormCopy, mealLabels, menu, type Meal } from "@/data/dorm";
+import { images } from "@/lib/images";
+import { pick } from "@/lib/utils";
+import { Photo } from "@/components/ui/Photo";
+import { TabList, TabPanel } from "@/components/ui/Tabs";
+
+const meals: Meal[] = ["breakfast", "lunch", "snack", "dinner"];
+
+export function Canteen() {
+  const locale = useLocale();
+  const c = dormCopy.canteen;
+  const [day, setDay] = useState(menu[0].id);
+  const current = menu.find((d) => d.id === day) ?? menu[0];
+
+  return (
+    <section aria-labelledby="dorm-canteen" className="py-20 lg:py-28">
+      <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-5">
+          <h2 id="dorm-canteen" className="text-display-m text-ink">
+            {pick(c.title, locale)}
+          </h2>
+          <p className="mt-4 max-w-[44ch] text-ink-2">{pick(c.lead, locale)}</p>
+          <div className="relative mt-10 hidden pb-14 pr-14 sm:block">
+            <Photo slot={images.dorm.canteen} sizes="(min-width: 1024px) 420px, 70vw" className="aspect-[4/3] rounded-[22px]" />
+            <div className="absolute bottom-0 right-0 w-[44%]">
+              <Photo slot={images.dorm.meal} sizes="(min-width: 1024px) 200px, 40vw" className="aspect-square rounded-full border-[6px] border-paper" />
+            </div>
+          </div>
+        </div>
+
+        <div className="lg:col-span-7">
+          <TabList
+            idBase="dorm-menu"
+            label={pick(c.tabsLabel, locale)}
+            value={day}
+            onChange={setDay}
+            className="-mx-1 px-1"
+            tabs={menu.map((d) => ({
+              id: d.id,
+              label: (
+                <>
+                  <span aria-hidden="true">{pick(d.short, locale)}</span>
+                  <span className="sr-only">{pick(d.long, locale)}</span>
+                </>
+              ),
+            }))}
+          />
+          <TabPanel idBase="dorm-menu" id={current.id} className="mt-6 rounded-[24px] border border-line bg-surface p-5 sm:p-8">
+            <p className="font-display text-display-s text-ink">{pick(current.long, locale)}</p>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.dl
+                key={current.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.18 }}
+                className="mt-4 divide-y divide-line"
+              >
+                {meals.map((m) => (
+                  <div key={m} className="grid grid-cols-1 gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-6">
+                    <dt className="flex items-baseline gap-3 sm:block">
+                      <span className="font-semibold text-ink">{pick(mealLabels[m], locale)}</span>
+                      <span className="text-sm tabular-nums text-ink-3 sm:block">{mealLabels[m].time}</span>
+                    </dt>
+                    <dd>
+                      <ul className="flex flex-wrap gap-x-5 gap-y-1 text-ink-2">
+                        {current.meals[m].map((dish, i) => (
+                          <li key={i} className="flex items-center gap-2">
+                            <span aria-hidden="true" className="size-1.5 rounded-full border border-orange" />
+                            {pick(dish, locale)}
+                          </li>
+                        ))}
+                      </ul>
+                    </dd>
+                  </div>
+                ))}
+              </motion.dl>
+            </AnimatePresence>
+          </TabPanel>
+          <p className="mt-5 max-w-[60ch] text-sm text-ink-3">{pick(c.note, locale)}</p>
+        </div>
+      </div>
+    </section>
+  );
+}

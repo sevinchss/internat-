@@ -1,0 +1,5 @@
+.next
+node_modules
+lib/blur-data.json
+data/hanzi-xue.ts
+public
