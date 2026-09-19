@@ -42,7 +42,11 @@ export const englishCopy = {
     } satisfies L10n,
   },
   exams: {
-    title: { uz: "Xalqaro imtihonlar yoʻli", en: "International exam pathway", ru: "Путь к международным экзаменам" } satisfies L10n,
+    title: {
+      uz: "Xalqaro imtihonlar yoʻli",
+      en: "International exam pathway",
+      ru: "Путь к международным экзаменам",
+    } satisfies L10n,
     badge: { uz: "Tasdiqlanishi kutilmoqda", en: "To be confirmed", ru: "Требует подтверждения" } satisfies L10n,
     lead: {
       uz: "Kirish imtihonlari Cambridge Assessment bilan hamkorlikda tashkil etildi. Keyingi bosqichlar uchun quyidagi yoʻl koʻrib chiqilmoqda — qaysi imtihonlar topshirilishi hali tasdiqlanmagan.",
@@ -57,7 +61,11 @@ export const englishCopy = {
       en: "Speaking, arguing and going on stage — in English.",
       ru: "Говорить, спорить и выходить на сцену — по-английски.",
     } satisfies L10n,
-    regionLabel: { uz: "Toʻgaraklar roʻyxati, gorizontal aylantiriladi", en: "Clubs, scrolls horizontally", ru: "Список кружков, прокручивается горизонтально" } satisfies L10n,
+    regionLabel: {
+      uz: "Toʻgaraklar roʻyxati, gorizontal aylantiriladi",
+      en: "Clubs, scrolls horizontally",
+      ru: "Список кружков, прокручивается горизонтально",
+    } satisfies L10n,
     prev: { uz: "Oldingi", en: "Previous", ru: "Назад" } satisfies L10n,
     next: { uz: "Keyingi", en: "Next", ru: "Вперёд" } satisfies L10n,
   },
@@ -95,7 +103,13 @@ export const corrections: Correction[] = [
 export const finalSentence = "Every mistake is a step forward.";
 
 /* ───────────── Skills wheel ───────────── TODO: replace with real data (methods / hours) */
-export type Skill = { id: "reading" | "writing" | "listening" | "speaking"; name: string; label: L10n; summary: L10n; methods: L10n<string[]> };
+export type Skill = {
+  id: "reading" | "writing" | "listening" | "speaking";
+  name: string;
+  label: L10n;
+  summary: L10n;
+  methods: L10n<string[]>;
+};
 
 export const skills: Skill[] = [
   {
@@ -108,7 +122,11 @@ export const skills: Skill[] = [
       ru: "Одна целая книга за четверть и короткие тексты каждую неделю: художественные, научно-популярные, новости.",
     },
     methods: {
-      uz: ["Sinfdagi kutubxona va oʻqish kundaligi", "Matn boʻyicha savollar va muhokama", "Soʻz boyligi uchun kartochkalar"],
+      uz: [
+        "Sinfdagi kutubxona va oʻqish kundaligi",
+        "Matn boʻyicha savollar va muhokama",
+        "Soʻz boyligi uchun kartochkalar",
+      ],
       en: ["A class library and reading log", "Questions and discussion on each text", "Vocabulary cards"],
       ru: ["Классная библиотека и дневник чтения", "Вопросы и обсуждение каждого текста", "Карточки для словаря"],
     },
@@ -164,23 +182,47 @@ export const skills: Skill[] = [
 export const cefrLevels = ["A1", "A2", "B1", "B2", "C1", "C2"] as const;
 export type Cefr = (typeof cefrLevels)[number];
 
-export type EnglishGrade = { grade: number; cefr: Cefr; plus?: boolean; hours: number; focus: L10n; topics: L10n<string[]>; books: string[] };
+export type EnglishGrade = {
+  grade: number;
+  cefr: Cefr;
+  plus?: boolean;
+  hours: number;
+  focus: L10n;
+  topics: L10n<string[]>;
+  books: string[];
+};
 
 export const englishGrades: EnglishGrade[] = [
   {
     grade: 5,
     cefr: "A2",
     hours: 8,
-    focus: { uz: "Ishonch bilan gapirish va grammatika asoslari.", en: "Speaking with confidence and solid grammar basics.", ru: "Уверенная речь и основы грамматики." },
-    topics: { uz: ["Men va oilam", "Maktab hayoti", "Hikoya yozish"], en: ["Me and my family", "School life", "Writing a story"], ru: ["Я и моя семья", "Школьная жизнь", "Пишем рассказ"] },
+    focus: {
+      uz: "Ishonch bilan gapirish va grammatika asoslari.",
+      en: "Speaking with confidence and solid grammar basics.",
+      ru: "Уверенная речь и основы грамматики.",
+    },
+    topics: {
+      uz: ["Men va oilam", "Maktab hayoti", "Hikoya yozish"],
+      en: ["Me and my family", "School life", "Writing a story"],
+      ru: ["Я и моя семья", "Школьная жизнь", "Пишем рассказ"],
+    },
     books: ["Charlotte’s Web", "Matilda"],
   },
   {
     grade: 6,
     cefr: "B1",
     hours: 8,
-    focus: { uz: "Mustaqil oʻqish va qisqa taqdimotlar.", en: "Independent reading and short presentations.", ru: "Самостоятельное чтение и короткие презентации." },
-    topics: { uz: ["Tabiat va ekologiya", "Sayohat", "Xat yozish"], en: ["Nature and the environment", "Travel", "Letter writing"], ru: ["Природа и экология", "Путешествия", "Письма"] },
+    focus: {
+      uz: "Mustaqil oʻqish va qisqa taqdimotlar.",
+      en: "Independent reading and short presentations.",
+      ru: "Самостоятельное чтение и короткие презентации.",
+    },
+    topics: {
+      uz: ["Tabiat va ekologiya", "Sayohat", "Xat yozish"],
+      en: ["Nature and the environment", "Travel", "Letter writing"],
+      ru: ["Природа и экология", "Путешествия", "Письма"],
+    },
     books: ["The Secret Garden", "Wonder"],
   },
   {
@@ -188,16 +230,32 @@ export const englishGrades: EnglishGrade[] = [
     cefr: "B1",
     plus: true,
     hours: 7,
-    focus: { uz: "Fikrni asoslash: argument va misol.", en: "Backing up an opinion with reasons and examples.", ru: "Аргументация: довод и пример." },
-    topics: { uz: ["Fan va texnologiya", "Media", "Fikr-mulohaza inshosi"], en: ["Science and technology", "The media", "Opinion essays"], ru: ["Наука и технологии", "СМИ", "Эссе-мнение"] },
+    focus: {
+      uz: "Fikrni asoslash: argument va misol.",
+      en: "Backing up an opinion with reasons and examples.",
+      ru: "Аргументация: довод и пример.",
+    },
+    topics: {
+      uz: ["Fan va texnologiya", "Media", "Fikr-mulohaza inshosi"],
+      en: ["Science and technology", "The media", "Opinion essays"],
+      ru: ["Наука и технологии", "СМИ", "Эссе-мнение"],
+    },
     books: ["Holes", "The Hobbit"],
   },
   {
     grade: 8,
     cefr: "B2",
     hours: 6,
-    focus: { uz: "Akademik tinglash va eslatma olish.", en: "Academic listening and note-taking.", ru: "Академическое аудирование и конспект." },
-    topics: { uz: ["Tarix va madaniyat", "Munozara", "Hisobot yozish"], en: ["History and culture", "Debate", "Report writing"], ru: ["История и культура", "Дебаты", "Отчёты"] },
+    focus: {
+      uz: "Akademik tinglash va eslatma olish.",
+      en: "Academic listening and note-taking.",
+      ru: "Академическое аудирование и конспект.",
+    },
+    topics: {
+      uz: ["Tarix va madaniyat", "Munozara", "Hisobot yozish"],
+      en: ["History and culture", "Debate", "Report writing"],
+      ru: ["История и культура", "Дебаты", "Отчёты"],
+    },
     books: ["Animal Farm", "A Christmas Carol"],
   },
   {
@@ -205,16 +263,32 @@ export const englishGrades: EnglishGrade[] = [
     cefr: "B2",
     plus: true,
     hours: 6,
-    focus: { uz: "Murakkab matnlar va ommaviy nutq.", en: "Complex texts and public speaking.", ru: "Сложные тексты и публичные выступления." },
-    topics: { uz: ["Global muammolar", "Ilmiy maqola", "Ommaviy nutq"], en: ["Global issues", "Science articles", "Public speaking"], ru: ["Глобальные проблемы", "Научные статьи", "Публичные выступления"] },
+    focus: {
+      uz: "Murakkab matnlar va ommaviy nutq.",
+      en: "Complex texts and public speaking.",
+      ru: "Сложные тексты и публичные выступления.",
+    },
+    topics: {
+      uz: ["Global muammolar", "Ilmiy maqola", "Ommaviy nutq"],
+      en: ["Global issues", "Science articles", "Public speaking"],
+      ru: ["Глобальные проблемы", "Научные статьи", "Публичные выступления"],
+    },
     books: ["Of Mice and Men", "Short stories"],
   },
   {
     grade: 10,
     cefr: "C1",
     hours: 5,
-    focus: { uz: "Akademik yozuv va tadqiqot.", en: "Academic writing and research.", ru: "Академическое письмо и исследование." },
-    topics: { uz: ["Tadqiqot loyihasi", "Adabiyot tahlili", "Bahs"], en: ["Research project", "Literary analysis", "Argument"], ru: ["Исследовательский проект", "Анализ литературы", "Аргументация"] },
+    focus: {
+      uz: "Akademik yozuv va tadqiqot.",
+      en: "Academic writing and research.",
+      ru: "Академическое письмо и исследование.",
+    },
+    topics: {
+      uz: ["Tadqiqot loyihasi", "Adabiyot tahlili", "Bahs"],
+      en: ["Research project", "Literary analysis", "Argument"],
+      ru: ["Исследовательский проект", "Анализ литературы", "Аргументация"],
+    },
     books: ["Lord of the Flies", "To Kill a Mockingbird"],
   },
   {
@@ -222,8 +296,16 @@ export const englishGrades: EnglishGrade[] = [
     cefr: "C1",
     plus: true,
     hours: 5,
-    focus: { uz: "Universitetga tayyorgarlik va xalqaro imtihon.", en: "University preparation and an international exam.", ru: "Подготовка к университету и международному экзамену." },
-    topics: { uz: ["Motivatsion xat", "Imtihon strategiyalari", "Mustaqil tadqiqot"], en: ["Personal statements", "Exam strategies", "Independent research"], ru: ["Мотивационное письмо", "Стратегии экзамена", "Самостоятельное исследование"] },
+    focus: {
+      uz: "Universitetga tayyorgarlik va xalqaro imtihon.",
+      en: "University preparation and an international exam.",
+      ru: "Подготовка к университету и международному экзамену.",
+    },
+    topics: {
+      uz: ["Motivatsion xat", "Imtihon strategiyalari", "Mustaqil tadqiqot"],
+      en: ["Personal statements", "Exam strategies", "Independent research"],
+      ru: ["Мотивационное письмо", "Стратегии экзамена", "Самостоятельное исследование"],
+    },
     books: ["Pride and Prejudice", "Selected essays"],
   },
 ];
@@ -234,7 +316,12 @@ export const examPath: { id: string; name: string; level: string; when: L10n }[]
   { id: "a2-key", name: "A2 Key", level: "A2", when: { uz: "5–6-sinf", en: "Grades 5–6", ru: "5–6 классы" } },
   { id: "b1-preliminary", name: "B1 Preliminary", level: "B1", when: { uz: "7-sinf", en: "Grade 7", ru: "7 класс" } },
   { id: "b2-first", name: "B2 First", level: "B2", when: { uz: "8–9-sinf", en: "Grades 8–9", ru: "8–9 классы" } },
-  { id: "c1-advanced", name: "C1 Advanced / IELTS", level: "C1", when: { uz: "10–11-sinf", en: "Grades 10–11", ru: "10–11 классы" } },
+  {
+    id: "c1-advanced",
+    name: "C1 Advanced / IELTS",
+    level: "C1",
+    when: { uz: "10–11-sinf", en: "Grades 10–11", ru: "10–11 классы" },
+  },
 ];
 
 /* ───────────── Clubs ───────────── TODO: replace with real data (schedules) */
@@ -311,7 +398,11 @@ export const englishTeachers: { name: string; role: L10n; note: L10n }[] = [
   {
     name: "Shahnoza Umarova",
     role: { uz: "Ingliz tili oʻqituvchisi", en: "English teacher", ru: "Преподаватель английского" },
-    note: { uz: "Akademik yozuv, 10–11-sinflar", en: "Academic writing, grades 10–11", ru: "Академическое письмо, 10–11 классы" },
+    note: {
+      uz: "Akademik yozuv, 10–11-sinflar",
+      en: "Academic writing, grades 10–11",
+      ru: "Академическое письмо, 10–11 классы",
+    },
   },
   {
     name: "Bekzod Rashidov",

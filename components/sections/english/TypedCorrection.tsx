@@ -35,20 +35,22 @@ function buildTimeline(): Step[] {
     steps.push({ f: { k: "mark", s }, ms: 750 });
     steps.push({ f: { k: "strike", s }, ms: 450 });
     for (let n = 1; n <= c.right.length; n++) steps.push({ f: { k: "fix", s, n }, ms: 70 });
-    steps[steps.length - 1].ms = 1300;
-    steps.push({ f: { k: "clean", s }, ms: 1500 });
+    steps[steps.length - 1].ms = 1000;
+    steps.push({ f: { k: "clean", s }, ms: 1100 });
     const fixed = c.before + c.right + c.after;
     for (let n = fixed.length - 2; n >= 0; n -= 2) steps.push({ f: { k: "erase", s, n: Math.max(0, n) }, ms: 16 });
   });
   steps.push({ f: { k: "final", n: 0 }, ms: 400 });
-  for (let n = 1; n <= finalSentence.length; n++) steps.push({ f: { k: "final", n }, ms: typeDelay(finalSentence[n - 1]) });
+  for (let n = 1; n <= finalSentence.length; n++)
+    steps.push({ f: { k: "final", n }, ms: typeDelay(finalSentence[n - 1]) });
   return steps;
 }
 
 const timeline = buildTimeline();
 const LAST = timeline.length - 1;
 
-const caretClass = "ml-[0.04em] inline-block h-[0.95em] w-[3px] translate-y-[0.12em] rounded-full bg-amber align-baseline";
+const caretClass =
+  "ml-[0.04em] inline-block h-[0.95em] w-[3px] translate-y-[0.12em] rounded-full bg-amber align-baseline";
 
 /** While typing: solid caret. At rest: blinks a few times, then fades away (no endless loop). */
 function Caret({ rest }: { rest?: boolean }) {
@@ -84,13 +86,24 @@ function Wrong({ children, struck }: { children: React.ReactNode; struck?: boole
     <span className="relative inline-block">
       <span className={cn("transition-colors duration-300", struck ? "text-ink-3" : "text-ink")}>{children}</span>
       {/* wavy "check this" underline, then a strike line drawn across */}
-      <span className={cn("absolute inset-x-0 -bottom-[0.08em] h-[0.12em] transition-opacity duration-300", struck ? "opacity-0" : "opacity-100")}>
+      <span
+        className={cn(
+          "absolute inset-x-0 -bottom-[0.08em] h-[0.12em] transition-opacity duration-300",
+          struck ? "opacity-0" : "opacity-100",
+        )}
+      >
         <svg viewBox="0 0 40 6" preserveAspectRatio="none" className="h-full w-full">
-          <path d="M0 3 Q2.5 0 5 3 T10 3 T15 3 T20 3 T25 3 T30 3 T35 3 T40 3" fill="none" stroke="var(--amber)" strokeWidth="1.6" vectorEffect="non-scaling-stroke" />
+          <path
+            d="M0 3 Q2.5 0 5 3 T10 3 T15 3 T20 3 T25 3 T30 3 T35 3 T40 3"
+            fill="none"
+            stroke="var(--amber)"
+            strokeWidth="1.6"
+            vectorEffect="non-scaling-stroke"
+          />
         </svg>
       </span>
       <span
-        className="absolute left-[-0.04em] right-[-0.04em] top-[55%] h-[0.08em] origin-left rounded-full bg-accent-ink transition-transform duration-[450ms] ease-out"
+        className="bg-accent-ink absolute top-[55%] right-[-0.04em] left-[-0.04em] h-[0.08em] origin-left rounded-full transition-transform duration-[450ms] ease-out"
         style={{ transform: `scaleX(${struck ? 1 : 0})` }}
       />
     </span>
@@ -143,7 +156,7 @@ export function TypedCorrection({ exampleLabel }: { exampleLabel: string }) {
     line = (
       <>
         {c.before}
-        <span className="underline decoration-amber decoration-[0.07em] underline-offset-[0.14em]">{c.right}</span>
+        <span className="decoration-amber underline decoration-[0.07em] underline-offset-[0.14em]">{c.right}</span>
         {c.after}
       </>
     );
@@ -160,18 +173,20 @@ export function TypedCorrection({ exampleLabel }: { exampleLabel: string }) {
     <div className="relative">
       <p className="sr-only">{finalSentence}</p>
       <div aria-hidden="true" lang="en">
-        <p className="flex items-center gap-3 text-sm font-semibold text-ink-3">
-          <span className="h-px w-8 bg-amber" />
+        <p className="text-ink-3 flex items-center gap-3 text-sm font-semibold">
+          <span className="bg-amber h-px w-8" />
           {exampleLabel}
         </p>
-        <p className="mt-5 min-h-[3.25em] font-display text-display-l text-ink [text-wrap:pretty] md:min-h-[2.2em]">{line}</p>
+        <p className="font-display text-display-l text-ink mt-5 min-h-[3.25em] [text-wrap:pretty] md:min-h-[2.2em]">
+          {line}
+        </p>
         <p
           className={cn(
-            "mt-4 inline-flex min-h-9 items-center gap-2 rounded-full border border-line px-4 text-sm font-semibold text-ink-2 transition-opacity duration-300",
+            "border-line text-ink-2 mt-4 inline-flex min-h-9 items-center gap-2 rounded-full border px-4 text-sm font-semibold transition-opacity duration-300",
             showRule && c ? "opacity-100" : "opacity-0",
           )}
         >
-          <span className="size-1.5 rounded-full bg-amber" />
+          <span className="bg-amber size-1.5 rounded-full" />
           {c ? pick(c.rule, locale) : " "}
         </p>
       </div>

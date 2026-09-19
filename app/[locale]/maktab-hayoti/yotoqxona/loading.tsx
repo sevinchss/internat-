@@ -2,7 +2,7 @@
 export default function Loading() {
   return (
     <div aria-hidden="true">
-      <div className="container-x grid items-end gap-12 pb-20 pt-32 lg:grid-cols-12 lg:gap-10 lg:pt-36">
+      <div className="container-x grid items-end gap-12 pt-32 pb-20 lg:grid-cols-12 lg:gap-10 lg:pt-36">
         <div className="lg:col-span-6 lg:pb-10">
           <div className="skeleton h-14 w-4/5 sm:h-20" />
           <div className="skeleton mt-8 h-4 w-full max-w-[52ch]" />
@@ -15,10 +15,10 @@ export default function Loading() {
           </div>
         </div>
         <div className="lg:col-span-6">
-          <div className="skeleton ml-auto aspect-[4/5] w-[88%] max-w-[545px] !rounded-b-[28px] !rounded-t-[999px]" />
+          <div className="skeleton ml-auto aspect-[4/5] w-[88%] max-w-[545px] !rounded-t-[999px] !rounded-b-[28px]" />
         </div>
       </div>
-      <div className="container-x grid gap-10 border-t border-line py-20 lg:grid-cols-12">
+      <div className="container-x border-line grid gap-10 border-t py-20 lg:grid-cols-12">
         <div className="skeleton aspect-[2/3] max-h-[780px] lg:col-span-6" />
         <div className="lg:col-span-5 lg:col-start-8">
           <div className="skeleton h-10 w-2/3" />

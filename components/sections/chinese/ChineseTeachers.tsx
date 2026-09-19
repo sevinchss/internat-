@@ -17,15 +17,20 @@ export function ChineseTeachers() {
           <h2 id="zh-teachers" className="text-display-m text-ink">
             {pick(c.title, locale)}
           </h2>
-          <p className="mt-4 max-w-[30ch] text-sm text-ink-3">{pick(c.lead, locale)}</p>
+          <p className="text-ink-3 mt-4 max-w-[30ch] text-sm">{pick(c.lead, locale)}</p>
         </div>
         <ul className="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-6 lg:col-span-9">
           {chineseTeachers.map((t, i) => (
             <li key={t.name} className={cn(offsets[i])}>
-              <Portrait name={t.name} sizes="(min-width: 1024px) 300px, (min-width: 640px) 33vw, 90vw" accent="var(--red)" className="aspect-[4/5] rounded-[22px]" />
-              <h3 className="mt-5 font-sans text-lg font-bold tracking-normal text-ink">{t.name}</h3>
+              <Portrait
+                name={t.name}
+                sizes="(min-width: 1024px) 300px, (min-width: 640px) 33vw, 90vw"
+                accent="var(--red)"
+                className="aspect-[4/5] rounded-[22px]"
+              />
+              <h3 className="text-ink mt-5 font-sans text-lg font-bold tracking-normal">{t.name}</h3>
               <p className="text-ink-2">{pick(t.role, locale)}</p>
-              <p className="mt-1 text-sm text-ink-3">{pick(t.note, locale)}</p>
+              <p className="text-ink-3 mt-1 text-sm">{pick(t.note, locale)}</p>
             </li>
           ))}
         </ul>

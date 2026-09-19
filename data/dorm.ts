@@ -19,7 +19,10 @@ export const dormCopy = {
     // TODO: replace with real data
     facts: [
       { value: "4", label: { uz: "oʻquvchi bir xonada", en: "students per room", ru: "ученика в комнате" } },
-      { value: "24/7", label: { uz: "tarbiyachilar navbatchiligi", en: "tutors on duty", ru: "дежурство воспитателей" } },
+      {
+        value: "24/7",
+        label: { uz: "tarbiyachilar navbatchiligi", en: "tutors on duty", ru: "дежурство воспитателей" },
+      },
       { value: "5", label: { uz: "mahal ovqatlanish", en: "meals a day", ru: "приёмов пищи в день" } },
     ] satisfies { value: string; label: L10n }[],
     lampCaption: {
@@ -180,7 +183,13 @@ export const hotspots: Hotspot[] = [
 ];
 
 /* ───────────── Daily routine ───────────── TODO: replace with real data */
-export type RoutineItem = { time: string; end?: string; title: L10n; text?: L10n; part: "morning" | "day" | "evening" | "night" };
+export type RoutineItem = {
+  time: string;
+  end?: string;
+  title: L10n;
+  text?: L10n;
+  part: "morning" | "day" | "evening" | "night";
+};
 
 export const routineParts: Record<RoutineItem["part"], L10n> = {
   morning: { uz: "Ertalab", en: "Morning", ru: "Утро" },
@@ -190,17 +199,60 @@ export const routineParts: Record<RoutineItem["part"], L10n> = {
 };
 
 export const routine: RoutineItem[] = [
-  { time: "07:00", part: "morning", title: { uz: "Uygʻonish", en: "Wake-up", ru: "Подъём" }, text: { uz: "Tarbiyachi har bir xonaga kiradi.", en: "A tutor looks in on every room.", ru: "Воспитатель заходит в каждую комнату." } },
+  {
+    time: "07:00",
+    part: "morning",
+    title: { uz: "Uygʻonish", en: "Wake-up", ru: "Подъём" },
+    text: {
+      uz: "Tarbiyachi har bir xonaga kiradi.",
+      en: "A tutor looks in on every room.",
+      ru: "Воспитатель заходит в каждую комнату.",
+    },
+  },
   { time: "07:15", part: "morning", title: { uz: "Badantarbiya", en: "Morning exercise", ru: "Зарядка" } },
   { time: "07:45", part: "morning", title: { uz: "Nonushta", en: "Breakfast", ru: "Завтрак" } },
-  { time: "08:30", end: "13:20", part: "day", title: { uz: "Darslar", en: "Lessons", ru: "Уроки" }, text: { uz: "10:15 da tushdan oldingi yengil tamaddi.", en: "A mid-morning snack at 10:15.", ru: "Второй завтрак в 10:15." } },
+  {
+    time: "08:30",
+    end: "13:20",
+    part: "day",
+    title: { uz: "Darslar", en: "Lessons", ru: "Уроки" },
+    text: {
+      uz: "10:15 da tushdan oldingi yengil tamaddi.",
+      en: "A mid-morning snack at 10:15.",
+      ru: "Второй завтрак в 10:15.",
+    },
+  },
   { time: "13:30", part: "day", title: { uz: "Tushlik", en: "Lunch", ru: "Обед" } },
   { time: "14:15", part: "day", title: { uz: "Dam olish", en: "Rest", ru: "Отдых" } },
-  { time: "15:00", end: "16:30", part: "day", title: { uz: "Toʻgaraklar", en: "Clubs", ru: "Кружки" }, text: { uz: "Robototexnika, debat, xattotlik, shaxmat va boshqalar.", en: "Robotics, debate, calligraphy, chess and more.", ru: "Робототехника, дебаты, каллиграфия, шахматы и другое." } },
+  {
+    time: "15:00",
+    end: "16:30",
+    part: "day",
+    title: { uz: "Toʻgaraklar", en: "Clubs", ru: "Кружки" },
+    text: {
+      uz: "Robototexnika, debat, xattotlik, shaxmat va boshqalar.",
+      en: "Robotics, debate, calligraphy, chess and more.",
+      ru: "Робототехника, дебаты, каллиграфия, шахматы и другое.",
+    },
+  },
   { time: "16:45", end: "18:00", part: "evening", title: { uz: "Sport", en: "Sport", ru: "Спорт" } },
   { time: "18:30", part: "evening", title: { uz: "Kechki ovqat", en: "Dinner", ru: "Ужин" } },
-  { time: "19:15", end: "21:00", part: "evening", title: { uz: "Mustaqil tayyorgarlik", en: "Self-study", ru: "Самоподготовка" }, text: { uz: "Oʻqituvchi va tarbiyachi yordamida uy vazifalari.", en: "Homework with a teacher and a tutor on hand.", ru: "Домашние задания с учителем и воспитателем." } },
-  { time: "21:00", part: "evening", title: { uz: "Erkin vaqt, uyga qoʻngʻiroq", en: "Free time, calls home", ru: "Свободное время, звонок домой" } },
+  {
+    time: "19:15",
+    end: "21:00",
+    part: "evening",
+    title: { uz: "Mustaqil tayyorgarlik", en: "Self-study", ru: "Самоподготовка" },
+    text: {
+      uz: "Oʻqituvchi va tarbiyachi yordamida uy vazifalari.",
+      en: "Homework with a teacher and a tutor on hand.",
+      ru: "Домашние задания с учителем и воспитателем.",
+    },
+  },
+  {
+    time: "21:00",
+    part: "evening",
+    title: { uz: "Erkin vaqt, uyga qoʻngʻiroq", en: "Free time, calls home", ru: "Свободное время, звонок домой" },
+  },
   { time: "22:00", part: "night", title: { uz: "Chiroqlar oʻchadi", en: "Lights out", ru: "Отбой" } },
 ];
 
@@ -270,10 +322,22 @@ export const menu: MenuDay[] = [
     short: { uz: "Du", en: "Mon", ru: "Пн" },
     long: { uz: "Dushanba", en: "Monday", ru: "Понедельник" },
     meals: {
-      breakfast: [d("Sutli guruch boʻtqa", "Rice pudding porridge", "Рисовая молочная каша"), d("Tuxum, pishloq, non", "Egg, cheese, bread", "Яйцо, сыр, хлеб"), d("Koʻk choy", "Green tea", "Зелёный чай")],
-      lunch: [d("Mastava", "Mastava rice soup", "Мастава"), d("Tovuq kotleti, grechka", "Chicken cutlet with buckwheat", "Куриная котлета с гречкой"), d("Achchiq-chuchuk salat", "Tomato and onion salad", "Салат ачичук")],
+      breakfast: [
+        d("Sutli guruch boʻtqa", "Rice pudding porridge", "Рисовая молочная каша"),
+        d("Tuxum, pishloq, non", "Egg, cheese, bread", "Яйцо, сыр, хлеб"),
+        d("Koʻk choy", "Green tea", "Зелёный чай"),
+      ],
+      lunch: [
+        d("Mastava", "Mastava rice soup", "Мастава"),
+        d("Tovuq kotleti, grechka", "Chicken cutlet with buckwheat", "Куриная котлета с гречкой"),
+        d("Achchiq-chuchuk salat", "Tomato and onion salad", "Салат ачичук"),
+      ],
       snack: [d("Olma, kefir", "Apple, kefir", "Яблоко, кефир")],
-      dinner: [d("Dimlama", "Dimlama vegetable stew", "Димлама"), d("Qatiq", "Yoghurt", "Катык"), d("Kompot", "Fruit compote", "Компот")],
+      dinner: [
+        d("Dimlama", "Dimlama vegetable stew", "Димлама"),
+        d("Qatiq", "Yoghurt", "Катык"),
+        d("Kompot", "Fruit compote", "Компот"),
+      ],
     },
   },
   {
@@ -281,10 +345,21 @@ export const menu: MenuDay[] = [
     short: { uz: "Se", en: "Tue", ru: "Вт" },
     long: { uz: "Seshanba", en: "Tuesday", ru: "Вторник" },
     meals: {
-      breakfast: [d("Suli boʻtqa, yongʻoq", "Oat porridge with walnuts", "Овсяная каша с орехами"), d("Qaymoq va non", "Clotted cream and bread", "Каймак и хлеб"), d("Qora choy", "Black tea", "Чёрный чай")],
-      lunch: [d("Shoʻrva", "Shurva meat soup", "Шурпа"), d("Lagʻmon", "Lagman noodles", "Лагман"), d("Sabzi salati", "Carrot salad", "Морковный салат")],
+      breakfast: [
+        d("Suli boʻtqa, yongʻoq", "Oat porridge with walnuts", "Овсяная каша с орехами"),
+        d("Qaymoq va non", "Clotted cream and bread", "Каймак и хлеб"),
+        d("Qora choy", "Black tea", "Чёрный чай"),
+      ],
+      lunch: [
+        d("Shoʻrva", "Shurva meat soup", "Шурпа"),
+        d("Lagʻmon", "Lagman noodles", "Лагман"),
+        d("Sabzi salati", "Carrot salad", "Морковный салат"),
+      ],
       snack: [d("Somsa (kartoshkali)", "Potato samsa", "Самса с картофелем"), d("Sut", "Milk", "Молоко")],
-      dinner: [d("Baliq, guruch", "Baked fish with rice", "Запечённая рыба с рисом"), d("Bodring-pomidor salati", "Cucumber and tomato salad", "Салат из огурцов и помидоров")],
+      dinner: [
+        d("Baliq, guruch", "Baked fish with rice", "Запечённая рыба с рисом"),
+        d("Bodring-pomidor salati", "Cucumber and tomato salad", "Салат из огурцов и помидоров"),
+      ],
     },
   },
   {
@@ -292,8 +367,16 @@ export const menu: MenuDay[] = [
     short: { uz: "Cho", en: "Wed", ru: "Ср" },
     long: { uz: "Chorshanba", en: "Wednesday", ru: "Среда" },
     meals: {
-      breakfast: [d("Tvorog, asal", "Cottage cheese with honey", "Творог с мёдом"), d("Blinchiklar", "Pancakes", "Блинчики"), d("Koʻk choy", "Green tea", "Зелёный чай")],
-      lunch: [d("Moshxoʻrda", "Mung bean and rice soup", "Машхурда"), d("Qovurma goʻsht, kartoshka pyuresi", "Braised beef with mash", "Тушёная говядина с пюре"), d("Vinegret", "Beetroot salad", "Винегрет")],
+      breakfast: [
+        d("Tvorog, asal", "Cottage cheese with honey", "Творог с мёдом"),
+        d("Blinchiklar", "Pancakes", "Блинчики"),
+        d("Koʻk choy", "Green tea", "Зелёный чай"),
+      ],
+      lunch: [
+        d("Moshxoʻrda", "Mung bean and rice soup", "Машхурда"),
+        d("Qovurma goʻsht, kartoshka pyuresi", "Braised beef with mash", "Тушёная говядина с пюре"),
+        d("Vinegret", "Beetroot salad", "Винегрет"),
+      ],
       snack: [d("Mavsumiy meva", "Seasonal fruit", "Сезонные фрукты")],
       dinner: [d("Manti", "Manti dumplings", "Манты"), d("Qatiq", "Yoghurt", "Катык")],
     },
@@ -303,10 +386,21 @@ export const menu: MenuDay[] = [
     short: { uz: "Pa", en: "Thu", ru: "Чт" },
     long: { uz: "Payshanba", en: "Thursday", ru: "Четверг" },
     meals: {
-      breakfast: [d("Omlet", "Omelette", "Омлет"), d("Non, sariyogʻ, murabbo", "Bread, butter, jam", "Хлеб, масло, варенье"), d("Qora choy", "Black tea", "Чёрный чай")],
-      lunch: [d("Palov", "Plov", "Плов"), d("Achchiq-chuchuk", "Tomato and onion salad", "Ачичук"), d("Koʻk choy", "Green tea", "Зелёный чай")],
+      breakfast: [
+        d("Omlet", "Omelette", "Омлет"),
+        d("Non, sariyogʻ, murabbo", "Bread, butter, jam", "Хлеб, масло, варенье"),
+        d("Qora choy", "Black tea", "Чёрный чай"),
+      ],
+      lunch: [
+        d("Palov", "Plov", "Плов"),
+        d("Achchiq-chuchuk", "Tomato and onion salad", "Ачичук"),
+        d("Koʻk choy", "Green tea", "Зелёный чай"),
+      ],
       snack: [d("Yogurt, pechenye", "Yoghurt and biscuits", "Йогурт, печенье")],
-      dinner: [d("Tovuq shoʻrva", "Chicken soup", "Куриный суп"), d("Makaron, tefteli", "Pasta with meatballs", "Макароны с тефтелями")],
+      dinner: [
+        d("Tovuq shoʻrva", "Chicken soup", "Куриный суп"),
+        d("Makaron, tefteli", "Pasta with meatballs", "Макароны с тефтелями"),
+      ],
     },
   },
   {
@@ -314,10 +408,21 @@ export const menu: MenuDay[] = [
     short: { uz: "Ju", en: "Fri", ru: "Пт" },
     long: { uz: "Juma", en: "Friday", ru: "Пятница" },
     meals: {
-      breakfast: [d("Mannaya boʻtqa", "Semolina porridge", "Манная каша"), d("Pishloq va non", "Cheese and bread", "Сыр и хлеб"), d("Kakao", "Cocoa", "Какао")],
-      lunch: [d("Chuchvara shoʻrva", "Chuchvara dumpling soup", "Суп с чучварой"), d("Tovuq, sabzavot", "Roast chicken with vegetables", "Курица с овощами"), d("Karam salati", "Cabbage salad", "Салат из капусты")],
+      breakfast: [
+        d("Mannaya boʻtqa", "Semolina porridge", "Манная каша"),
+        d("Pishloq va non", "Cheese and bread", "Сыр и хлеб"),
+        d("Kakao", "Cocoa", "Какао"),
+      ],
+      lunch: [
+        d("Chuchvara shoʻrva", "Chuchvara dumpling soup", "Суп с чучварой"),
+        d("Tovuq, sabzavot", "Roast chicken with vegetables", "Курица с овощами"),
+        d("Karam salati", "Cabbage salad", "Салат из капусты"),
+      ],
       snack: [d("Banan, sut", "Banana, milk", "Банан, молоко")],
-      dinner: [d("Norin", "Norin (noodles with meat)", "Нарын"), d("Choy va quruq meva", "Tea and dried fruit", "Чай и сухофрукты")],
+      dinner: [
+        d("Norin", "Norin (noodles with meat)", "Нарын"),
+        d("Choy va quruq meva", "Tea and dried fruit", "Чай и сухофрукты"),
+      ],
     },
   },
   {
@@ -325,10 +430,20 @@ export const menu: MenuDay[] = [
     short: { uz: "Sha", en: "Sat", ru: "Сб" },
     long: { uz: "Shanba", en: "Saturday", ru: "Суббота" },
     meals: {
-      breakfast: [d("Sirniki", "Cottage cheese pancakes", "Сырники"), d("Qaymoq, asal", "Clotted cream, honey", "Каймак, мёд"), d("Koʻk choy", "Green tea", "Зелёный чай")],
-      lunch: [d("Shivit oshi", "Dill noodles with stew", "Шивит оши"), d("Sabzavot salati", "Vegetable salad", "Овощной салат")],
+      breakfast: [
+        d("Sirniki", "Cottage cheese pancakes", "Сырники"),
+        d("Qaymoq, asal", "Clotted cream, honey", "Каймак, мёд"),
+        d("Koʻk choy", "Green tea", "Зелёный чай"),
+      ],
+      lunch: [
+        d("Shivit oshi", "Dill noodles with stew", "Шивит оши"),
+        d("Sabzavot salati", "Vegetable salad", "Овощной салат"),
+      ],
       snack: [d("Mevali salat", "Fruit salad", "Фруктовый салат")],
-      dinner: [d("Kabob (tovuq), guruch", "Chicken kebab with rice", "Куриный кебаб с рисом"), d("Kompot", "Fruit compote", "Компот")],
+      dinner: [
+        d("Kabob (tovuq), guruch", "Chicken kebab with rice", "Куриный кебаб с рисом"),
+        d("Kompot", "Fruit compote", "Компот"),
+      ],
     },
   },
   {
@@ -336,7 +451,11 @@ export const menu: MenuDay[] = [
     short: { uz: "Ya", en: "Sun", ru: "Вс" },
     long: { uz: "Yakshanba", en: "Sunday", ru: "Воскресенье" },
     meals: {
-      breakfast: [d("Tuxum, pomidor", "Eggs and tomatoes", "Яйца с помидорами"), d("Non va murabbo", "Bread and jam", "Хлеб и варенье"), d("Sut", "Milk", "Молоко")],
+      breakfast: [
+        d("Tuxum, pomidor", "Eggs and tomatoes", "Яйца с помидорами"),
+        d("Non va murabbo", "Bread and jam", "Хлеб и варенье"),
+        d("Sut", "Milk", "Молоко"),
+      ],
       lunch: [d("Palov", "Plov", "Плов"), d("Achchiq-chuchuk", "Tomato and onion salad", "Ачичук")],
       snack: [d("Somsa (qovoqli)", "Pumpkin samsa", "Самса с тыквой")],
       dinner: [d("Mastava", "Mastava rice soup", "Мастава"), d("Qatiq, non", "Yoghurt and bread", "Катык, хлеб")],
@@ -348,12 +467,42 @@ export const menu: MenuDay[] = [
 export type Leisure = { id: string; photo: ImageSlot; title: L10n; when: L10n };
 
 export const leisure: Leisure[] = [
-  { id: "football", photo: images.sport.football, title: { uz: "Futbol turniri", en: "Football league", ru: "Футбольный турнир" }, when: { uz: "Shanba, ertalab", en: "Saturday morning", ru: "Суббота, утро" } },
-  { id: "chess", photo: images.sport.chessLibrary, title: { uz: "Kutubxonada shaxmat", en: "Chess in the library", ru: "Шахматы в библиотеке" }, when: { uz: "Har kuni kechqurun", en: "Every evening", ru: "Каждый вечер" } },
-  { id: "stage", photo: images.events.lawnStage, title: { uz: "Ochiq sahna kechalari", en: "Open-air stage nights", ru: "Вечера на открытой сцене" }, when: { uz: "Oyiga bir marta", en: "Once a month", ru: "Раз в месяц" } },
-  { id: "reading", photo: images.campus.readingRoom, title: { uz: "Kitobxonlar klubi", en: "Book club", ru: "Книжный клуб" }, when: { uz: "Yakshanba", en: "Sunday", ru: "Воскресенье" } },
-  { id: "court", photo: images.sport.court, title: { uz: "Basketbol", en: "Basketball", ru: "Баскетбол" }, when: { uz: "Shanba, kunduzi", en: "Saturday afternoon", ru: "Суббота, день" } },
-  { id: "trips", photo: images.heritage.alley, title: { uz: "Muzey va shahar sayohatlari", en: "Museum and city trips", ru: "Музеи и прогулки по городу" }, when: { uz: "Ikki haftada bir", en: "Every other week", ru: "Раз в две недели" } },
+  {
+    id: "football",
+    photo: images.sport.football,
+    title: { uz: "Futbol turniri", en: "Football league", ru: "Футбольный турнир" },
+    when: { uz: "Shanba, ertalab", en: "Saturday morning", ru: "Суббота, утро" },
+  },
+  {
+    id: "chess",
+    photo: images.sport.chessLibrary,
+    title: { uz: "Kutubxonada shaxmat", en: "Chess in the library", ru: "Шахматы в библиотеке" },
+    when: { uz: "Har kuni kechqurun", en: "Every evening", ru: "Каждый вечер" },
+  },
+  {
+    id: "stage",
+    photo: images.events.lawnStage,
+    title: { uz: "Ochiq sahna kechalari", en: "Open-air stage nights", ru: "Вечера на открытой сцене" },
+    when: { uz: "Oyiga bir marta", en: "Once a month", ru: "Раз в месяц" },
+  },
+  {
+    id: "reading",
+    photo: images.campus.readingRoom,
+    title: { uz: "Kitobxonlar klubi", en: "Book club", ru: "Книжный клуб" },
+    when: { uz: "Yakshanba", en: "Sunday", ru: "Воскресенье" },
+  },
+  {
+    id: "court",
+    photo: images.sport.court,
+    title: { uz: "Basketbol", en: "Basketball", ru: "Баскетбол" },
+    when: { uz: "Shanba, kunduzi", en: "Saturday afternoon", ru: "Суббота, день" },
+  },
+  {
+    id: "trips",
+    photo: images.heritage.alley,
+    title: { uz: "Muzey va shahar sayohatlari", en: "Museum and city trips", ru: "Музеи и прогулки по городу" },
+    when: { uz: "Ikki haftada bir", en: "Every other week", ru: "Раз в две недели" },
+  },
 ];
 
 /* ───────────── Parents' FAQ ───────────── TODO: replace with real data */
@@ -367,7 +516,11 @@ export const faq: { q: L10n; a: L10n }[] = [
     },
   },
   {
-    q: { uz: "Farzandim bilan qanday bogʻlanaman?", en: "How can I stay in touch with my child?", ru: "Как связаться с ребёнком?" },
+    q: {
+      uz: "Farzandim bilan qanday bogʻlanaman?",
+      en: "How can I stay in touch with my child?",
+      ru: "Как связаться с ребёнком?",
+    },
     a: {
       uz: "Kechqurun 21:00 dan keyin telefon orqali gaplashish mumkin. Istalgan vaqtda qavat tarbiyachisiga qoʻngʻiroq qilishingiz mumkin.",
       en: "Children can phone home after 21:00. You can call the floor tutor at any time.",
@@ -375,7 +528,11 @@ export const faq: { q: L10n; a: L10n }[] = [
     },
   },
   {
-    q: { uz: "Telefonlardan foydalanish qanday tartibda?", en: "What are the rules on phones?", ru: "Какие правила насчёт телефонов?" },
+    q: {
+      uz: "Telefonlardan foydalanish qanday tartibda?",
+      en: "What are the rules on phones?",
+      ru: "Какие правила насчёт телефонов?",
+    },
     a: {
       uz: "Dars va mustaqil tayyorgarlik vaqtida telefonlar tarbiyachida saqlanadi, erkin vaqtda qaytariladi.",
       en: "During lessons and self-study phones are kept by the tutor; they are handed back in free time.",
@@ -383,7 +540,11 @@ export const faq: { q: L10n; a: L10n }[] = [
     },
   },
   {
-    q: { uz: "Bola kasal boʻlib qolsa-chi?", en: "What happens if my child falls ill?", ru: "Что будет, если ребёнок заболеет?" },
+    q: {
+      uz: "Bola kasal boʻlib qolsa-chi?",
+      en: "What happens if my child falls ill?",
+      ru: "Что будет, если ребёнок заболеет?",
+    },
     a: {
       uz: "Hamshira darhol koʻrikdan oʻtkazadi, kerak boʻlsa shifokor chaqiriladi va ota-onaga shu zahoti xabar beriladi.",
       en: "The nurse sees the child straight away, a doctor is called if needed, and parents are informed at once.",
@@ -399,7 +560,11 @@ export const faq: { q: L10n; a: L10n }[] = [
     },
   },
   {
-    q: { uz: "Ota-onalar yotoqxonaga kira oladimi?", en: "Can parents visit the boarding house?", ru: "Могут ли родители посещать общежитие?" },
+    q: {
+      uz: "Ota-onalar yotoqxonaga kira oladimi?",
+      en: "Can parents visit the boarding house?",
+      ru: "Могут ли родители посещать общежитие?",
+    },
     a: {
       uz: "Ha, belgilangan kunlarda oldindan kelishilgan holda. Tashrif kunlari oʻquv yili boshida eʼlon qilinadi.",
       en: "Yes, on set visiting days, by arrangement. Visiting days are announced at the start of the school year.",

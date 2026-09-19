@@ -59,14 +59,13 @@ export function RoomTour() {
     : undefined;
 
   return (
-    <section aria-labelledby={`${base}-title`} className="border-t border-line bg-surface py-20 lg:py-28">
+    <section aria-labelledby={`${base}-title`} className="border-line bg-surface border-t py-20 lg:py-28">
       <div ref={wrapRef} className="container-x grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-10">
         <div className="lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:self-end">
           <h2 id={`${base}-title`} className="text-display-m text-ink">
             {pick(c.title, locale)}
           </h2>
-          <p className="mt-4 max-w-[46ch] text-ink-2">{pick(c.lead, locale)}</p>
-
+          <p className="text-ink-2 mt-4 max-w-[46ch]">{pick(c.lead, locale)}</p>
         </div>
 
         <div className="lg:col-span-6 lg:col-start-1 lg:row-span-2 lg:row-start-1">
@@ -91,7 +90,7 @@ export function RoomTour() {
                     aria-hidden="true"
                     className={cn(
                       "flex size-8 items-center justify-center rounded-full text-[13px] font-bold tabular-nums shadow-[0_4px_14px_rgb(0_0_0/0.25)] ring-2 transition-[transform,background-color,color] duration-200 group-hover:scale-110",
-                      on ? "scale-110 bg-ink text-paper ring-orange" : "bg-white text-[#0b1a33] ring-white/60",
+                      on ? "bg-ink text-paper ring-orange scale-110" : "bg-white text-[#0b1a33] ring-white/60",
                     )}
                   >
                     {i + 1}
@@ -113,10 +112,16 @@ export function RoomTour() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute left-[var(--cx)] top-[var(--cy)] z-10 hidden w-[272px] md:block"
+                  className="absolute top-[var(--cy)] left-[var(--cx)] z-10 hidden w-[272px] md:block"
                 >
-                  <div className="translate-x-[var(--tx)] translate-y-[var(--ty)] rounded-[18px] border border-line bg-paper p-5 shadow-[0_18px_50px_rgb(var(--shadow)/0.18)]">
-                    <CardBody title={pick(current.title, locale)} text={pick(current.text, locale)} n={idx + 1} closeLabel={pick(c.close, locale)} onClose={close} />
+                  <div className="border-line bg-paper translate-x-[var(--tx)] translate-y-[var(--ty)] rounded-[18px] border p-5 shadow-[0_18px_50px_rgb(var(--shadow)/0.18)]">
+                    <CardBody
+                      title={pick(current.title, locale)}
+                      text={pick(current.text, locale)}
+                      n={idx + 1}
+                      closeLabel={pick(c.close, locale)}
+                      onClose={close}
+                    />
                   </div>
                 </motion.div>
               )}
@@ -126,15 +131,21 @@ export function RoomTour() {
           {/* small screens: card under the photo */}
           <div aria-live="polite" className="mx-auto max-w-[520px] md:hidden">
             {current && (
-              <div id={cardId + "-sm"} className="mt-4 rounded-[18px] border border-line bg-paper p-5">
-                <CardBody title={pick(current.title, locale)} text={pick(current.text, locale)} n={idx + 1} closeLabel={pick(c.close, locale)} onClose={close} />
+              <div id={cardId + "-sm"} className="border-line bg-paper mt-4 rounded-[18px] border p-5">
+                <CardBody
+                  title={pick(current.title, locale)}
+                  text={pick(current.text, locale)}
+                  n={idx + 1}
+                  closeLabel={pick(c.close, locale)}
+                  onClose={close}
+                />
               </div>
             )}
           </div>
         </div>
         <div className="lg:col-span-5 lg:col-start-8 lg:row-start-2">
-          <h3 className="font-sans text-sm font-semibold tracking-normal text-ink-3">{pick(c.listLabel, locale)}</h3>
-          <ol className="mt-3 divide-y divide-line border-y border-line">
+          <h3 className="text-ink-3 font-sans text-sm font-semibold tracking-normal">{pick(c.listLabel, locale)}</h3>
+          <ol className="divide-line border-line mt-3 divide-y border-y">
             {hotspots.map((h, i) => {
               const on = active === h.id;
               return (
@@ -155,36 +166,60 @@ export function RoomTour() {
                     >
                       {i + 1}
                     </span>
-                    <span className={cn("flex-1 font-semibold transition-colors", on ? "text-ink" : "text-ink-2 group-hover:text-ink")}>
+                    <span
+                      className={cn(
+                        "flex-1 font-semibold transition-colors",
+                        on ? "text-ink" : "text-ink-2 group-hover:text-ink",
+                      )}
+                    >
                       {pick(h.title, locale)}
                     </span>
-                    <span aria-hidden="true" className={cn("h-px w-6 transition-colors", on ? "bg-orange" : "bg-transparent")} />
+                    <span
+                      aria-hidden="true"
+                      className={cn("h-px w-6 transition-colors", on ? "bg-orange" : "bg-transparent")}
+                    />
                   </button>
                 </li>
               );
             })}
           </ol>
-          <p className="mt-6 max-w-[46ch] text-sm text-ink-3">{pick(c.note, locale)}</p>
+          <p className="text-ink-3 mt-6 max-w-[46ch] text-sm">{pick(c.note, locale)}</p>
         </div>
-
       </div>
     </section>
   );
 }
 
-function CardBody({ title, text, n, closeLabel, onClose }: { title: string; text: string; n: number; closeLabel: string; onClose: () => void }) {
+function CardBody({
+  title,
+  text,
+  n,
+  closeLabel,
+  onClose,
+}: {
+  title: string;
+  text: string;
+  n: number;
+  closeLabel: string;
+  onClose: () => void;
+}) {
   return (
     <>
       <div className="flex items-start gap-3">
-        <span aria-hidden="true" className="mt-1 font-display text-sm tabular-nums text-ink-3">
+        <span aria-hidden="true" className="font-display text-ink-3 mt-1 text-sm tabular-nums">
           {String(n).padStart(2, "0")}
         </span>
-        <p className="flex-1 font-display text-lg leading-snug text-ink">{title}</p>
-        <button type="button" onClick={onClose} aria-label={closeLabel} className="-mr-2 -mt-2 flex size-11 shrink-0 items-center justify-center rounded-full text-ink-2 hover:bg-surface-2 hover:text-ink">
+        <p className="font-display text-ink flex-1 text-lg leading-snug">{title}</p>
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label={closeLabel}
+          className="text-ink-2 hover:bg-surface-2 hover:text-ink -mt-2 -mr-2 flex size-11 shrink-0 items-center justify-center rounded-full"
+        >
           <X className="size-4" strokeWidth={1.8} aria-hidden="true" />
         </button>
       </div>
-      <p className="mt-2 text-[15px] leading-relaxed text-ink-2">{text}</p>
+      <p className="text-ink-2 mt-2 text-[15px] leading-relaxed">{text}</p>
     </>
   );
 }

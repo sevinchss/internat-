@@ -22,8 +22,8 @@ export function Routine() {
             <h2 id="dorm-routine" className="text-display-m text-ink">
               {pick(c.title, locale)}
             </h2>
-            <p className="mt-4 max-w-[40ch] text-ink-2">{pick(c.lead, locale)}</p>
-            <p className="mt-6 max-w-[40ch] border-l-2 border-orange pl-4 text-sm text-ink-3">{pick(c.note, locale)}</p>
+            <p className="text-ink-2 mt-4 max-w-[40ch]">{pick(c.lead, locale)}</p>
+            <p className="border-orange text-ink-3 mt-6 max-w-[40ch] border-l-2 pl-4 text-sm">{pick(c.note, locale)}</p>
           </div>
         </div>
 
@@ -33,9 +33,12 @@ export function Routine() {
               <div className={cols}>
                 <span />
                 <span className="flex justify-center" aria-hidden="true">
-                  <span className={cn("w-px bg-line", gi === 0 && "bg-transparent")} />
+                  <span className={cn("bg-line w-px", gi === 0 && "bg-transparent")} />
                 </span>
-                <h3 id={`dorm-routine-${part}`} className="pb-3 pt-1 font-sans text-sm font-semibold tracking-normal text-ink-3">
+                <h3
+                  id={`dorm-routine-${part}`}
+                  className="text-ink-3 pt-1 pb-3 font-sans text-sm font-semibold tracking-normal"
+                >
                   {pick(routineParts[part], locale)}
                 </h3>
               </div>
@@ -45,32 +48,41 @@ export function Routine() {
                   const long = Boolean(item.end);
                   return (
                     <li key={item.time} className={cols}>
-                      <span className="pt-0.5 font-display text-[15px] tabular-nums text-ink sm:text-base">
+                      <span className="font-display text-ink pt-0.5 text-[15px] tabular-nums sm:text-base">
                         <time>{item.time}</time>
                         {item.end && (
-                          <span className="block text-ink-3">
+                          <span className="text-ink-3 block">
                             <span className="sr-only">–</span>
                             <time>{item.end}</time>
                           </span>
                         )}
                       </span>
                       <span className="relative flex justify-center" aria-hidden="true">
-                        <span className={cn("absolute top-0 w-px bg-line", last ? "h-3" : "bottom-0")} />
+                        <span className={cn("bg-line absolute top-0 w-px", last ? "h-3" : "bottom-0")} />
                         {last ? (
-                          <span className="relative mt-0.5 flex size-7 items-center justify-center rounded-full bg-navy text-white">
+                          <span className="bg-navy relative mt-0.5 flex size-7 items-center justify-center rounded-full text-white">
                             <Moon className="size-3.5" strokeWidth={1.8} />
                           </span>
                         ) : (
-                          <svg viewBox="0 0 24 24" className="relative mt-1 size-5 rounded-full bg-paper text-ink">
-                            <path d={arcPath(12, 12, 8, 40, 320)} fill="none" stroke={long ? "currentColor" : "var(--ring)"} strokeWidth="2" />
+                          <svg viewBox="0 0 24 24" className="bg-paper text-ink relative mt-1 size-5 rounded-full">
+                            <path
+                              d={arcPath(12, 12, 8, 40, 320)}
+                              fill="none"
+                              stroke={long ? "currentColor" : "var(--ring)"}
+                              strokeWidth="2"
+                            />
                             {long && <circle cx="12" cy="12" r="2.5" fill="var(--orange)" />}
                           </svg>
                         )}
-                        {long && <span className="absolute bottom-3 top-9 w-[3px] rounded-full bg-ink/15" />}
+                        {long && <span className="bg-ink/15 absolute top-9 bottom-3 w-[3px] rounded-full" />}
                       </span>
                       <div className={long ? "pb-12" : "pb-7"}>
-                        <p className={cn("text-ink", long ? "font-display text-display-s" : "font-semibold")}>{pick(item.title, locale)}</p>
-                        {item.text && <p className="mt-1 max-w-[48ch] text-[15px] text-ink-2">{pick(item.text, locale)}</p>}
+                        <p className={cn("text-ink", long ? "font-display text-display-s" : "font-semibold")}>
+                          {pick(item.title, locale)}
+                        </p>
+                        {item.text && (
+                          <p className="text-ink-2 mt-1 max-w-[48ch] text-[15px]">{pick(item.text, locale)}</p>
+                        )}
                       </div>
                     </li>
                   );

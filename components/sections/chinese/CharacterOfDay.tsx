@@ -9,7 +9,8 @@ import { cn, pick } from "@/lib/utils";
 
 type Speech = "unknown" | "none" | "loading" | "zh" | "other";
 
-const isZh = (v: SpeechSynthesisVoice) => /^zh([-_](CN|Hans))?/i.test(v.lang) || /chinese|mandarin|普通话|中文/i.test(v.name);
+const isZh = (v: SpeechSynthesisVoice) =>
+  /^zh([-_](CN|Hans))?/i.test(v.lang) || /chinese|mandarin|普通话|中文/i.test(v.name);
 
 function subscribeVoices(cb: () => void) {
   if (typeof window === "undefined" || !("speechSynthesis" in window)) return () => {};
@@ -73,17 +74,33 @@ export function CharacterOfDay() {
           <h2 id="zh-char" className="text-display-m text-ink">
             {pick(c.title, locale)}
           </h2>
-          <p className="mt-4 max-w-[36ch] text-ink-2">{pick(c.lead, locale)}</p>
+          <p className="text-ink-2 mt-4 max-w-[36ch]">{pick(c.lead, locale)}</p>
         </div>
 
         <div className="lg:col-span-8">
-          <div className="overflow-hidden rounded-[28px] border border-line bg-surface">
+          <div className="border-line bg-surface overflow-hidden rounded-[28px] border">
             <div className="grid grid-cols-1 gap-8 p-6 sm:grid-cols-[auto_1fr] sm:p-10">
               {/* the character in a 田字格 box */}
               <div className="relative mx-auto aspect-square w-[200px] sm:mx-0 sm:w-[240px]">
                 <svg viewBox="0 0 100 100" aria-hidden="true" className="absolute inset-0 h-full w-full">
-                  <rect x="0.75" y="0.75" width="98.5" height="98.5" rx="4" fill="none" stroke="var(--accent)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
-                  <path d="M50 1 V99 M1 50 H99" stroke="var(--accent)" strokeOpacity="0.4" strokeDasharray="3 3" vectorEffect="non-scaling-stroke" />
+                  <rect
+                    x="0.75"
+                    y="0.75"
+                    width="98.5"
+                    height="98.5"
+                    rx="4"
+                    fill="none"
+                    stroke="var(--accent)"
+                    strokeWidth="1"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                  <path
+                    d="M50 1 V99 M1 50 H99"
+                    stroke="var(--accent)"
+                    strokeOpacity="0.4"
+                    strokeDasharray="3 3"
+                    vectorEffect="non-scaling-stroke"
+                  />
                 </svg>
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span
@@ -93,7 +110,7 @@ export function CharacterOfDay() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute inset-0 flex items-center justify-center font-hanzi text-[150px] leading-none text-ink sm:text-[180px]"
+                    className="font-hanzi text-ink absolute inset-0 flex items-center justify-center text-[150px] leading-none sm:text-[180px]"
                   >
                     {ch.char}
                   </motion.span>
@@ -111,13 +128,13 @@ export function CharacterOfDay() {
                     </span>
                     <span className="text-body-l text-ink-2">{pick(ch.meaning, locale)}</span>
                   </p>
-                  <div className="mt-6 border-t border-line pt-5">
-                    <p className="text-sm text-ink-3">{pick(c.example, locale)}</p>
+                  <div className="border-line mt-6 border-t pt-5">
+                    <p className="text-ink-3 text-sm">{pick(c.example, locale)}</p>
                     <p className="mt-1 flex flex-wrap items-baseline gap-x-3">
-                      <span lang="zh-CN" className="font-hanzi text-3xl text-ink">
+                      <span lang="zh-CN" className="font-hanzi text-ink text-3xl">
                         {ch.word.hanzi}
                       </span>
-                      <span lang="zh-Latn-pinyin" className="font-semibold text-ink">
+                      <span lang="zh-Latn-pinyin" className="text-ink font-semibold">
                         {ch.word.pinyin}
                       </span>
                       <span className="text-ink-2">— {pick(ch.word.meaning, locale)}</span>
@@ -133,11 +150,15 @@ export function CharacterOfDay() {
                     aria-label={`${pick(c.listenTo, locale)}: ${ch.char}, ${ch.pinyin}`}
                     className={cn(
                       "inline-flex min-h-12 items-center gap-2.5 rounded-full px-6 text-[15px] font-semibold transition-colors",
-                      canSpeak ? "bg-ink text-paper hover:bg-ink/85" : "cursor-not-allowed bg-surface-2 text-ink-3",
+                      canSpeak ? "bg-ink text-paper hover:bg-ink/85" : "bg-surface-2 text-ink-3 cursor-not-allowed",
                     )}
                   >
                     {canSpeak ? (
-                      <Volume2 className={cn("size-5", speaking && "text-[var(--red)]")} strokeWidth={1.8} aria-hidden="true" />
+                      <Volume2
+                        className={cn("size-5", speaking && "text-[var(--red)]")}
+                        strokeWidth={1.8}
+                        aria-hidden="true"
+                      />
                     ) : (
                       <VolumeOff className="size-5" strokeWidth={1.8} aria-hidden="true" />
                     )}
@@ -148,7 +169,7 @@ export function CharacterOfDay() {
                       type="button"
                       onClick={() => go(-1)}
                       aria-label={pick(c.prev, locale)}
-                      className="flex size-12 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-ink"
+                      className="border-line text-ink hover:border-ink flex size-12 items-center justify-center rounded-full border transition-colors"
                     >
                       <ChevronLeft className="size-5" strokeWidth={1.8} aria-hidden="true" />
                     </button>
@@ -156,18 +177,18 @@ export function CharacterOfDay() {
                       type="button"
                       onClick={() => go(1)}
                       aria-label={pick(c.next, locale)}
-                      className="flex size-12 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-ink"
+                      className="border-line text-ink hover:border-ink flex size-12 items-center justify-center rounded-full border transition-colors"
                     >
                       <ChevronRight className="size-5" strokeWidth={1.8} aria-hidden="true" />
                     </button>
                   </div>
                 </div>
-                {speech === "none" && <p className="mt-3 text-sm text-ink-3">{pick(c.noSpeech, locale)}</p>}
-                {speech === "other" && <p className="mt-3 text-sm text-ink-3">{pick(c.noVoice, locale)}</p>}
+                {speech === "none" && <p className="text-ink-3 mt-3 text-sm">{pick(c.noSpeech, locale)}</p>}
+                {speech === "other" && <p className="text-ink-3 mt-3 text-sm">{pick(c.noVoice, locale)}</p>}
               </div>
             </div>
 
-            <div className="border-t border-line bg-paper/60 px-6 py-4 sm:px-10">
+            <div className="border-line bg-paper/60 border-t px-6 py-4 sm:px-10">
               <p id="zh-char-pick" className="sr-only">
                 {pick(c.pickLabel, locale)}
               </p>
@@ -180,7 +201,7 @@ export function CharacterOfDay() {
                       aria-pressed={i === index}
                       aria-label={`${x.char} ${x.pinyin} — ${pick(x.meaning, locale)}`}
                       className={cn(
-                        "flex size-11 items-center justify-center rounded-full font-hanzi text-xl transition-colors",
+                        "font-hanzi flex size-11 items-center justify-center rounded-full text-xl transition-colors",
                         i === index ? "bg-ink text-paper" : "text-ink-2 hover:bg-surface-2 hover:text-ink",
                       )}
                     >

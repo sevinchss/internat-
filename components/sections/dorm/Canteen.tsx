@@ -24,11 +24,19 @@ export function Canteen() {
           <h2 id="dorm-canteen" className="text-display-m text-ink">
             {pick(c.title, locale)}
           </h2>
-          <p className="mt-4 max-w-[44ch] text-ink-2">{pick(c.lead, locale)}</p>
-          <div className="relative mt-10 hidden pb-14 pr-14 sm:block">
-            <Photo slot={images.dorm.canteen} sizes="(min-width: 1024px) 420px, 70vw" className="aspect-[4/3] rounded-[22px]" />
-            <div className="absolute bottom-0 right-0 w-[44%]">
-              <Photo slot={images.dorm.meal} sizes="(min-width: 1024px) 200px, 40vw" className="aspect-square rounded-full border-[6px] border-paper" />
+          <p className="text-ink-2 mt-4 max-w-[44ch]">{pick(c.lead, locale)}</p>
+          <div className="relative mt-10 hidden pr-14 pb-14 sm:block">
+            <Photo
+              slot={images.dorm.canteen}
+              sizes="(min-width: 1024px) 420px, 70vw"
+              className="aspect-[4/3] rounded-[22px]"
+            />
+            <div className="absolute right-0 bottom-0 w-[44%]">
+              <Photo
+                slot={images.dorm.meal}
+                sizes="(min-width: 1024px) 200px, 40vw"
+                className="border-paper aspect-square rounded-full border-[6px]"
+              />
             </div>
           </div>
         </div>
@@ -50,7 +58,11 @@ export function Canteen() {
               ),
             }))}
           />
-          <TabPanel idBase="dorm-menu" id={current.id} className="mt-6 rounded-[24px] border border-line bg-surface p-5 sm:p-8">
+          <TabPanel
+            idBase="dorm-menu"
+            id={current.id}
+            className="border-line bg-surface mt-6 rounded-[24px] border p-5 sm:p-8"
+          >
             <p className="font-display text-display-s text-ink">{pick(current.long, locale)}</p>
             <AnimatePresence mode="wait" initial={false}>
               <motion.dl
@@ -59,19 +71,19 @@ export function Canteen() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.18 }}
-                className="mt-4 divide-y divide-line"
+                className="divide-line mt-4 divide-y"
               >
                 {meals.map((m) => (
                   <div key={m} className="grid grid-cols-1 gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-6">
                     <dt className="flex items-baseline gap-3 sm:block">
-                      <span className="font-semibold text-ink">{pick(mealLabels[m], locale)}</span>
-                      <span className="text-sm tabular-nums text-ink-3 sm:block">{mealLabels[m].time}</span>
+                      <span className="text-ink font-semibold">{pick(mealLabels[m], locale)}</span>
+                      <span className="text-ink-3 text-sm tabular-nums sm:block">{mealLabels[m].time}</span>
                     </dt>
                     <dd>
-                      <ul className="flex flex-wrap gap-x-5 gap-y-1 text-ink-2">
+                      <ul className="text-ink-2 flex flex-wrap gap-x-5 gap-y-1">
                         {current.meals[m].map((dish, i) => (
                           <li key={i} className="flex items-center gap-2">
-                            <span aria-hidden="true" className="size-1.5 rounded-full border border-orange" />
+                            <span aria-hidden="true" className="border-orange size-1.5 rounded-full border" />
                             {pick(dish, locale)}
                           </li>
                         ))}
@@ -82,7 +94,7 @@ export function Canteen() {
               </motion.dl>
             </AnimatePresence>
           </TabPanel>
-          <p className="mt-5 max-w-[60ch] text-sm text-ink-3">{pick(c.note, locale)}</p>
+          <p className="text-ink-3 mt-5 max-w-[60ch] text-sm">{pick(c.note, locale)}</p>
         </div>
       </div>
     </section>

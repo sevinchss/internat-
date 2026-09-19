@@ -6,7 +6,7 @@ import { cn, pick } from "@/lib/utils";
 export function WhyChinese() {
   const locale = useLocale();
   return (
-    <section aria-labelledby="zh-why" className="border-t border-line py-20 lg:py-28">
+    <section aria-labelledby="zh-why" className="border-line border-t py-20 lg:py-28">
       <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
         <h2 id="zh-why" className="text-display-m text-ink lg:col-span-3">
           {pick(chineseCopy.why.title, locale)}
@@ -15,12 +15,12 @@ export function WhyChinese() {
           {whyPoints.map((p, i) => (
             <li key={p.numeral} className={cn("grid grid-cols-[3.5rem_1fr] gap-4 sm:gap-5", i % 2 === 1 && "sm:mt-20")}>
               <span aria-hidden="true" className="flex flex-col items-center gap-3 self-start pt-1">
-                <span className="font-hanzi text-5xl font-bold leading-none text-ink-2">{p.numeral}</span>
-                <span className="size-1.5 rounded-full bg-accent" />
+                <span className="font-hanzi text-ink-2 text-5xl leading-none font-bold">{p.numeral}</span>
+                <span className="bg-accent size-1.5 rounded-full" />
               </span>
               <div>
-                <h3 className="font-sans text-xl font-bold tracking-normal text-ink">{pick(p.title, locale)}</h3>
-                <p className="mt-2 max-w-[40ch] text-ink-2">{pick(p.text, locale)}</p>
+                <h3 className="text-ink font-sans text-xl font-bold tracking-normal">{pick(p.title, locale)}</h3>
+                <p className="text-ink-2 mt-2 max-w-[40ch]">{pick(p.text, locale)}</p>
               </div>
             </li>
           ))}

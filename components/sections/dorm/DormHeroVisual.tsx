@@ -18,7 +18,7 @@ export function DormHeroVisual({ caption }: { caption: string }) {
   return (
     <div className="relative mx-auto max-w-[620px] pb-16 sm:pb-20 lg:mr-0">
       <motion.div
-        className="relative ml-auto w-[88%] overflow-hidden rounded-b-[28px] rounded-t-[999px]"
+        className="relative ml-auto w-[88%] overflow-hidden rounded-t-[999px] rounded-b-[28px]"
         initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
         animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
         transition={t(0.15, 1.3)}
@@ -31,14 +31,18 @@ export function DormHeroVisual({ caption }: { caption: string }) {
       <figure className="absolute bottom-0 left-0 w-[46%] max-w-[270px]">
         <div className="relative">
           <motion.div
-            className="overflow-hidden rounded-full border-[6px] border-paper"
+            className="border-paper overflow-hidden rounded-full border-[6px]"
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={t(1.05, 0.9)}
           >
             <Photo slot={images.dorm.lamp} sizes="(min-width: 1024px) 270px, 46vw" className="aspect-square" />
           </motion.div>
-          <svg viewBox="0 0 200 200" aria-hidden="true" className="pointer-events-none absolute -inset-[9%] h-[118%] w-[118%]">
+          <svg
+            viewBox="0 0 200 200"
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-[9%] h-[118%] w-[118%]"
+          >
             <motion.path
               d={arcPath(100, 100, 96, 40, 320)}
               fill="none"
@@ -47,11 +51,15 @@ export function DormHeroVisual({ caption }: { caption: string }) {
               vectorEffect="non-scaling-stroke"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
-              transition={reduce ? { duration: 0 } : { pathLength: { delay: 1.35, duration: 1.4, ease }, opacity: { delay: 1.35, duration: 0.01 } }}
+              transition={
+                reduce
+                  ? { duration: 0 }
+                  : { pathLength: { delay: 1.35, duration: 1.4, ease }, opacity: { delay: 1.35, duration: 0.01 } }
+              }
             />
           </svg>
         </div>
-        <figcaption className="mt-4 pl-2 text-sm font-medium text-ink-2">{caption}</figcaption>
+        <figcaption className="text-ink-2 mt-4 pl-2 text-sm font-medium">{caption}</figcaption>
       </figure>
     </div>
   );

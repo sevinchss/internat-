@@ -16,10 +16,10 @@ export function ParentsFaq() {
           <h2 id="dorm-faq" className="text-display-m text-ink">
             {pick(c.title, locale)}
           </h2>
-          <p className="mt-4 max-w-[36ch] text-ink-2">{pick(c.lead, locale)}</p>
+          <p className="text-ink-2 mt-4 max-w-[36ch]">{pick(c.lead, locale)}</p>
           <a
             href={`tel:${phone.value.replace(/\s+/g, "")}`}
-            className="mt-8 inline-flex min-h-12 items-center gap-3 rounded-full border border-ink/15 px-5 font-semibold text-ink transition-colors hover:border-primary-ink hover:text-primary-ink dark:border-white/20"
+            className="border-ink/15 text-ink hover:border-primary-ink hover:text-primary-ink mt-8 inline-flex min-h-12 items-center gap-3 rounded-full border px-5 font-semibold transition-colors dark:border-white/20"
           >
             <Phone className="size-4" strokeWidth={1.8} aria-hidden="true" />
             <span className="sr-only">{pick(c.callLabel, locale)}:</span>

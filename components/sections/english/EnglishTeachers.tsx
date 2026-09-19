@@ -9,23 +9,28 @@ export function EnglishTeachers() {
   const locale = useLocale();
   const c = englishCopy.teachers;
   return (
-    <section aria-labelledby="en-teachers" className="border-t border-line bg-surface py-20 lg:py-28">
+    <section aria-labelledby="en-teachers" className="border-line bg-surface border-t py-20 lg:py-28">
       <div className="container-x">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <h2 id="en-teachers" className="text-display-m text-ink">
             {pick(c.title, locale)}
           </h2>
-          <p className="max-w-[40ch] text-sm text-ink-3">{pick(c.lead, locale)}</p>
+          <p className="text-ink-3 max-w-[40ch] text-sm">{pick(c.lead, locale)}</p>
         </div>
-        <ul className="mt-12 grid grid-cols-1 border-t border-line md:grid-cols-2 md:gap-x-12">
+        <ul className="border-line mt-12 grid grid-cols-1 border-t md:grid-cols-2 md:gap-x-12">
           {englishTeachers.map((t) => (
-            <li key={t.name} className="flex items-center gap-5 border-b border-line py-5 sm:gap-7">
-              <Portrait name={t.name} sizes="160px" accent="var(--amber)" className="aspect-[4/5] w-32 shrink-0 rounded-[16px] sm:w-40" />
+            <li key={t.name} className="border-line flex items-center gap-5 border-b py-5 sm:gap-7">
+              <Portrait
+                name={t.name}
+                sizes="160px"
+                accent="var(--amber)"
+                className="aspect-[4/5] w-36 shrink-0 rounded-[16px] sm:w-40"
+              />
               <div className="min-w-0">
-                <h3 className="font-sans text-lg font-bold tracking-normal text-ink">{t.name}</h3>
+                <h3 className="text-ink font-sans text-lg font-bold tracking-normal">{t.name}</h3>
                 <p className="text-ink-2">{pick(t.role, locale)}</p>
-                <p className="mt-2 flex items-center gap-2 text-sm text-ink-3">
-                  <span aria-hidden="true" className="h-px w-4 bg-amber" />
+                <p className="text-ink-3 mt-2 flex items-center gap-2 text-sm">
+                  <span aria-hidden="true" className="bg-amber h-px w-4" />
                   {pick(t.note, locale)}
                 </p>
               </div>

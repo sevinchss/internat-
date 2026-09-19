@@ -57,7 +57,11 @@ export const chineseCopy = {
     prev: { uz: "Oldingi belgi", en: "Previous character", ru: "Предыдущий знак" } satisfies L10n,
     next: { uz: "Keyingi belgi", en: "Next character", ru: "Следующий знак" } satisfies L10n,
     example: { uz: "Soʻzda", en: "In a word", ru: "В слове" } satisfies L10n,
-    pickLabel: { uz: "Boshqa belgini tanlang", en: "Pick another character", ru: "Выберите другой знак" } satisfies L10n,
+    pickLabel: {
+      uz: "Boshqa belgini tanlang",
+      en: "Pick another character",
+      ru: "Выберите другой знак",
+    } satisfies L10n,
     noSpeech: {
       uz: "Brauzeringiz nutq sintezini qoʻllab-quvvatlamaydi — pinyin boʻyicha oʻqing.",
       en: "Your browser does not support speech synthesis — read it using the pinyin.",
@@ -109,7 +113,11 @@ export const whyPoints: { numeral: string; title: L10n; text: L10n }[] = [
   },
   {
     numeral: "三",
-    title: { uz: "Erta boshlash — katta ustunlik", en: "Starting early pays off", ru: "Раннее начало — большое преимущество" },
+    title: {
+      uz: "Erta boshlash — katta ustunlik",
+      en: "Starting early pays off",
+      ru: "Раннее начало — большое преимущество",
+    },
     text: {
       uz: "Ohanglar va talaffuz 11–12 yoshda oson oʻzlashtiriladi. 5-sinfdan boshlagan oʻquvchi 11-sinfda erkin gapiradi.",
       en: "Tones and pronunciation come easily at 11–12. A student who starts in grade 5 can speak freely by grade 11.",
@@ -131,75 +139,209 @@ export const whyPoints: { numeral: string; title: L10n; text: L10n }[] = [
    TODO: replace with real data (hours per week, topics and the HSK target for each grade are placeholders) */
 export const hskLevels = [1, 2, 3, 4, 5, 6] as const;
 
-export type ChineseGrade = { grade: number; hsk: (typeof hskLevels)[number]; hours: number; focus: L10n; topics: L10n<string[]> };
+export type ChineseGrade = {
+  grade: number;
+  hsk: (typeof hskLevels)[number];
+  hours: number;
+  focus: L10n;
+  topics: L10n<string[]>;
+};
 
 export const chineseGrades: ChineseGrade[] = [
   {
     grade: 5,
     hsk: 1,
     hours: 6,
-    focus: { uz: "Tovushlar, ohanglar va birinchi 150 ta belgi.", en: "Sounds, tones and the first 150 characters.", ru: "Звуки, тоны и первые 150 иероглифов." },
-    topics: { uz: ["Pinyin va toʻrt ohang", "Chiziqlar tartibi", "Salomlashish, oila, sonlar"], en: ["Pinyin and the four tones", "Stroke order", "Greetings, family, numbers"], ru: ["Пиньинь и четыре тона", "Порядок черт", "Приветствие, семья, числа"] },
+    focus: {
+      uz: "Tovushlar, ohanglar va birinchi 150 ta belgi.",
+      en: "Sounds, tones and the first 150 characters.",
+      ru: "Звуки, тоны и первые 150 иероглифов.",
+    },
+    topics: {
+      uz: ["Pinyin va toʻrt ohang", "Chiziqlar tartibi", "Salomlashish, oila, sonlar"],
+      en: ["Pinyin and the four tones", "Stroke order", "Greetings, family, numbers"],
+      ru: ["Пиньинь и четыре тона", "Порядок черт", "Приветствие, семья, числа"],
+    },
   },
   {
     grade: 6,
     hsk: 2,
     hours: 6,
-    focus: { uz: "Kundalik mavzularda qisqa suhbat.", en: "Short conversations on everyday topics.", ru: "Короткие диалоги на бытовые темы." },
-    topics: { uz: ["Maktab va kun tartibi", "Xarid va taom", "Oddiy matnlarni oʻqish"], en: ["School and routine", "Shopping and food", "Reading simple texts"], ru: ["Школа и распорядок", "Покупки и еда", "Чтение простых текстов"] },
+    focus: {
+      uz: "Kundalik mavzularda qisqa suhbat.",
+      en: "Short conversations on everyday topics.",
+      ru: "Короткие диалоги на бытовые темы.",
+    },
+    topics: {
+      uz: ["Maktab va kun tartibi", "Xarid va taom", "Oddiy matnlarni oʻqish"],
+      en: ["School and routine", "Shopping and food", "Reading simple texts"],
+      ru: ["Школа и распорядок", "Покупки и еда", "Чтение простых текстов"],
+    },
   },
   {
     grade: 7,
     hsk: 3,
     hours: 5,
-    focus: { uz: "600 ta soʻz: oʻz fikrini ayta olish.", en: "600 words: saying what you think.", ru: "600 слов: умение высказать мнение." },
-    topics: { uz: ["Sayohat va shahar", "Qisqa insho", "Xattotlik asoslari"], en: ["Travel and the city", "Short essays", "Calligraphy basics"], ru: ["Путешествия и город", "Короткие сочинения", "Основы каллиграфии"] },
+    focus: {
+      uz: "600 ta soʻz: oʻz fikrini ayta olish.",
+      en: "600 words: saying what you think.",
+      ru: "600 слов: умение высказать мнение.",
+    },
+    topics: {
+      uz: ["Sayohat va shahar", "Qisqa insho", "Xattotlik asoslari"],
+      en: ["Travel and the city", "Short essays", "Calligraphy basics"],
+      ru: ["Путешествия и город", "Короткие сочинения", "Основы каллиграфии"],
+    },
   },
   {
     grade: 8,
     hsk: 3,
     hours: 5,
-    focus: { uz: "HSK 3 ni mustahkamlash, taqdimotlar.", en: "Consolidating HSK 3, giving presentations.", ru: "Закрепление HSK 3, презентации." },
-    topics: { uz: ["Loyiha: Xitoy shaharlari", "Tinglab tushunish", "Grammatika: 了, 过, 着"], en: ["Project: cities of China", "Listening", "Grammar: 了, 过, 着"], ru: ["Проект: города Китая", "Аудирование", "Грамматика: 了, 过, 着"] },
+    focus: {
+      uz: "HSK 3 ni mustahkamlash, taqdimotlar.",
+      en: "Consolidating HSK 3, giving presentations.",
+      ru: "Закрепление HSK 3, презентации.",
+    },
+    topics: {
+      uz: ["Loyiha: Xitoy shaharlari", "Tinglab tushunish", "Grammatika: 了, 过, 着"],
+      en: ["Project: cities of China", "Listening", "Grammar: 了, 过, 着"],
+      ru: ["Проект: города Китая", "Аудирование", "Грамматика: 了, 过, 着"],
+    },
   },
   {
     grade: 9,
     hsk: 4,
     hours: 5,
-    focus: { uz: "1200 ta soʻz: erkin muloqot.", en: "1,200 words: talking freely.", ru: "1200 слов: свободное общение." },
-    topics: { uz: ["Yangiliklar va maqolalar", "Munozara", "Madaniyat va tarix"], en: ["News and articles", "Discussion", "Culture and history"], ru: ["Новости и статьи", "Дискуссия", "Культура и история"] },
+    focus: {
+      uz: "1200 ta soʻz: erkin muloqot.",
+      en: "1,200 words: talking freely.",
+      ru: "1200 слов: свободное общение.",
+    },
+    topics: {
+      uz: ["Yangiliklar va maqolalar", "Munozara", "Madaniyat va tarix"],
+      en: ["News and articles", "Discussion", "Culture and history"],
+      ru: ["Новости и статьи", "Дискуссия", "Культура и история"],
+    },
   },
   {
     grade: 10,
     hsk: 4,
     hours: 4,
-    focus: { uz: "Akademik matnlar va yozma ish.", en: "Academic texts and written work.", ru: "Академические тексты и письменные работы." },
-    topics: { uz: ["Ilmiy-ommabop matnlar", "Esse", "Xitoycha taqdimot"], en: ["Popular-science texts", "Essays", "Presenting in Chinese"], ru: ["Научно-популярные тексты", "Эссе", "Презентация на китайском"] },
+    focus: {
+      uz: "Akademik matnlar va yozma ish.",
+      en: "Academic texts and written work.",
+      ru: "Академические тексты и письменные работы.",
+    },
+    topics: {
+      uz: ["Ilmiy-ommabop matnlar", "Esse", "Xitoycha taqdimot"],
+      en: ["Popular-science texts", "Essays", "Presenting in Chinese"],
+      ru: ["Научно-популярные тексты", "Эссе", "Презентация на китайском"],
+    },
   },
   {
     grade: 11,
     hsk: 5,
     hours: 4,
-    focus: { uz: "Universitetga tayyor daraja.", en: "A university-ready level.", ru: "Уровень, достаточный для университета." },
-    topics: { uz: ["Adabiyot parchalari", "Tadqiqot loyihasi", "HSK imtihoniga tayyorgarlik"], en: ["Literature extracts", "Research project", "HSK exam preparation"], ru: ["Отрывки из литературы", "Исследовательский проект", "Подготовка к экзамену HSK"] },
+    focus: {
+      uz: "Universitetga tayyor daraja.",
+      en: "A university-ready level.",
+      ru: "Уровень, достаточный для университета.",
+    },
+    topics: {
+      uz: ["Adabiyot parchalari", "Tadqiqot loyihasi", "HSK imtihoniga tayyorgarlik"],
+      en: ["Literature extracts", "Research project", "HSK exam preparation"],
+      ru: ["Отрывки из литературы", "Исследовательский проект", "Подготовка к экзамену HSK"],
+    },
   },
 ];
 
 /* ───────────── Character of the day ───────────── */
-export type Hanzi = { char: string; pinyin: string; meaning: L10n; word: { hanzi: string; pinyin: string; meaning: L10n } };
+export type Hanzi = {
+  char: string;
+  pinyin: string;
+  meaning: L10n;
+  word: { hanzi: string; pinyin: string; meaning: L10n };
+};
 
 export const characters: Hanzi[] = [
-  { char: "学", pinyin: "xué", meaning: { uz: "oʻrganmoq", en: "to learn", ru: "учиться" }, word: { hanzi: "学生", pinyin: "xuésheng", meaning: { uz: "oʻquvchi", en: "student", ru: "ученик" } } },
-  { char: "你", pinyin: "nǐ", meaning: { uz: "sen, siz", en: "you", ru: "ты" }, word: { hanzi: "你好", pinyin: "nǐ hǎo", meaning: { uz: "salom", en: "hello", ru: "здравствуй" } } },
-  { char: "好", pinyin: "hǎo", meaning: { uz: "yaxshi", en: "good", ru: "хороший" }, word: { hanzi: "好朋友", pinyin: "hǎo péngyou", meaning: { uz: "yaqin doʻst", en: "good friend", ru: "хороший друг" } } },
-  { char: "书", pinyin: "shū", meaning: { uz: "kitob", en: "book", ru: "книга" }, word: { hanzi: "书包", pinyin: "shūbāo", meaning: { uz: "maktab sumkasi", en: "school bag", ru: "портфель" } } },
-  { char: "水", pinyin: "shuǐ", meaning: { uz: "suv", en: "water", ru: "вода" }, word: { hanzi: "喝水", pinyin: "hē shuǐ", meaning: { uz: "suv ichmoq", en: "to drink water", ru: "пить воду" } } },
-  { char: "山", pinyin: "shān", meaning: { uz: "togʻ", en: "mountain", ru: "гора" }, word: { hanzi: "爬山", pinyin: "pá shān", meaning: { uz: "togʻga chiqmoq", en: "to climb a mountain", ru: "подниматься в горы" } } },
-  { char: "茶", pinyin: "chá", meaning: { uz: "choy", en: "tea", ru: "чай" }, word: { hanzi: "绿茶", pinyin: "lǜchá", meaning: { uz: "koʻk choy", en: "green tea", ru: "зелёный чай" } } },
-  { char: "家", pinyin: "jiā", meaning: { uz: "uy, oila", en: "home, family", ru: "дом, семья" }, word: { hanzi: "家人", pinyin: "jiārén", meaning: { uz: "oila aʼzolari", en: "family members", ru: "родные" } } },
-  { char: "月", pinyin: "yuè", meaning: { uz: "oy", en: "moon, month", ru: "луна, месяц" }, word: { hanzi: "月饼", pinyin: "yuèbing", meaning: { uz: "oy pishirigʻi", en: "mooncake", ru: "лунный пряник" } } },
-  { char: "心", pinyin: "xīn", meaning: { uz: "yurak", en: "heart", ru: "сердце" }, word: { hanzi: "小心", pinyin: "xiǎoxīn", meaning: { uz: "ehtiyot boʻl", en: "be careful", ru: "осторожно" } } },
-  { char: "中", pinyin: "zhōng", meaning: { uz: "oʻrta", en: "middle", ru: "середина" }, word: { hanzi: "中文", pinyin: "zhōngwén", meaning: { uz: "xitoy tili", en: "Chinese language", ru: "китайский язык" } } },
+  {
+    char: "学",
+    pinyin: "xué",
+    meaning: { uz: "oʻrganmoq", en: "to learn", ru: "учиться" },
+    word: { hanzi: "学生", pinyin: "xuésheng", meaning: { uz: "oʻquvchi", en: "student", ru: "ученик" } },
+  },
+  {
+    char: "你",
+    pinyin: "nǐ",
+    meaning: { uz: "sen, siz", en: "you", ru: "ты" },
+    word: { hanzi: "你好", pinyin: "nǐ hǎo", meaning: { uz: "salom", en: "hello", ru: "здравствуй" } },
+  },
+  {
+    char: "好",
+    pinyin: "hǎo",
+    meaning: { uz: "yaxshi", en: "good", ru: "хороший" },
+    word: {
+      hanzi: "好朋友",
+      pinyin: "hǎo péngyou",
+      meaning: { uz: "yaqin doʻst", en: "good friend", ru: "хороший друг" },
+    },
+  },
+  {
+    char: "书",
+    pinyin: "shū",
+    meaning: { uz: "kitob", en: "book", ru: "книга" },
+    word: { hanzi: "书包", pinyin: "shūbāo", meaning: { uz: "maktab sumkasi", en: "school bag", ru: "портфель" } },
+  },
+  {
+    char: "水",
+    pinyin: "shuǐ",
+    meaning: { uz: "suv", en: "water", ru: "вода" },
+    word: { hanzi: "喝水", pinyin: "hē shuǐ", meaning: { uz: "suv ichmoq", en: "to drink water", ru: "пить воду" } },
+  },
+  {
+    char: "山",
+    pinyin: "shān",
+    meaning: { uz: "togʻ", en: "mountain", ru: "гора" },
+    word: {
+      hanzi: "爬山",
+      pinyin: "pá shān",
+      meaning: { uz: "togʻga chiqmoq", en: "to climb a mountain", ru: "подниматься в горы" },
+    },
+  },
+  {
+    char: "茶",
+    pinyin: "chá",
+    meaning: { uz: "choy", en: "tea", ru: "чай" },
+    word: { hanzi: "绿茶", pinyin: "lǜchá", meaning: { uz: "koʻk choy", en: "green tea", ru: "зелёный чай" } },
+  },
+  {
+    char: "家",
+    pinyin: "jiā",
+    meaning: { uz: "uy, oila", en: "home, family", ru: "дом, семья" },
+    word: { hanzi: "家人", pinyin: "jiārén", meaning: { uz: "oila aʼzolari", en: "family members", ru: "родные" } },
+  },
+  {
+    char: "月",
+    pinyin: "yuè",
+    meaning: { uz: "oy", en: "moon, month", ru: "луна, месяц" },
+    word: { hanzi: "月饼", pinyin: "yuèbing", meaning: { uz: "oy pishirigʻi", en: "mooncake", ru: "лунный пряник" } },
+  },
+  {
+    char: "心",
+    pinyin: "xīn",
+    meaning: { uz: "yurak", en: "heart", ru: "сердце" },
+    word: { hanzi: "小心", pinyin: "xiǎoxīn", meaning: { uz: "ehtiyot boʻl", en: "be careful", ru: "осторожно" } },
+  },
+  {
+    char: "中",
+    pinyin: "zhōng",
+    meaning: { uz: "oʻrta", en: "middle", ru: "середина" },
+    word: {
+      hanzi: "中文",
+      pinyin: "zhōngwén",
+      meaning: { uz: "xitoy tili", en: "Chinese language", ru: "китайский язык" },
+    },
+  },
 ];
 
 /* ───────────── Clubs & culture ───────────── TODO: replace with real data (club schedules) */

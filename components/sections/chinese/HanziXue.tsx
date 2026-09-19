@@ -9,7 +9,8 @@ import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion
 type Pt = readonly [number, number];
 
 const medianPath = (pts: readonly Pt[]) => pts.map(([x, y], i) => `${i ? "L" : "M"} ${x} ${y}`).join(" ");
-const medianLength = (pts: readonly Pt[]) => pts.reduce((sum, [x, y], i) => (i ? sum + Math.hypot(x - pts[i - 1][0], y - pts[i - 1][1]) : 0), 0);
+const medianLength = (pts: readonly Pt[]) =>
+  pts.reduce((sum, [x, y], i) => (i ? sum + Math.hypot(x - pts[i - 1][0], y - pts[i - 1][1]) : 0), 0);
 
 // Stroke timing: duration proportional to stroke length, short pause between strokes.
 const START = 0.5;
@@ -73,7 +74,11 @@ export function HanziXue({ label, replayLabel }: { label: string; replayLabel: s
                     reduce
                       ? { duration: 0 }
                       : {
-                          pathLength: { delay: timeline[i].delay, duration: timeline[i].duration, ease: [0.45, 0, 0.3, 1] },
+                          pathLength: {
+                            delay: timeline[i].delay,
+                            duration: timeline[i].duration,
+                            ease: [0.45, 0, 0.3, 1],
+                          },
                           opacity: { delay: timeline[i].delay, duration: 0.01 },
                         }
                   }
@@ -87,7 +92,7 @@ export function HanziXue({ label, replayLabel }: { label: string; replayLabel: s
         <button
           type="button"
           onClick={() => setRun((r) => r + 1)}
-          className="absolute bottom-3 right-3 inline-flex min-h-11 items-center gap-2 rounded-full bg-paper/90 px-4 text-sm font-semibold text-ink-2 backdrop-blur transition-colors hover:text-accent-ink"
+          className="bg-paper/90 text-ink-2 hover:text-accent-ink absolute right-3 bottom-3 inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-sm font-semibold backdrop-blur transition-colors"
         >
           <RotateCcw className="size-4" strokeWidth={1.8} aria-hidden="true" />
           {replayLabel}

@@ -6,7 +6,8 @@ import { cefrLevels, englishCopy, englishGrades, type EnglishGrade } from "@/dat
 import { cn, pick } from "@/lib/utils";
 import { TabList, TabPanel } from "@/components/ui/Tabs";
 
-const gradeLabel = (n: number, locale: string) => (locale === "en" ? `Grade ${n}` : locale === "ru" ? `${n} класс` : `${n}-sinf`);
+const gradeLabel = (n: number, locale: string) =>
+  locale === "en" ? `Grade ${n}` : locale === "ru" ? `${n} класс` : `${n}-sinf`;
 const levelName = (g: EnglishGrade) => `${g.cefr}${g.plus ? "+" : ""}`;
 
 /** CEFR as a staircase: steps behind the target are navy, the target is amber, the rest are outlines. */
@@ -17,23 +18,30 @@ function CefrStairs({ g }: { g: EnglishGrade }) {
       {cefrLevels.map((lvl, i) => {
         const state = i < target ? "done" : i === target ? "target" : "todo";
         return (
-          <li key={lvl} className="flex h-full flex-1 flex-col justify-end" aria-current={state === "target" ? "step" : undefined}>
+          <li
+            key={lvl}
+            className="flex h-full flex-1 flex-col justify-end"
+            aria-current={state === "target" ? "step" : undefined}
+          >
             <span
               className={cn(
                 "relative block rounded-t-[10px] transition-[height,background-color,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
                 state === "done" && "bg-primary",
                 state === "target" && "bg-amber",
-                state === "todo" && "border border-b-0 border-dashed border-ring bg-transparent",
+                state === "todo" && "border-ring border border-b-0 border-dashed bg-transparent",
               )}
               style={{ height: `${18 + i * 16}%` }}
             >
               {state === "target" && g.plus && (
-                <span aria-hidden="true" className="absolute -top-7 left-1/2 -translate-x-1/2 font-display text-lg text-ink">
+                <span
+                  aria-hidden="true"
+                  className="font-display text-ink absolute -top-7 left-1/2 -translate-x-1/2 text-lg"
+                >
                   +
                 </span>
               )}
             </span>
-            <span className={cn("mt-2 text-center font-display text-sm", state === "todo" ? "text-ink-3" : "text-ink")}>
+            <span className={cn("font-display mt-2 text-center text-sm", state === "todo" ? "text-ink-3" : "text-ink")}>
               {lvl}
               {state === "target" && g.plus ? <span className="sr-only">+</span> : null}
             </span>
@@ -57,7 +65,7 @@ export function EnglishCurriculum() {
           <h2 id="en-curriculum" className="text-display-m text-ink">
             {pick(c.title, locale)}
           </h2>
-          <p className="mt-4 max-w-[38ch] text-ink-2">{pick(c.lead, locale)}</p>
+          <p className="text-ink-2 mt-4 max-w-[38ch]">{pick(c.lead, locale)}</p>
         </div>
 
         <div className="lg:col-span-8">
@@ -70,10 +78,14 @@ export function EnglishCurriculum() {
             className="-mx-1 px-1"
             tabs={englishGrades.map((x) => ({ id: String(x.grade), label: gradeLabel(x.grade, locale) }))}
           />
-          <TabPanel idBase="en-grades" id={value} className="mt-8 grid grid-cols-1 gap-10 border-t border-line pt-8 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-12">
+          <TabPanel
+            idBase="en-grades"
+            id={value}
+            className="border-line mt-8 grid grid-cols-1 gap-10 border-t pt-8 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-12"
+          >
             <div>
-              <p className="text-sm text-ink-3">{pick(c.target, locale)}</p>
-              <p className="mt-1 font-display text-display-m text-ink">{levelName(g)}</p>
+              <p className="text-ink-3 text-sm">{pick(c.target, locale)}</p>
+              <p className="font-display text-display-m text-ink mt-1">{levelName(g)}</p>
               <div className="mt-6">
                 <CefrStairs g={g} />
               </div>
@@ -82,31 +94,33 @@ export function EnglishCurriculum() {
               <p className="font-display text-display-s text-ink">{pick(g.focus, locale)}</p>
               <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {pick(g.topics, locale).map((t) => (
-                  <li key={t} className="rounded-[14px] bg-surface-2 px-4 py-3 text-[15px] font-medium text-ink">
+                  <li key={t} className="bg-surface-2 text-ink rounded-[14px] px-4 py-3 text-[15px] font-medium">
                     {t}
                   </li>
                 ))}
               </ul>
               <dl className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div>
-                  <dt className="text-sm text-ink-3">{pick(c.reading, locale)}</dt>
-                  <dd className="mt-1 text-ink">
+                  <dt className="text-ink-3 text-sm">{pick(c.reading, locale)}</dt>
+                  <dd className="text-ink mt-1">
                     {g.books.map((b, i) => (
                       <span key={b} lang="en">
                         {i > 0 && ", "}
-                        <cite className="not-italic underline decoration-amber decoration-2 underline-offset-4">{b}</cite>
+                        <cite className="decoration-amber not-italic underline decoration-2 underline-offset-4">
+                          {b}
+                        </cite>
                       </span>
                     ))}
                   </dd>
                 </div>
                 <div>
-                  <dt className="text-sm text-ink-3">{pick(c.hours, locale)}</dt>
-                  <dd className="mt-1 font-display text-xl tabular-nums text-ink">{g.hours}</dd>
+                  <dt className="text-ink-3 text-sm">{pick(c.hours, locale)}</dt>
+                  <dd className="font-display text-ink mt-1 text-xl tabular-nums">{g.hours}</dd>
                 </div>
               </dl>
             </div>
           </TabPanel>
-          <p className="mt-6 text-sm text-ink-3">{pick(c.note, locale)}</p>
+          <p className="text-ink-3 mt-6 text-sm">{pick(c.note, locale)}</p>
         </div>
       </div>
     </section>

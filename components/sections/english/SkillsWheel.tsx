@@ -8,7 +8,12 @@ import { englishCopy, skills, type Skill } from "@/data/english";
 import { arcPath, cn, pick, polar, ringSegment } from "@/lib/utils";
 import { RING_END, RING_START } from "@/components/brand/Ring";
 
-const icons: Record<Skill["id"], LucideIcon> = { reading: BookOpen, writing: PencilLine, listening: Headphones, speaking: Mic };
+const icons: Record<Skill["id"], LucideIcon> = {
+  reading: BookOpen,
+  writing: PencilLine,
+  listening: Headphones,
+  speaking: Mic,
+};
 
 const C = 220;
 const R_OUT = 200;
@@ -43,7 +48,7 @@ export function SkillsWheel() {
           <h2 id="en-skills" className="text-display-m text-ink">
             {pick(c.title, locale)}
           </h2>
-          <p className="mt-4 text-ink-2">{pick(c.lead, locale)}</p>
+          <p className="text-ink-2 mt-4">{pick(c.lead, locale)}</p>
         </div>
 
         <div className="mt-12 grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-10">
@@ -86,7 +91,12 @@ export function SkillsWheel() {
                         strokeWidth={on ? 0 : 1.5}
                       />
                       {focused === skill.id && (
-                        <path d={ringSegment(C, C, R_OUT + 5, R_IN - 5, from - 1.2, to + 1.2)} fill="none" stroke="var(--primary-ink)" strokeWidth="2.5" />
+                        <path
+                          d={ringSegment(C, C, R_OUT + 5, R_IN - 5, from - 1.2, to + 1.2)}
+                          fill="none"
+                          stroke="var(--primary-ink)"
+                          strokeWidth="2.5"
+                        />
                       )}
                       <text
                         x={lp.x}
@@ -121,8 +131,8 @@ export function SkillsWheel() {
               )}
               <foreignObject x={C - 70} y={C - 70} width="140" height="140" aria-hidden="true">
                 <div className="flex h-full w-full flex-col items-center justify-center text-center">
-                  <Icon className="size-8 text-ink" strokeWidth={1.6} />
-                  <span className="mt-2 font-display text-[15px] text-ink" lang="en">
+                  <Icon className="text-ink size-8" strokeWidth={1.6} />
+                  <span className="font-display text-ink mt-2 text-[15px]" lang="en">
                     {current.name}
                   </span>
                 </div>
@@ -140,12 +150,12 @@ export function SkillsWheel() {
                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               >
                 <h3 className="text-display-s text-ink">{pick(current.label, locale)}</h3>
-                <p className="mt-4 text-body-l text-ink-2">{pick(current.summary, locale)}</p>
-                <p className="mt-8 text-sm font-semibold text-ink-3">{pick(c.howLabel, locale)}</p>
-                <ul className="mt-3 divide-y divide-line border-y border-line">
+                <p className="text-body-l text-ink-2 mt-4">{pick(current.summary, locale)}</p>
+                <p className="text-ink-3 mt-8 text-sm font-semibold">{pick(c.howLabel, locale)}</p>
+                <ul className="divide-line border-line mt-3 divide-y border-y">
                   {pick(current.methods, locale).map((m) => (
-                    <li key={m} className="flex items-center gap-3 py-3 text-ink">
-                      <span aria-hidden="true" className="size-2 rounded-full bg-amber" />
+                    <li key={m} className="text-ink flex items-center gap-3 py-3">
+                      <span aria-hidden="true" className="bg-amber size-2 rounded-full" />
                       {m}
                     </li>
                   ))}
