@@ -11,8 +11,8 @@ export function ChineseTeachers() {
   const locale = useLocale();
   const c = chineseCopy.teachers;
   return (
-    <section aria-labelledby="zh-teachers" className="bg-surface py-20 lg:py-28">
-      <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
+    <section aria-labelledby="zh-teachers" className="container-x pt-8 pb-20 lg:pb-32">
+      <div className="border-line grid grid-cols-1 gap-12 border-t pt-16 lg:grid-cols-12 lg:gap-10 lg:pt-24">
         <div className="lg:col-span-3">
           <h2 id="zh-teachers" className="text-display-m text-ink">
             {pick(c.title, locale)}
@@ -26,9 +26,9 @@ export function ChineseTeachers() {
                 name={t.name}
                 sizes="(min-width: 1024px) 300px, (min-width: 640px) 33vw, 90vw"
                 accent="var(--red)"
-                className="aspect-[4/5] rounded-[22px]"
+                className="border-line aspect-[4/5] rounded-[6px] border bg-ink/[0.025] dark:bg-white/[0.035]"
               />
-              <h3 className="text-ink mt-5 font-sans text-lg font-bold tracking-normal">{t.name}</h3>
+              <h3 className="text-ink mt-5 font-sans text-lg font-semibold tracking-normal">{t.name}</h3>
               <p className="text-ink-2">{pick(t.role, locale)}</p>
               <p className="text-ink-3 mt-1 text-sm">{pick(t.note, locale)}</p>
             </li>

@@ -17,7 +17,7 @@ export async function Directions() {
   const locale = await getLocale();
 
   return (
-    <section id="yonalishlar" aria-labelledby="directions-title" className="scroll-mt-24 py-28 lg:py-40">
+    <section id="yonalishlar" aria-labelledby="directions-title" className="scroll-mt-24 overflow-x-clip py-28 lg:py-40">
       <div className="container-x">
         <SectionLabel n="03">{pick(labels.directions, locale)}</SectionLabel>
         <h2 id="directions-title" className="mt-6 max-w-[16ch] text-display-l text-ink">

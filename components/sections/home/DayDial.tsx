@@ -33,7 +33,7 @@ export function DayDial() {
   };
 
   return (
-    <section aria-labelledby="day-title" className="relative py-28 lg:py-40">
+    <section aria-labelledby="day-title" className="relative overflow-x-clip py-28 lg:py-40">
       <div className="container-x grid items-center gap-16 lg:grid-cols-12">
         <div className="lg:order-2 lg:col-span-5 lg:col-start-8">
           <SectionLabel n="04">{pick(labels.day, locale)}</SectionLabel>

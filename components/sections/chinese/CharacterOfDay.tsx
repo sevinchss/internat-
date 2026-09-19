@@ -68,7 +68,7 @@ export function CharacterOfDay() {
   const canSpeak = speech !== "none" && speech !== "unknown";
 
   return (
-    <section aria-labelledby="zh-char" className="py-20 lg:py-28">
+    <section aria-labelledby="zh-char" className="py-20 lg:py-32">
       <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-4">
           <h2 id="zh-char" className="text-display-m text-ink">
@@ -78,7 +78,7 @@ export function CharacterOfDay() {
         </div>
 
         <div className="lg:col-span-8">
-          <div className="border-line bg-surface overflow-hidden rounded-[28px] border">
+          <div className="glass overflow-hidden rounded-[24px]">
             <div className="grid grid-cols-1 gap-8 p-6 sm:grid-cols-[auto_1fr] sm:p-10">
               {/* the character in a 田字格 box */}
               <div className="relative mx-auto aspect-square w-[200px] sm:mx-0 sm:w-[240px]">
@@ -123,7 +123,7 @@ export function CharacterOfDay() {
                     <span className="sr-only" lang="zh-CN">
                       {ch.char}
                     </span>
-                    <span lang="zh-Latn-pinyin" className="font-display text-display-l text-ink">
+                    <span lang="zh-Latn-pinyin" className="text-display-l text-ink font-light">
                       {ch.pinyin}
                     </span>
                     <span className="text-body-l text-ink-2">{pick(ch.meaning, locale)}</span>
@@ -149,7 +149,7 @@ export function CharacterOfDay() {
                     disabled={!canSpeak}
                     aria-label={`${pick(c.listenTo, locale)}: ${ch.char}, ${ch.pinyin}`}
                     className={cn(
-                      "inline-flex min-h-12 items-center gap-2.5 rounded-full px-6 text-[15px] font-semibold transition-colors",
+                      "inline-flex min-h-12 items-center gap-2.5 rounded-full px-6 text-[15px] font-medium transition-colors",
                       canSpeak ? "bg-ink text-paper hover:bg-ink/85" : "bg-surface-2 text-ink-3 cursor-not-allowed",
                     )}
                   >
@@ -188,7 +188,7 @@ export function CharacterOfDay() {
               </div>
             </div>
 
-            <div className="border-line bg-paper/60 border-t px-6 py-4 sm:px-10">
+            <div className="border-line border-t px-6 py-4 sm:px-10">
               <p id="zh-char-pick" className="sr-only">
                 {pick(c.pickLabel, locale)}
               </p>
@@ -202,7 +202,7 @@ export function CharacterOfDay() {
                       aria-label={`${x.char} ${x.pinyin} — ${pick(x.meaning, locale)}`}
                       className={cn(
                         "font-hanzi flex size-11 items-center justify-center rounded-full text-xl transition-colors",
-                        i === index ? "bg-ink text-paper" : "text-ink-2 hover:bg-surface-2 hover:text-ink",
+                        i === index ? "bg-ink text-paper" : "text-ink-2 hover:bg-ink/5 hover:text-ink dark:hover:bg-white/10",
                       )}
                     >
                       <span lang="zh-CN" aria-hidden="true">

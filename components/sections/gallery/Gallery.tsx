@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { useLocale } from "next-intl";
-import { ArrowLeft, Images } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Photo } from "@/components/ui/Photo";
 import { Lightbox, type LightboxItem } from "@/components/ui/Lightbox";
 import { TabList } from "@/components/ui/Tabs";
@@ -21,6 +21,7 @@ import { cn, pick } from "@/lib/utils";
 
 const byId = new Map(galleryPhotos.map((p) => [p.id, p]));
 const categoryColor = Object.fromEntries(galleryCategories.map((cat) => [cat.id, cat.color]));
+const categoryCount = (id: GalleryFilter) => (id === "all" ? galleryPhotos.length : galleryPhotos.filter((p) => p.category === id).length);
 
 /* ───────── columns by breakpoint (server snapshot = 3) ───────── */
 const colsFor = (w: number) => (w >= 1280 ? 4 : w >= 768 ? 3 : 2);
@@ -80,9 +81,9 @@ export function Gallery() {
     <section aria-label={pick(c.title, locale)} className="pb-24 lg:pb-32">
       <div ref={top} className="container-x scroll-mt-24">
         {/* Toolbar */}
-        <div className="flex flex-col-reverse gap-4 border-y border-line py-4 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col-reverse gap-4 border-b border-line md:flex-row md:items-end md:justify-between">
           {view === "photos" ? (
-            <div role="group" aria-label={pick(c.filterLabel, locale)} className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0">
+            <div role="group" aria-label={pick(c.filterLabel, locale)} className="no-scrollbar -mx-4 flex gap-6 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:gap-x-8 sm:px-0">
               {galleryCategories.map((cat) => {
                 const on = filter === cat.id;
                 return (
@@ -92,18 +93,26 @@ export function Gallery() {
                     aria-pressed={on}
                     onClick={() => setFilter(cat.id)}
                     className={cn(
-                      "inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border px-4 text-[15px] font-semibold transition-colors duration-200",
-                      on ? "border-ink bg-ink text-paper" : "border-line text-ink-2 hover:border-ink/30 hover:text-ink",
+                      "group relative inline-flex min-h-12 shrink-0 items-start gap-1 py-3 text-[15px] font-medium transition-colors duration-200",
+                      on ? "text-ink" : "text-ink-3 hover:text-ink",
                     )}
                   >
-                    {cat.id !== "all" && <span className="size-2 rounded-full" style={{ backgroundColor: cat.color }} aria-hidden="true" />}
                     {pick(cat.label, locale)}
+                    <sup className="top-0 text-[11px] font-normal tabular-nums text-ink-3">{categoryCount(cat.id)}</sup>
+                    <span
+                      aria-hidden="true"
+                      className={cn(
+                        "absolute inset-x-0 -bottom-px h-px origin-left transition-transform duration-500 ease-out motion-reduce:transition-none",
+                        on ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
+                      )}
+                      style={{ backgroundColor: cat.id === "all" ? "var(--ink)" : cat.color }}
+                    />
                   </button>
                 );
               })}
             </div>
           ) : album ? (
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 py-3">
               <button
                 type="button"
                 onClick={() => setAlbumId(null)}
@@ -118,7 +127,7 @@ export function Gallery() {
               </h2>
             </div>
           ) : (
-            <p className="text-ink-2">
+            <p className="py-4 text-ink-2">
               {galleryAlbums.length} {pick(c.albums, locale)}
             </p>
           )}
@@ -132,7 +141,7 @@ export function Gallery() {
               setView(id as View);
               setAlbumId(null);
             }}
-            className="self-start rounded-full border border-line p-1 md:self-auto"
+            className="mt-4 self-start rounded-full border border-line p-1 md:mb-2.5 md:mt-0 md:self-auto"
           />
         </div>
 
@@ -174,7 +183,7 @@ function Masonry({ photos, locale, onOpen }: { photos: GalleryPhoto[]; locale: s
     const id = requestAnimationFrame(() => setReady(true));
     return () => cancelAnimationFrame(id);
   }, []);
-  const gap = cols === 2 ? 12 : 16;
+  const gap = cols === 2 ? 8 : 12;
 
   const { placed, height } = useMemo(() => {
     // per column: sum of 1/ratio (height in column-widths) and item count
@@ -225,10 +234,10 @@ function Masonry({ photos, locale, onOpen }: { photos: GalleryPhoto[]; locale: s
                     aria-haspopup="dialog"
                     aria-label={`${pick(c.openPhoto, locale)}: ${caption}`}
                     onClick={() => onOpen(index)}
-                    className="group relative block size-full overflow-hidden rounded-[14px] sm:rounded-[18px]"
+                    className="group relative block size-full overflow-hidden rounded-[4px]"
                   >
                     <Photo slot={p.slot} sizes={sizes} decorative className="size-full" imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
-                    <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end gap-2 bg-gradient-to-t from-[#050d1c]/80 via-[#050d1c]/35 to-transparent p-3 pt-10 text-left text-[14px] font-medium leading-snug text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 sm:p-4 sm:pt-12">
+                    <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end gap-2 bg-gradient-to-t from-[#050d1c]/70 to-transparent p-3 pt-8 text-left text-[14px] font-medium leading-snug text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 sm:p-4 sm:pt-10">
                       <span className="mt-[0.45em] size-2 shrink-0 rounded-full" style={{ backgroundColor: categoryColor[p.category] }} aria-hidden="true" />
                       {caption}
                     </span>
@@ -243,24 +252,24 @@ function Masonry({ photos, locale, onOpen }: { photos: GalleryPhoto[]; locale: s
   );
 }
 
-/* ───────── Albums ───────── */
+/* ───────── Albums: asymmetric editorial grid; the cover with a second photo peeking through a circle ───────── */
 
 function Albums({ locale, onOpen }: { locale: string; onOpen: (id: string) => void }) {
   const spans = ["lg:col-span-7 lg:row-span-2", "lg:col-span-5", "lg:col-span-5", "lg:col-span-4", "lg:col-span-4", "lg:col-span-4"];
   return (
-    <ul className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-x-8">
+    <ul className="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-12 lg:gap-x-8">
       {galleryAlbums.map((a, i) => (
         <li key={a.id} className={cn(spans[i] ?? "lg:col-span-4", i === 0 && "sm:col-span-2")}>
-          <AlbumCard album={a} locale={locale} onOpen={onOpen} big={i === 0} />
+          <AlbumCard album={a} index={i} locale={locale} onOpen={onOpen} big={i === 0} />
         </li>
       ))}
     </ul>
   );
 }
 
-function AlbumCard({ album, locale, onOpen, big }: { album: GalleryAlbum; locale: string; onOpen: (id: string) => void; big: boolean }) {
+function AlbumCard({ album, index, locale, onOpen, big }: { album: GalleryAlbum; index: number; locale: string; onOpen: (id: string) => void; big: boolean }) {
   const cover = byId.get(album.cover) ?? byId.get(album.photos[0]);
-  const second = byId.get(album.photos[1]);
+  const second = byId.get(album.photos.find((id) => id !== album.cover) ?? album.photos[1]);
   const title = pick(album.title, locale);
   return (
     <button
@@ -270,27 +279,37 @@ function AlbumCard({ album, locale, onOpen, big }: { album: GalleryAlbum; locale
       className="group flex h-full w-full flex-col text-left"
     >
       <span className={cn("relative block w-full", big ? "aspect-[4/3] lg:aspect-auto lg:flex-1" : "aspect-[4/3]")}>
-        {/* the "stack" behind the cover */}
-        {second && (
-          <span className="absolute bottom-3 left-3 right-0 top-0 rotate-[2.5deg] overflow-hidden rounded-[20px] border border-line opacity-80 transition-transform duration-500 ease-out group-hover:rotate-[4deg] group-hover:translate-x-1">
-            <Photo slot={second.slot} sizes="10vw" decorative quality={60} className="size-full" />
-          </span>
-        )}
         {cover && (
-          <span className="absolute bottom-0 left-0 right-3 top-3 overflow-hidden rounded-[20px] border border-line bg-surface-2 transition-transform duration-500 ease-out group-hover:-translate-y-1">
-            <Photo slot={cover.slot} sizes={big ? "(min-width: 1024px) 55vw, (min-width: 640px) 90vw, 92vw" : "(min-width: 1024px) 33vw, (min-width: 640px) 45vw, 92vw"} decorative className="size-full" />
+          <span className="absolute inset-0 overflow-hidden rounded-[4px]">
+            <Photo
+              slot={cover.slot}
+              sizes={big ? "(min-width: 1024px) 55vw, (min-width: 640px) 90vw, 92vw" : "(min-width: 1024px) 33vw, (min-width: 640px) 45vw, 92vw"}
+              decorative
+              className="size-full"
+              imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transition-none"
+            />
           </span>
         )}
-        <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-[#050d1c]/70 px-3 py-1.5 text-[13px] font-semibold text-white backdrop-blur">
-          <Images className="size-3.5" strokeWidth={1.8} aria-hidden="true" />
-          {album.photos.length}
-        </span>
+        {second && (
+          <span
+            className={cn(
+              "absolute -bottom-5 right-5 overflow-hidden rounded-full ring-[5px] ring-paper transition-transform duration-500 ease-out group-hover:-translate-y-1.5 motion-reduce:transition-none",
+              big ? "size-28 sm:size-36" : "size-20 sm:size-24",
+            )}
+          >
+            <Photo slot={second.slot} sizes="150px" decorative quality={60} className="size-full" />
+          </span>
+        )}
       </span>
-      <span className="mt-5 flex items-start gap-3">
-        <span className="mt-2.5 h-0.5 w-6 shrink-0 transition-[width] duration-300 group-hover:w-10" style={{ backgroundColor: album.accent }} aria-hidden="true" />
+      <span className="mt-6 flex items-baseline gap-4 pr-28">
+        <span className="text-[15px] font-light tabular-nums text-ink-3" aria-hidden="true">
+          {String(index + 1).padStart(2, "0")}
+        </span>
         <span>
-          <span className={cn("block font-display text-ink", big ? "text-display-s" : "text-xl")}>{title}</span>
-          <span className="mt-1 block text-[15px] text-ink-2">{pick(album.note, locale)}</span>
+          <span className={cn("block font-semibold tracking-[-0.03em] text-ink", big ? "text-display-s" : "text-xl")}>{title}</span>
+          <span className="mt-1 block text-[15px] text-ink-2">
+            {pick(album.note, locale)} · {album.photos.length} {pick(c.photos, locale)}
+          </span>
         </span>
       </span>
     </button>

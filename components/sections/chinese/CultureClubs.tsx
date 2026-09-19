@@ -19,24 +19,24 @@ function CultureCard({ card, locale, large }: { card: Card; locale: string; larg
           sizes={
             large ? "(min-width: 1024px) 700px, 100vw" : "(min-width: 1024px) 460px, (min-width: 640px) 50vw, 100vw"
           }
-          className={cn("rounded-[22px]", large ? "aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5]" : "aspect-[16/10]")}
-          imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+          className={cn("rounded-[6px]", large ? "aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5]" : "aspect-[16/10]")}
+          imgClassName="transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] motion-reduce:transition-none"
         />
         <span
           lang="zh-CN"
           aria-hidden="true"
-          className="bg-paper/92 font-hanzi text-ink absolute top-3 right-3 rounded-[10px] px-2.5 py-1 text-lg backdrop-blur-sm [writing-mode:vertical-rl]"
+          className="font-hanzi absolute top-4 right-4 rounded-[3px] bg-[var(--red)] px-1.5 py-2 text-base leading-tight text-white [writing-mode:vertical-rl]"
         >
           {card.hanzi}
         </span>
       </div>
       <div>
-        <h3 className={cn("text-ink", large ? "text-display-s" : "font-sans text-xl font-bold tracking-normal")}>
+        <h3 className={cn("text-ink", large ? "text-display-s font-semibold" : "font-sans text-xl font-semibold tracking-normal")}>
           {pick(card.title, locale)}
         </h3>
         <p className="text-ink-2 mt-2 max-w-[48ch]">{pick(card.text, locale)}</p>
-        <p className="text-ink-3 mt-4 flex items-center gap-2 text-sm font-semibold">
-          <span aria-hidden="true" className="bg-accent h-px w-5" />
+        <p className="text-ink-3 mt-4 flex items-center gap-2 text-sm font-medium">
+          <span aria-hidden="true" className="bg-accent h-px w-5 transition-[width] duration-500 group-hover:w-10" />
           {pick(card.when, locale)}
         </p>
       </div>
@@ -50,10 +50,11 @@ export function CultureClubs() {
   const c = chineseCopy.culture;
   const [first, ...rest] = cultureCards;
   return (
-    <section aria-labelledby="zh-culture" className="border-line border-t py-20 lg:py-28">
+    <section aria-labelledby="zh-culture" className="py-20 lg:py-32">
       <div className="container-x">
+        <div aria-hidden="true" className="bg-line mb-16 h-px lg:mb-24" />
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <h2 id="zh-culture" className="text-display-m text-ink">
+          <h2 id="zh-culture" className="text-display-l text-ink max-w-[14ch]">
             {pick(c.title, locale)}
           </h2>
           <p className="text-ink-2 max-w-[44ch]">{pick(c.lead, locale)}</p>

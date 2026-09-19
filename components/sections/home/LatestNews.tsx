@@ -59,11 +59,11 @@ export async function LatestNews() {
           <p className="mt-3 max-w-[56ch] text-ink-2">{pick(lead.excerpt, locale)}</p>
         </article>
 
-        <ol className="self-end border-t border-line lg:col-span-6 lg:col-start-7">
+        <ol className="self-start border-t border-line lg:col-span-6 lg:col-start-7 lg:mt-24">
           {rest.map((n, i) => (
             <li key={n.slug}>
-              <article className="group relative grid grid-cols-[auto_1fr_auto] items-center gap-5 border-b border-line py-7 sm:gap-8">
-                <span aria-hidden="true" className="w-10 self-start text-[1.75rem] font-light leading-none tracking-[-0.04em] text-ink-3 tabular-nums sm:w-14 sm:text-[2.25rem]">
+              <article className="group relative grid grid-cols-[1fr_auto] items-center gap-5 border-b sm:grid-cols-[auto_1fr_auto] border-line py-7 sm:gap-8">
+                <span aria-hidden="true" className="hidden w-14 self-start text-[1.75rem] font-light sm:block leading-none tracking-[-0.04em] text-ink-3 tabular-nums sm:w-14 sm:text-[2.25rem]">
                   0{i + 2}
                 </span>
                 <div>

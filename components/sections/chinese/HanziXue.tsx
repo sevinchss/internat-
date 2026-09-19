@@ -39,8 +39,8 @@ export function HanziXue({ label, replayLabel }: { label: string; replayLabel: s
       <svg viewBox="0 0 1024 1024" role="img" aria-label={label} className="block h-auto w-full">
         {/* 米字格 practice grid */}
         <g fill="none" stroke="var(--accent)" vectorEffect="non-scaling-stroke">
-          <rect x="6" y="6" width="1012" height="1012" rx="18" strokeWidth="1.6" vectorEffect="non-scaling-stroke" />
-          <g strokeOpacity="0.45" strokeDasharray="10 12" strokeWidth="1" vectorEffect="non-scaling-stroke">
+          <rect x="6" y="6" width="1012" height="1012" rx="4" stroke="var(--ink-3)" strokeOpacity="0.55" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+          <g strokeOpacity="0.4" strokeDasharray="10 12" strokeWidth="1" vectorEffect="non-scaling-stroke">
             <path d="M512 6 V1018 M6 512 H1018" vectorEffect="non-scaling-stroke" />
             <path d="M6 6 L1018 1018 M1018 6 L6 1018" strokeOpacity="0.6" vectorEffect="non-scaling-stroke" />
           </g>
@@ -92,9 +92,9 @@ export function HanziXue({ label, replayLabel }: { label: string; replayLabel: s
         <button
           type="button"
           onClick={() => setRun((r) => r + 1)}
-          className="bg-paper/90 text-ink-2 hover:text-accent-ink absolute right-3 bottom-3 inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-sm font-semibold backdrop-blur transition-colors"
+          className="glass group/replay text-ink-2 hover:text-accent-ink absolute right-3 bottom-3 inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-sm font-medium transition-colors"
         >
-          <RotateCcw className="size-4" strokeWidth={1.8} aria-hidden="true" />
+          <RotateCcw className="size-4 transition-transform duration-500 group-hover/replay:-rotate-180 motion-reduce:transition-none" strokeWidth={1.8} aria-hidden="true" />
           {replayLabel}
         </button>
       )}

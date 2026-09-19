@@ -7,10 +7,10 @@ export default async function NotFound() {
   return (
     <section className="container-x grid min-h-[100dvh] items-center gap-12 pb-20 pt-[calc(var(--header-h)+40px)] lg:grid-cols-12">
       <div className="order-2 lg:order-1 lg:col-span-6">
-        <p className="font-display text-display-m text-ink-3" aria-hidden="true">
+        <p className="text-[clamp(4.5rem,3rem+6vw,8.5rem)] font-light leading-none tracking-[-0.06em] text-ink-3 tabular-nums" aria-hidden="true">
           404
         </p>
-        <h1 className="mt-4 text-display-l text-ink">{t("title")}</h1>
+        <h1 className="mt-6 text-display-l text-ink">{t("title")}</h1>
         <p className="mt-6 max-w-[48ch] text-body-l text-ink-2">{t("text")}</p>
         <div className="mt-10 flex flex-wrap gap-3">
           <ButtonLink href="/">{t("home")}</ButtonLink>
@@ -22,7 +22,7 @@ export default async function NotFound() {
           </ButtonLink>
         </div>
       </div>
-      <div className="order-1 mx-auto w-full max-w-[460px] lg:order-2 lg:col-span-6">
+      <div className="order-1 mx-auto w-full max-w-[300px] sm:max-w-[420px] lg:order-2 lg:col-span-6 lg:max-w-[480px]">
         <BrokenRing />
       </div>
     </section>

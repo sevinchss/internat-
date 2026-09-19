@@ -17,7 +17,7 @@ export function ChineseHero() {
         <figure className="mx-auto w-full max-w-[620px] lg:col-span-7 lg:mr-0">
           <HanziXue label={pick(c.charLabel, locale)} replayLabel={pick(c.replay, locale)} />
           <figcaption className="mt-6 flex flex-wrap items-baseline gap-x-5 gap-y-2">
-            <span lang="zh-Latn-pinyin" className="font-display text-display-l text-ink">
+            <span lang="zh-Latn-pinyin" className="text-display-l text-ink font-light">
               xué
             </span>
             <span className="text-body-l text-ink-2">— {pick(c.meaning, locale)}</span>

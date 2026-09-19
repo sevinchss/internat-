@@ -59,8 +59,8 @@ function HskArc({ g, label, sub }: { g: ChineseGrade; label: string; sub: string
         x={C}
         y={C - 14}
         textAnchor="middle"
-        className="font-display"
-        style={{ fontSize: 56, fill: "var(--ink)", letterSpacing: "-0.02em" }}
+        className="font-sans"
+        style={{ fontSize: 60, fontWeight: 300, fill: "var(--ink)", letterSpacing: "-0.04em" }}
       >
         HSK {g.hsk}
       </text>
@@ -79,7 +79,7 @@ export function ChineseCurriculum() {
   const arcLabel = pick(c.arcLabel, locale).replace("{grade}", String(g.grade)).replace("{level}", `HSK ${g.hsk}`);
 
   return (
-    <section aria-labelledby="zh-curriculum" className="bg-surface py-20 lg:py-28">
+    <section aria-labelledby="zh-curriculum" className="py-20 lg:py-32">
       <div className="container-x">
         <div className="max-w-2xl">
           <h2 id="zh-curriculum" className="text-display-m text-ink">
@@ -100,14 +100,14 @@ export function ChineseCurriculum() {
         <TabPanel
           idBase="zh-grades"
           id={value}
-          className="border-line bg-paper mt-8 grid grid-cols-1 items-center gap-10 rounded-[28px] border p-6 sm:p-10 md:grid-cols-2 lg:gap-16"
+          className="glass mt-8 grid grid-cols-1 items-center gap-10 rounded-[24px] p-6 sm:p-10 md:grid-cols-2 lg:gap-16"
         >
           <div className="mx-auto w-full max-w-[400px]">
             <HskArc g={g} label={arcLabel} sub={gradeLabel(g.grade, locale)} />
           </div>
           <div>
-            <p className="text-ink-3 text-sm font-semibold">{gradeLabel(g.grade, locale)}</p>
-            <p className="font-display text-display-s text-ink mt-2">{pick(g.focus, locale)}</p>
+            <p className="text-ink-3 text-sm font-medium">{gradeLabel(g.grade, locale)}</p>
+            <p className="text-display-s text-ink mt-2 font-semibold">{pick(g.focus, locale)}</p>
             <ul className="mt-6 space-y-2.5">
               {pick(g.topics, locale).map((t) => (
                 <li key={t} className="text-ink-2 flex gap-3">
@@ -119,11 +119,11 @@ export function ChineseCurriculum() {
             <dl className="border-line mt-8 grid grid-cols-2 border-t pt-5">
               <div>
                 <dt className="text-ink-3 text-sm">{pick(c.target, locale)}</dt>
-                <dd className="font-display text-accent-ink mt-1 text-xl">HSK {g.hsk}</dd>
+                <dd className="text-accent-ink mt-1 text-2xl font-light">HSK {g.hsk}</dd>
               </div>
               <div className="border-line border-l pl-5">
                 <dt className="text-ink-3 text-sm">{pick(c.hours, locale)}</dt>
-                <dd className="font-display text-ink mt-1 text-xl tabular-nums">{g.hours}</dd>
+                <dd className="text-ink mt-1 text-2xl font-light tabular-nums">{g.hours}</dd>
               </div>
             </dl>
           </div>
