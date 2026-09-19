@@ -35,15 +35,15 @@ export function StaffPortrait({
     .slice(0, 2)
     .map((w) => w[0])
     .join("");
-  const [dx, dy] = polar(100, 100, 96, RING_END);
+  const dot = polar(100, 100, 96, RING_END);
 
   return (
     <span className={cn("relative block aspect-square shrink-0", className)}>
       {ring && (
-        <svg viewBox="0 0 200 200" className="absolute inset-0 size-full overflow-visible" aria-hidden="true">
+        <svg viewBox="0 0 200 200" className="absolute inset-0 size-full overflow-visible transition-transform duration-700 ease-out group-hover:rotate-[20deg] motion-reduce:transition-none" aria-hidden="true">
           <path d={arcPath(100, 100, 96, RING_START, RING_END)} fill="none" stroke="var(--ring)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
           <path d={arcPath(100, 100, 96, 280, RING_END)} fill="none" stroke={accent} strokeWidth="2.25" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-          <circle cx={dx} cy={dy} r="3.2" fill={accent} />
+          <circle cx={dot.x} cy={dot.y} r="3.2" fill={accent} />
         </svg>
       )}
       <span className={cn("absolute overflow-hidden rounded-full", ring ? "inset-[8%]" : "inset-0")}>

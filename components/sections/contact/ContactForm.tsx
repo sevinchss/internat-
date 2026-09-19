@@ -14,6 +14,7 @@ import {
   type ContactField,
   type ContactFieldErrors,
 } from "@/lib/contact-schema";
+import { buttonClass } from "@/components/ui/Button";
 import { cn, pick, type L10n } from "@/lib/utils";
 
 type Values = Record<ContactField, string> & { website: string };
@@ -21,8 +22,10 @@ const empty: Values = { name: "", phone: "", email: "", topic: "", message: "", 
 const ORDER: ContactField[] = ["name", "phone", "email", "topic", "message"];
 const MAX_MESSAGE = 2000;
 
+// Minimal fields: a soft fill with a hairline underline. Focus draws a 2px primary underline and lifts the fill;
+// errors turn the underline red and tint the fill. Both states are carried by more than colour (icon + message).
 const control =
-  "w-full rounded-2xl border bg-paper px-4 text-ink placeholder:text-ink-3 transition-colors focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-ink";
+  "w-full rounded-t-xl rounded-b-none border-0 border-b bg-ink/[0.035] px-4 text-ink placeholder:text-ink-3 transition-[background-color,box-shadow,border-color] duration-200 focus:outline-none focus:bg-surface focus:shadow-[inset_0_-2px_0_var(--primary-ink),0_0_0_1px_color-mix(in_oklab,var(--primary-ink)_22%,transparent)] dark:bg-white/[0.045] dark:focus:bg-white/[0.08]";
 const errText = "text-[#b30000] dark:text-[#ff8a80]";
 
 export function ContactForm() {
@@ -115,7 +118,7 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="flex min-h-[420px] flex-col items-start justify-center rounded-[28px] border border-line bg-surface p-8 sm:p-10">
+      <div className="glass flex min-h-[420px] flex-col items-start justify-center rounded-[24px] p-8 sm:p-12">
         <CircleCheck className="size-10 text-green dark:text-[#4cc59f]" strokeWidth={1.6} aria-hidden="true" />
         <h2 ref={successRef} tabIndex={-1} className="mt-6 text-display-s outline-none">
           {L(f.successTitle)}
@@ -124,7 +127,7 @@ export function ContactForm() {
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-8 inline-flex min-h-12 items-center rounded-full border border-ink/15 px-6 font-semibold text-ink transition-colors hover:border-primary-ink hover:text-primary-ink dark:border-white/20"
+          className={buttonClass("outline", "mt-8")}
         >
           {L(f.again)}
         </button>
@@ -139,7 +142,12 @@ export function ContactForm() {
     "aria-invalid": errors[k] ? true : undefined,
     "aria-describedby": cn(hint && id(`${k}-hint`), errors[k] && id(`${k}-error`)) || undefined,
     onBlur: () => onBlur(k),
-    className: cn(control, errors[k] ? "border-[#b30000] dark:border-[#ff8a80]" : "border-line hover:border-ink/30"),
+    className: cn(
+      control,
+      errors[k]
+        ? "border-[#b30000] bg-[#b30000]/[0.045] shadow-[inset_0_-1px_0_#b30000] focus:shadow-[inset_0_-2px_0_#b30000,0_0_0_1px_rgb(179_0_0/0.25)] dark:border-[#ff8a80] dark:bg-[#ff8a80]/[0.07] dark:shadow-[inset_0_-1px_0_#ff8a80] dark:focus:shadow-[inset_0_-2px_0_#ff8a80,0_0_0_1px_rgb(255_138_128/0.3)]"
+        : "border-ink/25 hover:border-ink/50 dark:border-white/25 dark:hover:border-white/50",
+    ),
   });
   const errorLine = (k: ContactField) =>
     errors[k] ? (
@@ -149,14 +157,14 @@ export function ContactForm() {
       </p>
     ) : null;
   const label = (k: ContactField, children: React.ReactNode, optional?: boolean) => (
-    <label htmlFor={id(k)} className="mb-2 flex items-baseline gap-2 text-[15px] font-semibold text-ink">
+    <label htmlFor={id(k)} className="mb-2 flex items-baseline gap-2 text-[15px] font-medium text-ink">
       {children}
       {optional ? <span className="text-sm font-medium text-ink-3">({L(f.optional)})</span> : <span aria-hidden="true" className="text-ink-3">*</span>}
     </label>
   );
 
   return (
-    <form noValidate onSubmit={onSubmit} aria-labelledby={id("title")} className="relative rounded-[28px] border border-line bg-surface p-6 sm:p-10">
+    <form noValidate onSubmit={onSubmit} aria-labelledby={id("title")} className="glass relative rounded-[24px] p-6 sm:p-10 lg:p-12">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 id={id("title")} className="text-display-s">
           {L(f.title)}
@@ -166,20 +174,20 @@ export function ContactForm() {
 
       <div aria-live="assertive" className="empty:hidden">
         {submitted && hasErrors && (
-          <p className={cn("mt-6 flex items-start gap-2 rounded-2xl border border-current/30 px-4 py-3 text-[15px] font-semibold", errText)}>
+          <p className={cn("mt-6 flex items-start gap-2 border-l-2 border-current bg-current/[0.06] px-4 py-3 text-[15px] font-medium", errText)}>
             <AlertCircle className="mt-0.5 size-[18px] shrink-0" strokeWidth={1.8} aria-hidden="true" />
             {L(f.errorSummary)}
           </p>
         )}
         {status === "error" && (
-          <p className={cn("mt-6 flex items-start gap-2 rounded-2xl border border-current/30 px-4 py-3 text-[15px] font-semibold", errText)}>
+          <p className={cn("mt-6 flex items-start gap-2 border-l-2 border-current bg-current/[0.06] px-4 py-3 text-[15px] font-medium", errText)}>
             <AlertCircle className="mt-0.5 size-[18px] shrink-0" strokeWidth={1.8} aria-hidden="true" />
             {L(f.serverError)}
           </p>
         )}
       </div>
 
-      <div className="mt-8 grid gap-6 sm:grid-cols-2">
+      <div className="mt-10 grid gap-x-6 gap-y-7 sm:grid-cols-2">
         <div>
           {label("name", L(f.name))}
           <input
@@ -292,13 +300,13 @@ export function ContactForm() {
         <input id={id("website")} name={HONEYPOT_FIELD} type="text" tabIndex={-1} autoComplete="off" value={values.website} onChange={(e) => set("website", e.target.value)} />
       </div>
 
-      <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-10 flex flex-col gap-5 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-[40ch] text-sm text-ink-3">{L(f.privacy)}</p>
         <button
           type="submit"
           disabled={status === "submitting"}
           aria-disabled={status === "submitting"}
-          className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-primary px-7 text-[15px] font-semibold text-on-primary shadow-[inset_0_1px_0_rgb(255_255_255/0.18)] transition-[background-color,transform] hover:bg-navy active:scale-[0.98] disabled:cursor-progress disabled:opacity-80 dark:hover:bg-[#2474c9]"
+          className={buttonClass("primary", "shrink-0 px-8 disabled:cursor-progress disabled:opacity-80")}
         >
           {status === "submitting" && <Loader2 className="size-4 animate-spin" aria-hidden="true" />}
           {status === "submitting" ? L(f.submitting) : L(f.submit)}

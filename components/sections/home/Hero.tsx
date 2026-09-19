@@ -148,7 +148,7 @@ export function Hero() {
               <dt className="max-w-[18ch] text-right text-[13px] leading-snug text-ink-2 sm:text-left">
                 {pick(f.label, locale)}
               </dt>
-              <dd className="font-display text-[clamp(1.75rem,1.3rem+1.4vw,2.6rem)] font-light leading-none tracking-[-0.04em] text-ink tabular-nums">
+              <dd className="text-[clamp(1.75rem,1.3rem+1.4vw,2.6rem)] font-light leading-none tracking-[-0.04em] text-ink tabular-nums">
                 {f.value}
               </dd>
             </div>

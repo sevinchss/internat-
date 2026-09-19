@@ -4,7 +4,8 @@ import { mapEmbedSrc, school } from "@/lib/site";
 /** Full-width embedded map; dark mode uses the same inverted treatment as the footer map. */
 export function ContactMap({ title, openLabel, newTab, address }: { title: string; openLabel: string; newTab: string; address: string }) {
   return (
-    <section aria-labelledby="map-title" className="container-x pb-20 lg:pb-28">
+    <section aria-labelledby="map-title" className="container-x pb-20 lg:pb-32">
+      <div aria-hidden="true" className="mb-14 h-px bg-line lg:mb-20" />
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h2 id="map-title" className="text-display-m">
@@ -23,7 +24,8 @@ export function ContactMap({ title, openLabel, newTab, address }: { title: strin
           <span className="sr-only">({newTab})</span>
         </a>
       </div>
-      <div className="relative mt-8 aspect-[4/5] overflow-hidden rounded-[28px] border border-line bg-surface-2 sm:aspect-[16/9] lg:aspect-[21/8]">
+      <div className="frame mt-10 p-2 sm:p-3">
+        <div className="relative aspect-[4/5] overflow-hidden rounded-[6px] bg-surface-2 sm:aspect-[16/9] lg:aspect-[21/8]">
         {/* TODO: replace with real coordinates (lib/site.ts → school.geo) */}
         <iframe
           src={mapEmbedSrc}
@@ -32,6 +34,7 @@ export function ContactMap({ title, openLabel, newTab, address }: { title: strin
           referrerPolicy="no-referrer-when-downgrade"
           className="absolute inset-0 h-full w-full grayscale-[0.6] dark:opacity-80 dark:invert-[0.9] dark:hue-rotate-180"
         />
+        </div>
       </div>
     </section>
   );
