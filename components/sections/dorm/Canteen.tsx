@@ -18,7 +18,7 @@ export function Canteen() {
   const current = menu.find((d) => d.id === day) ?? menu[0];
 
   return (
-    <section aria-labelledby="dorm-canteen" className="py-20 lg:py-28">
+    <section aria-labelledby="dorm-canteen" className="py-20 lg:py-32">
       <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-5">
           <h2 id="dorm-canteen" className="text-display-m text-ink">
@@ -29,7 +29,7 @@ export function Canteen() {
             <Photo
               slot={images.dorm.canteen}
               sizes="(min-width: 1024px) 420px, 70vw"
-              className="aspect-[4/3] rounded-[22px]"
+              className="aspect-[4/3] rounded-[6px]"
             />
             <div className="absolute right-0 bottom-0 w-[44%]">
               <Photo
@@ -61,9 +61,9 @@ export function Canteen() {
           <TabPanel
             idBase="dorm-menu"
             id={current.id}
-            className="border-line bg-surface mt-6 rounded-[24px] border p-5 sm:p-8"
+            className="glass mt-6 rounded-[20px] p-5 sm:p-8"
           >
-            <p className="font-display text-display-s text-ink">{pick(current.long, locale)}</p>
+            <p className="text-display-s text-ink font-semibold">{pick(current.long, locale)}</p>
             <AnimatePresence mode="wait" initial={false}>
               <motion.dl
                 key={current.id}

@@ -19,8 +19,8 @@ export function Goals() {
   const locale = useLocale();
   const reduce = useReducedMotion();
   return (
-    <section aria-labelledby="goals-title" className="border-t border-line">
-      <div className="container-x pt-20 lg:pt-28">
+    <section aria-labelledby="goals-title">
+      <div className="container-x pt-8 lg:pt-12">
         <div className="grid gap-6 lg:grid-cols-12">
           <h2 id="goals-title" className="text-display-l lg:col-span-5">
             {pick(c.goalsTitle, locale)}
@@ -133,6 +133,8 @@ function GoalsPinned({ locale }: { locale: string }) {
 function GoalRing({ active, onSelect }: { active: number; onSelect: (i: number) => void }) {
   return (
     <svg viewBox="0 0 400 400" className="mx-auto w-full max-w-[520px] overflow-visible">
+      <circle cx="200" cy="200" r="140" fill="none" stroke="var(--line)" strokeWidth={1} />
+      <path d={arcPath(200, 200, 196, RING_START, RING_END)} fill="none" stroke="var(--line)" strokeWidth={1} />
       <path d={arcPath(200, 200, 176, RING_START, RING_END)} fill="none" stroke="var(--line)" strokeWidth={1.5} />
       {RING_SEGMENTS.map((s, i) => {
         const on = i === active;
@@ -143,17 +145,17 @@ function GoalRing({ active, onSelect }: { active: number; onSelect: (i: number) 
             d={arcPath(200, 200, 176, s.from, s.to)}
             fill="none"
             stroke={on || past ? s.color : "var(--ring)"}
-            strokeWidth={on ? 20 : 8}
+            strokeWidth={on ? 14 : 5}
             strokeOpacity={on ? 1 : past ? 0.45 : 1}
             onClick={() => onSelect(i)}
             className="cursor-pointer transition-[stroke,stroke-width,stroke-opacity] duration-500 ease-out"
           />
         );
       })}
-      <text x="200" y="214" textAnchor="middle" className="fill-ink font-display" style={{ fontSize: 76, fontWeight: 500, letterSpacing: "-0.04em" }}>
+      <text x="200" y="214" textAnchor="middle" className="fill-ink font-display" style={{ fontSize: 84, fontWeight: 300, letterSpacing: "-0.05em" }}>
         {pad(active + 1)}
       </text>
-      <text x="200" y="252" textAnchor="middle" className="fill-ink-3 font-display" style={{ fontSize: 18 }}>
+      <text x="200" y="254" textAnchor="middle" className="fill-ink-3 font-display" style={{ fontSize: 16, fontWeight: 400, letterSpacing: "0.02em" }}>
         / {pad(RING_SEGMENTS.length)}
       </text>
     </svg>
@@ -165,8 +167,8 @@ function GoalBody({ goal, index, locale, size }: { goal: Goal; index: number; lo
   const Title = size === "lg" ? "p" : "h3";
   return (
     <>
-      <p className="flex items-center gap-3 text-[15px] font-semibold text-ink-2">
-        <span className="h-0.5 w-8" style={{ backgroundColor: color }} aria-hidden="true" />
+      <p className="flex items-center gap-3 text-[15px] font-medium tabular-nums text-ink-2">
+        <span className="h-px w-10" style={{ backgroundColor: color }} aria-hidden="true" />
         {pick(c.goalOf, locale)} {pad(index + 1)}
       </p>
       <Title className={cn("mt-4 font-display font-medium text-ink", size === "lg" ? "text-display-m" : "text-display-s")}>{pick(goal.title, locale)}</Title>
@@ -204,9 +206,9 @@ function MiniRing({ index }: { index: number }) {
   const s = RING_SEGMENTS[index];
   return (
     <svg viewBox="0 0 88 88" className="w-full" aria-hidden="true">
-      <path d={arcPath(44, 44, 36, RING_START, RING_END)} fill="none" stroke="var(--ring)" strokeWidth={2} />
-      <path d={arcPath(44, 44, 36, s.from, s.to)} fill="none" stroke={s.color} strokeWidth={7} />
-      <text x="44" y="51" textAnchor="middle" className="fill-ink font-display" style={{ fontSize: 20, fontWeight: 500 }}>
+      <path d={arcPath(44, 44, 36, RING_START, RING_END)} fill="none" stroke="var(--ring)" strokeWidth={1} />
+      <path d={arcPath(44, 44, 36, s.from, s.to)} fill="none" stroke={s.color} strokeWidth={4} strokeLinecap="round" />
+      <text x="44" y="51" textAnchor="middle" className="fill-ink font-display" style={{ fontSize: 20, fontWeight: 300 }}>
         {pad(index + 1)}
       </text>
     </svg>

@@ -59,7 +59,7 @@ export function RoomTour() {
     : undefined;
 
   return (
-    <section aria-labelledby={`${base}-title`} className="border-line bg-surface border-t py-20 lg:py-28">
+    <section aria-labelledby={`${base}-title`} className="py-20 lg:py-32">
       <div ref={wrapRef} className="container-x grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-10">
         <div className="lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:self-end">
           <h2 id={`${base}-title`} className="text-display-m text-ink">
@@ -69,8 +69,9 @@ export function RoomTour() {
         </div>
 
         <div className="lg:col-span-6 lg:col-start-1 lg:row-span-2 lg:row-start-1">
-          <div className="relative mx-auto max-w-[520px] lg:mx-0" style={{ aspectRatio: String(roomPhoto.ratio) }}>
-            <Photo slot={roomPhoto} sizes="(min-width: 1024px) 520px, 92vw" className="h-full w-full rounded-[24px]" />
+          <div className="frame mx-auto max-w-[540px] p-2.5 lg:mx-0">
+          <div className="relative" style={{ aspectRatio: String(roomPhoto.ratio) }}>
+            <Photo slot={roomPhoto} sizes="(min-width: 1024px) 520px, 92vw" className="h-full w-full rounded-[6px]" />
 
             {hotspots.map((h, i) => {
               const on = active === h.id;
@@ -114,7 +115,7 @@ export function RoomTour() {
                   transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute top-[var(--cy)] left-[var(--cx)] z-10 hidden w-[272px] md:block"
                 >
-                  <div className="border-line bg-paper translate-x-[var(--tx)] translate-y-[var(--ty)] rounded-[18px] border p-5 shadow-[0_18px_50px_rgb(var(--shadow)/0.18)]">
+                  <div className="glass translate-x-[var(--tx)] translate-y-[var(--ty)] rounded-[16px] p-5 shadow-[0_18px_50px_rgb(var(--shadow)/0.16)]">
                     <CardBody
                       title={pick(current.title, locale)}
                       text={pick(current.text, locale)}
@@ -127,11 +128,12 @@ export function RoomTour() {
               )}
             </AnimatePresence>
           </div>
+          </div>
 
           {/* small screens: card under the photo */}
           <div aria-live="polite" className="mx-auto max-w-[520px] md:hidden">
             {current && (
-              <div id={cardId + "-sm"} className="border-line bg-paper mt-4 rounded-[18px] border p-5">
+              <div id={cardId + "-sm"} className="glass mt-4 rounded-[16px] p-5">
                 <CardBody
                   title={pick(current.title, locale)}
                   text={pick(current.text, locale)}
@@ -168,7 +170,7 @@ export function RoomTour() {
                     </span>
                     <span
                       className={cn(
-                        "flex-1 font-semibold transition-colors",
+                        "flex-1 font-medium transition-colors",
                         on ? "text-ink" : "text-ink-2 group-hover:text-ink",
                       )}
                     >
@@ -176,7 +178,7 @@ export function RoomTour() {
                     </span>
                     <span
                       aria-hidden="true"
-                      className={cn("h-px w-6 transition-colors", on ? "bg-orange" : "bg-transparent")}
+                      className={cn("h-px transition-[width,background-color] duration-300", on ? "bg-orange w-8" : "bg-ink-3 w-0 group-hover:w-4")}
                     />
                   </button>
                 </li>
@@ -206,10 +208,10 @@ function CardBody({
   return (
     <>
       <div className="flex items-start gap-3">
-        <span aria-hidden="true" className="font-display text-ink-3 mt-1 text-sm tabular-nums">
+        <span aria-hidden="true" className="text-ink-3 mt-1 text-sm tabular-nums">
           {String(n).padStart(2, "0")}
         </span>
-        <p className="font-display text-ink flex-1 text-lg leading-snug">{title}</p>
+        <p className="text-ink flex-1 text-lg leading-snug font-semibold">{title}</p>
         <button
           type="button"
           onClick={onClose}

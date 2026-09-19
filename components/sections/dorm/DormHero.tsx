@@ -17,8 +17,8 @@ export function DormHero() {
             {c.facts.map((f, i) => (
               <div key={i} className={i > 0 ? "border-line border-l pt-5 pl-4 sm:pl-6" : "pt-5 pr-4"}>
                 <dt className="sr-only">{pick(f.label, locale)}</dt>
-                <dd className="font-display text-display-s text-ink tabular-nums">{f.value}</dd>
-                <dd aria-hidden="true" className="text-ink-2 mt-1 text-sm leading-snug">
+                <dd className="text-ink text-[clamp(1.9rem,1.4rem+1.6vw,2.75rem)] leading-none font-light tracking-[-0.04em] tabular-nums">{f.value}</dd>
+                <dd aria-hidden="true" className="text-ink-2 mt-2 text-sm leading-snug">
                   {pick(f.label, locale)}
                 </dd>
               </div>

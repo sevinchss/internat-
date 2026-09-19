@@ -15,7 +15,7 @@ export function Routine() {
   const lastTime = routine[routine.length - 1].time;
 
   return (
-    <section aria-labelledby="dorm-routine" className="py-20 lg:py-28">
+    <section aria-labelledby="dorm-routine" className="py-20 lg:py-32">
       <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-28">
@@ -23,7 +23,7 @@ export function Routine() {
               {pick(c.title, locale)}
             </h2>
             <p className="text-ink-2 mt-4 max-w-[40ch]">{pick(c.lead, locale)}</p>
-            <p className="border-orange text-ink-3 mt-6 max-w-[40ch] border-l-2 pl-4 text-sm">{pick(c.note, locale)}</p>
+            <p className="border-orange text-ink-3 mt-6 max-w-[40ch] border-l pl-4 text-sm">{pick(c.note, locale)}</p>
           </div>
         </div>
 
@@ -48,7 +48,7 @@ export function Routine() {
                   const long = Boolean(item.end);
                   return (
                     <li key={item.time} className={cols}>
-                      <span className="font-display text-ink pt-0.5 text-[15px] tabular-nums sm:text-base">
+                      <span className="text-ink pt-0.5 text-[15px] font-medium tabular-nums sm:text-base">
                         <time>{item.time}</time>
                         {item.end && (
                           <span className="text-ink-3 block">
@@ -77,7 +77,7 @@ export function Routine() {
                         {long && <span className="bg-ink/15 absolute top-9 bottom-3 w-[3px] rounded-full" />}
                       </span>
                       <div className={long ? "pb-12" : "pb-7"}>
-                        <p className={cn("text-ink", long ? "font-display text-display-s" : "font-semibold")}>
+                        <p className={cn("text-ink", long ? "text-display-s font-semibold" : "font-medium")}>
                           {pick(item.title, locale)}
                         </p>
                         {item.text && (

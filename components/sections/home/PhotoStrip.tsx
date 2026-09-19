@@ -4,10 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useAnimationFrame, useMotionValue, useReducedMotion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { images, type ImageSlot } from "@/lib/images";
-import { strip } from "@/data/home";
+import { ArrowRight } from "lucide-react";
+import { labels, strip } from "@/data/home";
 import { pick } from "@/lib/utils";
 import { Link } from "@/i18n/navigation";
 import { Photo } from "@/components/ui/Photo";
+import { SectionLabel } from "./SectionLabel";
 
 const photos: ImageSlot[] = [
   images.classes.labKids,
@@ -62,23 +64,35 @@ export function PhotoStrip() {
   });
 
   return (
-    <section aria-labelledby="strip-title" className="overflow-hidden py-20 lg:py-28">
-      <div className="container-x flex flex-wrap items-end justify-between gap-4">
-        <h2 id="strip-title" className="text-display-m text-ink">
-          {pick(strip.title, locale)}
-        </h2>
-        <Link href="/biz-haqimizda/fotogalereya" className="font-semibold text-primary-ink underline decoration-2 underline-offset-[6px]">
-          {t("toGallery")}
-        </Link>
+    <section aria-labelledby="strip-title" className="overflow-hidden py-24 lg:py-32">
+      <div className="container-x flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <SectionLabel n="06">{pick(labels.strip, locale)}</SectionLabel>
+          <h2 id="strip-title" className="mt-6 text-display-m text-ink">
+            {pick(strip.title, locale)}
+          </h2>
+        </div>
+        <div className="flex items-center gap-6">
+          <p className="hidden text-sm text-ink-3 sm:block" aria-hidden="true">
+            {pick(strip.hint, locale)}
+          </p>
+          <Link href="/biz-haqimizda/fotogalereya" className="group inline-flex min-h-11 items-center gap-3 text-[15px] font-medium text-ink">
+            <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-500 group-hover:bg-[length:100%_1px]">
+              {t("toGallery")}
+            </span>
+            <span aria-hidden="true" className="grid size-10 place-items-center rounded-full border border-ink/15 transition-[transform,background-color,color,border-color] duration-500 group-hover:translate-x-1 group-hover:border-ink group-hover:bg-ink group-hover:text-paper">
+              <ArrowRight className="size-4" strokeWidth={1.7} />
+            </span>
+          </Link>
+        </div>
       </div>
-      <p className="container-x mt-2 text-sm text-ink-3" aria-hidden="true">
-        {pick(strip.hint, locale)}
-      </p>
 
+      {/* edges dissolve into the page */}
+      <div className="mt-14 [mask-image:linear-gradient(90deg,transparent,#000_7%,#000_93%,transparent)]">
       <motion.ul
         ref={track}
         style={{ x }}
-        className="mt-10 flex w-max cursor-grab touch-pan-y gap-4 active:cursor-grabbing"
+        className="flex w-max cursor-grab touch-pan-y items-center gap-5 active:cursor-grabbing"
         onPointerEnter={(e) => e.pointerType === "mouse" && setPaused(true)}
         onPointerLeave={() => setPaused(false)}
         onFocusCapture={() => setPaused(true)}
@@ -100,7 +114,12 @@ export function PhotoStrip() {
       >
         {[...photos, ...photos].map((p, i) => {
           const dup = i >= photos.length;
-          const tall = i % 3 === 1;
+          // rhythm: circle · arch · small circle — the ring motif and the portal arch
+          const shape = [
+            "size-[280px] rounded-full sm:size-[360px]",
+            "h-[340px] w-[240px] rounded-t-full rounded-b-[6px] sm:h-[420px] sm:w-[290px]",
+            "size-[200px] rounded-full sm:size-[240px]",
+          ][(i % photos.length) % 3]; // by source index, so both halves of the loop are identical
           return (
             <li key={i} aria-hidden={dup || undefined}>
               <Link
@@ -115,7 +134,7 @@ export function PhotoStrip() {
                 <Photo
                   slot={p}
                   sizes="340px"
-                  className={tall ? "h-[300px] w-[230px] rounded-[20px] sm:h-[380px] sm:w-[290px]" : "h-[300px] w-[300px] rounded-full sm:h-[380px] sm:w-[380px]"}
+                  className={shape}
                   imgClassName="pointer-events-none select-none transition-transform duration-700 group-hover:scale-105"
                   quality={60}
                 />
@@ -124,6 +143,7 @@ export function PhotoStrip() {
           );
         })}
       </motion.ul>
+      </div>
     </section>
   );
 }

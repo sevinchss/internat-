@@ -22,11 +22,11 @@ export function MissionHero() {
   });
 
   return (
-    <section aria-labelledby="mission-title" className="relative isolate overflow-hidden pb-20 pt-32 sm:pt-36 lg:pb-28 lg:pt-44">
-      <RingArc className="absolute -right-[38%] top-16 -z-10 w-[110vw] max-w-[1100px] text-ring sm:-right-[22%] sm:w-[80vw]" strokeWidth={1} />
+    <section aria-labelledby="mission-title" className="relative isolate overflow-hidden pb-24 pt-32 sm:pt-36 lg:pb-36 lg:pt-48">
+      <RingArc className="absolute -right-[38%] top-16 -z-10 w-[110vw] max-w-[1100px] text-ring opacity-70 sm:-right-[22%] sm:w-[80vw]" strokeWidth={1} segmented={false} />
       <div className="container-x">
-        <h1 id="mission-title" className="flex items-center gap-3 text-display-s text-ink-2">
-          <span className="size-2.5 rounded-full bg-purple" aria-hidden="true" />
+        <h1 id="mission-title" className="flex items-center gap-3 text-[15px] text-ink-2" style={{ fontWeight: 500, letterSpacing: 0 }}>
+          <span className="h-px w-10 bg-purple" aria-hidden="true" />
           {pick(c.title, locale)}
         </h1>
 
@@ -34,7 +34,7 @@ export function MissionHero() {
           <span className="sr-only">{full}</span>
           <span aria-hidden="true">
             {rows.map((row, li) => (
-              <span key={li} className="xl:block">
+              <span key={li} className={li === 0 ? "block text-ink-2" : "xl:block"} style={li === 0 ? { fontWeight: 300 } : undefined}>
                 {row.map(({ word, i }) => (
                   <span key={i}>
                     <span className="inline-block overflow-hidden pb-[0.1em] align-top">
@@ -55,7 +55,7 @@ export function MissionHero() {
         </p>
 
         <div className="mt-12 grid lg:mt-16 lg:grid-cols-12">
-          <p className="border-l-2 border-purple pl-5 text-body-l text-ink-2 lg:col-span-5 lg:col-start-8">{pick(c.missionNote, locale)}</p>
+          <p className="max-w-[46ch] border-t border-line pt-6 text-ink-2 lg:col-span-4 lg:col-start-9">{pick(c.missionNote, locale)}</p>
         </div>
       </div>
     </section>
