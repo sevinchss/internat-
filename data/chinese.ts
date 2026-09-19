@@ -97,9 +97,9 @@ export const whyPoints: { numeral: string; title: L10n; text: L10n }[] = [
     numeral: "一",
     title: { uz: "Qoʻshni va hamkor", en: "A neighbour and a partner", ru: "Сосед и партнёр" },
     text: {
-      uz: "Xitoy — Oʻzbekistonning eng yirik hamkorlaridan biri. Tilni bilish taʼlim, fan va ish uchun yangi yoʻllar ochadi.",
-      en: "China is one of Uzbekistan’s largest partners. Knowing the language opens doors in study, science and work.",
-      ru: "Китай — один из крупнейших партнёров Узбекистана. Знание языка открывает дороги в учёбе, науке и работе.",
+      uz: "Xitoy bilan taʼlim, fan va iqtisodiyotdagi aloqalar kengaymoqda. Tilni bilish taʼlim, fan va ish uchun yangi yoʻllar ochadi.",
+      en: "Ties with China in education, science and the economy keep growing. Knowing the language opens doors in study, science and work.",
+      ru: "Связи с Китаем в образовании, науке и экономике растут. Знание языка открывает дороги в учёбе, науке и работе.",
     },
   },
   {
