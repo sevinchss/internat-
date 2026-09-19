@@ -31,7 +31,12 @@ function CultureCard({ card, locale, large }: { card: Card; locale: string; larg
         </span>
       </div>
       <div>
-        <h3 className={cn("text-ink", large ? "text-display-s font-semibold" : "font-sans text-xl font-semibold tracking-normal")}>
+        <h3
+          className={cn(
+            "text-ink",
+            large ? "text-display-s font-semibold" : "font-sans text-xl font-semibold tracking-normal",
+          )}
+        >
           {pick(card.title, locale)}
         </h3>
         <p className="text-ink-2 mt-2 max-w-[48ch]">{pick(card.text, locale)}</p>

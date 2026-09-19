@@ -15,7 +15,11 @@ export const leadershipCopy = {
   bio: { uz: "Qisqacha", en: "About", ru: "О себе" } satisfies L10n,
   duties: { uz: "Vazifalari", en: "Responsibilities", ru: "Обязанности" } satisfies L10n,
   contacts: { uz: "Aloqa", en: "Contact", ru: "Контакты" } satisfies L10n,
-  chartTitle: { uz: "Boshqaruv tuzilmasi", en: "How the school is organised", ru: "Структура управления" } satisfies L10n,
+  chartTitle: {
+    uz: "Boshqaruv tuzilmasi",
+    en: "How the school is organised",
+    ru: "Структура управления",
+  } satisfies L10n,
   chartIntro: {
     uz: "Direktor, beshta yoʻnalish boʻyicha oʻrinbosarlar va ularga qarashli boʻlim hamda xizmatlar.",
     en: "The Head, five deputy heads and the departments and services each of them oversees.",

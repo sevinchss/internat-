@@ -25,7 +25,9 @@ export function Goals() {
           <h2 id="goals-title" className="text-display-l lg:col-span-5">
             {pick(c.goalsTitle, locale)}
           </h2>
-          <p className="max-w-[52ch] text-body-l text-ink-2 lg:col-span-6 lg:col-start-7 lg:pt-3">{pick(c.goalsIntro, locale)}</p>
+          <p className="text-body-l text-ink-2 max-w-[52ch] lg:col-span-6 lg:col-start-7 lg:pt-3">
+            {pick(c.goalsIntro, locale)}
+          </p>
         </div>
       </div>
       {reduce ? (
@@ -117,7 +119,10 @@ function GoalsPinned({ locale }: { locale: string }) {
                   className="group grid size-11 place-items-center rounded-full"
                 >
                   <span
-                    className={cn("h-1.5 rounded-full transition-all duration-300", i === active ? "w-8" : "w-3 bg-ring group-hover:bg-ink-3")}
+                    className={cn(
+                      "h-1.5 rounded-full transition-all duration-300",
+                      i === active ? "w-8" : "bg-ring group-hover:bg-ink-3 w-3",
+                    )}
                     style={i === active ? { backgroundColor: RING_SEGMENTS[i].color } : undefined}
                   />
                 </button>
@@ -152,10 +157,22 @@ function GoalRing({ active, onSelect }: { active: number; onSelect: (i: number) 
           />
         );
       })}
-      <text x="200" y="214" textAnchor="middle" className="fill-ink font-display" style={{ fontSize: 84, fontWeight: 300, letterSpacing: "-0.05em" }}>
+      <text
+        x="200"
+        y="214"
+        textAnchor="middle"
+        className="fill-ink font-display"
+        style={{ fontSize: 84, fontWeight: 300, letterSpacing: "-0.05em" }}
+      >
         {pad(active + 1)}
       </text>
-      <text x="200" y="254" textAnchor="middle" className="fill-ink-3 font-display" style={{ fontSize: 16, fontWeight: 400, letterSpacing: "0.02em" }}>
+      <text
+        x="200"
+        y="254"
+        textAnchor="middle"
+        className="fill-ink-3 font-display"
+        style={{ fontSize: 16, fontWeight: 400, letterSpacing: "0.02em" }}
+      >
         / {pad(RING_SEGMENTS.length)}
       </text>
     </svg>
@@ -167,16 +184,24 @@ function GoalBody({ goal, index, locale, size }: { goal: Goal; index: number; lo
   const Title = size === "lg" ? "p" : "h3";
   return (
     <>
-      <p className="flex items-center gap-3 text-[15px] font-medium tabular-nums text-ink-2">
+      <p className="text-ink-2 flex items-center gap-3 text-[15px] font-medium tabular-nums">
         <span className="h-px w-10" style={{ backgroundColor: color }} aria-hidden="true" />
         {pick(c.goalOf, locale)} {pad(index + 1)}
       </p>
-      <Title className={cn("mt-4 font-display font-medium text-ink", size === "lg" ? "text-display-m" : "text-display-s")}>{pick(goal.title, locale)}</Title>
-      <p className={cn("mt-5 text-ink-2", size === "lg" && "text-body-l")}>{pick(goal.text, locale)}</p>
+      <Title
+        className={cn("font-display text-ink mt-4 font-medium", size === "lg" ? "text-display-m" : "text-display-s")}
+      >
+        {pick(goal.title, locale)}
+      </Title>
+      <p className={cn("text-ink-2 mt-5", size === "lg" && "text-body-l")}>{pick(goal.text, locale)}</p>
       <ul className="mt-6 space-y-2">
         {pick(goal.points, locale).map((p) => (
-          <li key={p} className="flex gap-3 text-ink">
-            <span className="mt-[0.55em] size-2 shrink-0 rounded-full border-2" style={{ borderColor: color }} aria-hidden="true" />
+          <li key={p} className="text-ink flex gap-3">
+            <span
+              className="mt-[0.55em] size-2 shrink-0 rounded-full border-2"
+              style={{ borderColor: color }}
+              aria-hidden="true"
+            />
             {p}
           </li>
         ))}
@@ -191,7 +216,10 @@ function GoalsStacked({ locale }: { locale: string }) {
   return (
     <ol className="container-x mt-12 pb-20 lg:mt-16 lg:grid lg:grid-cols-2 lg:gap-x-16 lg:pb-28">
       {goals.map((g, i) => (
-        <li key={i} className="grid grid-cols-[64px_1fr] gap-5 border-t border-line py-8 sm:grid-cols-[88px_1fr] sm:gap-8">
+        <li
+          key={i}
+          className="border-line grid grid-cols-[64px_1fr] gap-5 border-t py-8 sm:grid-cols-[88px_1fr] sm:gap-8"
+        >
           <MiniRing index={i} />
           <div>
             <GoalBody goal={g} index={i} locale={locale} size="sm" />
@@ -208,7 +236,13 @@ function MiniRing({ index }: { index: number }) {
     <svg viewBox="0 0 88 88" className="w-full" aria-hidden="true">
       <path d={arcPath(44, 44, 36, RING_START, RING_END)} fill="none" stroke="var(--ring)" strokeWidth={1} />
       <path d={arcPath(44, 44, 36, s.from, s.to)} fill="none" stroke={s.color} strokeWidth={4} strokeLinecap="round" />
-      <text x="44" y="51" textAnchor="middle" className="fill-ink font-display" style={{ fontSize: 20, fontWeight: 300 }}>
+      <text
+        x="44"
+        y="51"
+        textAnchor="middle"
+        className="fill-ink font-display"
+        style={{ fontSize: 20, fontWeight: 300 }}
+      >
         {pad(index + 1)}
       </text>
     </svg>

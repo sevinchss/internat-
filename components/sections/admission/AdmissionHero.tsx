@@ -37,7 +37,9 @@ export function AdmissionHero({
 }) {
   const reduce = useReducedMotion();
   const rise = (delay: number) =>
-    reduce ? {} : { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease, delay } };
+    reduce
+      ? {}
+      : { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease, delay } };
 
   return (
     <section className="container-x pt-32 pb-16 sm:pt-36 lg:pb-24">
@@ -46,13 +48,13 @@ export function AdmissionHero({
           <motion.h1 {...rise(0)} className="text-display-xl">
             {title}
           </motion.h1>
-          <motion.p {...rise(0.1)} className="mt-6 max-w-[52ch] text-body-l text-ink-2">
+          <motion.p {...rise(0.1)} className="text-body-l text-ink-2 mt-6 max-w-[52ch]">
             {lead}
           </motion.p>
           <motion.p {...rise(0.18)} className="mt-8">
             <a
               href="#portallar"
-              className="inline-flex min-h-11 items-center font-semibold text-primary-ink underline decoration-line decoration-2 underline-offset-[6px] hover:decoration-primary-ink"
+              className="text-primary-ink decoration-line hover:decoration-primary-ink inline-flex min-h-11 items-center font-semibold underline decoration-2 underline-offset-[6px]"
             >
               {portalsLabel}
             </a>
@@ -84,23 +86,33 @@ export function AdmissionHero({
                 />
               ))}
             </svg>
-            <motion.div {...rise(0.4)} className="absolute inset-[16%] flex flex-col items-center justify-center text-center">
+            <motion.div
+              {...rise(0.4)}
+              className="absolute inset-[16%] flex flex-col items-center justify-center text-center"
+            >
               {opensAt ? (
-                <Countdown target={opensAt} title={countdown.title} openText={countdown.openText} units={countdown.units} />
+                <Countdown
+                  target={opensAt}
+                  title={countdown.title}
+                  openText={countdown.openText}
+                  units={countdown.units}
+                />
               ) : (
                 <>
-                  <span className="text-[clamp(2.25rem,1.5rem+3vw,3.6rem)] leading-none font-light tracking-[-0.045em] text-ink tabular-nums">{year}</span>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-ink-2">
-                    <span aria-hidden="true" className="h-px w-4 bg-ink-3" />
+                  <span className="text-ink text-[clamp(2.25rem,1.5rem+3vw,3.6rem)] leading-none font-light tracking-[-0.045em] tabular-nums">
+                    {year}
+                  </span>
+                  <span className="text-ink-2 mt-4 inline-flex items-center gap-2 text-sm font-medium">
+                    <span aria-hidden="true" className="bg-ink-3 h-px w-4" />
                     {lastRound}: {lastRoundDates}
                   </span>
                 </>
               )}
             </motion.div>
           </div>
-          <motion.div {...rise(0.55)} className="mx-auto mt-6 max-w-[420px] border-l border-primary-ink pl-5">
-            {!opensAt && <p className="text-lg leading-snug font-semibold text-ink sm:text-xl">{status}</p>}
-            <p className={opensAt ? "text-ink-2" : "mt-2 text-ink-2"}>{statusNote}</p>
+          <motion.div {...rise(0.55)} className="border-primary-ink mx-auto mt-6 max-w-[420px] border-l pl-5">
+            {!opensAt && <p className="text-ink text-lg leading-snug font-semibold sm:text-xl">{status}</p>}
+            <p className={opensAt ? "text-ink-2" : "text-ink-2 mt-2"}>{statusNote}</p>
           </motion.div>
         </div>
       </div>

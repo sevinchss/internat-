@@ -40,9 +40,26 @@ export function StaffPortrait({
   return (
     <span className={cn("relative block aspect-square shrink-0", className)}>
       {ring && (
-        <svg viewBox="0 0 200 200" className="absolute inset-0 size-full overflow-visible transition-transform duration-700 ease-out group-hover:rotate-[20deg] motion-reduce:transition-none" aria-hidden="true">
-          <path d={arcPath(100, 100, 96, RING_START, RING_END)} fill="none" stroke="var(--ring)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
-          <path d={arcPath(100, 100, 96, 280, RING_END)} fill="none" stroke={accent} strokeWidth="2.25" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+        <svg
+          viewBox="0 0 200 200"
+          className="absolute inset-0 size-full overflow-visible transition-transform duration-700 ease-out group-hover:rotate-[20deg] motion-reduce:transition-none"
+          aria-hidden="true"
+        >
+          <path
+            d={arcPath(100, 100, 96, RING_START, RING_END)}
+            fill="none"
+            stroke="var(--ring)"
+            strokeWidth="1"
+            vectorEffect="non-scaling-stroke"
+          />
+          <path
+            d={arcPath(100, 100, 96, 280, RING_END)}
+            fill="none"
+            stroke={accent}
+            strokeWidth="2.25"
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
+          />
           <circle cx={dot.x} cy={dot.y} r="3.2" fill={accent} />
         </svg>
       )}
@@ -59,7 +76,10 @@ export function StaffPortrait({
               boxShadow: `inset 0 0 0 1px color-mix(in oklab, ${accent} 16%, transparent)`,
             }}
           >
-            <span aria-hidden="true" className="select-none text-[length:var(--mono,2rem)] font-light leading-none tracking-[-0.04em] text-ink-2">
+            <span
+              aria-hidden="true"
+              className="text-ink-2 text-[length:var(--mono,2rem)] leading-none font-light tracking-[-0.04em] select-none"
+            >
               {initials}
             </span>
           </span>

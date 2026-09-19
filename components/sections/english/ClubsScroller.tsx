@@ -141,7 +141,10 @@ export function ClubsScroller() {
                 <h3 className="text-display-s text-ink mt-6 font-semibold">{pick(club.name, locale)}</h3>
                 <p className="text-ink-2 mt-2 max-w-[40ch]">{pick(club.text, locale)}</p>
                 <p className="text-ink-3 mt-3 flex items-center gap-2 text-sm font-medium">
-                  <span aria-hidden="true" className="bg-amber h-px w-4 transition-[width] duration-500 group-hover:w-8" />
+                  <span
+                    aria-hidden="true"
+                    className="bg-amber h-px w-4 transition-[width] duration-500 group-hover:w-8"
+                  />
                   {pick(club.when, locale)}
                 </p>
               </article>

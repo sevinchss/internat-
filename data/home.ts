@@ -30,8 +30,14 @@ export const hero = {
   } satisfies L10n,
   facts: [
     { value: "2026/2027", label: { uz: "birinchi oʻquv yili", en: "our first school year", ru: "первый учебный год" } },
-    { value: "260+", label: { uz: "oʻquvchi sentabrdan tahsil olmoqda", en: "students since September", ru: "учеников с сентября" } },
-    { value: "22 315", label: { uz: "ariza birinchi qabulga", en: "applications to the first intake", ru: "заявлений на первый набор" } },
+    {
+      value: "260+",
+      label: { uz: "oʻquvchi sentabrdan tahsil olmoqda", en: "students since September", ru: "учеников с сентября" },
+    },
+    {
+      value: "22 315",
+      label: { uz: "ariza birinchi qabulga", en: "applications to the first intake", ru: "заявлений на первый набор" },
+    },
   ],
 };
 
@@ -46,14 +52,22 @@ export const about = {
     en: "Our level is set to match the Presidential Schools. Through every school day three things reinforce each other: deep knowledge in STEM, two foreign languages, and a strong sense of national identity. None replaces the others — together they are stronger.",
     ru: "Уровень школы-интерната сопоставим с Президентскими школами. Каждый день здесь три вещи дополняют друг друга: глубокие знания в STEM, два иностранных языка и национальная идентичность. Ничто не заменяет другое — вместе они сильнее.",
   } satisfies L10n,
-  hint: { uz: "Doiraga bosing yoki ustiga olib boring", en: "Tap or hover a circle", ru: "Нажмите или наведите на круг" } satisfies L10n,
+  hint: {
+    uz: "Doiraga bosing yoki ustiga olib boring",
+    en: "Tap or hover a circle",
+    ru: "Нажмите или наведите на круг",
+  } satisfies L10n,
   centre: { uz: "Bizning oʻquvchi", en: "Our student", ru: "Наш ученик" } satisfies L10n,
   pillars: [
     {
       id: "stem",
       color: "var(--green)",
       title: { uz: "STEM", en: "STEM", ru: "STEM" },
-      short: { uz: "Matematika, fizika, kimyo, biologiya, IT — ingliz tilida", en: "Maths, physics, chemistry, biology, IT — in English", ru: "Математика, физика, химия, биология, ИТ — на английском" },
+      short: {
+        uz: "Matematika, fizika, kimyo, biologiya, IT — ingliz tilida",
+        en: "Maths, physics, chemistry, biology, IT — in English",
+        ru: "Математика, физика, химия, биология, ИТ — на английском",
+      },
       text: {
         uz: "Kuchli matematik tayyorgarlik va tabiiy fanlar ingliz tilida oʻqitiladi. Loyiha ishlari, tajribalar va sinfdan tashqaridagi kuzatuvlar orqali oʻquvchi savol berishni, bilimini real sharoitda sinashni va natijani himoya qilishni oʻrganadi.",
         en: "Strong mathematics and natural sciences, taught in English. Through project work, experiments and observation beyond the classroom, students learn to ask questions, test what they know in real settings and defend their results.",
@@ -64,7 +78,11 @@ export const about = {
       id: "languages",
       color: "var(--navy)",
       title: { uz: "Xorijiy tillar", en: "Foreign languages", ru: "Иностранные языки" },
-      short: { uz: "Ingliz tili — fan tili, xitoy tili — chuqurlashtirilgan", en: "English for learning, Chinese in depth", ru: "Английский — язык обучения, китайский — углублённо" },
+      short: {
+        uz: "Ingliz tili — fan tili, xitoy tili — chuqurlashtirilgan",
+        en: "English for learning, Chinese in depth",
+        ru: "Английский — язык обучения, китайский — углублённо",
+      },
       text: {
         uz: "Ingliz tili aniq va tabiiy fanlarni oʻrganish tili boʻladi, xitoy tili esa chuqurlashtirilgan dastur asosida oʻqitiladi. Til dars uchun emas, fikrlash, oʻqish va muloqot uchun vosita boʻladi.",
         en: "English is the language in which maths and science are learned, and Chinese is taught in depth. A language becomes a tool for thinking, reading and talking — not just a subject.",
@@ -75,7 +93,11 @@ export const about = {
       id: "identity",
       color: "var(--orange)",
       title: { uz: "Milliy oʻzlik", en: "National identity", ru: "Национальная идентичность" },
-      short: { uz: "Ona tili, tarix, adabiyot, madaniyat", en: "Native language, history, literature, culture", ru: "Родной язык, история, литература, культура" },
+      short: {
+        uz: "Ona tili, tarix, adabiyot, madaniyat",
+        en: "Native language, history, literature, culture",
+        ru: "Родной язык, история, литература, культура",
+      },
       text: {
         uz: "Dasturning katta va muhim qismi ona tili, Oʻzbekiston tarixi, adabiyot va madaniyatga bagʻishlangan. Xorijiy tillarga qiziqish ona tiliga hurmat bilan birga boʻlishi kerak — zamonaviy taʼlim oʻz ildizlarini bilgan inson qoʻlida kuchli boʻladi.",
         en: "A large and important part of the programme is given to the native language, the history of Uzbekistan, literature and culture. Interest in foreign languages has to go hand in hand with respect for your mother tongue — modern education is strongest in the hands of someone who knows their roots.",
@@ -86,7 +108,11 @@ export const about = {
 };
 
 export const firstYear = {
-  title: { uz: "Birinchi yil — qadamma-qadam", en: "Our first year, step by step", ru: "Первый год — шаг за шагом" } satisfies L10n,
+  title: {
+    uz: "Birinchi yil — qadamma-qadam",
+    en: "Our first year, step by step",
+    ru: "Первый год — шаг за шагом",
+  } satisfies L10n,
   steps: [
     {
       kicker: { uz: "1–15 iyun 2026", en: "1–15 June 2026", ru: "1–15 июня 2026" },
@@ -159,9 +185,21 @@ export const directions = {
         ru: "От первого иероглифа до свободного общения — язык и культура вместе.",
       },
       points: {
-        uz: ["Yinghua Academy Group bilan hamkorlikda", "HSK xalqaro imtihonlariga tayyorgarlik", "Xattotlik va choy madaniyati"],
-        en: ["In partnership with Yinghua Academy Group", "Preparation for the international HSK exams", "Calligraphy and tea culture"],
-        ru: ["В партнёрстве с Yinghua Academy Group", "Подготовка к международным экзаменам HSK", "Каллиграфия и чайная культура"],
+        uz: [
+          "Yinghua Academy Group bilan hamkorlikda",
+          "HSK xalqaro imtihonlariga tayyorgarlik",
+          "Xattotlik va choy madaniyati",
+        ],
+        en: [
+          "In partnership with Yinghua Academy Group",
+          "Preparation for the international HSK exams",
+          "Calligraphy and tea culture",
+        ],
+        ru: [
+          "В партнёрстве с Yinghua Academy Group",
+          "Подготовка к международным экзаменам HSK",
+          "Каллиграфия и чайная культура",
+        ],
       },
     },
   ],
@@ -176,19 +214,133 @@ export const day = {
     en: "A clear routine leaves room for free thinking. Pick a part of the dial.",
     ru: "Чёткий распорядок оставляет место для свободной мысли. Выберите часть циферблата.",
   } satisfies L10n,
-  note: { uz: "Kun tartibi taxminiy va oʻzgarishi mumkin.", en: "Schedule is indicative and may change.", ru: "Распорядок ориентировочный и может меняться." } satisfies L10n,
+  note: {
+    uz: "Kun tartibi taxminiy va oʻzgarishi mumkin.",
+    en: "Schedule is indicative and may change.",
+    ru: "Распорядок ориентировочный и может меняться.",
+  } satisfies L10n,
   slots: [
-    { from: 7, to: 7.5, color: "var(--amber)", title: { uz: "Uygʻonish va badantarbiya", en: "Wake-up and exercise", ru: "Подъём и зарядка" }, text: { uz: "Yengil mashqlar va kunga tayyorgarlik.", en: "Light exercise and getting ready for the day.", ru: "Лёгкая зарядка и сборы." } },
-    { from: 7.5, to: 8, color: "var(--orange)", title: { uz: "Nonushta", en: "Breakfast", ru: "Завтрак" }, text: { uz: "Toʻyimli nonushta oshxonada.", en: "A proper breakfast in the canteen.", ru: "Сытный завтрак в столовой." } },
-    { from: 8, to: 13, color: "var(--navy)", title: { uz: "Darslar", en: "Lessons", ru: "Уроки" }, text: { uz: "STEM fanlari, ingliz va xitoy tillari, ona tili, tarix va adabiyot.", en: "STEM subjects, English and Chinese, native language, history and literature.", ru: "Предметы STEM, английский и китайский, родной язык, история и литература." } },
-    { from: 13, to: 14, color: "var(--orange)", title: { uz: "Tushlik va dam", en: "Lunch and rest", ru: "Обед и отдых" }, text: { uz: "Issiq tushlik va qisqa tanaffus.", en: "Hot lunch and a short break.", ru: "Горячий обед и короткий перерыв." } },
-    { from: 14, to: 16, color: "var(--purple)", title: { uz: "Toʻgaraklar va loyihalar", en: "Clubs and projects", ru: "Кружки и проекты" }, text: { uz: "Robototexnika, sunʼiy intellekt, maʼlumotlar tahlili, kompyuter savodxonligi, shaxmat, sanʼat va musiqa.", en: "Robotics, artificial intelligence, data analysis, computer literacy, chess, art and music.", ru: "Робототехника, искусственный интеллект, анализ данных, компьютерная грамотность, шахматы, искусство и музыка." } },
-    { from: 16, to: 17, color: "var(--green)", title: { uz: "Sport", en: "Sport", ru: "Спорт" }, text: { uz: "Futbol, basketbol va boshqalar.", en: "Football, basketball and more.", ru: "Футбол, баскетбол и не только." } },
-    { from: 17, to: 19, color: "var(--navy)", title: { uz: "Mustaqil tayyorgarlik", en: "Self-study", ru: "Самоподготовка" }, text: { uz: "Tarbiyachi nazoratida uy vazifalari va takrorlash.", en: "Homework and revision with a tutor nearby.", ru: "Домашние задания и повторение под присмотром воспитателя." } },
-    { from: 19, to: 20, color: "var(--orange)", title: { uz: "Kechki ovqat", en: "Dinner", ru: "Ужин" }, text: { uz: "Kechki ovqat va suhbat.", en: "Dinner and conversation.", ru: "Ужин и общение." } },
-    { from: 20, to: 21.5, color: "var(--red)", title: { uz: "Boʻsh vaqt va oila bilan aloqa", en: "Free time and calling home", ru: "Свободное время и связь с семьёй" }, text: { uz: "Kitob, oʻyinlar, ota-onaga qoʻngʻiroq.", en: "Books, games, a call to parents.", ru: "Книги, игры, звонок родителям." } },
-    { from: 21.5, to: 22, color: "var(--amber)", title: { uz: "Kun yakuni", en: "Winding down", ru: "Завершение дня" }, text: { uz: "Ertangi kunga tayyorgarlik.", en: "Getting ready for tomorrow.", ru: "Подготовка к завтрашнему дню." } },
-    { from: 22, to: 31, color: "var(--ring)", title: { uz: "Uyqu", en: "Lights out", ru: "Отбой" }, text: { uz: "Toʻliq dam — 9 soatlik uyqu.", en: "Proper rest — nine hours of sleep.", ru: "Полноценный отдых — девять часов сна." } },
+    {
+      from: 7,
+      to: 7.5,
+      color: "var(--amber)",
+      title: { uz: "Uygʻonish va badantarbiya", en: "Wake-up and exercise", ru: "Подъём и зарядка" },
+      text: {
+        uz: "Yengil mashqlar va kunga tayyorgarlik.",
+        en: "Light exercise and getting ready for the day.",
+        ru: "Лёгкая зарядка и сборы.",
+      },
+    },
+    {
+      from: 7.5,
+      to: 8,
+      color: "var(--orange)",
+      title: { uz: "Nonushta", en: "Breakfast", ru: "Завтрак" },
+      text: {
+        uz: "Toʻyimli nonushta oshxonada.",
+        en: "A proper breakfast in the canteen.",
+        ru: "Сытный завтрак в столовой.",
+      },
+    },
+    {
+      from: 8,
+      to: 13,
+      color: "var(--navy)",
+      title: { uz: "Darslar", en: "Lessons", ru: "Уроки" },
+      text: {
+        uz: "STEM fanlari, ingliz va xitoy tillari, ona tili, tarix va adabiyot.",
+        en: "STEM subjects, English and Chinese, native language, history and literature.",
+        ru: "Предметы STEM, английский и китайский, родной язык, история и литература.",
+      },
+    },
+    {
+      from: 13,
+      to: 14,
+      color: "var(--orange)",
+      title: { uz: "Tushlik va dam", en: "Lunch and rest", ru: "Обед и отдых" },
+      text: {
+        uz: "Issiq tushlik va qisqa tanaffus.",
+        en: "Hot lunch and a short break.",
+        ru: "Горячий обед и короткий перерыв.",
+      },
+    },
+    {
+      from: 14,
+      to: 16,
+      color: "var(--purple)",
+      title: { uz: "Toʻgaraklar va loyihalar", en: "Clubs and projects", ru: "Кружки и проекты" },
+      text: {
+        uz: "Robototexnika, sunʼiy intellekt, maʼlumotlar tahlili, kompyuter savodxonligi, shaxmat, sanʼat va musiqa.",
+        en: "Robotics, artificial intelligence, data analysis, computer literacy, chess, art and music.",
+        ru: "Робототехника, искусственный интеллект, анализ данных, компьютерная грамотность, шахматы, искусство и музыка.",
+      },
+    },
+    {
+      from: 16,
+      to: 17,
+      color: "var(--green)",
+      title: { uz: "Sport", en: "Sport", ru: "Спорт" },
+      text: {
+        uz: "Futbol, basketbol va boshqalar.",
+        en: "Football, basketball and more.",
+        ru: "Футбол, баскетбол и не только.",
+      },
+    },
+    {
+      from: 17,
+      to: 19,
+      color: "var(--navy)",
+      title: { uz: "Mustaqil tayyorgarlik", en: "Self-study", ru: "Самоподготовка" },
+      text: {
+        uz: "Tarbiyachi nazoratida uy vazifalari va takrorlash.",
+        en: "Homework and revision with a tutor nearby.",
+        ru: "Домашние задания и повторение под присмотром воспитателя.",
+      },
+    },
+    {
+      from: 19,
+      to: 20,
+      color: "var(--orange)",
+      title: { uz: "Kechki ovqat", en: "Dinner", ru: "Ужин" },
+      text: { uz: "Kechki ovqat va suhbat.", en: "Dinner and conversation.", ru: "Ужин и общение." },
+    },
+    {
+      from: 20,
+      to: 21.5,
+      color: "var(--red)",
+      title: {
+        uz: "Boʻsh vaqt va oila bilan aloqa",
+        en: "Free time and calling home",
+        ru: "Свободное время и связь с семьёй",
+      },
+      text: {
+        uz: "Kitob, oʻyinlar, ota-onaga qoʻngʻiroq.",
+        en: "Books, games, a call to parents.",
+        ru: "Книги, игры, звонок родителям.",
+      },
+    },
+    {
+      from: 21.5,
+      to: 22,
+      color: "var(--amber)",
+      title: { uz: "Kun yakuni", en: "Winding down", ru: "Завершение дня" },
+      text: {
+        uz: "Ertangi kunga tayyorgarlik.",
+        en: "Getting ready for tomorrow.",
+        ru: "Подготовка к завтрашнему дню.",
+      },
+    },
+    {
+      from: 22,
+      to: 31,
+      color: "var(--ring)",
+      title: { uz: "Uyqu", en: "Lights out", ru: "Отбой" },
+      text: {
+        uz: "Toʻliq dam — 9 soatlik uyqu.",
+        en: "Proper rest — nine hours of sleep.",
+        ru: "Полноценный отдых — девять часов сна.",
+      },
+    },
   ],
 };
 

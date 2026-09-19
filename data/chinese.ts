@@ -96,7 +96,11 @@ export const chineseCopy = {
 export const whyPoints: { numeral: string; title: L10n; text: L10n }[] = [
   {
     numeral: "一",
-    title: { uz: "Yinghua Academy Group bilan hamkorlik", en: "Partnership with Yinghua Academy Group", ru: "Партнёрство с Yinghua Academy Group" },
+    title: {
+      uz: "Yinghua Academy Group bilan hamkorlik",
+      en: "Partnership with Yinghua Academy Group",
+      ru: "Партнёрство с Yinghua Academy Group",
+    },
     text: {
       uz: "Maktab Xitoyning Yinghua Academy Group guruhi bilan hamkorlik qiladi: zamonaviy xitoy tili dasturlari, oʻqituvchilar malakasini oshirish va ilgʻor oʻqitish yondashuvlari.",
       en: "The school works with China's Yinghua Academy Group on modern Chinese-language programmes, professional development for teachers and advanced teaching approaches.",

@@ -16,7 +16,10 @@ function Dot({ i, progress }: { i: number; progress: MotionValue<number> }) {
   const at = (i / (N - 1)) * 0.92;
   const scale = useTransform(progress, [Math.max(0, at - 0.04), at + 0.02], [0, 1]);
   return (
-    <span aria-hidden="true" className="absolute left-0 top-0 grid size-[15px] -translate-y-1/2 place-items-center rounded-full border border-ink/30 bg-paper">
+    <span
+      aria-hidden="true"
+      className="border-ink/30 bg-paper absolute top-0 left-0 grid size-[15px] -translate-y-1/2 place-items-center rounded-full border"
+    >
       <motion.span className="block size-[7px] rounded-full" style={{ background: COLORS[i], scale }} />
     </span>
   );
@@ -25,12 +28,14 @@ function Dot({ i, progress }: { i: number; progress: MotionValue<number> }) {
 function StepBody({ s, i, locale }: { s: Step; i: number; locale: string }) {
   return (
     <>
-      <p className="flex items-baseline gap-3 text-sm text-ink-3">
-        <span className="font-medium text-ink tabular-nums">0{i + 1}</span>
+      <p className="text-ink-3 flex items-baseline gap-3 text-sm">
+        <span className="text-ink font-medium tabular-nums">0{i + 1}</span>
         <span>{pick(s.kicker, locale)}</span>
       </p>
-      <p className="mt-4 text-[clamp(2.4rem,1.3rem+3.8vw,5.5rem)] font-light leading-[0.98] tracking-[-0.045em] text-ink">{pick(s.big, locale)}</p>
-      <p className="mt-6 max-w-[36ch] text-ink-2">{pick(s.text, locale)}</p>
+      <p className="text-ink mt-4 text-[clamp(2.4rem,1.3rem+3.8vw,5.5rem)] leading-[0.98] font-light tracking-[-0.045em]">
+        {pick(s.big, locale)}
+      </p>
+      <p className="text-ink-2 mt-6 max-w-[36ch]">{pick(s.text, locale)}</p>
     </>
   );
 }
@@ -49,7 +54,7 @@ export function FirstYear() {
   const heading = (
     <>
       <SectionLabel n="02">{pick(labels.firstYear, locale)}</SectionLabel>
-      <h2 id="first-year-title" className="mt-6 text-display-l text-ink">
+      <h2 id="first-year-title" className="text-display-l text-ink mt-6">
         {pick(firstYear.title, locale)}
       </h2>
     </>
@@ -60,10 +65,13 @@ export function FirstYear() {
       {/* Mobile + reduced motion: vertical timeline */}
       <div className={reduce ? "container-x py-24" : "container-x py-24 lg:hidden"}>
         {heading}
-        <ol className="relative mt-14 grid gap-14 border-l border-line pl-8 sm:pl-10 lg:grid-cols-2 lg:gap-x-16">
+        <ol className="border-line relative mt-14 grid gap-14 border-l pl-8 sm:pl-10 lg:grid-cols-2 lg:gap-x-16">
           {firstYear.steps.map((s, i) => (
             <li key={i} className="relative">
-              <span aria-hidden="true" className="absolute -left-8 top-2.5 grid size-[15px] -translate-x-1/2 place-items-center rounded-full border border-ink/30 bg-paper sm:-left-10">
+              <span
+                aria-hidden="true"
+                className="border-ink/30 bg-paper absolute top-2.5 -left-8 grid size-[15px] -translate-x-1/2 place-items-center rounded-full border sm:-left-10"
+              >
                 <span className="block size-[7px] rounded-full" style={{ background: COLORS[i] }} />
               </span>
               <StepBody s={s} i={i} locale={locale} />
@@ -78,14 +86,17 @@ export function FirstYear() {
           <div className="sticky top-0 flex h-[100dvh] flex-col justify-center overflow-hidden">
             <div className="container-x flex items-end justify-between gap-10">
               <div>{heading}</div>
-              <p aria-hidden="true" className="pb-2 text-lg font-light tabular-nums text-ink-3">
+              <p aria-hidden="true" className="text-ink-3 pb-2 text-lg font-light tabular-nums">
                 <motion.span className="text-ink">{counter}</motion.span> / 0{N}
               </p>
             </div>
             <div className="relative mt-20">
               <div className="container-x">
-                <div className="relative h-px w-full bg-line">
-                  <motion.div className="absolute inset-y-0 left-0 w-full origin-left bg-ink" style={{ scaleX: line }} />
+                <div className="bg-line relative h-px w-full">
+                  <motion.div
+                    className="bg-ink absolute inset-y-0 left-0 w-full origin-left"
+                    style={{ scaleX: line }}
+                  />
                 </div>
               </div>
               <motion.ol

@@ -18,7 +18,10 @@ export function WhyChinese() {
           {whyPoints.map((p, i) => (
             <li key={p.numeral} className={cn("border-line relative border-t pt-7", i % 2 === 1 && "sm:mt-24")}>
               <span aria-hidden="true" className="bg-accent absolute -top-px left-0 h-px w-10" />
-              <span aria-hidden="true" className="font-hanzi text-ink-3 flex h-16 items-center text-6xl leading-none font-normal">
+              <span
+                aria-hidden="true"
+                className="font-hanzi text-ink-3 flex h-16 items-center text-6xl leading-none font-normal"
+              >
                 {p.numeral}
               </span>
               <h3 className="text-ink mt-6 font-sans text-xl font-semibold tracking-normal">{pick(p.title, locale)}</h3>

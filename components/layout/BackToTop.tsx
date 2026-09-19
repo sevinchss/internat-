@@ -13,7 +13,7 @@ export function BackToTop({ label }: { label: string }) {
         else window.scrollTo({ top: 0, behavior: "smooth" });
         document.getElementById("main")?.focus({ preventScroll: true });
       }}
-      className="group inline-flex min-h-11 items-center gap-2 self-start rounded-full border border-line px-4 font-semibold text-ink transition-colors hover:border-primary-ink hover:text-primary-ink"
+      className="group border-line text-ink hover:border-primary-ink hover:text-primary-ink inline-flex min-h-11 items-center gap-2 self-start rounded-full border px-4 font-semibold transition-colors"
     >
       <ArrowUp className="size-4 transition-transform group-hover:-translate-y-0.5" aria-hidden="true" />
       {label}

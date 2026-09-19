@@ -11,7 +11,9 @@ const file = (await readFile(path.join(ROOT, "lib/images.ts"), "utf8"))
   .filter((l) => !/^\s*(\*|\/\/)/.test(l)) // ignore comment lines
   .join("\n");
 
-const remote = [...file.matchAll(/img\("(photo-[\w-]+)"/g)].map((m) => `https://images.unsplash.com/${m[1]}?auto=format&fit=crop&w=2400&q=80`);
+const remote = [...file.matchAll(/img\("(photo-[\w-]+)"/g)].map(
+  (m) => `https://images.unsplash.com/${m[1]}?auto=format&fit=crop&w=2400&q=80`,
+);
 const local = [...file.matchAll(/slot\("(\/images\/[^"]+)"/g)].map((m) => m[1]);
 
 const out = {};

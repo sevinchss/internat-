@@ -202,7 +202,9 @@ export function CharacterOfDay() {
                       aria-label={`${x.char} ${x.pinyin} — ${pick(x.meaning, locale)}`}
                       className={cn(
                         "font-hanzi flex size-11 items-center justify-center rounded-full text-xl transition-colors",
-                        i === index ? "bg-ink text-paper" : "text-ink-2 hover:bg-ink/5 hover:text-ink dark:hover:bg-white/10",
+                        i === index
+                          ? "bg-ink text-paper"
+                          : "text-ink-2 hover:bg-ink/5 hover:text-ink dark:hover:bg-white/10",
                       )}
                     >
                       <span lang="zh-CN" aria-hidden="true">

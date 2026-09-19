@@ -21,8 +21,18 @@ export function pick<T>(value: L10n<T>, locale: string): T {
 const intlLocale: Record<Locale, string> = { uz: "uz-Latn-UZ", en: "en-GB", ru: "ru-RU" };
 
 const monthsUz = [
-  "yanvar", "fevral", "mart", "aprel", "may", "iyun",
-  "iyul", "avgust", "sentabr", "oktabr", "noyabr", "dekabr",
+  "yanvar",
+  "fevral",
+  "mart",
+  "aprel",
+  "may",
+  "iyun",
+  "iyul",
+  "avgust",
+  "sentabr",
+  "oktabr",
+  "noyabr",
+  "dekabr",
 ];
 
 /** Dates: Uzbek month names are hand-written because ICU data for uz is inconsistent across runtimes. */

@@ -70,64 +70,64 @@ export function RoomTour() {
 
         <div className="lg:col-span-6 lg:col-start-1 lg:row-span-2 lg:row-start-1">
           <div className="frame mx-auto max-w-[540px] p-2.5 lg:mx-0">
-          <div className="relative" style={{ aspectRatio: String(roomPhoto.ratio) }}>
-            <Photo slot={roomPhoto} sizes="(min-width: 1024px) 520px, 92vw" className="h-full w-full rounded-[6px]" />
+            <div className="relative" style={{ aspectRatio: String(roomPhoto.ratio) }}>
+              <Photo slot={roomPhoto} sizes="(min-width: 1024px) 520px, 92vw" className="h-full w-full rounded-[6px]" />
 
-            {hotspots.map((h, i) => {
-              const on = active === h.id;
-              return (
-                <button
-                  key={h.id}
-                  id={`${base}-spot-${h.id}`}
-                  type="button"
-                  aria-expanded={on}
-                  aria-controls={`${cardId} ${cardId}-sm`}
-                  aria-label={`${i + 1}. ${pick(h.title, locale)}`}
-                  onClick={() => toggle(h.id)}
-                  className="group absolute flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full"
-                  style={{ left: `${h.x}%`, top: `${h.y}%` }}
-                >
-                  <span
-                    aria-hidden="true"
-                    className={cn(
-                      "flex size-8 items-center justify-center rounded-full text-[13px] font-bold tabular-nums shadow-[0_4px_14px_rgb(0_0_0/0.25)] ring-2 transition-[transform,background-color,color] duration-200 group-hover:scale-110",
-                      on ? "bg-ink text-paper ring-orange scale-110" : "bg-white text-[#0b1a33] ring-white/60",
-                    )}
+              {hotspots.map((h, i) => {
+                const on = active === h.id;
+                return (
+                  <button
+                    key={h.id}
+                    id={`${base}-spot-${h.id}`}
+                    type="button"
+                    aria-expanded={on}
+                    aria-controls={`${cardId} ${cardId}-sm`}
+                    aria-label={`${i + 1}. ${pick(h.title, locale)}`}
+                    onClick={() => toggle(h.id)}
+                    className="group absolute flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full"
+                    style={{ left: `${h.x}%`, top: `${h.y}%` }}
                   >
-                    {i + 1}
-                  </span>
-                </button>
-              );
-            })}
+                    <span
+                      aria-hidden="true"
+                      className={cn(
+                        "flex size-8 items-center justify-center rounded-full text-[13px] font-semibold tabular-nums shadow-[0_4px_14px_rgb(0_0_0/0.25)] ring-2 transition-[transform,background-color,color] duration-200 group-hover:scale-110",
+                        on ? "bg-ink text-paper ring-orange scale-110" : "bg-white text-[#0b1a33] ring-white/60",
+                      )}
+                    >
+                      {i + 1}
+                    </span>
+                  </button>
+                );
+              })}
 
-            {/* md+: floating card */}
-            <AnimatePresence>
-              {current && (
-                <motion.div
-                  key={current.id}
-                  id={cardId}
-                  role="region"
-                  aria-label={pick(current.title, locale)}
-                  style={cardStyle}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute top-[var(--cy)] left-[var(--cx)] z-10 hidden w-[272px] md:block"
-                >
-                  <div className="glass translate-x-[var(--tx)] translate-y-[var(--ty)] rounded-[16px] p-5 shadow-[0_18px_50px_rgb(var(--shadow)/0.16)]">
-                    <CardBody
-                      title={pick(current.title, locale)}
-                      text={pick(current.text, locale)}
-                      n={idx + 1}
-                      closeLabel={pick(c.close, locale)}
-                      onClose={close}
-                    />
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+              {/* md+: floating card */}
+              <AnimatePresence>
+                {current && (
+                  <motion.div
+                    key={current.id}
+                    id={cardId}
+                    role="region"
+                    aria-label={pick(current.title, locale)}
+                    style={cardStyle}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute top-[var(--cy)] left-[var(--cx)] z-10 hidden w-[272px] md:block"
+                  >
+                    <div className="glass translate-x-[var(--tx)] translate-y-[var(--ty)] rounded-[16px] p-5 shadow-[0_18px_50px_rgb(var(--shadow)/0.16)]">
+                      <CardBody
+                        title={pick(current.title, locale)}
+                        text={pick(current.text, locale)}
+                        n={idx + 1}
+                        closeLabel={pick(c.close, locale)}
+                        onClose={close}
+                      />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* small screens: card under the photo */}
@@ -162,7 +162,7 @@ export function RoomTour() {
                     <span
                       aria-hidden="true"
                       className={cn(
-                        "flex size-7 shrink-0 items-center justify-center rounded-full border text-xs font-bold tabular-nums transition-colors",
+                        "flex size-7 shrink-0 items-center justify-center rounded-full border text-xs font-semibold tabular-nums transition-colors",
                         on ? "border-ink bg-ink text-paper" : "border-line text-ink-2 group-hover:border-ink",
                       )}
                     >
@@ -178,7 +178,10 @@ export function RoomTour() {
                     </span>
                     <span
                       aria-hidden="true"
-                      className={cn("h-px transition-[width,background-color] duration-300", on ? "bg-orange w-8" : "bg-ink-3 w-0 group-hover:w-4")}
+                      className={cn(
+                        "h-px transition-[width,background-color] duration-300",
+                        on ? "bg-orange w-8" : "bg-ink-3 w-0 group-hover:w-4",
+                      )}
                     />
                   </button>
                 </li>

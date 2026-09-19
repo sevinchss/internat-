@@ -3,17 +3,30 @@ import { Photo } from "@/components/ui/Photo";
 import type { NewsCardData } from "@/components/sections/news/news-utils";
 
 /** Related stories: one lead story with a photo, the rest as compact stacked rows. */
-export function RelatedNews({ items, heading, allLabel, minutesLabel }: { items: NewsCardData[]; heading: string; allLabel: string; minutesLabel: string }) {
+export function RelatedNews({
+  items,
+  heading,
+  allLabel,
+  minutesLabel,
+}: {
+  items: NewsCardData[];
+  heading: string;
+  allLabel: string;
+  minutesLabel: string;
+}) {
   if (!items.length) return null;
   const [lead, ...rest] = items;
   return (
     <section aria-labelledby="related-heading" className="pb-24 lg:pb-36">
       <div className="container-x">
-        <div className="flex flex-wrap items-end justify-between gap-4 border-t border-line pt-14 lg:pt-20">
+        <div className="border-line flex flex-wrap items-end justify-between gap-4 border-t pt-14 lg:pt-20">
           <h2 id="related-heading" className="text-display-m">
             {heading}
           </h2>
-          <Link href="/biz-haqimizda/yangiliklar" className="min-h-11 content-center font-semibold text-primary-ink underline decoration-line decoration-2 underline-offset-[6px] hover:decoration-primary-ink">
+          <Link
+            href="/biz-haqimizda/yangiliklar"
+            className="text-primary-ink decoration-line hover:decoration-primary-ink min-h-11 content-center font-semibold underline decoration-2 underline-offset-[6px]"
+          >
             {allLabel}
           </Link>
         </div>
@@ -28,27 +41,42 @@ export function RelatedNews({ items, heading, allLabel, minutesLabel }: { items:
               decorative
             />
             <Meta item={lead} minutesLabel={minutesLabel} className="mt-6" />
-            <h3 className="mt-3 text-display-s">
-              <Link href={lead.href} className="decoration-2 underline-offset-[6px] after:absolute after:inset-0 after:content-[''] group-hover:underline">
+            <h3 className="text-display-s mt-3">
+              <Link
+                href={lead.href}
+                className="decoration-2 underline-offset-[6px] group-hover:underline after:absolute after:inset-0 after:content-['']"
+              >
                 {lead.title}
               </Link>
             </h3>
-            <p className="mt-3 max-w-[60ch] text-ink-2">{lead.excerpt}</p>
+            <p className="text-ink-2 mt-3 max-w-[60ch]">{lead.excerpt}</p>
           </article>
 
           {rest.length > 0 && (
-            <ul className="divide-y divide-line border-y border-line lg:col-span-5 lg:self-start">
+            <ul className="divide-line border-line divide-y border-y lg:col-span-5 lg:self-start">
               {rest.map((n) => (
-                <li key={n.slug} className="group relative grid grid-cols-[1fr_88px] gap-5 py-6 sm:grid-cols-[1fr_120px]">
+                <li
+                  key={n.slug}
+                  className="group relative grid grid-cols-[1fr_88px] gap-5 py-6 sm:grid-cols-[1fr_120px]"
+                >
                   <div>
                     <Meta item={n} minutesLabel={minutesLabel} />
-                    <h3 className="mt-2 font-sans text-lg font-semibold leading-snug tracking-normal">
-                      <Link href={n.href} className="decoration-2 underline-offset-4 after:absolute after:inset-0 after:content-[''] group-hover:underline">
+                    <h3 className="mt-2 font-sans text-lg leading-snug font-semibold tracking-normal">
+                      <Link
+                        href={n.href}
+                        className="decoration-2 underline-offset-4 group-hover:underline after:absolute after:inset-0 after:content-['']"
+                      >
                         {n.title}
                       </Link>
                     </h3>
                   </div>
-                  <Photo slot={n.image} sizes="120px" className="aspect-square rounded-full" imgClassName="transition-transform duration-500 ease-out group-hover:scale-[1.06]" decorative />
+                  <Photo
+                    slot={n.image}
+                    sizes="120px"
+                    className="aspect-square rounded-full"
+                    imgClassName="transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                    decorative
+                  />
                 </li>
               ))}
             </ul>
@@ -61,8 +89,8 @@ export function RelatedNews({ items, heading, allLabel, minutesLabel }: { items:
 
 function Meta({ item, minutesLabel, className }: { item: NewsCardData; minutesLabel: string; className?: string }) {
   return (
-    <p className={`flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-3 ${className ?? ""}`}>
-      <span className="inline-flex items-center gap-2 font-medium text-ink-2">
+    <p className={`text-ink-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm ${className ?? ""}`}>
+      <span className="text-ink-2 inline-flex items-center gap-2 font-medium">
         <span aria-hidden="true" className="size-1.5 rounded-full" style={{ background: item.color }} />
         {item.categoryLabel}
       </span>

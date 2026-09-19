@@ -24,7 +24,7 @@ export function DayDial() {
   const [sel, setSel] = useState(2); // "Lessons"
   const refs = useRef<(SVGGElement | null)[]>([]);
   const slot = day.slots[sel];
-  const handDeg = (((slot.from + slot.to) / 2) / 24) * 360;
+  const handDeg = ((slot.from + slot.to) / 2 / 24) * 360;
 
   const move = (d: number) => {
     const n = (sel + d + day.slots.length) % day.slots.length;
@@ -37,10 +37,10 @@ export function DayDial() {
       <div className="container-x grid items-center gap-16 lg:grid-cols-12">
         <div className="lg:order-2 lg:col-span-5 lg:col-start-8">
           <SectionLabel n="04">{pick(labels.day, locale)}</SectionLabel>
-          <h2 id="day-title" className="mt-6 text-display-l text-ink">
+          <h2 id="day-title" className="text-display-l text-ink mt-6">
             {pick(day.title, locale)}
           </h2>
-          <p className="mt-6 max-w-[48ch] text-body-l text-ink-2">{pick(day.lead, locale)}</p>
+          <p className="text-body-l text-ink-2 mt-6 max-w-[48ch]">{pick(day.lead, locale)}</p>
 
           <ol className="mt-10">
             {day.slots.map((s, i) => (
@@ -51,14 +51,19 @@ export function DayDial() {
                   onPointerEnter={(e) => e.pointerType === "mouse" && setSel(i)}
                   aria-pressed={sel === i}
                   className={cn(
-                    "relative flex min-h-11 w-full items-center gap-4 border-b border-line py-2 text-left transition-colors",
+                    "border-line relative flex min-h-11 w-full items-center gap-4 border-b py-2 text-left transition-colors",
                     sel === i ? "text-ink" : "text-ink-2 hover:text-ink",
                   )}
                 >
-                  <span aria-hidden="true" className="w-[6.5rem] shrink-0 text-[13px] tabular-nums text-ink-3">
+                  <span aria-hidden="true" className="text-ink-3 w-[6.5rem] shrink-0 text-[13px] tabular-nums">
                     {fmt(s.from)}–{fmt(s.to)}
                   </span>
-                  <span className={cn("text-[15px] transition-transform duration-300", sel === i && "translate-x-1 font-medium")}>
+                  <span
+                    className={cn(
+                      "text-[15px] transition-transform duration-300",
+                      sel === i && "translate-x-1 font-medium",
+                    )}
+                  >
                     <span className="sr-only">
                       {fmt(s.from)}–{fmt(s.to)}{" "}
                     </span>
@@ -73,24 +78,46 @@ export function DayDial() {
               </li>
             ))}
           </ol>
-          <p className="mt-4 text-sm text-ink-3">{pick(day.note, locale)}</p>
+          <p className="text-ink-3 mt-4 text-sm">{pick(day.note, locale)}</p>
         </div>
 
         <div className="lg:order-1 lg:col-span-7">
           <div className="relative mx-auto aspect-square w-[calc(100%-56px)] max-w-[540px]">
-            <svg viewBox="0 0 400 400" className="size-full overflow-visible" role="group" aria-label={pick(day.title, locale)}>
+            <svg
+              viewBox="0 0 400 400"
+              className="size-full overflow-visible"
+              role="group"
+              aria-label={pick(day.title, locale)}
+            >
               {/* quarter-hour ticks, hour ticks longer */}
               {Array.from({ length: 96 }, (_, q) => {
                 const h = q / 4;
                 const major = q % 4 === 0;
                 const a = polar(C, C, R_OUT + 8, toDeg(h));
                 const b = polar(C, C, R_OUT + (q % 24 === 0 ? 20 : major ? 14 : 11), toDeg(h));
-                return <line key={q} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke={major ? "var(--ink-3)" : "var(--ring)"} strokeWidth={major ? 0.9 : 0.6} />;
+                return (
+                  <line
+                    key={q}
+                    x1={a.x}
+                    y1={a.y}
+                    x2={b.x}
+                    y2={b.y}
+                    stroke={major ? "var(--ink-3)" : "var(--ring)"}
+                    strokeWidth={major ? 0.9 : 0.6}
+                  />
+                );
               })}
               {[0, 6, 12, 18].map((h) => {
                 const p = polar(C, C, R_OUT + 34, toDeg(h));
                 return (
-                  <text key={h} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="central" className="fill-ink-3 text-[11px]">
+                  <text
+                    key={h}
+                    x={p.x}
+                    y={p.y}
+                    textAnchor="middle"
+                    dominantBaseline="central"
+                    className="fill-ink-3 text-[11px]"
+                  >
                     {String(h).padStart(2, "0")}
                   </text>
                 );
@@ -139,20 +166,39 @@ export function DayDial() {
               animate={{ rotate: handDeg }}
               transition={{ type: "spring", stiffness: 70, damping: 18 }}
             >
-              <span className="absolute left-1/2 w-px -translate-x-1/2 bg-ink/60" style={{ top: `${((C - R_IN + 3) / 400) * 100}%`, height: `${((R_IN - 3 - R_HUB) / 400) * 100}%` }} />
-              <span className="absolute left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink ring-4 ring-paper" style={{ top: `${((C - R_HUB) / 400) * 100}%` }} />
+              <span
+                className="bg-ink/60 absolute left-1/2 w-px -translate-x-1/2"
+                style={{ top: `${((C - R_IN + 3) / 400) * 100}%`, height: `${((R_IN - 3 - R_HUB) / 400) * 100}%` }}
+              />
+              <span
+                className="bg-ink ring-paper absolute left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4"
+                style={{ top: `${((C - R_HUB) / 400) * 100}%` }}
+              />
             </motion.div>
 
             {/* centre readout */}
-            <div className="pointer-events-none absolute inset-[27%] grid place-items-center text-center" aria-live="polite">
+            <div
+              className="pointer-events-none absolute inset-[27%] grid place-items-center text-center"
+              aria-live="polite"
+            >
               <AnimatePresence mode="wait" initial={false}>
-                <motion.div key={sel} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.2 }}>
-                  <p className="text-[clamp(1.25rem,0.9rem+1.5vw,2rem)] font-light leading-none tracking-[-0.04em] tabular-nums text-ink">
+                <motion.div
+                  key={sel}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <p className="text-ink text-[clamp(1.25rem,0.9rem+1.5vw,2rem)] leading-none font-light tracking-[-0.04em] tabular-nums">
                     {fmt(slot.from)}
                     <span className="text-ink-3">–{fmt(slot.to)}</span>
                   </p>
-                  <p className="mt-3 text-[15px] font-semibold leading-tight text-ink sm:text-lg">{pick(slot.title, locale)}</p>
-                  <p className="mx-auto mt-2 hidden max-w-[24ch] text-sm leading-snug text-ink-2 sm:block">{pick(slot.text, locale)}</p>
+                  <p className="text-ink mt-3 text-[15px] leading-tight font-semibold sm:text-lg">
+                    {pick(slot.title, locale)}
+                  </p>
+                  <p className="text-ink-2 mx-auto mt-2 hidden max-w-[24ch] text-sm leading-snug sm:block">
+                    {pick(slot.text, locale)}
+                  </p>
                 </motion.div>
               </AnimatePresence>
             </div>

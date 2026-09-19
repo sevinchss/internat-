@@ -59,9 +59,23 @@ export function TabList({
             )}
           >
             {selected && (
-              <motion.span layoutId={layoutId} className={cn("absolute inset-0 -z-10 rounded-full", pillClassName)} transition={{ type: "spring", stiffness: 380, damping: 32 }} />
+              <motion.span
+                layoutId={layoutId}
+                className={cn("absolute inset-0 -z-10 rounded-full", pillClassName)}
+                transition={{ type: "spring", stiffness: 380, damping: 32 }}
+              />
             )}
-            <span className={cn(selected && pillClassName.split(" ").filter((c) => c.startsWith("text-")).join(" "))}>{t.label}</span>
+            <span
+              className={cn(
+                selected &&
+                  pillClassName
+                    .split(" ")
+                    .filter((c) => c.startsWith("text-"))
+                    .join(" "),
+              )}
+            >
+              {t.label}
+            </span>
           </button>
         );
       })}
@@ -69,9 +83,25 @@ export function TabList({
   );
 }
 
-export function TabPanel({ idBase, id, children, className }: { idBase: string; id: string; children: React.ReactNode; className?: string }) {
+export function TabPanel({
+  idBase,
+  id,
+  children,
+  className,
+}: {
+  idBase: string;
+  id: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <div role="tabpanel" id={`${idBase}-panel-${id}`} aria-labelledby={`${idBase}-tab-${id}`} tabIndex={0} className={className}>
+    <div
+      role="tabpanel"
+      id={`${idBase}-panel-${id}`}
+      aria-labelledby={`${idBase}-tab-${id}`}
+      tabIndex={0}
+      className={className}
+    >
       {children}
     </div>
   );

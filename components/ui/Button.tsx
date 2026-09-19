@@ -10,7 +10,8 @@ const base =
 const variants: Record<Variant, string> = {
   primary: "bg-primary text-on-primary before:bg-ink dark:before:bg-white hover:dark:text-navy",
   outline: "border border-ink/15 text-ink before:bg-ink hover:text-paper hover:border-ink dark:border-white/20",
-  ghost: "min-h-0 px-0 text-ink underline decoration-line decoration-2 underline-offset-[6px] before:hidden hover:decoration-primary-ink",
+  ghost:
+    "min-h-0 px-0 text-ink underline decoration-line decoration-2 underline-offset-[6px] before:hidden hover:decoration-primary-ink",
   light: "bg-white text-navy before:bg-amber hover:text-[#0b1a33]",
 };
 

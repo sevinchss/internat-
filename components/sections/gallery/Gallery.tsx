@@ -2,12 +2,13 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ArrowLeft } from "lucide-react";
 import { Photo } from "@/components/ui/Photo";
 import { Lightbox, type LightboxItem } from "@/components/ui/Lightbox";
 import { TabList } from "@/components/ui/Tabs";
 import { useLenis } from "@/components/layout/SmoothScroll";
+import { buttonClass } from "@/components/ui/Button";
 import {
   galleryAlbums,
   galleryCategories,
@@ -21,7 +22,8 @@ import { cn, pick } from "@/lib/utils";
 
 const byId = new Map(galleryPhotos.map((p) => [p.id, p]));
 const categoryColor = Object.fromEntries(galleryCategories.map((cat) => [cat.id, cat.color]));
-const categoryCount = (id: GalleryFilter) => (id === "all" ? galleryPhotos.length : galleryPhotos.filter((p) => p.category === id).length);
+const categoryCount = (id: GalleryFilter) =>
+  id === "all" ? galleryPhotos.length : galleryPhotos.filter((p) => p.category === id).length;
 
 /* ───────── columns by breakpoint (server snapshot = 3) ───────── */
 const colsFor = (w: number) => (w >= 1280 ? 4 : w >= 768 ? 3 : 2);
@@ -39,6 +41,9 @@ function useColumns() {
 
 type View = "photos" | "albums";
 
+/** Photos mounted per step — keeps the first render (and its layout measurements) light. */
+const PAGE = 24;
+
 export function Gallery() {
   const locale = useLocale();
   const lenis = useLenis();
@@ -47,6 +52,8 @@ export function Gallery() {
   const [filter, setFilter] = useState<GalleryFilter>("all");
   const [albumId, setAlbumId] = useState<string | null>(null);
   const [open, setOpen] = useState<number | null>(null);
+  const [limit, setLimit] = useState(PAGE);
+  const tc = useTranslations("common");
 
   const album = albumId ? (galleryAlbums.find((a) => a.id === albumId) ?? null) : null;
   const visible = useMemo<GalleryPhoto[]>(() => {
@@ -55,7 +62,13 @@ export function Gallery() {
   }, [view, album, filter]);
 
   const items = useMemo<LightboxItem[]>(
-    () => visible.map((p) => ({ src: p.slot.src, alt: pick(p.slot.alt, locale), caption: pick(p.caption, locale), blurDataURL: p.slot.blurDataURL })),
+    () =>
+      visible.map((p) => ({
+        src: p.slot.src,
+        alt: pick(p.slot.alt, locale),
+        caption: pick(p.caption, locale),
+        blurDataURL: p.slot.blurDataURL,
+      })),
     [visible, locale],
   );
 
@@ -81,9 +94,13 @@ export function Gallery() {
     <section aria-label={pick(c.title, locale)} className="pb-24 lg:pb-32">
       <div ref={top} className="container-x scroll-mt-24">
         {/* Toolbar */}
-        <div className="flex flex-col-reverse gap-4 border-b border-line md:flex-row md:items-end md:justify-between">
+        <div className="border-line flex flex-col-reverse gap-4 border-b md:flex-row md:items-end md:justify-between">
           {view === "photos" ? (
-            <div role="group" aria-label={pick(c.filterLabel, locale)} className="no-scrollbar -mx-4 flex gap-6 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:gap-x-8 sm:px-0">
+            <div
+              role="group"
+              aria-label={pick(c.filterLabel, locale)}
+              className="no-scrollbar -mx-4 flex gap-6 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:gap-x-8 sm:px-0"
+            >
               {galleryCategories.map((cat) => {
                 const on = filter === cat.id;
                 return (
@@ -91,14 +108,17 @@ export function Gallery() {
                     key={cat.id}
                     type="button"
                     aria-pressed={on}
-                    onClick={() => setFilter(cat.id)}
+                    onClick={() => {
+                      setFilter(cat.id);
+                      setLimit(PAGE);
+                    }}
                     className={cn(
                       "group relative inline-flex min-h-12 shrink-0 items-start gap-1 py-3 text-[15px] font-medium transition-colors duration-200",
                       on ? "text-ink" : "text-ink-3 hover:text-ink",
                     )}
                   >
                     {pick(cat.label, locale)}
-                    <sup className="top-0 text-[11px] font-normal tabular-nums text-ink-3">{categoryCount(cat.id)}</sup>
+                    <sup className="text-ink-3 top-0 text-[11px] font-normal tabular-nums">{categoryCount(cat.id)}</sup>
                     <span
                       aria-hidden="true"
                       className={cn(
@@ -116,18 +136,18 @@ export function Gallery() {
               <button
                 type="button"
                 onClick={() => setAlbumId(null)}
-                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-[15px] font-semibold text-ink transition-colors hover:border-primary-ink hover:text-primary-ink"
+                className="border-line text-ink hover:border-primary-ink hover:text-primary-ink inline-flex min-h-11 items-center gap-2 rounded-full border px-4 text-[15px] font-semibold transition-colors"
               >
                 <ArrowLeft className="size-4" strokeWidth={1.8} aria-hidden="true" />
                 {pick(c.backToAlbums, locale)}
               </button>
-              <h2 className="flex items-center gap-2.5 text-display-s">
+              <h2 className="text-display-s flex items-center gap-2.5">
                 <span className="size-2.5 rounded-full" style={{ backgroundColor: album.accent }} aria-hidden="true" />
                 {pick(album.title, locale)}
               </h2>
             </div>
           ) : (
-            <p className="py-4 text-ink-2">
+            <p className="text-ink-2 py-4">
               {galleryAlbums.length} {pick(c.albums, locale)}
             </p>
           )}
@@ -141,7 +161,7 @@ export function Gallery() {
               setView(id as View);
               setAlbumId(null);
             }}
-            className="mt-4 self-start rounded-full border border-line p-1 md:mb-2.5 md:mt-0 md:self-auto"
+            className="border-line mt-4 self-start rounded-full border p-1 md:mt-0 md:mb-2.5 md:self-auto"
           />
         </div>
 
@@ -150,14 +170,37 @@ export function Gallery() {
         </p>
 
         {/* Panels */}
-        <div role="tabpanel" id="gallery-view-panel-photos" aria-labelledby="gallery-view-tab-photos" hidden={view !== "photos"} className="mt-8">
-          {view === "photos" && <Masonry photos={visible} locale={locale} onOpen={setOpen} />}
+        <div
+          role="tabpanel"
+          id="gallery-view-panel-photos"
+          aria-labelledby="gallery-view-tab-photos"
+          hidden={view !== "photos"}
+          className="mt-8"
+        >
+          {view === "photos" && (
+            <>
+              <Masonry photos={visible.slice(0, limit)} locale={locale} onOpen={setOpen} />
+              {visible.length > limit && (
+                <div className="mt-12 flex justify-center">
+                  <button type="button" onClick={() => setLimit((l) => l + PAGE)} className={buttonClass("outline")}>
+                    {tc("loadMore")} <span className="text-ink-3">({visible.length - limit})</span>
+                  </button>
+                </div>
+              )}
+            </>
+          )}
         </div>
-        <div role="tabpanel" id="gallery-view-panel-albums" aria-labelledby="gallery-view-tab-albums" hidden={view !== "albums"} className="mt-8">
+        <div
+          role="tabpanel"
+          id="gallery-view-panel-albums"
+          aria-labelledby="gallery-view-tab-albums"
+          hidden={view !== "albums"}
+          className="mt-8"
+        >
           {view === "albums" &&
             (album ? (
               <>
-                <p className="mb-6 text-ink-2">
+                <p className="text-ink-2 mb-6">
                   {pick(album.note, locale)} · {album.photos.length} {pick(c.photos, locale)}
                 </p>
                 <Masonry photos={visible} locale={locale} onOpen={setOpen} />
@@ -236,9 +279,19 @@ function Masonry({ photos, locale, onOpen }: { photos: GalleryPhoto[]; locale: s
                     onClick={() => onOpen(index)}
                     className="group relative block size-full overflow-hidden rounded-[4px]"
                   >
-                    <Photo slot={p.slot} sizes={sizes} decorative className="size-full" imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
-                    <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end gap-2 bg-gradient-to-t from-[#050d1c]/70 to-transparent p-3 pt-8 text-left text-[14px] font-medium leading-snug text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 sm:p-4 sm:pt-10">
-                      <span className="mt-[0.45em] size-2 shrink-0 rounded-full" style={{ backgroundColor: categoryColor[p.category] }} aria-hidden="true" />
+                    <Photo
+                      slot={p.slot}
+                      sizes={sizes}
+                      decorative
+                      className="size-full"
+                      imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    />
+                    <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end gap-2 bg-gradient-to-t from-[#050d1c]/70 to-transparent p-3 pt-8 text-left text-[14px] leading-snug font-medium text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 sm:p-4 sm:pt-10">
+                      <span
+                        className="mt-[0.45em] size-2 shrink-0 rounded-full"
+                        style={{ backgroundColor: categoryColor[p.category] }}
+                        aria-hidden="true"
+                      />
                       {caption}
                     </span>
                   </button>
@@ -255,7 +308,14 @@ function Masonry({ photos, locale, onOpen }: { photos: GalleryPhoto[]; locale: s
 /* ───────── Albums: asymmetric editorial grid; the cover with a second photo peeking through a circle ───────── */
 
 function Albums({ locale, onOpen }: { locale: string; onOpen: (id: string) => void }) {
-  const spans = ["lg:col-span-7 lg:row-span-2", "lg:col-span-5", "lg:col-span-5", "lg:col-span-4", "lg:col-span-4", "lg:col-span-4"];
+  const spans = [
+    "lg:col-span-7 lg:row-span-2",
+    "lg:col-span-5",
+    "lg:col-span-5",
+    "lg:col-span-4",
+    "lg:col-span-4",
+    "lg:col-span-4",
+  ];
   return (
     <ul className="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-12 lg:gap-x-8">
       {galleryAlbums.map((a, i) => (
@@ -267,7 +327,19 @@ function Albums({ locale, onOpen }: { locale: string; onOpen: (id: string) => vo
   );
 }
 
-function AlbumCard({ album, index, locale, onOpen, big }: { album: GalleryAlbum; index: number; locale: string; onOpen: (id: string) => void; big: boolean }) {
+function AlbumCard({
+  album,
+  index,
+  locale,
+  onOpen,
+  big,
+}: {
+  album: GalleryAlbum;
+  index: number;
+  locale: string;
+  onOpen: (id: string) => void;
+  big: boolean;
+}) {
   const cover = byId.get(album.cover) ?? byId.get(album.photos[0]);
   const second = byId.get(album.photos.find((id) => id !== album.cover) ?? album.photos[1]);
   const title = pick(album.title, locale);
@@ -283,7 +355,11 @@ function AlbumCard({ album, index, locale, onOpen, big }: { album: GalleryAlbum;
           <span className="absolute inset-0 overflow-hidden rounded-[4px]">
             <Photo
               slot={cover.slot}
-              sizes={big ? "(min-width: 1024px) 55vw, (min-width: 640px) 90vw, 92vw" : "(min-width: 1024px) 33vw, (min-width: 640px) 45vw, 92vw"}
+              sizes={
+                big
+                  ? "(min-width: 1024px) 55vw, (min-width: 640px) 90vw, 92vw"
+                  : "(min-width: 1024px) 33vw, (min-width: 640px) 45vw, 92vw"
+              }
               decorative
               className="size-full"
               imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transition-none"
@@ -293,7 +369,7 @@ function AlbumCard({ album, index, locale, onOpen, big }: { album: GalleryAlbum;
         {second && (
           <span
             className={cn(
-              "absolute -bottom-5 right-5 overflow-hidden rounded-full ring-[5px] ring-paper transition-transform duration-500 ease-out group-hover:-translate-y-1.5 motion-reduce:transition-none",
+              "ring-paper absolute right-5 -bottom-5 overflow-hidden rounded-full ring-[5px] transition-transform duration-500 ease-out group-hover:-translate-y-1.5 motion-reduce:transition-none",
               big ? "size-28 sm:size-36" : "size-20 sm:size-24",
             )}
           >
@@ -302,12 +378,14 @@ function AlbumCard({ album, index, locale, onOpen, big }: { album: GalleryAlbum;
         )}
       </span>
       <span className="mt-6 flex items-baseline gap-4 pr-28">
-        <span className="text-[15px] font-light tabular-nums text-ink-3" aria-hidden="true">
+        <span className="text-ink-3 text-[15px] font-light tabular-nums" aria-hidden="true">
           {String(index + 1).padStart(2, "0")}
         </span>
         <span>
-          <span className={cn("block font-semibold tracking-[-0.03em] text-ink", big ? "text-display-s" : "text-xl")}>{title}</span>
-          <span className="mt-1 block text-[15px] text-ink-2">
+          <span className={cn("text-ink block font-semibold tracking-[-0.03em]", big ? "text-display-s" : "text-xl")}>
+            {title}
+          </span>
+          <span className="text-ink-2 mt-1 block text-[15px]">
             {pick(album.note, locale)} · {album.photos.length} {pick(c.photos, locale)}
           </span>
         </span>

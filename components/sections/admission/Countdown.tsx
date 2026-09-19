@@ -49,15 +49,15 @@ export function Countdown({
 
   return (
     <div>
-      <p className="text-[15px] font-semibold text-ink-2">{title}</p>
+      <p className="text-ink-2 text-[15px] font-semibold">{title}</p>
       <p className="sr-only" aria-live="off">
         {parts ? `${parts.days} ${units.days}, ${parts.hours} ${units.hours}, ${parts.minutes} ${units.minutes}` : ""}
       </p>
-      <dl aria-hidden="true" className="glass mt-4 grid grid-cols-3 divide-x divide-line rounded-2xl">
+      <dl aria-hidden="true" className="glass divide-line mt-4 grid grid-cols-3 divide-x rounded-2xl">
         {cells.map((c) => (
           <div key={c.key} className="flex flex-col-reverse items-center px-2 py-4">
-            <dt className="mt-1 text-sm text-ink-3">{units[c.key]}</dt>
-            <dd className="text-display-m font-light tabular-nums text-ink">{c.value}</dd>
+            <dt className="text-ink-3 mt-1 text-sm">{units[c.key]}</dt>
+            <dd className="text-display-m text-ink font-light tabular-nums">{c.value}</dd>
           </div>
         ))}
       </dl>

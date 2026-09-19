@@ -86,7 +86,9 @@ export function SkillsWheel() {
                         d={ringSegment(C, C, R_OUT, R_IN, from, to)}
                         className={cn(
                           "transition-[fill] duration-300",
-                          on ? "fill-navy" : "fill-ink/[0.025] stroke-line group-hover:fill-ink/[0.06] dark:fill-white/[0.03] dark:group-hover:fill-white/[0.08]",
+                          on
+                            ? "fill-navy"
+                            : "fill-ink/[0.025] stroke-line group-hover:fill-ink/[0.06] dark:fill-white/[0.03] dark:group-hover:fill-white/[0.08]",
                         )}
                         strokeWidth={on ? 0 : 1.5}
                       />

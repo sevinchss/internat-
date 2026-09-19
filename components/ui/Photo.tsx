@@ -17,7 +17,17 @@ type Props = {
 };
 
 /** next/image with blur placeholder + localized alt from lib/images.ts */
-export function Photo({ slot, sizes, className, imgClassName, priority, fill = true, quality = 75, alt, decorative }: Props) {
+export function Photo({
+  slot,
+  sizes,
+  className,
+  imgClassName,
+  priority,
+  fill = true,
+  quality = 75,
+  alt,
+  decorative,
+}: Props) {
   const locale = useLocale();
   const altText = decorative ? "" : (alt ?? pick(slot.alt, locale));
   const common = {
@@ -31,11 +41,19 @@ export function Photo({ slot, sizes, className, imgClassName, priority, fill = t
   };
   if (fill) {
     return (
-      <span className={cn("relative block overflow-hidden bg-surface-2", className)}>
+      <span className={cn("bg-surface-2 relative block overflow-hidden", className)}>
         <Image {...common} alt={altText} fill className={cn("object-cover", imgClassName)} />
       </span>
     );
   }
   const w = 1600;
-  return <Image {...common} alt={altText} width={w} height={Math.round(w / slot.ratio)} className={cn("h-auto w-full bg-surface-2", imgClassName, className)} />;
+  return (
+    <Image
+      {...common}
+      alt={altText}
+      width={w}
+      height={Math.round(w / slot.ratio)}
+      className={cn("bg-surface-2 h-auto w-full", imgClassName, className)}
+    />
+  );
 }

@@ -17,10 +17,14 @@ export async function Directions() {
   const locale = await getLocale();
 
   return (
-    <section id="yonalishlar" aria-labelledby="directions-title" className="scroll-mt-24 overflow-x-clip py-28 lg:py-40">
+    <section
+      id="yonalishlar"
+      aria-labelledby="directions-title"
+      className="scroll-mt-24 overflow-x-clip py-28 lg:py-40"
+    >
       <div className="container-x">
         <SectionLabel n="03">{pick(labels.directions, locale)}</SectionLabel>
-        <h2 id="directions-title" className="mt-6 max-w-[16ch] text-display-l text-ink">
+        <h2 id="directions-title" className="text-display-l text-ink mt-6 max-w-[16ch]">
           {pick(directions.title, locale)}
         </h2>
 
@@ -29,8 +33,20 @@ export async function Directions() {
             <article key={d.id} className={cn("group relative", i === 1 && "md:mt-44")}>
               <div className={cn("relative aspect-square w-[86%] max-w-[500px]", i === 1 && "ml-auto md:ml-0")}>
                 {/* hairline orbit + accent arc that sweeps further on hover */}
-                <svg viewBox="0 0 200 200" aria-hidden="true" className="absolute inset-0 size-full -rotate-[128deg] overflow-visible">
-                  <circle cx="100" cy="100" r="99" fill="none" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+                <svg
+                  viewBox="0 0 200 200"
+                  aria-hidden="true"
+                  className="absolute inset-0 size-full -rotate-[128deg] overflow-visible"
+                >
+                  <circle
+                    cx="100"
+                    cy="100"
+                    r="99"
+                    fill="none"
+                    stroke="var(--line)"
+                    strokeWidth="1"
+                    vectorEffect="non-scaling-stroke"
+                  />
                   <circle
                     cx="100"
                     cy="100"
@@ -55,7 +71,7 @@ export async function Directions() {
                   aria-hidden="true"
                   lang={d.id === "chinese" ? "zh" : "en"}
                   className={cn(
-                    "pointer-events-none absolute bottom-[-6%] select-none text-[clamp(5.5rem,3rem+9vw,11rem)] font-medium leading-none tracking-[-0.04em] text-transparent [-webkit-text-stroke:1px_var(--ink-3)] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2",
+                    "pointer-events-none absolute bottom-[-6%] text-[clamp(5.5rem,3rem+9vw,11rem)] leading-none font-medium tracking-[-0.04em] text-transparent transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] select-none [-webkit-text-stroke:1px_var(--ink-3)] group-hover:-translate-y-2",
                     i === 0 ? "right-[-10%]" : "left-[-8%] md:right-[-10%] md:left-auto",
                   )}
                 >
@@ -65,24 +81,31 @@ export async function Directions() {
 
               <div className="mt-12 max-w-[460px]">
                 <h3 className="text-display-m text-ink">{pick(d.title, locale)}</h3>
-                <p className="mt-4 text-body-l text-ink-2">{pick(d.lead, locale)}</p>
-                <ul className="mt-8 border-t border-line">
+                <p className="text-body-l text-ink-2 mt-4">{pick(d.lead, locale)}</p>
+                <ul className="border-line mt-8 border-t">
                   {pick(d.points, locale).map((pt) => (
-                    <li key={pt} className="flex items-center gap-4 border-b border-line py-3 text-[15px] text-ink">
-                      <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full" style={{ background: d.accent }} />
+                    <li key={pt} className="border-line text-ink flex items-center gap-4 border-b py-3 text-[15px]">
+                      <span
+                        aria-hidden="true"
+                        className="size-1.5 shrink-0 rounded-full"
+                        style={{ background: d.accent }}
+                      />
                       {pt}
                     </li>
                   ))}
                 </ul>
                 <Link
                   href={d.href}
-                  className="mt-8 inline-flex min-h-11 items-center gap-3 text-[15px] font-medium text-ink after:absolute after:inset-0 after:content-['']"
+                  className="text-ink mt-8 inline-flex min-h-11 items-center gap-3 text-[15px] font-medium after:absolute after:inset-0 after:content-['']"
                 >
                   <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-500 group-hover:bg-[length:100%_1px]">
                     {pick(directions.more, locale)}
                   </span>
                   <span className="sr-only">: {pick(d.title, locale)}</span>
-                  <span aria-hidden="true" className="grid size-10 place-items-center rounded-full border border-ink/15 transition-[transform,background-color,color,border-color] duration-500 group-hover:translate-x-1 group-hover:border-ink group-hover:bg-ink group-hover:text-paper">
+                  <span
+                    aria-hidden="true"
+                    className="border-ink/15 group-hover:border-ink group-hover:bg-ink group-hover:text-paper grid size-10 place-items-center rounded-full border transition-[transform,background-color,color,border-color] duration-500 group-hover:translate-x-1"
+                  >
                     <ArrowRight className="size-4" strokeWidth={1.7} />
                   </span>
                 </Link>

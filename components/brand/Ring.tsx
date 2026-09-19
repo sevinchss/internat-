@@ -41,7 +41,15 @@ export function RingArc({
   return (
     <svg viewBox="0 0 200 200" aria-hidden="true" className={cn("pointer-events-none", className)} style={{ opacity }}>
       {segments.map(([a, b]) => (
-        <path key={a} d={arcPath(100, 100, 96, a, b)} fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="butt" vectorEffect="non-scaling-stroke" />
+        <path
+          key={a}
+          d={arcPath(100, 100, 96, a, b)}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={strokeWidth}
+          strokeLinecap="butt"
+          vectorEffect="non-scaling-stroke"
+        />
       ))}
     </svg>
   );

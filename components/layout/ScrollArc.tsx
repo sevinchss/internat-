@@ -13,7 +13,14 @@ export function ScrollArc({ size = 30, className }: { size?: number; className?:
   const d = arcPath(20, 20, 16, RING_START, RING_END);
 
   return (
-    <svg viewBox="0 0 40 40" width={size} height={size} className={className} role="img" aria-label={t("scrollProgress")}>
+    <svg
+      viewBox="0 0 40 40"
+      width={size}
+      height={size}
+      className={className}
+      role="img"
+      aria-label={t("scrollProgress")}
+    >
       <path d={d} fill="none" stroke="var(--line)" strokeWidth="3" />
       <motion.path d={d} fill="none" stroke="var(--primary-ink)" strokeWidth="3" style={{ pathLength: progress }} />
     </svg>

@@ -17,7 +17,7 @@ export function alternates(locale: string, path: string): Metadata["alternates"]
 }
 
 type PageKey =
-  | "home" | "leadership" | "mission" | "gallery" | "news" | "admission" | "dorm" | "chinese" | "english" | "contact";
+  "home" | "leadership" | "mission" | "gallery" | "news" | "admission" | "dorm" | "chinese" | "english" | "contact";
 
 /** Per-page, per-locale metadata with hreflang alternates and Open Graph. */
 export async function pageMetadata(

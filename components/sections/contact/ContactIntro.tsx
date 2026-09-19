@@ -10,10 +10,16 @@ const ease = [0.16, 1, 0.3, 1] as const;
 export function ContactIntro({ title, lead }: { title: string; lead: string }) {
   const reduce = useReducedMotion();
   const rise = (delay: number) =>
-    reduce ? {} : { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease, delay } };
+    reduce
+      ? {}
+      : { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease, delay } };
   return (
     <div className="relative isolate">
-      <svg viewBox="0 0 200 200" aria-hidden="true" className="pointer-events-none absolute -top-24 -left-28 -z-10 size-[420px] text-ring opacity-70 sm:size-[520px]">
+      <svg
+        viewBox="0 0 200 200"
+        aria-hidden="true"
+        className="text-ring pointer-events-none absolute -top-24 -left-28 -z-10 size-[420px] opacity-70 sm:size-[520px]"
+      >
         <motion.path
           d={arcPath(100, 100, 96, RING_START, RING_END)}
           fill="none"
@@ -28,7 +34,7 @@ export function ContactIntro({ title, lead }: { title: string; lead: string }) {
       <motion.h1 {...rise(0)} className="text-display-xl">
         {title}
       </motion.h1>
-      <motion.p {...rise(0.1)} className="mt-6 max-w-[48ch] text-body-l text-ink-2">
+      <motion.p {...rise(0.1)} className="text-body-l text-ink-2 mt-6 max-w-[48ch]">
         {lead}
       </motion.p>
     </div>

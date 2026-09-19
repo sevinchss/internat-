@@ -9,17 +9,21 @@ export function DocumentsList({ title, badge, items }: { title: string; badge: s
           <h2 id="docs-title" className="text-display-m">
             {title}
           </h2>
-          <p className="mt-6 flex max-w-[36ch] items-start gap-2.5 border-l-2 border-amber py-1 pl-4 text-[15px] font-medium text-ink">
-            <Info className="mt-0.5 size-[18px] shrink-0 text-[#8a5a00] dark:text-amber" strokeWidth={1.8} aria-hidden="true" />
+          <p className="border-amber text-ink mt-6 flex max-w-[36ch] items-start gap-2.5 border-l-2 py-1 pl-4 text-[15px] font-medium">
+            <Info
+              className="dark:text-amber mt-0.5 size-[18px] shrink-0 text-[#8a5a00]"
+              strokeWidth={1.8}
+              aria-hidden="true"
+            />
             {badge}
           </p>
         </div>
         <ol className="lg:col-span-7">
           {items.map((it, i) => (
-            <li key={it} className="flex items-start gap-4 border-b border-line py-5 last:border-b-0 lg:first:pt-0">
-              <CircleDashed className="mt-0.5 size-6 shrink-0 text-ink-3" strokeWidth={1.6} aria-hidden="true" />
-              <span className="flex-1 text-lg text-ink">{it}</span>
-              <span aria-hidden="true" className="text-sm tabular-nums text-ink-3">
+            <li key={it} className="border-line flex items-start gap-4 border-b py-5 last:border-b-0 lg:first:pt-0">
+              <CircleDashed className="text-ink-3 mt-0.5 size-6 shrink-0" strokeWidth={1.6} aria-hidden="true" />
+              <span className="text-ink flex-1 text-lg">{it}</span>
+              <span aria-hidden="true" className="text-ink-3 text-sm tabular-nums">
                 {String(i + 1).padStart(2, "0")}
               </span>
             </li>

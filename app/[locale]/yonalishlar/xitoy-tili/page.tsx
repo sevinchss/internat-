@@ -10,7 +10,7 @@ import { ChineseTeachers } from "@/components/sections/chinese/ChineseTeachers";
 
 // Loaded only on this page: CJK font, split by unicode-range on Google's side, so no preload.
 const notoSerifSC = Noto_Serif_SC({
-  weight: ["400", "700"],
+  weight: ["400"], // one weight: every CJK weight adds ~200 KB of glyph slices + ~30 KB of @font-face CSS
   preload: false,
   display: "swap",
   variable: "--font-noto-serif-sc",

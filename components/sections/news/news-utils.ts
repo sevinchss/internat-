@@ -19,9 +19,11 @@ export function dayMonth(iso: string, locale: string) {
     const s = formatDate(iso, "uz", { withYear: false });
     return { day, month: s.slice(s.indexOf("-") + 1), year: iso.slice(0, 4) };
   }
-  const parts = new Intl.DateTimeFormat(intl[locale] ?? "en-GB", { day: "numeric", month: "long", timeZone: "Asia/Tashkent" }).formatToParts(
-    new Date(iso + "T12:00:00+05:00"),
-  );
+  const parts = new Intl.DateTimeFormat(intl[locale] ?? "en-GB", {
+    day: "numeric",
+    month: "long",
+    timeZone: "Asia/Tashkent",
+  }).formatToParts(new Date(iso + "T12:00:00+05:00"));
   return { day, month: parts.find((p) => p.type === "month")?.value ?? "", year: iso.slice(0, 4) };
 }
 

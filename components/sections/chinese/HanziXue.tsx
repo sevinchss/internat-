@@ -1,7 +1,6 @@
 "use client";
 
 import { useId, useState } from "react";
-import { motion } from "framer-motion";
 import { RotateCcw } from "lucide-react";
 import { xue } from "@/data/hanzi-xue";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
@@ -39,7 +38,17 @@ export function HanziXue({ label, replayLabel }: { label: string; replayLabel: s
       <svg viewBox="0 0 1024 1024" role="img" aria-label={label} className="block h-auto w-full">
         {/* 米字格 practice grid */}
         <g fill="none" stroke="var(--accent)" vectorEffect="non-scaling-stroke">
-          <rect x="6" y="6" width="1012" height="1012" rx="4" stroke="var(--ink-3)" strokeOpacity="0.55" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+          <rect
+            x="6"
+            y="6"
+            width="1012"
+            height="1012"
+            rx="4"
+            stroke="var(--ink-3)"
+            strokeOpacity="0.55"
+            strokeWidth="1"
+            vectorEffect="non-scaling-stroke"
+          />
           <g strokeOpacity="0.4" strokeDasharray="10 12" strokeWidth="1" vectorEffect="non-scaling-stroke">
             <path d="M512 6 V1018 M6 512 H1018" vectorEffect="non-scaling-stroke" />
             <path d="M6 6 L1018 1018 M1018 6 L6 1018" strokeOpacity="0.6" vectorEffect="non-scaling-stroke" />
@@ -61,26 +70,20 @@ export function HanziXue({ label, replayLabel }: { label: string; replayLabel: s
           <g key={`${run}-${reduce}`}>
             {xue.medians.map((m, i) => (
               <g key={i} clipPath={`url(#${uid}-c${i})`}>
-                <motion.path
+                {/* CSS stroke-dash animation (no per-frame JS); timing per stroke comes from `timeline` */}
+                <path
+                  className={reduce ? undefined : "hanzi-stroke"}
                   d={medianPath(m as readonly Pt[])}
+                  pathLength={1}
                   fill="none"
                   stroke="var(--ink)"
                   strokeWidth={200}
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  initial={reduce ? false : { pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={
+                  style={
                     reduce
-                      ? { duration: 0 }
-                      : {
-                          pathLength: {
-                            delay: timeline[i].delay,
-                            duration: timeline[i].duration,
-                            ease: [0.45, 0, 0.3, 1],
-                          },
-                          opacity: { delay: timeline[i].delay, duration: 0.01 },
-                        }
+                      ? undefined
+                      : { animationDelay: `${timeline[i].delay}s`, animationDuration: `${timeline[i].duration}s` }
                   }
                 />
               </g>
@@ -94,7 +97,11 @@ export function HanziXue({ label, replayLabel }: { label: string; replayLabel: s
           onClick={() => setRun((r) => r + 1)}
           className="glass group/replay text-ink-2 hover:text-accent-ink absolute right-3 bottom-3 inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-sm font-medium transition-colors"
         >
-          <RotateCcw className="size-4 transition-transform duration-500 group-hover/replay:-rotate-180 motion-reduce:transition-none" strokeWidth={1.8} aria-hidden="true" />
+          <RotateCcw
+            className="size-4 transition-transform duration-500 group-hover/replay:-rotate-180 motion-reduce:transition-none"
+            strokeWidth={1.8}
+            aria-hidden="true"
+          />
           {replayLabel}
         </button>
       )}

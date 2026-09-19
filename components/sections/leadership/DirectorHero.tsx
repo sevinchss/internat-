@@ -10,13 +10,15 @@ export function DirectorHero({ locale }: { locale: string }) {
   const name = pick(director.name, locale);
   const role = pick(director.role, locale);
   return (
-    <section aria-labelledby="leadership-title" className="relative pb-24 pt-32 sm:pt-36 lg:pb-36 lg:pt-44">
+    <section aria-labelledby="leadership-title" className="relative pt-32 pb-24 sm:pt-36 lg:pt-44 lg:pb-36">
       <div className="container-x">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
           <h1 id="leadership-title" className="text-display-xl">
             {pick(c.title, locale)}
           </h1>
-          <p className="max-w-[34ch] text-[14px] leading-relaxed text-ink-3 sm:text-right">{pick(c.placeholderNote, locale)}</p>
+          <p className="text-ink-3 max-w-[34ch] text-[14px] leading-relaxed sm:text-right">
+            {pick(c.placeholderNote, locale)}
+          </p>
         </div>
 
         <div className="mt-14 grid gap-14 lg:mt-20 lg:grid-cols-12 lg:gap-16">
@@ -36,22 +38,25 @@ export function DirectorHero({ locale }: { locale: string }) {
                 />
               </div>
               <figcaption className="mt-8 text-center lg:text-left">
-                <span className="block text-xl font-semibold tracking-[-0.02em] text-ink">{name}</span>
-                <span className="mt-1 block text-[15px] text-ink-2">{role}</span>
+                <span className="text-ink block text-xl font-semibold tracking-[-0.02em]">{name}</span>
+                <span className="text-ink-2 mt-1 block text-[15px]">{role}</span>
               </figcaption>
             </div>
           </figure>
 
           {/* Welcome letter */}
           <div className="lg:col-span-7 lg:pt-4">
-            <h2 className="flex items-center gap-3 text-[15px] text-ink-2" style={{ fontWeight: 500, letterSpacing: 0 }}>
-              <span className="h-px w-10 bg-primary-ink" aria-hidden="true" />
+            <h2
+              className="text-ink-2 flex items-center gap-3 text-[15px]"
+              style={{ fontWeight: 500, letterSpacing: 0 }}
+            >
+              <span className="bg-primary-ink h-px w-10" aria-hidden="true" />
               {pick(c.welcomeLabel, locale)}
             </h2>
-            <p className="mt-7 text-[clamp(1.6rem,1.1rem+1.9vw,2.6rem)] font-light leading-[1.22] tracking-[-0.03em] text-ink">
+            <p className="text-ink mt-7 text-[clamp(1.6rem,1.1rem+1.9vw,2.6rem)] leading-[1.22] font-light tracking-[-0.03em]">
               {pick(director.welcome.lead, locale)}
             </p>
-            <div className="mt-10 grid gap-5 text-ink-2 md:grid-cols-2 md:gap-x-10">
+            <div className="text-ink-2 mt-10 grid gap-5 md:grid-cols-2 md:gap-x-10">
               {pick(director.welcome.body, locale).map((p, i) => (
                 <p key={i} className={i === 0 ? "text-body-l text-ink md:col-span-2" : "max-w-[42ch]"}>
                   {p}
@@ -60,11 +65,11 @@ export function DirectorHero({ locale }: { locale: string }) {
             </div>
 
             {/* Signature */}
-            <div className="mt-12 flex items-center gap-5 border-t border-line pt-8">
-              <span className="h-px w-10 bg-ink-3" aria-hidden="true" />
+            <div className="border-line mt-12 flex items-center gap-5 border-t pt-8">
+              <span className="bg-ink-3 h-px w-10" aria-hidden="true" />
               <p className="leading-tight">
-                <span className="block text-lg font-semibold tracking-[-0.02em] text-ink">{name}</span>
-                <span className="text-[15px] text-ink-3">{role}</span>
+                <span className="text-ink block text-lg font-semibold tracking-[-0.02em]">{name}</span>
+                <span className="text-ink-3 text-[15px]">{role}</span>
               </p>
             </div>
 
@@ -75,18 +80,24 @@ export function DirectorHero({ locale }: { locale: string }) {
               </h3>
               <ul className="mt-7 grid gap-x-10 gap-y-6 sm:grid-cols-2">
                 <Item icon={CalendarClock}>
-                  <span className="font-semibold text-ink">{pick(director.reception, locale)}</span>
+                  <span className="text-ink font-semibold">{pick(director.reception, locale)}</span>
                 </Item>
                 <Item icon={MapPin}>
                   <span className="text-ink-2">{pick(director.receptionPlace, locale)}</span>
                 </Item>
                 <Item icon={Phone}>
-                  <a href={`tel:${director.phone.replace(/\s/g, "")}`} className="font-semibold text-ink underline decoration-line decoration-2 underline-offset-4 transition-colors hover:decoration-primary-ink">
+                  <a
+                    href={`tel:${director.phone.replace(/\s/g, "")}`}
+                    className="text-ink decoration-line hover:decoration-primary-ink font-semibold underline decoration-2 underline-offset-4 transition-colors"
+                  >
                     {director.phone}
                   </a>
                 </Item>
                 <Item icon={Mail}>
-                  <a href={`mailto:${director.email}`} className="break-all font-semibold text-ink underline decoration-line decoration-2 underline-offset-4 transition-colors hover:decoration-primary-ink">
+                  <a
+                    href={`mailto:${director.email}`}
+                    className="text-ink decoration-line hover:decoration-primary-ink font-semibold break-all underline decoration-2 underline-offset-4 transition-colors"
+                  >
                     {director.email}
                   </a>
                 </Item>
@@ -99,11 +110,17 @@ export function DirectorHero({ locale }: { locale: string }) {
   );
 }
 
-function Item({ icon: Icon, children }: { icon: React.ComponentType<{ className?: string; strokeWidth?: number; "aria-hidden"?: boolean }>; children: React.ReactNode }) {
+function Item({
+  icon: Icon,
+  children,
+}: {
+  icon: React.ComponentType<{ className?: string; strokeWidth?: number; "aria-hidden"?: boolean }>;
+  children: React.ReactNode;
+}) {
   return (
     <li className="flex gap-3.5">
       <span className="shrink-0">
-        <Icon className="mt-0.5 size-5 text-primary-ink" strokeWidth={1.6} aria-hidden />
+        <Icon className="text-primary-ink mt-0.5 size-5" strokeWidth={1.6} aria-hidden />
       </span>
       <span className="min-w-0">{children}</span>
     </li>

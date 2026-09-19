@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-/** A thin arc sweeps across the viewport (< 500ms) while the new page settles in. Skipped on first load. */
+/** A thin arc sweeps across the viewport (< 500ms) on route change. Skipped on first load. */
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const reduce = useReducedMotion();
   // false during SSR + first hydration; true for every client-side navigation afterwards
@@ -22,7 +22,12 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <svg className="pointer-events-none fixed inset-0 z-[60] h-dvh w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <svg
+        className="pointer-events-none fixed inset-0 z-[60] h-dvh w-full"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
         <motion.path
           d="M -10 108 A 118 118 0 0 1 108 -10"
           fill="none"
@@ -34,9 +39,8 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
           transition={{ duration: 0.48, ease: [0.76, 0, 0.24, 1], times: [0, 0.5, 1] }}
         />
       </svg>
-      <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}>
-        {children}
-      </motion.div>
+      {/* content appears immediately — only the arc sweeps, so navigation never feels delayed */}
+      {children}
     </>
   );
 }

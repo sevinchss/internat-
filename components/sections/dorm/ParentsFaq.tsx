@@ -18,10 +18,7 @@ export function ParentsFaq() {
             {pick(c.title, locale)}
           </h2>
           <p className="text-ink-2 mt-4 max-w-[36ch]">{pick(c.lead, locale)}</p>
-          <a
-            href={`tel:${phone.value.replace(/\s+/g, "")}`}
-            className={buttonClass("outline", "mt-8 gap-3 px-5")}
-          >
+          <a href={`tel:${phone.value.replace(/\s+/g, "")}`} className={buttonClass("outline", "mt-8 gap-3 px-5")}>
             <Phone className="size-4" strokeWidth={1.8} aria-hidden="true" />
             <span className="sr-only">{pick(c.callLabel, locale)}:</span>
             <span className="tabular-nums">{phone.value}</span>

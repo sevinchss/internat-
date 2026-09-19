@@ -1,7 +1,15 @@
 import type { NewsBlock } from "@/data/news";
 
 /** Renders structured news blocks as rich text (.prose-news). `insert` is placed after block `insertAfter`. */
-export function ArticleBody({ blocks, insert, insertAfter = 2 }: { blocks: NewsBlock[]; insert?: React.ReactNode; insertAfter?: number }) {
+export function ArticleBody({
+  blocks,
+  insert,
+  insertAfter = 2,
+}: {
+  blocks: NewsBlock[];
+  insert?: React.ReactNode;
+  insertAfter?: number;
+}) {
   const at = Math.min(insertAfter, blocks.length - 1);
   return (
     <div className="prose-news max-w-[68ch]">
@@ -21,7 +29,7 @@ function Block({ block, after, first }: { block: NewsBlock; after: React.ReactNo
     case "quote":
       el = (
         <blockquote>
-          <p className="!m-0 !text-[inherit] !leading-[inherit] !text-ink">{block.text}</p>
+          <p className="!text-ink !m-0 !leading-[inherit] !text-[inherit]">{block.text}</p>
         </blockquote>
       );
       break;
@@ -35,7 +43,15 @@ function Block({ block, after, first }: { block: NewsBlock; after: React.ReactNo
       );
       break;
     default:
-      el = <p className={first ? "!mt-0 first-letter:font-display first-letter:text-[1.15em] first-letter:text-ink" : undefined}>{block.text}</p>;
+      el = (
+        <p
+          className={
+            first ? "first-letter:font-display first-letter:text-ink !mt-0 first-letter:text-[1.15em]" : undefined
+          }
+        >
+          {block.text}
+        </p>
+      );
   }
   return (
     <>

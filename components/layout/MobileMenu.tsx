@@ -17,7 +17,15 @@ const item = {
   closed: { opacity: 0, y: 18 },
 };
 
-export function MobileMenu({ open, onClose, isActive }: { open: boolean; onClose: () => void; isActive: (h: string) => boolean }) {
+export function MobileMenu({
+  open,
+  onClose,
+  isActive,
+}: {
+  open: boolean;
+  onClose: () => void;
+  isActive: (h: string) => boolean;
+}) {
   const t = useTranslations("nav");
   const th = useTranslations("header");
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -52,12 +60,25 @@ export function MobileMenu({ open, onClose, isActive }: { open: boolean; onClose
           animate={{ clipPath: "circle(150% at 100% 0%)" }}
           exit={{ clipPath: "circle(0% at 100% 0%)", transition: { duration: 0.35, ease: [0.76, 0, 0.24, 1] } }}
           transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-x-0 bottom-0 top-[var(--header-h)] z-40 overflow-y-auto bg-paper lg:hidden"
+          className="bg-paper fixed inset-x-0 top-[var(--header-h)] bottom-0 z-40 overflow-y-auto lg:hidden"
         >
-          <motion.nav initial="closed" animate="open" exit="closed" variants={list} className="container-x flex min-h-full flex-col pb-10 pt-4" aria-label={th("menu")}>
-            <ul className="divide-y divide-line border-y border-line">
+          <motion.nav
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={list}
+            className="container-x flex min-h-full flex-col pt-4 pb-10"
+            aria-label={th("menu")}
+          >
+            <ul className="divide-line border-line divide-y border-y">
               <motion.li variants={item}>
-                <Link href="/" className={cn("flex min-h-16 items-center font-display text-2xl", isActive("/") && "text-primary-ink")}>
+                <Link
+                  href="/"
+                  className={cn(
+                    "font-display flex min-h-16 items-center text-2xl",
+                    isActive("/") && "text-primary-ink",
+                  )}
+                >
                   {t("home")}
                 </Link>
               </motion.li>
@@ -69,10 +90,14 @@ export function MobileMenu({ open, onClose, isActive }: { open: boolean; onClose
                       aria-expanded={expanded === n.key}
                       aria-controls={`mm-${n.key}`}
                       onClick={() => setExpanded((e) => (e === n.key ? null : n.key))}
-                      className="flex min-h-16 w-full items-center justify-between text-left font-display text-2xl"
+                      className="font-display flex min-h-16 w-full items-center justify-between text-left text-2xl"
                     >
                       {t(n.key)}
-                      <Plus className={cn("size-6 transition-transform duration-300", expanded === n.key && "rotate-45")} strokeWidth={1.6} aria-hidden="true" />
+                      <Plus
+                        className={cn("size-6 transition-transform duration-300", expanded === n.key && "rotate-45")}
+                        strokeWidth={1.6}
+                        aria-hidden="true"
+                      />
                     </button>
                     <AnimatePresence initial={false}>
                       {expanded === n.key && (
@@ -91,10 +116,21 @@ export function MobileMenu({ open, onClose, isActive }: { open: boolean; onClose
                                 aria-current={isActive(c.href) ? "page" : undefined}
                                 className="flex min-h-14 items-center gap-3 pb-1 pl-1"
                               >
-                                <span aria-hidden="true" className="size-2 rounded-full" style={{ background: c.dot }} />
+                                <span
+                                  aria-hidden="true"
+                                  className="size-2 rounded-full"
+                                  style={{ background: c.dot }}
+                                />
                                 <span>
-                                  <span className={cn("block text-lg font-semibold", isActive(c.href) && "text-primary-ink")}>{t(c.key)}</span>
-                                  <span className="block text-sm text-ink-2">{t(`${c.key}Desc`)}</span>
+                                  <span
+                                    className={cn(
+                                      "block text-lg font-semibold",
+                                      isActive(c.href) && "text-primary-ink",
+                                    )}
+                                  >
+                                    {t(c.key)}
+                                  </span>
+                                  <span className="text-ink-2 block text-sm">{t(`${c.key}Desc`)}</span>
                                 </span>
                               </Link>
                             </li>
@@ -106,7 +142,14 @@ export function MobileMenu({ open, onClose, isActive }: { open: boolean; onClose
                   </motion.li>
                 ) : (
                   <motion.li key={n.key} variants={item}>
-                    <Link href={n.href} aria-current={isActive(n.href) ? "page" : undefined} className={cn("flex min-h-16 items-center font-display text-2xl", isActive(n.href) && "text-primary-ink")}>
+                    <Link
+                      href={n.href}
+                      aria-current={isActive(n.href) ? "page" : undefined}
+                      className={cn(
+                        "font-display flex min-h-16 items-center text-2xl",
+                        isActive(n.href) && "text-primary-ink",
+                      )}
+                    >
                       {t(n.key)}
                     </Link>
                   </motion.li>
@@ -114,7 +157,10 @@ export function MobileMenu({ open, onClose, isActive }: { open: boolean; onClose
               )}
             </ul>
             <motion.div variants={item} className="mt-8">
-              <Link href={contactHref} className="flex min-h-14 items-center justify-center rounded-full bg-primary text-lg font-semibold text-on-primary">
+              <Link
+                href={contactHref}
+                className="bg-primary text-on-primary flex min-h-14 items-center justify-center rounded-full text-lg font-semibold"
+              >
                 {t("contact")}
               </Link>
             </motion.div>

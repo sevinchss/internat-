@@ -41,13 +41,14 @@ export function Header() {
     setMobileOpen(false);
   }
 
-  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/"));
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 
   return (
     <>
       <a
         href="#main"
-        className="fixed left-4 top-3 z-[70] -translate-y-24 rounded-full bg-primary px-5 py-3 font-semibold text-on-primary transition-transform focus:translate-y-0"
+        className="bg-primary text-on-primary fixed top-3 left-4 z-[70] -translate-y-24 rounded-full px-5 py-3 font-semibold transition-transform focus:translate-y-0"
       >
         {th("skip")}
       </a>
@@ -58,7 +59,7 @@ export function Header() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300",
           solid || mobileOpen
-            ? "border-b border-line bg-paper/80 backdrop-blur-xl backdrop-saturate-150"
+            ? "border-line bg-paper/85 border-b backdrop-blur-md"
             : "border-b border-transparent bg-transparent",
         )}
       >
@@ -68,7 +69,7 @@ export function Header() {
               <LogoFull height={58} priority />
             </span>
             <LogoMark size={40} className="xl:hidden" priority />
-            <span className="max-w-[9.5rem] font-display text-[13px] font-medium leading-[1.15] tracking-tight text-ink sm:max-w-none sm:text-sm xl:hidden">
+            <span className="font-display text-ink max-w-[9.5rem] text-[13px] leading-[1.15] font-medium tracking-tight sm:max-w-none sm:text-sm xl:hidden">
               {pick(school.shortName, locale)}
             </span>
           </Link>
@@ -93,7 +94,7 @@ export function Header() {
                       href={item.href}
                       aria-current={isActive(item.href) ? "page" : undefined}
                       className={cn(
-                        "relative flex h-10 items-center rounded-full px-3.5 text-[15px] font-semibold transition-colors hover:bg-surface-2",
+                        "hover:bg-surface-2 relative flex h-10 items-center rounded-full px-3.5 text-[15px] font-semibold transition-colors",
                         isActive(item.href) ? "text-primary-ink" : "text-ink",
                       )}
                     >
@@ -112,13 +113,13 @@ export function Header() {
             <Link
               href={contactHref}
               aria-current={isActive(contactHref) ? "page" : undefined}
-              className="ml-2 hidden h-11 items-center rounded-full bg-primary px-5 text-[15px] font-semibold text-on-primary shadow-[inset_0_1px_0_rgb(255_255_255/0.18)] transition-[transform,background-color] hover:bg-navy active:scale-[0.98] lg:flex dark:hover:bg-[#2474c9]"
+              className="bg-primary text-on-primary hover:bg-navy ml-2 hidden h-11 items-center rounded-full px-5 text-[15px] font-semibold shadow-[inset_0_1px_0_rgb(255_255_255/0.18)] transition-[transform,background-color] active:scale-[0.98] lg:flex dark:hover:bg-[#2474c9]"
             >
               {t("contact")}
             </Link>
             <button
               type="button"
-              className="ml-1 grid size-11 place-items-center rounded-full border border-line text-ink lg:hidden"
+              className="border-line text-ink ml-1 grid size-11 place-items-center rounded-full border lg:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
               aria-label={mobileOpen ? th("closeMenu") : th("openMenu")}
@@ -135,14 +136,29 @@ export function Header() {
 }
 
 function ActiveDot() {
-  return <span aria-hidden="true" className="absolute bottom-1 left-1/2 size-1 -translate-x-1/2 rounded-full bg-primary-ink" />;
+  return (
+    <span
+      aria-hidden="true"
+      className="bg-primary-ink absolute bottom-1 left-1/2 size-1 -translate-x-1/2 rounded-full"
+    />
+  );
 }
 
 function Burger({ open }: { open: boolean }) {
   return (
     <span aria-hidden="true" className="relative block h-4 w-5">
-      <span className={cn("absolute left-0 h-[1.8px] w-5 rounded-full bg-current transition-transform duration-300 ease-out", open ? "top-[7px] rotate-45" : "top-[3px]")} />
-      <span className={cn("absolute left-0 h-[1.8px] w-5 rounded-full bg-current transition-transform duration-300 ease-out", open ? "top-[7px] -rotate-45" : "top-[11px]")} />
+      <span
+        className={cn(
+          "absolute left-0 h-[1.8px] w-5 rounded-full bg-current transition-transform duration-300 ease-out",
+          open ? "top-[7px] rotate-45" : "top-[3px]",
+        )}
+      />
+      <span
+        className={cn(
+          "absolute left-0 h-[1.8px] w-5 rounded-full bg-current transition-transform duration-300 ease-out",
+          open ? "top-[7px] -rotate-45" : "top-[11px]",
+        )}
+      />
     </span>
   );
 }
@@ -224,13 +240,17 @@ function Dropdown({
           }
         }}
         className={cn(
-          "relative flex h-10 items-center gap-1 rounded-full px-3.5 text-[15px] font-semibold transition-colors hover:bg-surface-2",
+          "hover:bg-surface-2 relative flex h-10 items-center gap-1 rounded-full px-3.5 text-[15px] font-semibold transition-colors",
           active ? "text-primary-ink" : "text-ink",
           open && "bg-surface-2",
         )}
       >
         {label}
-        <ChevronDown className={cn("size-4 transition-transform duration-300", open && "rotate-180")} strokeWidth={2} aria-hidden="true" />
+        <ChevronDown
+          className={cn("size-4 transition-transform duration-300", open && "rotate-180")}
+          strokeWidth={2}
+          aria-hidden="true"
+        />
         {active && <ActiveDot />}
       </button>
       <AnimatePresence>
@@ -243,7 +263,7 @@ function Dropdown({
             exit={{ opacity: 0, y: -4, scale: 0.98, transition: { duration: 0.12 } }}
             transition={{ type: "spring", stiffness: 420, damping: 32 }}
             style={{ transformOrigin: "top left" }}
-            className="glass absolute left-0 top-[calc(100%+10px)] w-[340px] rounded-[22px] p-2 shadow-[0_24px_48px_-20px_rgb(var(--shadow)/0.28)]"
+            className="glass absolute top-[calc(100%+10px)] left-0 w-[340px] rounded-[22px] p-2 shadow-[0_24px_48px_-20px_rgb(var(--shadow)/0.28)]"
             onKeyDown={(e) => {
               const links = Array.from(wrap.current?.querySelectorAll<HTMLAnchorElement>("[data-dropdown-link]") ?? []);
               const i = links.indexOf(document.activeElement as HTMLAnchorElement);
@@ -266,14 +286,18 @@ function Dropdown({
                     href={it.href}
                     aria-current={isActive(it.href) ? "page" : undefined}
                     className={cn(
-                      "group flex gap-3.5 rounded-[16px] px-3.5 py-3 transition-colors hover:bg-surface-2 focus-visible:bg-surface-2",
+                      "group hover:bg-surface-2 focus-visible:bg-surface-2 flex gap-3.5 rounded-[16px] px-3.5 py-3 transition-colors",
                       isActive(it.href) && "bg-surface-2",
                     )}
                   >
-                    <span aria-hidden="true" className="mt-[9px] size-2 shrink-0 rounded-full transition-transform group-hover:scale-125" style={{ background: it.dot }} />
+                    <span
+                      aria-hidden="true"
+                      className="mt-[9px] size-2 shrink-0 rounded-full transition-transform group-hover:scale-125"
+                      style={{ background: it.dot }}
+                    />
                     <span>
-                      <span className="block text-[15px] font-semibold text-ink">{t(it.key)}</span>
-                      <span className="block text-sm leading-snug text-ink-2">{t(`${it.key}Desc`)}</span>
+                      <span className="text-ink block text-[15px] font-semibold">{t(it.key)}</span>
+                      <span className="text-ink-2 block text-sm leading-snug">{t(`${it.key}Desc`)}</span>
                     </span>
                   </Link>
                 </li>

@@ -60,7 +60,7 @@ export function ShareBar({
 
   return (
     <div className={className}>
-      <p className="text-sm font-semibold text-ink-3">{t("share")}</p>
+      <p className="text-ink-3 text-sm font-semibold">{t("share")}</p>
       <ul className={cn("mt-3 flex flex-wrap gap-2", vertical && "lg:flex-col lg:items-start")}>
         <li>
           <a href={tg} target="_blank" rel="noopener noreferrer" className={btn}>
@@ -81,8 +81,16 @@ export function ShareBar({
           </a>
         </li>
         <li>
-          <button type="button" onClick={onCopy} className={cn(btn, copied && "border-green text-green dark:text-[#4cc59f]")}>
-            {copied ? <Check className="size-[18px]" strokeWidth={1.8} aria-hidden="true" /> : <Link2 className="size-[18px]" strokeWidth={1.8} aria-hidden="true" />}
+          <button
+            type="button"
+            onClick={onCopy}
+            className={cn(btn, copied && "border-green text-green dark:text-[#4cc59f]")}
+          >
+            {copied ? (
+              <Check className="size-[18px]" strokeWidth={1.8} aria-hidden="true" />
+            ) : (
+              <Link2 className="size-[18px]" strokeWidth={1.8} aria-hidden="true" />
+            )}
             {copied ? t("copied") : t("copyLink")}
           </button>
         </li>

@@ -3,30 +3,30 @@
 Official website of **Xorijiy tillarga ixtisoslashtirilgan maktab-internati** (International Language School /
 Специализированная школа-интернат иностранных языков).
 
-Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · next-intl (uz / en / ru) · next-themes · Framer Motion · Lenis · lucide-react.
+Next.js 16 (App Router, static generation) · TypeScript · Tailwind CSS v4 · next-intl (uz / en / ru) · next-themes · Framer Motion · Lenis · lucide-react · zod/mini.
 
 ## Run
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000  → redirects to /uz
+npm run dev        # http://localhost:3000  → redirects to /uz (dev mode compiles on demand — judge speed with the production build)
 npm run build && npm start   # production
 ```
 
-Other scripts: `npm run lint`, `npm run typecheck`, `npm run format`,
+Quality: `npm run check` (typecheck + lint + Prettier check). Other scripts: `npm run lint`, `npm run typecheck`, `npm run format`,
 `npm run logo` (regenerate brand assets), `npm run blur` (regenerate photo blur placeholders).
 
 ## Where to change things
 
-| What | Where |
-|---|---|
-| **Logo** | Replace `logo.png` in the project root, then `npm run logo`. It regenerates `public/brand/*` (full, full-dark, mark, wordmark, OG image) and `app/icon.png`, `app/apple-icon.png`, `app/favicon.ico`, and prints the brand colours sampled from the logo (also saved to `public/brand/colors.json`; tokens live in `app/globals.css`). The logo is never redrawn — every variant is cut from this file. |
-| **Photos** | `lib/images.ts` — every photo slot on the site (74), with alt text in 3 languages. Put real photos in `public/images/<group>/…`, point `src` at them (e.g. `slot("/images/campus/hero.jpg", …)`), then run `npm run blur`. Staff portraits: `images.staff` (empty until real photos exist — pages show a designed placeholder instead of strangers' faces). |
-| **Page content** | `data/*.ts` — every page's copy in `uz` / `en` / `ru` (news, staff, gallery, FAQ, menus, schedules, curricula…). |
-| **UI strings** (menu, buttons, footer, meta titles) | `messages/uz.json`, `messages/en.json`, `messages/ru.json` |
-| **Contacts, address, socials, map coordinates, domain** | `lib/site.ts` |
-| **Navigation structure** | `lib/nav.ts` |
-| **Design tokens** (colours, type scale) | `app/globals.css` · design notes in `DESIGN.md` |
+| What                                                    | Where                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Logo**                                                | Replace `logo.png` in the project root, then `npm run logo`. It regenerates `public/brand/*` (full, full-dark, mark, wordmark, OG image) and `app/icon.png`, `app/apple-icon.png`, `app/favicon.ico`, and prints the brand colours sampled from the logo (also saved to `public/brand/colors.json`; tokens live in `app/globals.css`). The logo is never redrawn — every variant is cut from this file. |
+| **Photos**                                              | `lib/images.ts` — every photo slot on the site (74), with alt text in 3 languages. Put real photos in `public/images/<group>/…`, point `src` at them (e.g. `slot("/images/campus/hero.jpg", …)`), then run `npm run blur`. Staff portraits: `images.staff` (empty until real photos exist — pages show a designed placeholder instead of strangers' faces).                                             |
+| **Page content**                                        | `data/*.ts` — every page's copy in `uz` / `en` / `ru` (news, staff, gallery, FAQ, menus, schedules, curricula…).                                                                                                                                                                                                                                                                                        |
+| **UI strings** (menu, buttons, footer, meta titles)     | `messages/uz.json`, `messages/en.json`, `messages/ru.json`                                                                                                                                                                                                                                                                                                                                              |
+| **Contacts, address, socials, map coordinates, domain** | `lib/site.ts`                                                                                                                                                                                                                                                                                                                                                                                           |
+| **Navigation structure**                                | `lib/nav.ts`                                                                                                                                                                                                                                                                                                                                                                                            |
+| **Design tokens** (colours, type scale)                 | `app/globals.css` · design notes in `DESIGN.md`                                                                                                                                                                                                                                                                                                                                                         |
 
 Uzbek text uses `ʻ` (U+02BB) in oʻ / gʻ and `ʼ` (U+02BC) for tutuq belgisi — keep that when editing.
 

@@ -45,9 +45,24 @@ export const director: Director = {
     ru: "Руководитель с многолетним опытом в образовании. Отвечает за стратегию школы, качество учебной программы и международное сотрудничество.",
   },
   responsibilities: {
-    uz: ["Maktab faoliyatiga umumiy rahbarlik", "Oʻquv dasturi va taʼlim sifati", "Agentlik va hamkorlar bilan aloqalar", "Pedagogik kengash ishini yuritish"],
-    en: ["Overall leadership of the school", "Curriculum and teaching quality", "Relations with the Agency and partners", "Chairing the teachers' council"],
-    ru: ["Общее руководство школой", "Учебная программа и качество обучения", "Связи с Агентством и партнёрами", "Руководство педагогическим советом"],
+    uz: [
+      "Maktab faoliyatiga umumiy rahbarlik",
+      "Oʻquv dasturi va taʼlim sifati",
+      "Agentlik va hamkorlar bilan aloqalar",
+      "Pedagogik kengash ishini yuritish",
+    ],
+    en: [
+      "Overall leadership of the school",
+      "Curriculum and teaching quality",
+      "Relations with the Agency and partners",
+      "Chairing the teachers' council",
+    ],
+    ru: [
+      "Общее руководство школой",
+      "Учебная программа и качество обучения",
+      "Связи с Агентством и партнёрами",
+      "Руководство педагогическим советом",
+    ],
   },
   reception: {
     uz: "Seshanba va payshanba, 14:00 – 17:00",
@@ -93,7 +108,11 @@ export const deputies: StaffMember[] = [
   {
     id: "academic",
     name: { uz: "Malika Yoʻldosheva", en: "Malika Yuldosheva", ru: "Малика Юлдошева" },
-    role: { uz: "Direktorning oʻquv ishlari boʻyicha oʻrinbosari", en: "Deputy Head, Academic Affairs", ru: "Заместитель директора по учебной работе" },
+    role: {
+      uz: "Direktorning oʻquv ishlari boʻyicha oʻrinbosari",
+      en: "Deputy Head, Academic Affairs",
+      ru: "Заместитель директора по учебной работе",
+    },
     area: { uz: "Oʻquv ishlari", en: "Academic affairs", ru: "Учебная работа" },
     bio: {
       uz: "Matematika oʻqituvchisi sifatida ish boshlagan, keyinchalik metodik ishlarga rahbarlik qilgan. Dars jadvali, oʻquv rejalari va baholash tizimi uchun masʼul.",
@@ -101,11 +120,30 @@ export const deputies: StaffMember[] = [
       ru: "Начинала как учитель математики, затем руководила методической работой. Отвечает за расписание, учебные планы и систему оценивания.",
     },
     responsibilities: {
-      uz: ["Oʻquv rejalari va dars jadvali", "Baholash va monitoring", "Kafedralar faoliyatini muvofiqlashtirish", "Oʻqituvchilar malakasini oshirish"],
-      en: ["Curriculum plans and timetable", "Assessment and monitoring", "Coordinating subject departments", "Teacher professional development"],
-      ru: ["Учебные планы и расписание", "Оценивание и мониторинг", "Координация кафедр", "Повышение квалификации учителей"],
+      uz: [
+        "Oʻquv rejalari va dars jadvali",
+        "Baholash va monitoring",
+        "Kafedralar faoliyatini muvofiqlashtirish",
+        "Oʻqituvchilar malakasini oshirish",
+      ],
+      en: [
+        "Curriculum plans and timetable",
+        "Assessment and monitoring",
+        "Coordinating subject departments",
+        "Teacher professional development",
+      ],
+      ru: [
+        "Учебные планы и расписание",
+        "Оценивание и мониторинг",
+        "Координация кафедр",
+        "Повышение квалификации учителей",
+      ],
     },
-    reception: { uz: "Dushanba va chorshanba, 15:00 – 17:00", en: "Monday and Wednesday, 15:00 – 17:00", ru: "Понедельник и среда, 15:00 – 17:00" },
+    reception: {
+      uz: "Dushanba va chorshanba, 15:00 – 17:00",
+      en: "Monday and Wednesday, 15:00 – 17:00",
+      ru: "Понедельник и среда, 15:00 – 17:00",
+    },
     phone: "+998 71 203 47 11",
     email: "academic@ils.piima.uz",
     accent: "var(--green)",
@@ -113,7 +151,11 @@ export const deputies: StaffMember[] = [
   {
     id: "languages",
     name: { uz: "Shahnoza Ergasheva", en: "Shakhnoza Ergasheva", ru: "Шахноза Эргашева" },
-    role: { uz: "Direktorning xorijiy tillar va xalqaro hamkorlik boʻyicha oʻrinbosari", en: "Deputy Head, Languages and International Partnerships", ru: "Заместитель директора по иностранным языкам и международному сотрудничеству" },
+    role: {
+      uz: "Direktorning xorijiy tillar va xalqaro hamkorlik boʻyicha oʻrinbosari",
+      en: "Deputy Head, Languages and International Partnerships",
+      ru: "Заместитель директора по иностранным языкам и международному сотрудничеству",
+    },
     area: { uz: "Xorijiy tillar", en: "Languages", ru: "Иностранные языки" },
     bio: {
       uz: "Ingliz tili oʻqitish metodikasi boʻyicha mutaxassis. Ingliz va xitoy tili dasturlarini, xalqaro hamkorlar bilan aloqalarni yoʻlga qoʻyadi.",
@@ -121,9 +163,24 @@ export const deputies: StaffMember[] = [
       ru: "Специалист по методике преподавания английского языка. Ведёт программы английского и китайского языков и работу с международными партнёрами.",
     },
     responsibilities: {
-      uz: ["Ingliz va xitoy tili dasturlari", "Til darajasini baholash", "Xalqaro hamkorlik va almashinuv", "Til toʻgaraklari va klublar"],
-      en: ["English and Chinese programmes", "Language level assessment", "International partnerships and exchanges", "Language clubs"],
-      ru: ["Программы английского и китайского языков", "Оценка языкового уровня", "Международное сотрудничество и обмены", "Языковые клубы"],
+      uz: [
+        "Ingliz va xitoy tili dasturlari",
+        "Til darajasini baholash",
+        "Xalqaro hamkorlik va almashinuv",
+        "Til toʻgaraklari va klublar",
+      ],
+      en: [
+        "English and Chinese programmes",
+        "Language level assessment",
+        "International partnerships and exchanges",
+        "Language clubs",
+      ],
+      ru: [
+        "Программы английского и китайского языков",
+        "Оценка языкового уровня",
+        "Международное сотрудничество и обмены",
+        "Языковые клубы",
+      ],
     },
     reception: { uz: "Seshanba, 15:00 – 18:00", en: "Tuesday, 15:00 – 18:00", ru: "Вторник, 15:00 – 18:00" },
     phone: "+998 71 203 47 12",
@@ -133,7 +190,11 @@ export const deputies: StaffMember[] = [
   {
     id: "spiritual",
     name: { uz: "Jasur Toʻxtayev", en: "Jasur Tukhtaev", ru: "Жасур Тухтаев" },
-    role: { uz: "Direktorning maʼnaviy-maʼrifiy ishlar boʻyicha oʻrinbosari", en: "Deputy Head, Culture and Student Development", ru: "Заместитель директора по духовно-просветительской работе" },
+    role: {
+      uz: "Direktorning maʼnaviy-maʼrifiy ishlar boʻyicha oʻrinbosari",
+      en: "Deputy Head, Culture and Student Development",
+      ru: "Заместитель директора по духовно-просветительской работе",
+    },
     area: { uz: "Maʼnaviy-maʼrifiy ishlar", en: "Culture and development", ru: "Духовно-просветительская работа" },
     bio: {
       uz: "Tarix fani oʻqituvchisi. Maktab tadbirlari, toʻgaraklar, oʻquvchilar kengashi va milliy qadriyatlarga oid loyihalarni boshqaradi.",
@@ -141,11 +202,30 @@ export const deputies: StaffMember[] = [
       ru: "Учитель истории. Руководит школьными мероприятиями, кружками, ученическим советом и проектами о национальном наследии.",
     },
     responsibilities: {
-      uz: ["Maktab tadbirlari va bayramlar", "Toʻgaraklar va oʻquvchilar kengashi", "Psixologik xizmat bilan hamkorlik", "Ota-onalar bilan muloqot"],
-      en: ["School events and celebrations", "Clubs and the student council", "Working with the psychology service", "Communication with parents"],
-      ru: ["Школьные мероприятия и праздники", "Кружки и ученический совет", "Работа с психологической службой", "Взаимодействие с родителями"],
+      uz: [
+        "Maktab tadbirlari va bayramlar",
+        "Toʻgaraklar va oʻquvchilar kengashi",
+        "Psixologik xizmat bilan hamkorlik",
+        "Ota-onalar bilan muloqot",
+      ],
+      en: [
+        "School events and celebrations",
+        "Clubs and the student council",
+        "Working with the psychology service",
+        "Communication with parents",
+      ],
+      ru: [
+        "Школьные мероприятия и праздники",
+        "Кружки и ученический совет",
+        "Работа с психологической службой",
+        "Взаимодействие с родителями",
+      ],
     },
-    reception: { uz: "Chorshanba va juma, 14:00 – 16:00", en: "Wednesday and Friday, 14:00 – 16:00", ru: "Среда и пятница, 14:00 – 16:00" },
+    reception: {
+      uz: "Chorshanba va juma, 14:00 – 16:00",
+      en: "Wednesday and Friday, 14:00 – 16:00",
+      ru: "Среда и пятница, 14:00 – 16:00",
+    },
     phone: "+998 71 203 47 13",
     email: "culture@ils.piima.uz",
     accent: "var(--orange)",
@@ -153,7 +233,11 @@ export const deputies: StaffMember[] = [
   {
     id: "boarding",
     name: { uz: "Ulugʻbek Nazarov", en: "Ulugbek Nazarov", ru: "Улугбек Назаров" },
-    role: { uz: "Direktorning internat ishlari boʻyicha oʻrinbosari", en: "Deputy Head, Boarding", ru: "Заместитель директора по работе интерната" },
+    role: {
+      uz: "Direktorning internat ishlari boʻyicha oʻrinbosari",
+      en: "Deputy Head, Boarding",
+      ru: "Заместитель директора по работе интерната",
+    },
     area: { uz: "Internat", en: "Boarding", ru: "Интернат" },
     bio: {
       uz: "Yotoqxona hayoti, kun tartibi, ovqatlanish va tibbiy xizmat uchun javobgar. Tarbiyachilar jamoasiga rahbarlik qiladi.",
@@ -161,11 +245,25 @@ export const deputies: StaffMember[] = [
       ru: "Отвечает за жизнь в общежитии, распорядок дня, питание и медицинскую помощь. Руководит командой воспитателей.",
     },
     responsibilities: {
-      uz: ["Yotoqxona va kun tartibi", "Tarbiyachilar jamoasi", "Ovqatlanish va tibbiy xizmat", "Dam olish kunlari dasturi"],
+      uz: [
+        "Yotoqxona va kun tartibi",
+        "Tarbiyachilar jamoasi",
+        "Ovqatlanish va tibbiy xizmat",
+        "Dam olish kunlari dasturi",
+      ],
       en: ["Boarding houses and daily routine", "House staff team", "Meals and medical care", "Weekend programme"],
-      ru: ["Общежитие и распорядок дня", "Команда воспитателей", "Питание и медицинская помощь", "Программа выходных дней"],
+      ru: [
+        "Общежитие и распорядок дня",
+        "Команда воспитателей",
+        "Питание и медицинская помощь",
+        "Программа выходных дней",
+      ],
     },
-    reception: { uz: "Dushanba, 16:00 – 18:00; shanba, 10:00 – 12:00", en: "Monday, 16:00 – 18:00; Saturday, 10:00 – 12:00", ru: "Понедельник, 16:00 – 18:00; суббота, 10:00 – 12:00" },
+    reception: {
+      uz: "Dushanba, 16:00 – 18:00; shanba, 10:00 – 12:00",
+      en: "Monday, 16:00 – 18:00; Saturday, 10:00 – 12:00",
+      ru: "Понедельник, 16:00 – 18:00; суббота, 10:00 – 12:00",
+    },
     phone: "+998 71 203 47 14",
     email: "boarding@ils.piima.uz",
     accent: "var(--purple)",
@@ -173,7 +271,11 @@ export const deputies: StaffMember[] = [
   {
     id: "operations",
     name: { uz: "Rustam Hamidov", en: "Rustam Khamidov", ru: "Рустам Хамидов" },
-    role: { uz: "Direktorning xoʻjalik ishlari boʻyicha oʻrinbosari", en: "Deputy Head, Operations", ru: "Заместитель директора по хозяйственной работе" },
+    role: {
+      uz: "Direktorning xoʻjalik ishlari boʻyicha oʻrinbosari",
+      en: "Deputy Head, Operations",
+      ru: "Заместитель директора по хозяйственной работе",
+    },
     area: { uz: "Xoʻjalik ishlari", en: "Operations", ru: "Хозяйственная работа" },
     bio: {
       uz: "Kampus binolari, xavfsizlik, transport va texnik taʼminot ishlarini boshqaradi.",

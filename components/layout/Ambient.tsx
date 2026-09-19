@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { arcPath } from "@/lib/utils";
 import { RING_SEGMENTS } from "@/components/brand/Ring";
@@ -21,9 +20,24 @@ const GLYPHS = [
 function BrandRing({ r = 96, width = 1.4 }: { r?: number; width?: number }) {
   return (
     <svg viewBox="0 0 200 200" className="size-full overflow-visible">
-      <circle cx="100" cy="100" r={r + 7} fill="none" stroke="var(--ring)" strokeWidth="0.4" strokeDasharray="0.6 3.4" />
+      <circle
+        cx="100"
+        cy="100"
+        r={r + 7}
+        fill="none"
+        stroke="var(--ring)"
+        strokeWidth="0.4"
+        strokeDasharray="0.6 3.4"
+      />
       {RING_SEGMENTS.map((s) => (
-        <path key={s.from} d={arcPath(100, 100, r, s.from, s.to)} fill="none" stroke={s.color} strokeWidth={width} strokeLinecap="round" />
+        <path
+          key={s.from}
+          d={arcPath(100, 100, r, s.from, s.to)}
+          fill="none"
+          stroke={s.color}
+          strokeWidth={width}
+          strokeLinecap="round"
+        />
       ))}
     </svg>
   );
@@ -31,55 +45,35 @@ function BrandRing({ r = 96, width = 1.4 }: { r?: number; width?: number }) {
 
 /**
  * Site-wide ambient background (fixed, behind all content, pointer-events: none):
- * a dot grid that softly lights up around the cursor, two oversized logo rings that rotate very slowly
+ * a static dot grid, two oversized logo rings that rotate very slowly
  * and drift with scroll, and faint letters from the school's four languages floating in depth.
  */
 export function Ambient() {
   const reduce = useReducedMotion();
-  const glow = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
   const p = useSpring(scrollYProgress, { stiffness: 60, damping: 20, mass: 0.6 });
   const yA = useTransform(p, [0, 1], reduce ? ["0vh", "0vh"] : ["0vh", "-40vh"]);
   const yB = useTransform(p, [0, 1], reduce ? ["0vh", "0vh"] : ["0vh", "30vh"]);
   const yG = useTransform(p, [0, 1], reduce ? ["0vh", "0vh"] : ["0vh", "-18vh"]);
 
-  // cursor spotlight on the dot grid (rAF-throttled, no React re-renders)
-  useEffect(() => {
-    if (reduce || !window.matchMedia("(pointer: fine)").matches) return;
-    let raf = 0;
-    let x = -999;
-    let y = -999;
-    const onMove = (e: PointerEvent) => {
-      x = e.clientX;
-      y = e.clientY;
-      if (!raf)
-        raf = requestAnimationFrame(() => {
-          raf = 0;
-          glow.current?.style.setProperty("--mx", `${x}px`);
-          glow.current?.style.setProperty("--my", `${y}px`);
-        });
-    };
-    window.addEventListener("pointermove", onMove, { passive: true });
-    return () => {
-      window.removeEventListener("pointermove", onMove);
-      cancelAnimationFrame(raf);
-    };
-  }, [reduce]);
-
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       {/* dot grid, fading toward the edges */}
       <div className="ambient-dots absolute inset-0" />
-      {/* brighter dots only around the cursor */}
-      <div ref={glow} className="ambient-dots ambient-dots--lit absolute inset-0" />
 
       {/* two oversized logo rings */}
-      <motion.div style={{ y: yA }} className="absolute -right-[26vmax] -top-[22vmax] size-[78vmax] opacity-[0.16] dark:opacity-[0.22]">
+      <motion.div
+        style={{ y: yA }}
+        className="absolute -top-[22vmax] -right-[26vmax] size-[78vmax] opacity-[0.16] dark:opacity-[0.22]"
+      >
         <div className={reduce ? "size-full" : "ambient-spin size-full"}>
           <BrandRing width={0.9} />
         </div>
       </motion.div>
-      <motion.div style={{ y: yB }} className="absolute -bottom-[34vmax] -left-[30vmax] size-[70vmax] opacity-[0.1] dark:opacity-[0.16]">
+      <motion.div
+        style={{ y: yB }}
+        className="absolute -bottom-[34vmax] -left-[30vmax] size-[70vmax] opacity-[0.1] dark:opacity-[0.16]"
+      >
         <div className={reduce ? "size-full" : "ambient-spin-rev size-full"}>
           <BrandRing width={0.7} />
         </div>
@@ -91,7 +85,7 @@ export function Ambient() {
           <span
             key={g.c}
             lang={g.zh ? "zh" : undefined}
-            className={`ambient-glyph absolute select-none font-semibold leading-none text-ink ${g.zh ? "font-hanzi" : ""}`}
+            className="ambient-glyph text-ink absolute leading-none font-semibold select-none"
             style={{
               left: `${g.x}%`,
               top: `${g.y}%`,

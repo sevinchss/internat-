@@ -25,7 +25,7 @@ export function EnglishTeachers() {
                 name={t.name}
                 sizes="160px"
                 accent="var(--amber)"
-                className="border-line aspect-[4/5] w-32 shrink-0 rounded-[6px] border bg-ink/[0.025] sm:w-36 dark:bg-white/[0.035]"
+                className="border-line bg-ink/[0.025] aspect-[4/5] w-32 shrink-0 rounded-[6px] border sm:w-36 dark:bg-white/[0.035]"
               />
               <div className="min-w-0">
                 <h3 className="text-ink font-sans text-lg font-semibold tracking-normal">{t.name}</h3>

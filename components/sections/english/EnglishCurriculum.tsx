@@ -86,7 +86,9 @@ export function EnglishCurriculum() {
           >
             <div>
               <p className="text-ink-3 text-sm">{pick(c.target, locale)}</p>
-              <p className="text-ink mt-1 text-[clamp(2.75rem,2rem+2.6vw,4rem)] leading-none font-light tracking-[-0.04em]">{levelName(g)}</p>
+              <p className="text-ink mt-1 text-[clamp(2.75rem,2rem+2.6vw,4rem)] leading-none font-light tracking-[-0.04em]">
+                {levelName(g)}
+              </p>
               <div className="mt-6">
                 <CefrStairs g={g} />
               </div>

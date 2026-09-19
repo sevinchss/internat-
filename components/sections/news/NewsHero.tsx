@@ -31,15 +31,17 @@ export function NewsHero({
 }) {
   const reduce = useReducedMotion();
   const rise = (delay: number) =>
-    reduce ? {} : { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease, delay } };
+    reduce
+      ? {}
+      : { initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease, delay } };
 
   return (
-    <section className="container-x pt-32 pb-20 sm:pt-36 lg:pb-32 lg:pt-44">
+    <section className="container-x pt-32 pb-20 sm:pt-36 lg:pt-44 lg:pb-32">
       <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
         <motion.h1 {...rise(0)} className="text-display-xl lg:col-span-7">
           {title}
         </motion.h1>
-        <motion.p {...rise(0.08)} className="max-w-[40ch] text-ink-2 lg:col-span-4 lg:col-start-9 lg:pb-3">
+        <motion.p {...rise(0.08)} className="text-ink-2 max-w-[40ch] lg:col-span-4 lg:col-start-9 lg:pb-3">
           {lead}
         </motion.p>
       </div>
@@ -61,7 +63,11 @@ export function NewsHero({
               imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             />
           </motion.div>
-          <svg viewBox="0 0 200 200" aria-hidden="true" className="pointer-events-none absolute -right-12 -top-12 hidden size-40 text-ring lg:block">
+          <svg
+            viewBox="0 0 200 200"
+            aria-hidden="true"
+            className="text-ring pointer-events-none absolute -top-12 -right-12 hidden size-40 lg:block"
+          >
             <motion.path
               d={arcPath(100, 100, 94, RING_START, RING_END)}
               fill="none"
@@ -86,26 +92,33 @@ export function NewsHero({
         </div>
 
         <motion.div {...rise(0.35)} className="lg:col-span-5 lg:pb-4">
-          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px] text-ink-2">
-            <span className="font-medium text-ink">{featuredLabel}</span>
-            <span aria-hidden="true" className="h-3 w-px bg-line" />
+          <p className="text-ink-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px]">
+            <span className="text-ink font-medium">{featuredLabel}</span>
+            <span aria-hidden="true" className="bg-line h-3 w-px" />
             <span className="inline-flex items-center gap-2">
               <span aria-hidden="true" className="size-2 rounded-full" style={{ background: item.color }} />
               {item.categoryLabel}
             </span>
-            <span aria-hidden="true" className="h-3 w-px bg-line" />
+            <span aria-hidden="true" className="bg-line h-3 w-px" />
             <time dateTime={item.date}>{item.dateLabel}</time>
           </p>
-          <h2 className="mt-6 text-display-m">
-            <Link href={item.href} className="decoration-2 underline-offset-8 after:absolute after:inset-0 after:content-[''] hover:underline">
+          <h2 className="text-display-m mt-6">
+            <Link
+              href={item.href}
+              className="decoration-2 underline-offset-8 after:absolute after:inset-0 after:content-[''] hover:underline"
+            >
               {item.title}
             </Link>
           </h2>
-          <p className="mt-5 max-w-[52ch] text-ink-2">{item.excerpt}</p>
-          <p className="mt-10 flex items-center gap-4 border-t border-line pt-6 text-[15px]">
-            <span className="inline-flex items-center gap-2 font-semibold text-primary-ink">
+          <p className="text-ink-2 mt-5 max-w-[52ch]">{item.excerpt}</p>
+          <p className="border-line mt-10 flex items-center gap-4 border-t pt-6 text-[15px]">
+            <span className="text-primary-ink inline-flex items-center gap-2 font-semibold">
               {readMore}
-              <ArrowRight aria-hidden="true" className="size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none" strokeWidth={1.8} />
+              <ArrowRight
+                aria-hidden="true"
+                className="size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none"
+                strokeWidth={1.8}
+              />
             </span>
             <span className="text-ink-3">
               {item.minutes} {minutesLabel}

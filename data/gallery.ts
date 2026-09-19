@@ -82,12 +82,13 @@ function categoryOf(group: string, key: string): GalleryCategory | null {
   }
 }
 
-const mapped: GalleryPhoto[] = allImages.flatMap((img) => {
-  const category = categoryOf(img.group, img.key);
-  if (!category) return [];
-  const { src, alt, ratio, blurDataURL } = img;
-  return [{ id: `${img.group}.${img.key}`, category, slot: { src, alt, ratio, blurDataURL }, caption: alt }];
-})
+const mapped: GalleryPhoto[] = allImages
+  .flatMap((img) => {
+    const category = categoryOf(img.group, img.key);
+    if (!category) return [];
+    const { src, alt, ratio, blurDataURL } = img;
+    return [{ id: `${img.group}.${img.key}`, category, slot: { src, alt, ratio, blurDataURL }, caption: alt }];
+  })
   // the school's own photos (local /images/…) lead each category, stock placeholders follow
   .sort((a, b) => Number(!a.slot.src.startsWith("/")) - Number(!b.slot.src.startsWith("/")));
 
@@ -113,7 +114,16 @@ export const galleryAlbums: GalleryAlbum[] = [
     title: { uz: "Birinchi qoʻngʻiroq", en: "First bell", ru: "Первый звонок" },
     note: { uz: "Sentabr, 2026", en: "September 2026", ru: "Сентябрь 2026" },
     cover: "events.ceremony",
-    photos: only(["events.ceremony", "events.groupPhoto", "events.mic", "events.speech", "campus.entrance", "classes.highFive", "events.lawnStage", "campus.hero"]),
+    photos: only([
+      "events.ceremony",
+      "events.groupPhoto",
+      "events.mic",
+      "events.speech",
+      "campus.entrance",
+      "classes.highFive",
+      "events.lawnStage",
+      "campus.hero",
+    ]),
     accent: "var(--amber)",
   },
   {
@@ -121,15 +131,40 @@ export const galleryAlbums: GalleryAlbum[] = [
     title: { uz: "Kampus", en: "Campus", ru: "Кампус" },
     note: { uz: "Binolar va hudud", en: "Buildings and grounds", ru: "Здания и территория" },
     cover: "campus.main",
-    photos: only(["campus.main", "campus.lawn", "campus.walkway", "campus.court", "campus.stairs", "campus.library", "campus.readingRoom", "campus.libraryHall"]),
+    photos: only([
+      "campus.main",
+      "campus.lawn",
+      "campus.walkway",
+      "campus.court",
+      "campus.stairs",
+      "campus.library",
+      "campus.readingRoom",
+      "campus.libraryHall",
+    ]),
     accent: "var(--navy)",
   },
   {
     id: "boarding",
     title: { uz: "Yotoqxona hayoti", en: "Boarding life", ru: "Жизнь в общежитии" },
-    note: { uz: "Xonalar, oshxona, kechki mashgʻulot", en: "Rooms, canteen, evening study", ru: "Комнаты, столовая, вечерние занятия" },
+    note: {
+      uz: "Xonalar, oshxona, kechki mashgʻulot",
+      en: "Rooms, canteen, evening study",
+      ru: "Комнаты, столовая, вечерние занятия",
+    },
     cover: "dorm.hero",
-    photos: only(["dorm.hero", "dorm.bright", "dorm.bunk", "dorm.beds", "dorm.studyHall", "dorm.lamp", "dorm.desk", "dorm.books", "dorm.canteen", "dorm.serving", "dorm.meal"]),
+    photos: only([
+      "dorm.hero",
+      "dorm.bright",
+      "dorm.bunk",
+      "dorm.beds",
+      "dorm.studyHall",
+      "dorm.lamp",
+      "dorm.desk",
+      "dorm.books",
+      "dorm.canteen",
+      "dorm.serving",
+      "dorm.meal",
+    ]),
     accent: "var(--purple)",
   },
   {
@@ -137,7 +172,16 @@ export const galleryAlbums: GalleryAlbum[] = [
     title: { uz: "Sport kuni", en: "Sports day", ru: "День спорта" },
     note: { uz: "Futbol, basketbol, shaxmat", en: "Football, basketball, chess", ru: "Футбол, баскетбол, шахматы" },
     cover: "sport.football",
-    photos: only(["sport.football", "sport.footballDuel", "sport.court", "sport.team", "sport.gym", "sport.chessBoy", "sport.chessGirl", "sport.chessLibrary"]),
+    photos: only([
+      "sport.football",
+      "sport.footballDuel",
+      "sport.court",
+      "sport.team",
+      "sport.gym",
+      "sport.chessBoy",
+      "sport.chessGirl",
+      "sport.chessLibrary",
+    ]),
     accent: "var(--red)",
   },
   {
@@ -145,7 +189,16 @@ export const galleryAlbums: GalleryAlbum[] = [
     title: { uz: "Laboratoriyalar", en: "Labs", ru: "Лаборатории" },
     note: { uz: "Tajriba va loyihalar", en: "Experiments and projects", ru: "Опыты и проекты" },
     cover: "classes.labKids",
-    photos: only(["classes.labKids", "classes.labPair", "classes.microscope", "classes.robot", "classes.lego", "classes.computers", "classes.physics", "classes.laptopGroup"]),
+    photos: only([
+      "classes.labKids",
+      "classes.labPair",
+      "classes.microscope",
+      "classes.robot",
+      "classes.lego",
+      "classes.computers",
+      "classes.physics",
+      "classes.laptopGroup",
+    ]),
     accent: "var(--green)",
   },
   {
@@ -153,7 +206,18 @@ export const galleryAlbums: GalleryAlbum[] = [
     title: { uz: "Madaniyat kuni", en: "Culture day", ru: "День культуры" },
     note: { uz: "Sahna, meros va anʼanalar", en: "Stage, heritage and traditions", ru: "Сцена, наследие и традиции" },
     cover: "events.culture",
-    photos: only(["events.culture", "events.choir", "events.drama", "events.theatre", "heritage.dome", "heritage.ceiling", "heritage.alley", "chinese.lanterns", "chinese.teaPour", "chinese.calligraphy"]),
+    photos: only([
+      "events.culture",
+      "events.choir",
+      "events.drama",
+      "events.theatre",
+      "heritage.dome",
+      "heritage.ceiling",
+      "heritage.alley",
+      "chinese.lanterns",
+      "chinese.teaPour",
+      "chinese.calligraphy",
+    ]),
     accent: "var(--orange)",
   },
 ];

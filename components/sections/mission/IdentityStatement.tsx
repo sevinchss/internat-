@@ -15,19 +15,40 @@ export function IdentityStatement({ locale }: { locale: string }) {
         <div className="frame relative overflow-hidden px-6 py-14 sm:px-12 sm:py-20 lg:px-20 lg:py-24">
           <svg
             viewBox="0 0 240 240"
-            className="pointer-events-none absolute -right-24 -top-24 w-[320px] opacity-90 sm:-right-20 sm:-top-28 sm:w-[440px] lg:w-[520px]"
+            className="pointer-events-none absolute -top-24 -right-24 w-[320px] opacity-90 sm:-top-28 sm:-right-20 sm:w-[440px] lg:w-[520px]"
             aria-hidden="true"
           >
             <path d={arcPath(120, 120, 104, RING_START, RING_END)} fill="none" stroke="var(--ring)" strokeWidth={0.8} />
-            <path d={arcPath(120, 120, 104, modern.from, modern.to)} fill="none" stroke={modern.color} strokeWidth={3} strokeLinecap="round" />
-            <path d={arcPath(120, 120, 104, identity.from, identity.to)} fill="none" stroke={identity.color} strokeWidth={3} strokeLinecap="round" />
-            <path d={arcPath(120, 120, 84, RING_START + 20, RING_END - 20)} fill="none" stroke="var(--line)" strokeWidth={0.8} />
+            <path
+              d={arcPath(120, 120, 104, modern.from, modern.to)}
+              fill="none"
+              stroke={modern.color}
+              strokeWidth={3}
+              strokeLinecap="round"
+            />
+            <path
+              d={arcPath(120, 120, 104, identity.from, identity.to)}
+              fill="none"
+              stroke={identity.color}
+              strokeWidth={3}
+              strokeLinecap="round"
+            />
+            <path
+              d={arcPath(120, 120, 84, RING_START + 20, RING_END - 20)}
+              fill="none"
+              stroke="var(--line)"
+              strokeWidth={0.8}
+            />
           </svg>
-          <h2 id="identity-title" className="relative flex items-center gap-3 text-[15px] text-ink-2" style={{ fontWeight: 500, letterSpacing: 0 }}>
-            <span className="h-px w-10 bg-orange" aria-hidden="true" />
+          <h2
+            id="identity-title"
+            className="text-ink-2 relative flex items-center gap-3 text-[15px]"
+            style={{ fontWeight: 500, letterSpacing: 0 }}
+          >
+            <span className="bg-orange h-px w-10" aria-hidden="true" />
             {pick(c.statementTitle, locale)}
           </h2>
-          <p className="relative mt-8 max-w-[34ch] text-[clamp(1.35rem,1.05rem+1.3vw,2.35rem)] font-light leading-[1.4] tracking-[-0.025em] text-ink">
+          <p className="text-ink relative mt-8 max-w-[34ch] text-[clamp(1.35rem,1.05rem+1.3vw,2.35rem)] leading-[1.4] font-light tracking-[-0.025em]">
             {pick(c.statement, locale)}
           </p>
         </div>

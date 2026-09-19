@@ -44,11 +44,17 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/biz-h
   const minutesLabel = `${item.readingMinutes} ${t("minutes")}`;
 
   const others = news.filter((n) => n.slug !== slug);
-  const related = [...others.filter((n) => n.category === item.category), ...others.filter((n) => n.category !== item.category)]
+  const related = [
+    ...others.filter((n) => n.category === item.category),
+    ...others.filter((n) => n.category !== item.category),
+  ]
     .slice(0, 3)
     .map((n) => toCard(n, locale));
 
-  const shareLabels = { telegram: pick(newsPage.shareTelegram, locale), facebook: pick(newsPage.shareFacebook, locale) };
+  const shareLabels = {
+    telegram: pick(newsPage.shareTelegram, locale),
+    facebook: pick(newsPage.shareFacebook, locale),
+  };
 
   return (
     <>
@@ -69,14 +75,14 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/biz-h
           <div className="sticky top-28 space-y-8">
             <dl className="space-y-4 text-[15px]">
               <div>
-                <dt className="text-sm font-semibold text-ink-3">{pick(newsPage.published, locale)}</dt>
-                <dd className="mt-1 text-ink">
+                <dt className="text-ink-3 text-sm font-semibold">{pick(newsPage.published, locale)}</dt>
+                <dd className="text-ink mt-1">
                   <time dateTime={item.date}>{formatDate(item.date, locale)}</time>
                 </dd>
               </div>
               <div>
-                <dt className="text-sm font-semibold text-ink-3">{pick(newsPage.category, locale)}</dt>
-                <dd className="mt-1 text-ink">{pick(newsCategories[item.category], locale)}</dd>
+                <dt className="text-ink-3 text-sm font-semibold">{pick(newsPage.category, locale)}</dt>
+                <dd className="text-ink mt-1">{pick(newsCategories[item.category], locale)}</dd>
               </div>
             </dl>
             <ShareBar url={url} title={title} labels={shareLabels} vertical />
@@ -88,11 +94,20 @@ export default async function ArticlePage({ params }: PageProps<"/[locale]/biz-h
             blocks={pick(item.body, locale)}
             insert={
               item.gallery?.length ? (
-                <ArticleGallery slots={item.gallery} heading={pick(newsPage.gallery, locale)} openLabel={pick(newsPage.openPhoto, locale)} />
+                <ArticleGallery
+                  slots={item.gallery}
+                  heading={pick(newsPage.gallery, locale)}
+                  openLabel={pick(newsPage.openPhoto, locale)}
+                />
               ) : null
             }
           />
-          <ShareBar url={url} title={title} labels={shareLabels} className="mt-14 border-t border-line pt-8 lg:hidden" />
+          <ShareBar
+            url={url}
+            title={title}
+            labels={shareLabels}
+            className="border-line mt-14 border-t pt-8 lg:hidden"
+          />
         </article>
       </ReadingProgress>
 

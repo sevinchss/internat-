@@ -46,13 +46,13 @@ export function Drawer({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 260, damping: 32 }}
-            className="absolute inset-y-0 right-0 flex w-full max-w-[560px] flex-col overflow-y-auto bg-surface shadow-[-24px_0_60px_-30px_rgb(var(--shadow)/0.5)] sm:rounded-l-[28px]"
+            className="bg-surface absolute inset-y-0 right-0 flex w-full max-w-[560px] flex-col overflow-y-auto shadow-[-24px_0_60px_-30px_rgb(var(--shadow)/0.5)] sm:rounded-l-[28px]"
           >
             <button
               type="button"
               onClick={onClose}
               aria-label={closeLabel}
-              className="sticky top-4 z-10 ml-auto mr-4 mt-4 grid size-11 shrink-0 place-items-center rounded-full border border-line bg-surface text-ink transition-colors hover:border-primary-ink"
+              className="border-line bg-surface text-ink hover:border-primary-ink sticky top-4 z-10 mt-4 mr-4 ml-auto grid size-11 shrink-0 place-items-center rounded-full border transition-colors"
             >
               <X className="size-5" aria-hidden="true" />
             </button>

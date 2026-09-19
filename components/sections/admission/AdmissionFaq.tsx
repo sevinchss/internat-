@@ -1,7 +1,15 @@
 import { Accordion, type AccordionItem } from "@/components/ui/Accordion";
 import { Link } from "@/i18n/navigation";
 
-export function AdmissionFaq({ title, items, contactPrompt }: { title: string; items: AccordionItem[]; contactPrompt: string }) {
+export function AdmissionFaq({
+  title,
+  items,
+  contactPrompt,
+}: {
+  title: string;
+  items: AccordionItem[];
+  contactPrompt: string;
+}) {
   return (
     <section aria-labelledby="faq-title" className="container-x py-20 lg:py-28">
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
@@ -12,7 +20,7 @@ export function AdmissionFaq({ title, items, contactPrompt }: { title: string; i
             </h2>
             <Link
               href="/boglanish"
-              className="mt-6 inline-flex min-h-11 items-center font-semibold text-primary-ink underline decoration-line decoration-2 underline-offset-[6px] hover:decoration-primary-ink"
+              className="text-primary-ink decoration-line hover:decoration-primary-ink mt-6 inline-flex min-h-11 items-center font-semibold underline decoration-2 underline-offset-[6px]"
             >
               {contactPrompt}
             </Link>

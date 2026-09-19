@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { montserrat, poppins } from "@/lib/fonts";
 import { SITE_URL, school } from "@/lib/site";
@@ -47,14 +47,17 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+  // Client components only use these namespaces — don't ship SEO/meta strings to the browser.
+  const all = await getMessages();
+  const clientMessages = { common: all.common, header: all.header, loader: all.loader, nav: all.nav };
 
   return (
     <html lang={locale} suppressHydrationWarning className={`${poppins.variable} ${montserrat.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: introScript }} />
       </head>
-      <body className="grain min-h-dvh overflow-x-clip">
-        <NextIntlClientProvider>
+      <body className="min-h-dvh overflow-x-clip">
+        <NextIntlClientProvider messages={clientMessages}>
           <Providers>
             <IntroLoader />
             <Ambient />

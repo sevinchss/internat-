@@ -21,15 +21,18 @@ export async function LatestNews() {
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <SectionLabel n="05">{pick(labels.news, locale)}</SectionLabel>
-          <h2 id="news-title" className="mt-6 text-display-l text-ink">
+          <h2 id="news-title" className="text-display-l text-ink mt-6">
             {pick(newsBlock.title, locale)}
           </h2>
         </div>
-        <Link href={base} className="group inline-flex min-h-11 items-center gap-3 text-[15px] font-medium text-ink">
+        <Link href={base} className="group text-ink inline-flex min-h-11 items-center gap-3 text-[15px] font-medium">
           <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-500 group-hover:bg-[length:100%_1px]">
             {t("allNews")}
           </span>
-          <span aria-hidden="true" className="grid size-10 place-items-center rounded-full border border-ink/15 transition-[transform,background-color,color,border-color] duration-500 group-hover:translate-x-1 group-hover:border-ink group-hover:bg-ink group-hover:text-paper">
+          <span
+            aria-hidden="true"
+            className="border-ink/15 group-hover:border-ink group-hover:bg-ink group-hover:text-paper grid size-10 place-items-center rounded-full border transition-[transform,background-color,color,border-color] duration-500 group-hover:translate-x-1"
+          >
             <ArrowRight className="size-4" strokeWidth={1.7} />
           </span>
         </Link>
@@ -40,42 +43,45 @@ export async function LatestNews() {
           <Photo
             slot={lead.image}
             sizes="(min-width: 1024px) 38vw, 100vw"
-            className="aspect-[4/5] rounded-b-[6px] rounded-t-full sm:aspect-[5/5] lg:aspect-[4/5]"
+            className="aspect-[4/5] rounded-t-full rounded-b-[6px] sm:aspect-[5/5] lg:aspect-[4/5]"
             imgClassName="transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
           />
-          <div className="mt-7 flex items-center gap-3 text-sm text-ink-3">
+          <div className="text-ink-3 mt-7 flex items-center gap-3 text-sm">
             <time dateTime={lead.date}>{formatDate(lead.date, locale)}</time>
-            <span aria-hidden="true" className="h-px w-5 bg-ink-3/40" />
+            <span aria-hidden="true" className="bg-ink-3/40 h-px w-5" />
             <span className="text-ink-2">{pick(newsCategories[lead.category], locale)}</span>
           </div>
-          <h3 className="mt-3 text-display-s text-ink">
+          <h3 className="text-display-s text-ink mt-3">
             <Link
               href={`${base}/${lead.slug}`}
-              className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 after:absolute after:inset-0 after:content-[''] group-hover:bg-[length:100%_1px]"
+              className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 group-hover:bg-[length:100%_1px] after:absolute after:inset-0 after:content-['']"
             >
               {pick(lead.title, locale)}
             </Link>
           </h3>
-          <p className="mt-3 max-w-[56ch] text-ink-2">{pick(lead.excerpt, locale)}</p>
+          <p className="text-ink-2 mt-3 max-w-[56ch]">{pick(lead.excerpt, locale)}</p>
         </article>
 
-        <ol className="self-start border-t border-line lg:col-span-6 lg:col-start-7 lg:mt-24">
+        <ol className="border-line self-start border-t lg:col-span-6 lg:col-start-7 lg:mt-24">
           {rest.map((n, i) => (
             <li key={n.slug}>
-              <article className="group relative grid grid-cols-[1fr_auto] items-center gap-5 border-b sm:grid-cols-[auto_1fr_auto] border-line py-7 sm:gap-8">
-                <span aria-hidden="true" className="hidden w-14 self-start text-[1.75rem] font-light sm:block leading-none tracking-[-0.04em] text-ink-3 tabular-nums sm:w-14 sm:text-[2.25rem]">
+              <article className="group border-line relative grid grid-cols-[1fr_auto] items-center gap-5 border-b py-7 sm:grid-cols-[auto_1fr_auto] sm:gap-8">
+                <span
+                  aria-hidden="true"
+                  className="text-ink-3 hidden w-14 self-start text-[1.75rem] leading-none font-light tracking-[-0.04em] tabular-nums sm:block sm:w-14 sm:text-[2.25rem]"
+                >
                   0{i + 2}
                 </span>
                 <div>
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-ink-3">
+                  <div className="text-ink-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px]">
                     <time dateTime={n.date}>{formatDate(n.date, locale)}</time>
-                    <span aria-hidden="true" className="h-px w-4 bg-ink-3/40" />
+                    <span aria-hidden="true" className="bg-ink-3/40 h-px w-4" />
                     <span className="text-ink-2">{pick(newsCategories[n.category], locale)}</span>
                   </div>
-                  <h3 className="mt-2 text-lg leading-snug text-ink">
+                  <h3 className="text-ink mt-2 text-lg leading-snug">
                     <Link
                       href={`${base}/${n.slug}`}
-                      className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 after:absolute after:inset-0 after:content-[''] group-hover:bg-[length:100%_1px]"
+                      className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 group-hover:bg-[length:100%_1px] after:absolute after:inset-0 after:content-['']"
                     >
                       {pick(n.title, locale)}
                     </Link>

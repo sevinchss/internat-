@@ -11,9 +11,17 @@ export const newsPage = {
   featured: { uz: "Asosiy xabar", en: "Top story", ru: "Главное" } satisfies L10n,
   filterLabel: { uz: "Rukn boʻyicha saralash", en: "Filter by category", ru: "Фильтр по рубрике" } satisfies L10n,
   searchLabel: { uz: "Yangiliklardan qidirish", en: "Search the news", ru: "Поиск по новостям" } satisfies L10n,
-  searchPlaceholder: { uz: "Masalan: laboratoriya", en: "For example: lab", ru: "Например: лаборатория" } satisfies L10n,
+  searchPlaceholder: {
+    uz: "Masalan: laboratoriya",
+    en: "For example: lab",
+    ru: "Например: лаборатория",
+  } satisfies L10n,
   clearSearch: { uz: "Qidiruvni tozalash", en: "Clear search", ru: "Очистить поиск" } satisfies L10n,
-  resetFilters: { uz: "Barcha yangiliklarni koʻrsatish", en: "Show all news", ru: "Показать все новости" } satisfies L10n,
+  resetFilters: {
+    uz: "Barcha yangiliklarni koʻrsatish",
+    en: "Show all news",
+    ru: "Показать все новости",
+  } satisfies L10n,
   /** {shown} / {total} are replaced in the component */
   count: {
     uz: "{total} ta yangilikdan {shown} tasi koʻrsatilmoqda",

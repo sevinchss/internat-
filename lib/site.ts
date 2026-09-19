@@ -37,7 +37,11 @@ export const school = {
     { id: "telegram", label: "Telegram", href: "https://t.me/piima_xorijiy_tillar" },
     { id: "instagram", label: "Instagram", href: "https://instagram.com/piima_xorijiy_tillar" },
     { id: "facebook", label: "Facebook", href: "https://www.facebook.com/profile.php?id=61593484417178" },
-    { id: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/company/xorijiy-tillarga-ixtisoslashtirilgan-maktab/" },
+    {
+      id: "linkedin",
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/company/xorijiy-tillarga-ixtisoslashtirilgan-maktab/",
+    },
   ] as const,
   links: {
     piima: "https://piima.uz",

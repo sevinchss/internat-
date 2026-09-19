@@ -58,11 +58,7 @@ export function Canteen() {
               ),
             }))}
           />
-          <TabPanel
-            idBase="dorm-menu"
-            id={current.id}
-            className="glass mt-6 rounded-[20px] p-5 sm:p-8"
-          >
+          <TabPanel idBase="dorm-menu" id={current.id} className="glass mt-6 rounded-[20px] p-5 sm:p-8">
             <p className="text-display-s text-ink font-semibold">{pick(current.long, locale)}</p>
             <AnimatePresence mode="wait" initial={false}>
               <motion.dl

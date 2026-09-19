@@ -9,16 +9,28 @@ import type { ImageSlot } from "@/lib/images";
 import { cn, pick } from "@/lib/utils";
 
 /** In-article photo set: first photo wide, the rest in a row; every tile opens the shared Lightbox. */
-export function ArticleGallery({ slots, heading, openLabel }: { slots: ImageSlot[]; heading: string; openLabel: string }) {
+export function ArticleGallery({
+  slots,
+  heading,
+  openLabel,
+}: {
+  slots: ImageSlot[];
+  heading: string;
+  openLabel: string;
+}) {
   const locale = useLocale();
   const [index, setIndex] = useState<number | null>(null);
-  const items: LightboxItem[] = slots.map((s) => ({ src: s.src, alt: pick(s.alt, locale), blurDataURL: s.blurDataURL }));
+  const items: LightboxItem[] = slots.map((s) => ({
+    src: s.src,
+    alt: pick(s.alt, locale),
+    blurDataURL: s.blurDataURL,
+  }));
 
   return (
     <figure className="not-prose my-12">
       <figcaption className="mb-4 flex items-baseline justify-between gap-4">
-        <span className="text-[15px] font-medium text-ink">{heading}</span>
-        <span className="text-sm tabular-nums text-ink-3">{slots.length}</span>
+        <span className="text-ink text-[15px] font-medium">{heading}</span>
+        <span className="text-ink-3 text-sm tabular-nums">{slots.length}</span>
       </figcaption>
       <ul className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
         {slots.map((s, i) => (
@@ -38,7 +50,7 @@ export function ArticleGallery({ slots, heading, openLabel }: { slots: ImageSlot
               />
               <span
                 aria-hidden="true"
-                className="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-[#07152b]/55 text-white opacity-100 backdrop-blur transition-opacity sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100"
+                className="absolute top-3 right-3 grid size-9 place-items-center rounded-full bg-[#07152b]/70 text-white opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100"
               >
                 <Expand className="size-4" strokeWidth={1.8} />
               </span>

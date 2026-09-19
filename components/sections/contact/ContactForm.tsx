@@ -119,16 +119,12 @@ export function ContactForm() {
   if (status === "success") {
     return (
       <div className="glass flex min-h-[420px] flex-col items-start justify-center rounded-[24px] p-8 sm:p-12">
-        <CircleCheck className="size-10 text-green dark:text-[#4cc59f]" strokeWidth={1.6} aria-hidden="true" />
-        <h2 ref={successRef} tabIndex={-1} className="mt-6 text-display-s outline-none">
+        <CircleCheck className="text-green size-10 dark:text-[#4cc59f]" strokeWidth={1.6} aria-hidden="true" />
+        <h2 ref={successRef} tabIndex={-1} className="text-display-s mt-6 outline-none">
           {L(f.successTitle)}
         </h2>
-        <p className="mt-3 max-w-[44ch] text-ink-2">{L(f.successText)}</p>
-        <button
-          type="button"
-          onClick={() => setStatus("idle")}
-          className={buttonClass("outline", "mt-8")}
-        >
+        <p className="text-ink-2 mt-3 max-w-[44ch]">{L(f.successText)}</p>
+        <button type="button" onClick={() => setStatus("idle")} className={buttonClass("outline", "mt-8")}>
           {L(f.again)}
         </button>
       </div>
@@ -157,30 +153,51 @@ export function ContactForm() {
       </p>
     ) : null;
   const label = (k: ContactField, children: React.ReactNode, optional?: boolean) => (
-    <label htmlFor={id(k)} className="mb-2 flex items-baseline gap-2 text-[15px] font-medium text-ink">
+    <label htmlFor={id(k)} className="text-ink mb-2 flex items-baseline gap-2 text-[15px] font-medium">
       {children}
-      {optional ? <span className="text-sm font-medium text-ink-3">({L(f.optional)})</span> : <span aria-hidden="true" className="text-ink-3">*</span>}
+      {optional ? (
+        <span className="text-ink-3 text-sm font-medium">({L(f.optional)})</span>
+      ) : (
+        <span aria-hidden="true" className="text-ink-3">
+          *
+        </span>
+      )}
     </label>
   );
 
   return (
-    <form noValidate onSubmit={onSubmit} aria-labelledby={id("title")} className="glass relative rounded-[24px] p-6 sm:p-10 lg:p-12">
+    <form
+      noValidate
+      onSubmit={onSubmit}
+      aria-labelledby={id("title")}
+      className="glass relative rounded-[24px] p-6 sm:p-10 lg:p-12"
+    >
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 id={id("title")} className="text-display-s">
           {L(f.title)}
         </h2>
-        <p className="text-sm text-ink-3">{L(f.required)}</p>
+        <p className="text-ink-3 text-sm">{L(f.required)}</p>
       </div>
 
       <div aria-live="assertive" className="empty:hidden">
         {submitted && hasErrors && (
-          <p className={cn("mt-6 flex items-start gap-2 border-l-2 border-current bg-current/[0.06] px-4 py-3 text-[15px] font-medium", errText)}>
+          <p
+            className={cn(
+              "mt-6 flex items-start gap-2 border-l-2 border-current bg-current/[0.06] px-4 py-3 text-[15px] font-medium",
+              errText,
+            )}
+          >
             <AlertCircle className="mt-0.5 size-[18px] shrink-0" strokeWidth={1.8} aria-hidden="true" />
             {L(f.errorSummary)}
           </p>
         )}
         {status === "error" && (
-          <p className={cn("mt-6 flex items-start gap-2 border-l-2 border-current bg-current/[0.06] px-4 py-3 text-[15px] font-medium", errText)}>
+          <p
+            className={cn(
+              "mt-6 flex items-start gap-2 border-l-2 border-current bg-current/[0.06] px-4 py-3 text-[15px] font-medium",
+              errText,
+            )}
+          >
             <AlertCircle className="mt-0.5 size-[18px] shrink-0" strokeWidth={1.8} aria-hidden="true" />
             {L(f.serverError)}
           </p>
@@ -223,7 +240,7 @@ export function ContactForm() {
             onChange={(e) => onPhoneChange(e.target.value)}
             className={cn(fieldProps("phone").className, "h-12 tabular-nums")}
           />
-          <p id={id("phone-hint")} className="mt-2 text-sm text-ink-3">
+          <p id={id("phone-hint")} className="text-ink-3 mt-2 text-sm">
             {L(f.phoneHint)}
           </p>
           {errorLine("phone")}
@@ -268,7 +285,11 @@ export function ContactForm() {
                 </option>
               ))}
             </select>
-            <ChevronDown className="pointer-events-none absolute top-1/2 right-4 size-5 -translate-y-1/2 text-ink-3" strokeWidth={1.8} aria-hidden="true" />
+            <ChevronDown
+              className="text-ink-3 pointer-events-none absolute top-1/2 right-4 size-5 -translate-y-1/2"
+              strokeWidth={1.8}
+              aria-hidden="true"
+            />
           </div>
           {errorLine("topic")}
         </div>
@@ -287,7 +308,7 @@ export function ContactForm() {
             onChange={(e) => set("message", e.target.value)}
             className={cn(fieldProps("message").className, "min-h-36 resize-y py-3 leading-relaxed")}
           />
-          <p id={id("message-hint")} className="mt-2 text-right text-sm tabular-nums text-ink-3">
+          <p id={id("message-hint")} className="text-ink-3 mt-2 text-right text-sm tabular-nums">
             {values.message.length} / {MAX_MESSAGE}
           </p>
           {errorLine("message")}
@@ -295,13 +316,21 @@ export function ContactForm() {
       </div>
 
       {/* Honeypot — invisible to people and assistive tech; bots that fill every field get silently dropped by the API. */}
-      <div aria-hidden="true" className="absolute -left-[10000px] top-auto size-px overflow-hidden">
+      <div aria-hidden="true" className="absolute top-auto -left-[10000px] size-px overflow-hidden">
         <label htmlFor={id("website")}>{L(f.honeypot)}</label>
-        <input id={id("website")} name={HONEYPOT_FIELD} type="text" tabIndex={-1} autoComplete="off" value={values.website} onChange={(e) => set("website", e.target.value)} />
+        <input
+          id={id("website")}
+          name={HONEYPOT_FIELD}
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={values.website}
+          onChange={(e) => set("website", e.target.value)}
+        />
       </div>
 
-      <div className="mt-10 flex flex-col gap-5 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-[40ch] text-sm text-ink-3">{L(f.privacy)}</p>
+      <div className="border-line mt-10 flex flex-col gap-5 border-t pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-ink-3 max-w-[40ch] text-sm">{L(f.privacy)}</p>
         <button
           type="submit"
           disabled={status === "submitting"}

@@ -28,8 +28,16 @@ export const admissionPage = {
     en: "News about the next admission round will be posted on this page and on the official portals.",
     ru: "Объявления о следующем приёме появятся на этой странице и на официальных порталах.",
   } satisfies L10n,
-  countdownTitle: { uz: "Keyingi qabul boshlanishiga", en: "Next admission round opens in", ru: "До начала следующего приёма" } satisfies L10n,
-  countdownOpen: { uz: "Qabul ochiq — ariza topshirishingiz mumkin", en: "Admissions are open — you can apply now", ru: "Приём открыт — можно подавать заявку" } satisfies L10n,
+  countdownTitle: {
+    uz: "Keyingi qabul boshlanishiga",
+    en: "Next admission round opens in",
+    ru: "До начала следующего приёма",
+  } satisfies L10n,
+  countdownOpen: {
+    uz: "Qabul ochiq — ariza topshirishingiz mumkin",
+    en: "Admissions are open — you can apply now",
+    ru: "Приём открыт — можно подавать заявку",
+  } satisfies L10n,
   units: {
     days: { uz: "kun", en: "days", ru: "дн." },
     hours: { uz: "soat", en: "hours", ru: "ч" },
@@ -102,9 +110,17 @@ export const admissionPage = {
     english: { uz: "Ingliz tili", en: "English", ru: "Английский язык" },
   } satisfies Record<string, L10n>,
   sections: {
-    critical: { uz: "Tanqidiy fikrlash (Critical Thinking)", en: "Critical Thinking", ru: "Критическое мышление (Critical Thinking)" },
+    critical: {
+      uz: "Tanqidiy fikrlash (Critical Thinking)",
+      en: "Critical Thinking",
+      ru: "Критическое мышление (Critical Thinking)",
+    },
     problem: { uz: "Masala yechish (Problem Solving)", en: "Problem Solving", ru: "Решение задач (Problem Solving)" },
-    readingGrammar: { uz: "Oʻqib tushunish va grammatika (Reading + Grammar)", en: "Reading + Grammar", ru: "Чтение и грамматика (Reading + Grammar)" },
+    readingGrammar: {
+      uz: "Oʻqib tushunish va grammatika (Reading + Grammar)",
+      en: "Reading + Grammar",
+      ru: "Чтение и грамматика (Reading + Grammar)",
+    },
   } satisfies Record<string, L10n>,
   examNote: {
     uz: "Ingliz tili boʻlimlari orasidagi savollar taqsimoti rasmiy portallarda eʼlon qilinadi.",
@@ -112,7 +128,11 @@ export const admissionPage = {
     ru: "Распределение заданий по английскому между чтением и грамматикой объявляется на официальных порталах.",
   } satisfies L10n,
 
-  gradesTitle: { uz: "Qaysi sinflarga qabul qilinadi", en: "Which grades we admit", ru: "В какие классы принимаем" } satisfies L10n,
+  gradesTitle: {
+    uz: "Qaysi sinflarga qabul qilinadi",
+    en: "Which grades we admit",
+    ru: "В какие классы принимаем",
+  } satisfies L10n,
   gradeWord: { uz: "sinf", en: "Grade", ru: "класс" } satisfies L10n,
   gradesNote: {
     uz: "Qabul 5, 6 va 7-sinflarga eʼlon qilingan. Keyingi yillarda qaysi sinflarga qabul boʻlishi rasmiy eʼlonda koʻrsatiladi.",
@@ -128,17 +148,37 @@ export const admissionPage = {
   } satisfies L10n,
   // TODO: replace with real data (confirm the list against the official admission regulation)
   docs: [
-    { uz: "Oʻquvchining tugʻilganlik haqidagi guvohnomasi", en: "The student’s birth certificate", ru: "Свидетельство о рождении ученика" },
-    { uz: "Ota-ona (qonuniy vakil) pasporti yoki ID-kartasi", en: "Parent’s (legal guardian’s) passport or ID card", ru: "Паспорт или ID-карта родителя (законного представителя)" },
-    { uz: "Joriy oʻquv yili uchun maktabdan maʼlumotnoma", en: "A certificate from the current school", ru: "Справка из текущей школы" },
+    {
+      uz: "Oʻquvchining tugʻilganlik haqidagi guvohnomasi",
+      en: "The student’s birth certificate",
+      ru: "Свидетельство о рождении ученика",
+    },
+    {
+      uz: "Ota-ona (qonuniy vakil) pasporti yoki ID-kartasi",
+      en: "Parent’s (legal guardian’s) passport or ID card",
+      ru: "Паспорт или ID-карта родителя (законного представителя)",
+    },
+    {
+      uz: "Joriy oʻquv yili uchun maktabdan maʼlumotnoma",
+      en: "A certificate from the current school",
+      ru: "Справка из текущей школы",
+    },
     { uz: "Oʻquvchining 3×4 oʻlchamdagi fotosurati", en: "A 3×4 photo of the student", ru: "Фотография ученика 3×4" },
-    { uz: "Tibbiy maʼlumotnoma (qabul qilingandan soʻng)", en: "A medical certificate (after admission)", ru: "Медицинская справка (после зачисления)" },
+    {
+      uz: "Tibbiy maʼlumotnoma (qabul qilingandan soʻng)",
+      en: "A medical certificate (after admission)",
+      ru: "Медицинская справка (после зачисления)",
+    },
   ] satisfies L10n[],
 
   faqTitle: { uz: "Koʻp soʻraladigan savollar", en: "Frequently asked questions", ru: "Частые вопросы" } satisfies L10n,
   faq: [
     {
-      q: { uz: "Keyingi qabul qachon boshlanadi?", en: "When does the next admission round open?", ru: "Когда начнётся следующий приём?" },
+      q: {
+        uz: "Keyingi qabul qachon boshlanadi?",
+        en: "When does the next admission round open?",
+        ru: "Когда начнётся следующий приём?",
+      },
       a: {
         uz: "Sanalar Ixtisoslashtirilgan taʼlim muassasalari agentligi tomonidan eʼlon qilinadi. Eʼlon chiqishi bilan u shu sahifada va ariza.piima.uz portalida paydo boʻladi.",
         en: "The dates are set by the Agency of Specialized Educational Institutions. As soon as they are announced, they will appear here and on ariza.piima.uz.",
@@ -154,7 +194,11 @@ export const admissionPage = {
       },
     },
     {
-      q: { uz: "Qaysi sinflarga qabul qilinadi?", en: "Which grades can apply?", ru: "В какие классы проводится приём?" },
+      q: {
+        uz: "Qaysi sinflarga qabul qilinadi?",
+        en: "Which grades can apply?",
+        ru: "В какие классы проводится приём?",
+      },
       a: {
         uz: "2026-yilda qabul 5, 6 va 7-sinflarga oʻtkazildi. Keyingi qabulda qaysi sinflar boʻlishi rasmiy eʼlonda koʻrsatiladi.",
         en: "In 2026 the school admitted students to Grades 5, 6 and 7. The grades for the next round will be listed in the official announcement.",
@@ -162,7 +206,11 @@ export const admissionPage = {
       },
     },
     {
-      q: { uz: "Imtihon qanday fanlardan iborat?", en: "What does the exam cover?", ru: "Из каких предметов состоит экзамен?" },
+      q: {
+        uz: "Imtihon qanday fanlardan iborat?",
+        en: "What does the exam cover?",
+        ru: "Из каких предметов состоит экзамен?",
+      },
       a: {
         uz: "Matematika (16 ta tanqidiy fikrlash va 24 ta masala yechish savoli, jami 40) va ingliz tili (oʻqib tushunish va grammatika, jami 40). Imtihon bir bosqichda oʻtadi.",
         en: "Mathematics (16 Critical Thinking and 24 Problem Solving questions, 40 in total) and English (Reading and Grammar, 40 in total). It is a one-stage exam.",
@@ -178,7 +226,11 @@ export const admissionPage = {
       },
     },
     {
-      q: { uz: "Imtihonga qanday tayyorlanish mumkin?", en: "How can my child prepare?", ru: "Как подготовиться к экзамену?" },
+      q: {
+        uz: "Imtihonga qanday tayyorlanish mumkin?",
+        en: "How can my child prepare?",
+        ru: "Как подготовиться к экзамену?",
+      },
       a: {
         uz: "Rasmiy tayyorgarlik materiallari chiqsa, ular rasmiy portallarda eʼlon qilinadi. Umumiy maslahat — mantiqiy masalalar yechish va ingliz tilida muntazam oʻqish: maktabda STEM fanlari ingliz tilida oʻqitiladi.",
         en: "If official preparation materials are released, they will be published on the official portals. In general, logic problems and regular reading in English help — at the school, STEM subjects are taught in English.",
@@ -186,7 +238,11 @@ export const admissionPage = {
       },
     },
     {
-      q: { uz: "Natijalarni qayerdan bilsa boʻladi?", en: "Where are results published?", ru: "Где узнать результаты?" },
+      q: {
+        uz: "Natijalarni qayerdan bilsa boʻladi?",
+        en: "Where are results published?",
+        ru: "Где узнать результаты?",
+      },
       a: {
         uz: "Natijalar rasmiy portallar — ariza.piima.uz va my.gov.uz orqali eʼlon qilinadi.",
         en: "Results are announced on the official portals, ariza.piima.uz and my.gov.uz.",
@@ -194,7 +250,11 @@ export const admissionPage = {
       },
     },
     {
-      q: { uz: "Oʻqish va yotoqxona pullikmi?", en: "Are tuition and boarding paid?", ru: "Обучение и проживание платные?" },
+      q: {
+        uz: "Oʻqish va yotoqxona pullikmi?",
+        en: "Are tuition and boarding paid?",
+        ru: "Обучение и проживание платные?",
+      },
       a: {
         uz: "Moliyaviy shartlar rasmiy qabul nizomida belgilanadi. Aniq maʼlumot keyingi qabul eʼloni bilan birga rasmiy portallarda eʼlon qilinadi.",
         en: "Financial terms are set by the official admission regulation. Exact details will be published on the official portals together with the next announcement.",
@@ -202,7 +262,11 @@ export const admissionPage = {
       },
     },
     {
-      q: { uz: "Oʻquv yili oʻrtasida qabul boʻladimi?", en: "Is there admission during the school year?", ru: "Бывает ли приём в середине учебного года?" },
+      q: {
+        uz: "Oʻquv yili oʻrtasida qabul boʻladimi?",
+        en: "Is there admission during the school year?",
+        ru: "Бывает ли приём в середине учебного года?",
+      },
       a: {
         uz: "Hozircha qabul faqat rasmiy eʼlon qilingan muddatda oʻtkaziladi. Boshqa imkoniyatlar paydo boʻlsa, ular rasmiy portallarda eʼlon qilinadi.",
         en: "At the moment admission only takes place in the officially announced window. Any other options would be announced on the official portals.",
@@ -226,8 +290,16 @@ export const admissionPage = {
     {
       href: "https://my.gov.uz",
       label: "my.gov.uz",
-      text: { uz: "Yagona interaktiv davlat xizmatlari portali", en: "The single portal of public services", ru: "Единый портал интерактивных госуслуг" },
+      text: {
+        uz: "Yagona interaktiv davlat xizmatlari portali",
+        en: "The single portal of public services",
+        ru: "Единый портал интерактивных госуслуг",
+      },
     },
   ] satisfies { href: string; label: string; text: L10n }[],
-  contactPrompt: { uz: "Savolingiz qoldimi? Bizga yozing", en: "Still have a question? Write to us", ru: "Остались вопросы? Напишите нам" } satisfies L10n,
+  contactPrompt: {
+    uz: "Savolingiz qoldimi? Bizga yozing",
+    en: "Still have a question? Write to us",
+    ru: "Остались вопросы? Напишите нам",
+  } satisfies L10n,
 };

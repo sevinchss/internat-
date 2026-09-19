@@ -38,7 +38,13 @@ export function HeroStrip({ slots }: { slots: ImageSlot[] }) {
               animate={{ scale: 1 }}
               transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 + i * 0.09 }}
             >
-              <Photo slot={slot} sizes="(min-width: 1024px) 420px, 40vw" decorative priority={i < 3} className="size-full" />
+              <Photo
+                slot={slot}
+                sizes="(min-width: 1024px) 420px, 40vw"
+                decorative
+                priority={i < 3}
+                className="size-full"
+              />
             </motion.div>
           </motion.div>
         );

@@ -15,7 +15,11 @@ export function useDialog(open: boolean, ref: RefObject<HTMLElement | null>, onC
     html.style.overflow = "hidden";
 
     const focusables = () =>
-      Array.from(ref.current?.querySelectorAll<HTMLElement>('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])') ?? []);
+      Array.from(
+        ref.current?.querySelectorAll<HTMLElement>(
+          'a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])',
+        ) ?? [],
+      );
     requestAnimationFrame(() => (focusables()[0] ?? ref.current)?.focus());
 
     const onKey = (e: KeyboardEvent) => {

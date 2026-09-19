@@ -81,7 +81,10 @@ export function NewsBrowser({
     setVisible((v) => v + PAGE);
   };
 
-  const chips: { id: NewsCategory | "all"; label: string; color?: string }[] = [{ id: "all", label: t("all") }, ...categories];
+  const chips: { id: NewsCategory | "all"; label: string; color?: string }[] = [
+    { id: "all", label: t("all") },
+    ...categories,
+  ];
 
   return (
     <section aria-labelledby={headingId} className="container-x pb-24 lg:pb-32">
@@ -90,7 +93,11 @@ export function NewsBrowser({
           <h2 id={headingId} className="text-display-m">
             {labels.heading}
           </h2>
-          <div role="group" aria-label={labels.filter} className="no-scrollbar -mx-4 mt-6 flex gap-6 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:gap-x-8 sm:px-0">
+          <div
+            role="group"
+            aria-label={labels.filter}
+            className="no-scrollbar -mx-4 mt-6 flex gap-6 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:gap-x-8 sm:px-0"
+          >
             {chips.map((c) => {
               const active = cat === c.id;
               return (
@@ -120,10 +127,14 @@ export function NewsBrowser({
         </div>
 
         <div role="search" className="relative w-full lg:max-w-sm">
-          <label htmlFor={searchId} className="mb-2 block text-sm font-semibold text-ink-2">
+          <label htmlFor={searchId} className="text-ink-2 mb-2 block text-sm font-semibold">
             {labels.search}
           </label>
-          <Search aria-hidden="true" className="pointer-events-none absolute bottom-3.5 left-0 size-5 text-ink-3" strokeWidth={1.6} />
+          <Search
+            aria-hidden="true"
+            className="text-ink-3 pointer-events-none absolute bottom-3.5 left-0 size-5"
+            strokeWidth={1.6}
+          />
           <input
             id={searchId}
             type="search"
@@ -131,14 +142,14 @@ export function NewsBrowser({
             onChange={(e) => update({ query: e.target.value })}
             placeholder={labels.searchPlaceholder}
             autoComplete="off"
-            className="h-12 w-full rounded-none border-0 border-b border-line bg-transparent pl-8 pr-12 text-ink transition-colors placeholder:text-ink-3 hover:border-ink-3 focus:border-primary-ink focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-ink [&::-webkit-search-cancel-button]:hidden"
+            className="border-line text-ink placeholder:text-ink-3 hover:border-ink-3 focus:border-primary-ink focus-visible:outline-primary-ink h-12 w-full rounded-none border-0 border-b bg-transparent pr-12 pl-8 transition-colors focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-4 [&::-webkit-search-cancel-button]:hidden"
           />
           {query && (
             <button
               type="button"
               onClick={() => update({ query: "" })}
               aria-label={labels.clear}
-              className="absolute bottom-0.5 right-0 grid size-11 place-items-center rounded-full text-ink-3 hover:text-ink"
+              className="text-ink-3 hover:text-ink absolute right-0 bottom-0.5 grid size-11 place-items-center rounded-full"
             >
               <X className="size-4" aria-hidden="true" />
             </button>
@@ -146,41 +157,46 @@ export function NewsBrowser({
         </div>
       </div>
 
-      <p aria-live="polite" className="mt-10 text-sm text-ink-3">
+      <p aria-live="polite" className="text-ink-3 mt-10 text-sm">
         {labels.count.replace("{shown}", String(shown.length)).replace("{total}", String(results.length))}
       </p>
 
       {results.length === 0 ? (
         <div className="frame mt-8 flex flex-col items-start gap-5 px-6 py-12 sm:flex-row sm:items-center sm:px-10">
-          <svg viewBox="0 0 64 64" aria-hidden="true" className="size-16 shrink-0 text-ring">
+          <svg viewBox="0 0 64 64" aria-hidden="true" className="text-ring size-16 shrink-0">
             {/* the ring with a missing segment */}
             <path d={arcPath(32, 32, 26, RING_START, 180)} fill="none" stroke="currentColor" strokeWidth="2" />
             <path d={arcPath(32, 32, 26, 214, RING_END)} fill="none" stroke="currentColor" strokeWidth="2" />
           </svg>
           <div>
-            <p className="text-lg text-ink">{t("noResults")}</p>
+            <p className="text-ink text-lg">{t("noResults")}</p>
             <button
               type="button"
               onClick={() => update({ cat: "all", query: "" })}
-              className="mt-3 min-h-11 font-semibold text-primary-ink underline decoration-line decoration-2 underline-offset-[6px] hover:decoration-primary-ink"
+              className="text-primary-ink decoration-line hover:decoration-primary-ink mt-3 min-h-11 font-semibold underline decoration-2 underline-offset-[6px]"
             >
               {labels.reset}
             </button>
           </div>
         </div>
       ) : (
-        <ol className="mt-4 border-t border-line">
+        <ol className="border-line mt-4 border-t">
           {shown.map((n, i) => (
-            <li key={n.slug} className="group relative grid grid-cols-[1fr_96px] gap-5 border-b border-line py-7 sm:grid-cols-[1fr_200px] sm:gap-8 lg:grid-cols-[112px_1fr_300px] lg:gap-10 lg:py-9">
+            <li
+              key={n.slug}
+              className="group border-line relative grid grid-cols-[1fr_96px] gap-5 border-b py-7 sm:grid-cols-[1fr_200px] sm:gap-8 lg:grid-cols-[112px_1fr_300px] lg:gap-10 lg:py-9"
+            >
               <p className="hidden lg:block" aria-hidden="true">
-                <span className="block text-[3.5rem] font-light leading-none tracking-[-0.05em] text-ink tabular-nums">{n.day}</span>
-                <span className="mt-2 block text-sm text-ink-3">
+                <span className="text-ink block text-[3.5rem] leading-none font-light tracking-[-0.05em] tabular-nums">
+                  {n.day}
+                </span>
+                <span className="text-ink-3 mt-2 block text-sm">
                   {n.month} {n.year}
                 </span>
               </p>
               <div className="min-w-0">
-                <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-3">
-                  <span className="inline-flex items-center gap-2 font-medium text-ink-2">
+                <p className="text-ink-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+                  <span className="text-ink-2 inline-flex items-center gap-2 font-medium">
                     <span aria-hidden="true" className="size-1.5 rounded-full" style={{ background: n.color }} />
                     {n.categoryLabel}
                   </span>
@@ -191,18 +207,18 @@ export function NewsBrowser({
                     {n.minutes} {t("minutes")}
                   </span>
                 </p>
-                <h3 className="mt-3 text-lg leading-snug sm:text-display-s">
+                <h3 className="sm:text-display-s mt-3 text-lg leading-snug">
                   <Link
                     href={n.href}
                     ref={(el) => {
                       linkRefs.current[i] = el;
                     }}
-                    className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 ease-out after:absolute after:inset-0 after:content-[''] group-hover:bg-[length:100%_1px] motion-reduce:transition-none"
+                    className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 ease-out group-hover:bg-[length:100%_1px] after:absolute after:inset-0 after:content-[''] motion-reduce:transition-none"
                   >
                     {n.title}
                   </Link>
                 </h3>
-                <p className="mt-3 line-clamp-2 max-w-[62ch] text-ink-2 max-sm:hidden">{n.excerpt}</p>
+                <p className="text-ink-2 mt-3 line-clamp-2 max-w-[62ch] max-sm:hidden">{n.excerpt}</p>
               </div>
               <Photo
                 slot={n.image}
@@ -221,7 +237,7 @@ export function NewsBrowser({
           <button
             type="button"
             onClick={loadMore}
-            className="inline-flex min-h-12 items-center gap-3 rounded-full border border-line px-7 text-[15px] font-semibold text-ink transition-colors hover:border-ink"
+            className="border-line text-ink hover:border-ink inline-flex min-h-12 items-center gap-3 rounded-full border px-7 text-[15px] font-semibold transition-colors"
           >
             {t("loadMore")}
             <span className="text-ink-3">+{Math.min(PAGE, results.length - visible)}</span>

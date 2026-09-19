@@ -48,7 +48,12 @@ export default async function ContactPage({ params }: PageProps<"/[locale]/bogla
         </div>
       </section>
 
-      <ContactMap title={pick(c.mapTitle, locale)} openLabel={pick(c.mapOpen, locale)} newTab={t("opensInNewTab")} address={pick(school.address, locale)} />
+      <ContactMap
+        title={pick(c.mapTitle, locale)}
+        openLabel={pick(c.mapOpen, locale)}
+        newTab={t("opensInNewTab")}
+        address={pick(school.address, locale)}
+      />
     </>
   );
 }

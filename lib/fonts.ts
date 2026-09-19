@@ -4,8 +4,9 @@ import { Montserrat, Poppins } from "next/font/google";
 // Poppins has no Cyrillic, so Montserrat — a close geometric sans — is loaded as its
 // Cyrillic companion; the browser picks it per glyph for Russian text.
 export const poppins = Poppins({
-  subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "500", "600", "700"],
+  // Google's "latin" subset already contains the Uzbek modifier letters ʻ (U+02BB) and ʼ (U+02BC)
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
   variable: "--font-poppins",
   display: "swap",
   // No auto-generated Arial fallback in the stack: it contains Cyrillic and would win over Montserrat for Russian.
@@ -14,8 +15,10 @@ export const poppins = Poppins({
 });
 
 export const montserrat = Montserrat({
-  subsets: ["cyrillic", "cyrillic-ext"],
-  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["cyrillic"],
+  weight: ["300", "400", "500", "600"],
   variable: "--font-montserrat",
   display: "swap",
+  // only Russian pages need it; the browser fetches it on first Cyrillic glyph instead of on every page
+  preload: false,
 });

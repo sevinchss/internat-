@@ -79,7 +79,11 @@ export default async function AdmissionPage({ params }: PageProps<"/[locale]/qab
 
       <DocumentsList title={p(a.docsTitle)} badge={p(a.docsBadge)} items={a.docs.map((d) => p(d))} />
 
-      <AdmissionFaq title={p(a.faqTitle)} contactPrompt={p(a.contactPrompt)} items={a.faq.map((f) => ({ q: p(f.q), a: p(f.a) }))} />
+      <AdmissionFaq
+        title={p(a.faqTitle)}
+        contactPrompt={p(a.contactPrompt)}
+        items={a.faq.map((f) => ({ q: p(f.q), a: p(f.a) }))}
+      />
 
       <PortalLinks
         title={p(a.portalsTitle)}

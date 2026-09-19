@@ -10,7 +10,11 @@ import { cn } from "@/lib/utils";
 const noop = () => () => {};
 /** true only after hydration (avoids theme-dependent markup mismatch) */
 export function useMounted() {
-  return useSyncExternalStore(noop, () => true, () => false);
+  return useSyncExternalStore(
+    noop,
+    () => true,
+    () => false,
+  );
 }
 
 /** Animated sun ↔ moon (one SVG: the moon is a sun with a bite taken out and its rays tucked in). */
@@ -27,14 +31,20 @@ export function ThemeToggle({ className }: { className?: string }) {
       aria-label={t("toggleTheme")}
       aria-pressed={mounted ? dark : undefined}
       className={cn(
-        "group relative grid size-10 place-items-center rounded-full text-ink transition-colors hover:bg-surface-2 active:scale-95",
+        "group text-ink hover:bg-surface-2 relative grid size-10 place-items-center rounded-full transition-colors active:scale-95",
         className,
       )}
     >
       <svg viewBox="0 0 24 24" className="size-[20px]" aria-hidden="true">
         <mask id="theme-bite">
           <rect width="24" height="24" fill="white" />
-          <motion.circle initial={false} animate={{ cx: dark ? 16.5 : 30, cy: dark ? 7 : 0 }} r="7" fill="black" transition={{ type: "spring", stiffness: 180, damping: 22 }} />
+          <motion.circle
+            initial={false}
+            animate={{ cx: dark ? 16.5 : 30, cy: dark ? 7 : 0 }}
+            r="7"
+            fill="black"
+            transition={{ type: "spring", stiffness: 180, damping: 22 }}
+          />
         </mask>
         <motion.circle
           cx="12"
@@ -74,7 +84,7 @@ export function ThemeSegmented() {
     { id: "system", label: t("themeSystem"), Icon: Monitor },
   ];
   return (
-    <div role="radiogroup" aria-label={t("theme")} className="flex rounded-full border border-line p-1">
+    <div role="radiogroup" aria-label={t("theme")} className="border-line flex rounded-full border p-1">
       {options.map(({ id, label, Icon }) => {
         const active = mounted && theme === id;
         return (

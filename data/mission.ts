@@ -11,9 +11,27 @@ export const missionCopy = {
   title: { uz: "Maqsad va vazifalar", en: "Mission and goals", ru: "Миссия и задачи" } satisfies L10n,
   /** Mission statement, pre-broken into display lines (each line reveals once) */
   mission: {
-    uz: ["Iqtidorli bolalarga", "dunyo bilan uning tilida", "gaplasha oladigan, ammo", "ildizini unutmaydigan inson", "boʻlib ulgʻayishga koʻmaklashish."],
-    en: ["To help gifted children", "grow into people who can", "speak with the world", "in its own languages", "and never lose their roots."],
-    ru: ["Помогать одарённым детям", "вырасти людьми, которые", "говорят с миром на его", "языках и никогда", "не забывают своих корней."],
+    uz: [
+      "Iqtidorli bolalarga",
+      "dunyo bilan uning tilida",
+      "gaplasha oladigan, ammo",
+      "ildizini unutmaydigan inson",
+      "boʻlib ulgʻayishga koʻmaklashish.",
+    ],
+    en: [
+      "To help gifted children",
+      "grow into people who can",
+      "speak with the world",
+      "in its own languages",
+      "and never lose their roots.",
+    ],
+    ru: [
+      "Помогать одарённым детям",
+      "вырасти людьми, которые",
+      "говорят с миром на его",
+      "языках и никогда",
+      "не забывают своих корней.",
+    ],
   } satisfies L10n<string[]>,
   missionNote: {
     uz: "Toshkentdagi, Ixtisoslashtirilgan taʼlim muassasalari agentligi tizimidagi maktab-internat sifatida biz 2026/2027 oʻquv yilidan boshlab xorijiy tillarni egallagan, zamonaviy fan va texnologiyalar bilan ishlay oladigan va mustaqil fikrlaydigan yoshlar uchun mustahkam oʻquv muhitini yaratmoqdamiz.",
@@ -34,7 +52,11 @@ export const missionCopy = {
     en: "Things that never appear on the timetable, yet shape every day.",
     ru: "То, чего нет в расписании, но что чувствуется каждый день.",
   } satisfies L10n,
-  statementTitle: { uz: "Zamonaviy taʼlim va milliy oʻzlik", en: "Modern education and national identity", ru: "Современное образование и национальная идентичность" } satisfies L10n,
+  statementTitle: {
+    uz: "Zamonaviy taʼlim va milliy oʻzlik",
+    en: "Modern education and national identity",
+    ru: "Современное образование и национальная идентичность",
+  } satisfies L10n,
   statement: {
     uz: "Bizningcha, zamonaviy taʼlim va milliy oʻzlik bir-biriga zid emas. Laboratoriyada tajriba oʻtkazayotgan, ingliz va xitoy tillarida bahslasha oladigan bola Navoiyni ham oʻqiydi, oʻz yurtining tarixini ham biladi. Chet tilni puxta bilish oʻz tilingni unutish degani emas — aksincha, oʻzligini biladigan odam dunyoga ishonch bilan chiqadi.",
     en: "We don't see modern education and national identity as a trade-off. A child who runs experiments in the lab and can argue a point in English or Chinese also reads Navoi and knows the history of their own country. Mastering another language does not mean losing your own — people who know who they are step into the wider world with more confidence, not less.",
@@ -47,7 +69,11 @@ export type Goal = { title: L10n; text: L10n; points: L10n<string[]> };
 /** Six goals — index i lights RING_SEGMENTS[i] (red, green, amber, orange, purple, navy). */
 export const goals: Goal[] = [
   {
-    title: { uz: "Ikki xorijiy tilni puxta egallash", en: "Real command of two foreign languages", ru: "Свободное владение двумя иностранными языками" },
+    title: {
+      uz: "Ikki xorijiy tilni puxta egallash",
+      en: "Real command of two foreign languages",
+      ru: "Свободное владение двумя иностранными языками",
+    },
     text: {
       uz: "STEM fanlari ingliz tilida oʻqitiladi, xitoy tili esa chuqurlashtirilgan dastur asosida oʻrganiladi. Maqsad — oʻquvchilar ikkala tilda erkin oʻqish, yozish va fikrini himoya qilishni oʻrganishi.",
       en: "STEM subjects are taught in English, and Chinese is studied in depth. The aim is for students to read, write and defend their ideas freely in both languages.",
@@ -60,7 +86,11 @@ export const goals: Goal[] = [
     },
   },
   {
-    title: { uz: "Aniq fanlarni chuqur oʻrganish va tadqiqot", en: "Depth in science and a habit of research", ru: "Глубокие знания в точных науках и навык исследования" },
+    title: {
+      uz: "Aniq fanlarni chuqur oʻrganish va tadqiqot",
+      en: "Depth in science and a habit of research",
+      ru: "Глубокие знания в точных науках и навык исследования",
+    },
     text: {
       uz: "Matematika, fizika, kimyo, biologiya va informatikani chuqur oʻqitish, tajriba va mustaqil tadqiqot orqali savol qoʻyish va unga javob izlash koʻnikmasini shakllantirish. Fan faqat sinfda oʻrganilmaydi: tabiat ham sinfxona, bilim real sharoitda kuzatiladi va sinab koʻriladi.",
       en: "Teaching mathematics, physics, chemistry, biology and computer science in depth, and building — through experiments and independent research — the habit of asking questions and finding answers. Science doesn't stop at the classroom door: nature is a classroom too, where knowledge is observed and tested in real settings.",
@@ -73,7 +103,11 @@ export const goals: Goal[] = [
     },
   },
   {
-    title: { uz: "Xalqaro darajada oʻqishga tayyorlash", en: "Readiness for study at international level", ru: "Подготовка к учёбе международного уровня" },
+    title: {
+      uz: "Xalqaro darajada oʻqishga tayyorlash",
+      en: "Readiness for study at international level",
+      ru: "Подготовка к учёбе международного уровня",
+    },
     text: {
       uz: "Bitiruvchilarimiz dunyoning yetakchi universitetlarida oʻqishni davom ettirishga bilim, til va mustaqil ishlash koʻnikmasi jihatidan tayyor boʻlishini maqsad qilamiz.",
       en: "We want our graduates to be ready — in knowledge, language and independent study skills — to continue their education at leading universities anywhere in the world.",
@@ -86,7 +120,11 @@ export const goals: Goal[] = [
     },
   },
   {
-    title: { uz: "Milliy oʻzlikni mustahkamlash", en: "A strong sense of national identity", ru: "Укрепление национальной идентичности" },
+    title: {
+      uz: "Milliy oʻzlikni mustahkamlash",
+      en: "A strong sense of national identity",
+      ru: "Укрепление национальной идентичности",
+    },
     text: {
       uz: "Ona tili, Oʻzbekiston tarixi, adabiyot va madaniyatga oʻquv rejasining katta qismini ajratib, oʻz ildizlarini biladigan va qadrlaydigan yoshlarni tarbiyalash. Xorijiy tillarga qiziqish ona tiliga hurmat bilan birga boʻlishi kerak.",
       en: "Giving a large part of the curriculum to the native language, the history of Uzbekistan, literature and culture, so that students know and value their roots. Interest in foreign languages should go together with respect for the mother tongue.",
@@ -99,7 +137,11 @@ export const goals: Goal[] = [
     },
   },
   {
-    title: { uz: "Mustaqil fikrlash va yetakchilik", en: "Independent thinking and leadership", ru: "Самостоятельное мышление и лидерство" },
+    title: {
+      uz: "Mustaqil fikrlash va yetakchilik",
+      en: "Independent thinking and leadership",
+      ru: "Самостоятельное мышление и лидерство",
+    },
     text: {
       uz: "Darslar va internat hayoti orqali mustaqil fikrlash, oʻz vaqtini boshqarish, jamoada ishlash va yetakchilik koʻnikmalarini, shuningdek masʼuliyat va bir-biriga gʻamxoʻrlik qilishni shakllantirish.",
       en: "Using lessons and boarding life to build independent thinking, time management, teamwork and leadership, along with responsibility and looking out for one another.",
@@ -112,7 +154,11 @@ export const goals: Goal[] = [
     },
   },
   {
-    title: { uz: "Har bir bolaning qiziqishini qoʻllab-quvvatlash", en: "Supporting each child's interests", ru: "Поддержка интересов каждого ребёнка" },
+    title: {
+      uz: "Har bir bolaning qiziqishini qoʻllab-quvvatlash",
+      en: "Supporting each child's interests",
+      ru: "Поддержка интересов каждого ребёнка",
+    },
     text: {
       uz: "Reggio pedagogikasi («bolalarning yuz tili») tamoyillariga tayanib, mustaqillik, ijodiy fikrlash va oʻziga ishonchni rivojlantirish. Bola gʻoyasini rasm, musiqa, harakat, loy va konstruksiyalar orqali ifodalaydi, tadqiqot mavzusini oʻzi tanlaydi. Oʻqituvchi — nazoratchi emas, qiziqishini qoʻllab-quvvatlaydigan hamroh.",
       en: "Drawing on the principles of Reggio pedagogy (“the hundred languages of children”) to develop independence, creative thinking and self-confidence. Children express ideas through drawing, music, movement, clay and construction, and choose their own research topics. The teacher is not a controller but a companion who supports their interests.",

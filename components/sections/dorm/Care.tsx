@@ -19,7 +19,7 @@ export function Care() {
   const c = dormCopy.care;
   return (
     <section aria-labelledby="dorm-care" className="container-x py-20 lg:py-32">
-      <div aria-hidden="true" className="mb-16 h-px bg-line lg:mb-24" />
+      <div aria-hidden="true" className="bg-line mb-16 h-px lg:mb-24" />
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-4">
           <h2 id="dorm-care" className="text-display-m text-ink max-w-[14ch]">
@@ -48,7 +48,9 @@ export function Care() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <h3 className="text-ink mt-6 font-sans text-lg font-semibold tracking-normal">{pick(item.title, locale)}</h3>
+                <h3 className="text-ink mt-6 font-sans text-lg font-semibold tracking-normal">
+                  {pick(item.title, locale)}
+                </h3>
                 <p className="text-ink-2 mt-2 max-w-[38ch] text-[15px] leading-relaxed">{pick(item.text, locale)}</p>
               </li>
             );

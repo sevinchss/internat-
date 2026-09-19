@@ -26,7 +26,7 @@ export function ChineseTeachers() {
                 name={t.name}
                 sizes="(min-width: 1024px) 300px, (min-width: 640px) 33vw, 90vw"
                 accent="var(--red)"
-                className="border-line aspect-[4/5] rounded-[6px] border bg-ink/[0.025] dark:bg-white/[0.035]"
+                className="border-line bg-ink/[0.025] aspect-[4/5] rounded-[6px] border dark:bg-white/[0.035]"
               />
               <h3 className="text-ink mt-5 font-sans text-lg font-semibold tracking-normal">{t.name}</h3>
               <p className="text-ink-2">{pick(t.role, locale)}</p>
