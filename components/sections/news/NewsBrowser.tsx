@@ -85,12 +85,12 @@ export function NewsBrowser({
 
   return (
     <section aria-labelledby={headingId} className="container-x pb-24 lg:pb-32">
-      <div className="flex flex-col gap-6 border-t border-line pt-10 lg:flex-row lg:items-end lg:justify-between">
+      <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <h2 id={headingId} className="text-display-s">
+          <h2 id={headingId} className="text-display-m">
             {labels.heading}
           </h2>
-          <div role="group" aria-label={labels.filter} className="no-scrollbar -mx-4 mt-5 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
+          <div role="group" aria-label={labels.filter} className="no-scrollbar -mx-4 mt-6 flex gap-6 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:gap-x-8 sm:px-0">
             {chips.map((c) => {
               const active = cat === c.id;
               return (
@@ -100,12 +100,19 @@ export function NewsBrowser({
                   aria-pressed={active}
                   onClick={() => update({ cat: c.id })}
                   className={cn(
-                    "inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border px-4 text-[15px] font-semibold transition-colors",
-                    active ? "border-ink bg-ink text-paper" : "border-line text-ink-2 hover:border-ink/40 hover:text-ink",
+                    "group/chip relative inline-flex min-h-11 shrink-0 items-center text-[15px] font-medium transition-colors",
+                    active ? "text-ink" : "text-ink-3 hover:text-ink",
                   )}
                 >
-                  {c.color && <span aria-hidden="true" className="size-2 rounded-full" style={{ background: c.color }} />}
                   {c.label}
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      "absolute inset-x-0 bottom-1 h-px origin-left transition-transform duration-500 ease-out motion-reduce:transition-none",
+                      active ? "scale-x-100" : "scale-x-0 group-hover/chip:scale-x-100",
+                    )}
+                    style={{ background: c.color ?? "var(--ink)" }}
+                  />
                 </button>
               );
             })}
@@ -116,7 +123,7 @@ export function NewsBrowser({
           <label htmlFor={searchId} className="mb-2 block text-sm font-semibold text-ink-2">
             {labels.search}
           </label>
-          <Search aria-hidden="true" className="pointer-events-none absolute bottom-3.5 left-4 size-5 text-ink-3" strokeWidth={1.8} />
+          <Search aria-hidden="true" className="pointer-events-none absolute bottom-3.5 left-0 size-5 text-ink-3" strokeWidth={1.6} />
           <input
             id={searchId}
             type="search"
@@ -124,14 +131,14 @@ export function NewsBrowser({
             onChange={(e) => update({ query: e.target.value })}
             placeholder={labels.searchPlaceholder}
             autoComplete="off"
-            className="h-12 w-full rounded-full border border-line bg-surface pl-12 pr-12 text-ink placeholder:text-ink-3 focus:border-primary-ink focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-ink [&::-webkit-search-cancel-button]:hidden"
+            className="h-12 w-full rounded-none border-0 border-b border-line bg-transparent pl-8 pr-12 text-ink transition-colors placeholder:text-ink-3 hover:border-ink-3 focus:border-primary-ink focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-ink [&::-webkit-search-cancel-button]:hidden"
           />
           {query && (
             <button
               type="button"
               onClick={() => update({ query: "" })}
               aria-label={labels.clear}
-              className="absolute bottom-0.5 right-1 grid size-11 place-items-center rounded-full text-ink-3 hover:text-ink"
+              className="absolute bottom-0.5 right-0 grid size-11 place-items-center rounded-full text-ink-3 hover:text-ink"
             >
               <X className="size-4" aria-hidden="true" />
             </button>
@@ -139,12 +146,12 @@ export function NewsBrowser({
         </div>
       </div>
 
-      <p aria-live="polite" className="mt-6 text-sm text-ink-3">
+      <p aria-live="polite" className="mt-10 text-sm text-ink-3">
         {labels.count.replace("{shown}", String(shown.length)).replace("{total}", String(results.length))}
       </p>
 
       {results.length === 0 ? (
-        <div className="mt-8 flex flex-col items-start gap-5 rounded-[28px] border border-dashed border-line px-6 py-12 sm:flex-row sm:items-center sm:px-10">
+        <div className="frame mt-8 flex flex-col items-start gap-5 px-6 py-12 sm:flex-row sm:items-center sm:px-10">
           <svg viewBox="0 0 64 64" aria-hidden="true" className="size-16 shrink-0 text-ring">
             {/* the ring with a missing segment */}
             <path d={arcPath(32, 32, 26, RING_START, 180)} fill="none" stroke="currentColor" strokeWidth="2" />
@@ -166,15 +173,15 @@ export function NewsBrowser({
           {shown.map((n, i) => (
             <li key={n.slug} className="group relative grid grid-cols-[1fr_96px] gap-5 border-b border-line py-7 sm:grid-cols-[1fr_200px] sm:gap-8 lg:grid-cols-[112px_1fr_300px] lg:gap-10 lg:py-9">
               <p className="hidden lg:block" aria-hidden="true">
-                <span className="block font-display text-5xl leading-none tracking-tight text-ink">{n.day}</span>
+                <span className="block text-[3.5rem] font-light leading-none tracking-[-0.05em] text-ink tabular-nums">{n.day}</span>
                 <span className="mt-2 block text-sm text-ink-3">
                   {n.month} {n.year}
                 </span>
               </p>
               <div className="min-w-0">
                 <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-3">
-                  <span className="inline-flex items-center gap-2 font-semibold text-ink-2">
-                    <span aria-hidden="true" className="size-2 rounded-full" style={{ background: n.color }} />
+                  <span className="inline-flex items-center gap-2 font-medium text-ink-2">
+                    <span aria-hidden="true" className="size-1.5 rounded-full" style={{ background: n.color }} />
                     {n.categoryLabel}
                   </span>
                   <time dateTime={n.date} className="lg:sr-only">
@@ -190,7 +197,7 @@ export function NewsBrowser({
                     ref={(el) => {
                       linkRefs.current[i] = el;
                     }}
-                    className="decoration-2 underline-offset-[6px] after:absolute after:inset-0 after:content-[''] group-hover:underline"
+                    className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 ease-out after:absolute after:inset-0 after:content-[''] group-hover:bg-[length:100%_1px] motion-reduce:transition-none"
                   >
                     {n.title}
                   </Link>
@@ -200,7 +207,7 @@ export function NewsBrowser({
               <Photo
                 slot={n.image}
                 sizes="(min-width: 1024px) 300px, (min-width: 640px) 200px, 96px"
-                className="aspect-square rounded-2xl sm:aspect-[3/2] sm:rounded-[20px]"
+                className="aspect-square rounded-full sm:aspect-[3/2] sm:rounded-[4px]"
                 imgClassName="transition-transform duration-500 ease-out group-hover:scale-[1.04]"
                 decorative
               />
@@ -214,7 +221,7 @@ export function NewsBrowser({
           <button
             type="button"
             onClick={loadMore}
-            className="inline-flex min-h-12 items-center gap-3 rounded-full border border-ink/15 px-7 text-[15px] font-semibold text-ink transition-colors hover:border-primary-ink hover:text-primary-ink dark:border-white/20"
+            className="inline-flex min-h-12 items-center gap-3 rounded-full border border-line px-7 text-[15px] font-semibold text-ink transition-colors hover:border-ink"
           >
             {t("loadMore")}
             <span className="text-ink-3">+{Math.min(PAGE, results.length - visible)}</span>

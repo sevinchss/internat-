@@ -173,7 +173,7 @@ export function TypedCorrection({ exampleLabel }: { exampleLabel: string }) {
     <div className="relative">
       <p className="sr-only">{finalSentence}</p>
       <div aria-hidden="true" lang="en">
-        <p className="text-ink-3 flex items-center gap-3 text-sm font-semibold">
+        <p className="text-ink-3 flex items-center gap-3 text-sm font-medium">
           <span className="bg-amber h-px w-8" />
           {exampleLabel}
         </p>
@@ -182,11 +182,11 @@ export function TypedCorrection({ exampleLabel }: { exampleLabel: string }) {
         </p>
         <p
           className={cn(
-            "border-line text-ink-2 mt-4 inline-flex min-h-9 items-center gap-2 rounded-full border px-4 text-sm font-semibold transition-opacity duration-300",
+            "text-ink-2 mt-4 inline-flex min-h-9 items-center gap-2.5 text-sm font-medium transition-opacity duration-300",
             showRule && c ? "opacity-100" : "opacity-0",
           )}
         >
-          <span className="bg-amber size-1.5 rounded-full" />
+          <span className="bg-amber h-px w-5" />
           {c ? pick(c.rule, locale) : " "}
         </p>
       </div>

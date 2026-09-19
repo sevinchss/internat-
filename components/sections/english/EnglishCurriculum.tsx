@@ -25,7 +25,7 @@ function CefrStairs({ g }: { g: EnglishGrade }) {
           >
             <span
               className={cn(
-                "relative block rounded-t-[10px] transition-[height,background-color,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                "relative block rounded-t-[3px] transition-[height,background-color,border-color] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
                 state === "done" && "bg-primary",
                 state === "target" && "bg-amber",
                 state === "todo" && "border-ring border border-b-0 border-dashed bg-transparent",
@@ -35,13 +35,13 @@ function CefrStairs({ g }: { g: EnglishGrade }) {
               {state === "target" && g.plus && (
                 <span
                   aria-hidden="true"
-                  className="font-display text-ink absolute -top-7 left-1/2 -translate-x-1/2 text-lg"
+                  className="text-ink absolute -top-7 left-1/2 -translate-x-1/2 text-lg font-light"
                 >
                   +
                 </span>
               )}
             </span>
-            <span className={cn("font-display mt-2 text-center text-sm", state === "todo" ? "text-ink-3" : "text-ink")}>
+            <span className={cn("mt-2 text-center text-sm font-medium", state === "todo" ? "text-ink-3" : "text-ink")}>
               {lvl}
               {state === "target" && g.plus ? <span className="sr-only">+</span> : null}
             </span>
@@ -59,8 +59,9 @@ export function EnglishCurriculum() {
   const g = englishGrades.find((x) => String(x.grade) === value) ?? englishGrades[0];
 
   return (
-    <section aria-labelledby="en-curriculum" className="py-20 lg:py-28">
-      <div className="container-x grid grid-cols-1 gap-10 lg:grid-cols-12">
+    <section aria-labelledby="en-curriculum" className="container-x py-20 lg:py-32">
+      <div aria-hidden="true" className="bg-line mb-16 h-px lg:mb-24" />
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <h2 id="en-curriculum" className="text-display-m text-ink">
             {pick(c.title, locale)}
@@ -85,16 +86,17 @@ export function EnglishCurriculum() {
           >
             <div>
               <p className="text-ink-3 text-sm">{pick(c.target, locale)}</p>
-              <p className="font-display text-display-m text-ink mt-1">{levelName(g)}</p>
+              <p className="text-ink mt-1 text-[clamp(2.75rem,2rem+2.6vw,4rem)] leading-none font-light tracking-[-0.04em]">{levelName(g)}</p>
               <div className="mt-6">
                 <CefrStairs g={g} />
               </div>
             </div>
             <div>
-              <p className="font-display text-display-s text-ink">{pick(g.focus, locale)}</p>
-              <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              <p className="text-display-s text-ink font-semibold">{pick(g.focus, locale)}</p>
+              <ul className="border-line mt-6 grid grid-cols-1 border-t sm:grid-cols-2 sm:gap-x-8">
                 {pick(g.topics, locale).map((t) => (
-                  <li key={t} className="bg-surface-2 text-ink rounded-[14px] px-4 py-3 text-[15px] font-medium">
+                  <li key={t} className="border-line text-ink flex items-center gap-3 border-b py-3 text-[15px]">
+                    <span aria-hidden="true" className="bg-amber h-px w-3 shrink-0" />
                     {t}
                   </li>
                 ))}
@@ -115,7 +117,7 @@ export function EnglishCurriculum() {
                 </div>
                 <div>
                   <dt className="text-ink-3 text-sm">{pick(c.hours, locale)}</dt>
-                  <dd className="font-display text-ink mt-1 text-xl tabular-nums">{g.hours}</dd>
+                  <dd className="text-ink mt-1 text-2xl font-light tabular-nums">{g.hours}</dd>
                 </div>
               </dl>
             </div>

@@ -22,8 +22,14 @@ export function EnglishHero() {
           </p>
         </div>
 
-        <div className="border-line mt-16 border-t lg:mt-20">
-          <div className="border-amber border-l-2 pt-8 pl-5 sm:ml-10 sm:pl-8 lg:ml-16 lg:pt-10">
+        {/* an exercise-book page: frosted sheet, faint ruling, one amber margin line */}
+        <div className="glass relative mt-14 overflow-hidden rounded-[20px] lg:mt-20">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(to_bottom,transparent_0,transparent_55px,var(--line)_55px,var(--line)_56px)] opacity-70"
+          />
+          <span aria-hidden="true" className="bg-amber absolute inset-y-0 left-6 w-px sm:left-12 lg:left-20" />
+          <div className="relative py-8 pr-6 pl-11 sm:py-10 sm:pr-10 sm:pl-20 lg:py-12 lg:pl-32">
             <TypedCorrection exampleLabel={pick(c.exampleLabel, locale)} />
           </div>
         </div>

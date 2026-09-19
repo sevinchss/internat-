@@ -9,8 +9,9 @@ export function EnglishTeachers() {
   const locale = useLocale();
   const c = englishCopy.teachers;
   return (
-    <section aria-labelledby="en-teachers" className="border-line bg-surface border-t py-20 lg:py-28">
+    <section aria-labelledby="en-teachers" className="pt-8 pb-20 lg:pb-32">
       <div className="container-x">
+        <div aria-hidden="true" className="bg-line mb-16 h-px lg:mb-24" />
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <h2 id="en-teachers" className="text-display-m text-ink">
             {pick(c.title, locale)}
@@ -24,10 +25,10 @@ export function EnglishTeachers() {
                 name={t.name}
                 sizes="160px"
                 accent="var(--amber)"
-                className="aspect-[4/5] w-36 shrink-0 rounded-[16px] sm:w-40"
+                className="border-line aspect-[4/5] w-32 shrink-0 rounded-[6px] border bg-ink/[0.025] sm:w-36 dark:bg-white/[0.035]"
               />
               <div className="min-w-0">
-                <h3 className="text-ink font-sans text-lg font-bold tracking-normal">{t.name}</h3>
+                <h3 className="text-ink font-sans text-lg font-semibold tracking-normal">{t.name}</h3>
                 <p className="text-ink-2">{pick(t.role, locale)}</p>
                 <p className="text-ink-3 mt-2 flex items-center gap-2 text-sm">
                   <span aria-hidden="true" className="bg-amber h-px w-4" />

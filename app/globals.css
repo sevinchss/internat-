@@ -363,3 +363,8 @@ html.intro-done #intro {
   color: var(--ink-3);
   font-variant-numeric: tabular-nums;
 }
+
+/* Montserrat (Cyrillic companion) is wider-set than Poppins — ease the heading tracking for Russian */
+:lang(ru) :is(h1, h2, h3, .font-display) {
+  letter-spacing: -0.02em;
+}

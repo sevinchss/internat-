@@ -42,7 +42,7 @@ export function SkillsWheel() {
   };
 
   return (
-    <section aria-labelledby="en-skills" className="bg-surface py-20 lg:py-28">
+    <section aria-labelledby="en-skills" className="py-20 lg:py-32">
       <div className="container-x">
         <div className="max-w-2xl">
           <h2 id="en-skills" className="text-display-m text-ink">
@@ -86,7 +86,7 @@ export function SkillsWheel() {
                         d={ringSegment(C, C, R_OUT, R_IN, from, to)}
                         className={cn(
                           "transition-[fill] duration-300",
-                          on ? "fill-navy" : "fill-paper stroke-line group-hover:fill-surface-2",
+                          on ? "fill-navy" : "fill-ink/[0.025] stroke-line group-hover:fill-ink/[0.06] dark:fill-white/[0.03] dark:group-hover:fill-white/[0.08]",
                         )}
                         strokeWidth={on ? 0 : 1.5}
                       />
@@ -104,7 +104,7 @@ export function SkillsWheel() {
                         textAnchor="middle"
                         dominantBaseline="central"
                         className="pointer-events-none font-sans"
-                        style={{ fontSize: 17, fontWeight: 700, fill: on ? "#ffffff" : "var(--ink)" }}
+                        style={{ fontSize: 17, fontWeight: 600, fill: on ? "#ffffff" : "var(--ink)" }}
                       >
                         {pick(skill.label, locale)}
                       </text>
@@ -132,7 +132,7 @@ export function SkillsWheel() {
               <foreignObject x={C - 70} y={C - 70} width="140" height="140" aria-hidden="true">
                 <div className="flex h-full w-full flex-col items-center justify-center text-center">
                   <Icon className="text-ink size-8" strokeWidth={1.6} />
-                  <span className="font-display text-ink mt-2 text-[15px]" lang="en">
+                  <span className="text-ink mt-2 text-[15px] font-medium" lang="en">
                     {current.name}
                   </span>
                 </div>
@@ -151,11 +151,11 @@ export function SkillsWheel() {
               >
                 <h3 className="text-display-s text-ink">{pick(current.label, locale)}</h3>
                 <p className="text-body-l text-ink-2 mt-4">{pick(current.summary, locale)}</p>
-                <p className="text-ink-3 mt-8 text-sm font-semibold">{pick(c.howLabel, locale)}</p>
+                <p className="text-ink-3 mt-8 text-sm font-medium">{pick(c.howLabel, locale)}</p>
                 <ul className="divide-line border-line mt-3 divide-y border-y">
                   {pick(current.methods, locale).map((m) => (
                     <li key={m} className="text-ink flex items-center gap-3 py-3">
-                      <span aria-hidden="true" className="bg-amber size-2 rounded-full" />
+                      <span aria-hidden="true" className="bg-amber h-px w-4 shrink-0" />
                       {m}
                     </li>
                   ))}

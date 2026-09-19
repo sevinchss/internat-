@@ -7,9 +7,9 @@ export function RelatedNews({ items, heading, allLabel, minutesLabel }: { items:
   if (!items.length) return null;
   const [lead, ...rest] = items;
   return (
-    <section aria-labelledby="related-heading" className="border-t border-line bg-surface-2/60 py-20 lg:py-28 dark:bg-surface/40">
+    <section aria-labelledby="related-heading" className="pb-24 lg:pb-36">
       <div className="container-x">
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        <div className="flex flex-wrap items-end justify-between gap-4 border-t border-line pt-14 lg:pt-20">
           <h2 id="related-heading" className="text-display-m">
             {heading}
           </h2>
@@ -23,7 +23,7 @@ export function RelatedNews({ items, heading, allLabel, minutesLabel }: { items:
             <Photo
               slot={lead.image}
               sizes="(min-width: 1024px) 720px, 100vw"
-              className="aspect-[16/10] rounded-[24px]"
+              className="aspect-[16/10] rounded-[4px]"
               imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.03]"
               decorative
             />
@@ -48,7 +48,7 @@ export function RelatedNews({ items, heading, allLabel, minutesLabel }: { items:
                       </Link>
                     </h3>
                   </div>
-                  <Photo slot={n.image} sizes="120px" className="aspect-square rounded-2xl" decorative />
+                  <Photo slot={n.image} sizes="120px" className="aspect-square rounded-full" imgClassName="transition-transform duration-500 ease-out group-hover:scale-[1.06]" decorative />
                 </li>
               ))}
             </ul>
@@ -62,8 +62,8 @@ export function RelatedNews({ items, heading, allLabel, minutesLabel }: { items:
 function Meta({ item, minutesLabel, className }: { item: NewsCardData; minutesLabel: string; className?: string }) {
   return (
     <p className={`flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-3 ${className ?? ""}`}>
-      <span className="inline-flex items-center gap-2 font-semibold text-ink-2">
-        <span aria-hidden="true" className="size-2 rounded-full" style={{ background: item.color }} />
+      <span className="inline-flex items-center gap-2 font-medium text-ink-2">
+        <span aria-hidden="true" className="size-1.5 rounded-full" style={{ background: item.color }} />
         {item.categoryLabel}
       </span>
       <time dateTime={item.date}>{item.dateLabel}</time>

@@ -69,10 +69,10 @@ export function ClubsScroller() {
   const pad = "max(var(--pad), calc((100% - 1360px) / 2 + var(--pad)))";
 
   return (
-    <section aria-labelledby="en-clubs" className="py-20 lg:py-28">
+    <section aria-labelledby="en-clubs" className="py-20 lg:py-32">
       <div className="container-x flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h2 id="en-clubs" className="text-display-m text-ink">
+          <h2 id="en-clubs" className="text-display-l text-ink">
             {pick(c.title, locale)}
           </h2>
           <p className="text-ink-2 mt-4 max-w-[44ch]">{pick(c.lead, locale)}</p>
@@ -123,24 +123,25 @@ export function ClubsScroller() {
         <ul className="flex w-max gap-5">
           {englishClubs.map((club, i) => (
             <li key={club.id} className="w-[80vw] max-w-[460px] shrink-0 snap-start sm:w-[420px] lg:w-[460px]">
-              <article>
+              <article className="group">
                 <div className="relative">
                   <Photo
                     slot={club.photo}
                     sizes="(min-width: 640px) 460px, 80vw"
-                    className="aspect-[4/5] rounded-[24px] [&_img]:pointer-events-none"
+                    className="aspect-[4/5] rounded-[6px] [&_img]:pointer-events-none"
+                    imgClassName="transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] motion-reduce:transition-none"
                   />
                   <span
                     aria-hidden="true"
-                    className="bg-paper/92 font-display text-ink absolute top-4 left-4 rounded-full px-3 py-1 text-sm tabular-nums backdrop-blur-sm"
+                    className="absolute top-4 left-4 text-sm font-medium text-white tabular-nums [text-shadow:0_1px_8px_rgb(0_0_0/0.5)]"
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <h3 className="text-display-s text-ink mt-5">{pick(club.name, locale)}</h3>
+                <h3 className="text-display-s text-ink mt-6 font-semibold">{pick(club.name, locale)}</h3>
                 <p className="text-ink-2 mt-2 max-w-[40ch]">{pick(club.text, locale)}</p>
-                <p className="text-ink-3 mt-3 flex items-center gap-2 text-sm font-semibold">
-                  <span aria-hidden="true" className="bg-amber size-1.5 rounded-full" />
+                <p className="text-ink-3 mt-3 flex items-center gap-2 text-sm font-medium">
+                  <span aria-hidden="true" className="bg-amber h-px w-4 transition-[width] duration-500 group-hover:w-8" />
                   {pick(club.when, locale)}
                 </p>
               </article>

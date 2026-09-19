@@ -17,17 +17,17 @@ export function ArticleGallery({ slots, heading, openLabel }: { slots: ImageSlot
   return (
     <figure className="not-prose my-12">
       <figcaption className="mb-4 flex items-baseline justify-between gap-4">
-        <span className="font-display text-lg text-ink">{heading}</span>
+        <span className="text-[15px] font-medium text-ink">{heading}</span>
         <span className="text-sm tabular-nums text-ink-3">{slots.length}</span>
       </figcaption>
-      <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <ul className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
         {slots.map((s, i) => (
-          <li key={s.src} className={cn(i === 0 && "col-span-2 sm:col-span-3")}>
+          <li key={s.src} className={cn("my-0! pl-0! before:hidden!", i === 0 && "col-span-2 sm:col-span-3")}>
             <button
               type="button"
               onClick={() => setIndex(i)}
               aria-label={`${openLabel}: ${items[i].alt} (${i + 1}/${slots.length})`}
-              className="group relative block w-full overflow-hidden rounded-[18px]"
+              className="group relative block w-full overflow-hidden rounded-[4px]"
             >
               <Photo
                 slot={s}
