@@ -35,6 +35,74 @@ export const newsCategories: Record<NewsCategory, L10n> = {
 
 // Newest first. TODO: replace with real data (every item below is a placeholder)
 export const news: NewsItem[] = [
+  // REAL — source: t.me/piima_xorijiy_tillar/48 (18 Sep 2026)
+  {
+    slug: "eco-schools-uzbekistan",
+    date: "2026-09-18",
+    category: "events",
+    image: images.campus.main,
+    readingMinutes: 2,
+    title: {
+      uz: "Eco-Schools Uzbekistan: maktabda ekologik taʼlim loyihasi taqdimoti",
+      en: "Eco-Schools Uzbekistan: the environmental education project presented at the school",
+      ru: "Eco-Schools Uzbekistan: в школе представили проект экологического образования",
+    },
+    excerpt: {
+      uz: "Maktabda “Eco-Schools Uzbekistan” loyihasi taqdimoti boʻlib oʻtdi — maktab loyiha aʼzosiga aylanishi kutilmoqda.",
+      en: "The school hosted a presentation of Eco-Schools Uzbekistan and is expected to join the project.",
+      ru: "В школе прошла презентация проекта Eco-Schools Uzbekistan — ожидается, что школа станет его участником.",
+    },
+    body: {
+      uz: [
+        { type: "p", text: "Xorijiy tillarga ixtisoslashtirilgan maktabda “Eco-Schools Uzbekistan” loyihasi taqdimoti boʻlib oʻtdi. Maktabgacha va maktab taʼlimi vazirligi mutaxassisi, loyiha koordinatori loyiha tarixi, maqsad va vazifalari, amalga oshirilgan ishlar hamda oʻquvchilarning loyihadagi oʻrni haqida soʻzlab berdi." },
+        { type: "p", text: "Loyihaga qabul davom etayotgani va maktabning unga aʼzo boʻlish imkoniyati oʻquvchilarda katta qiziqish uygʻotdi. Maktab ham loyiha aʼzosiga aylanib, ekologik tashabbuslarni rivojlantirishga oʻz hissasini qoʻshishi kutilmoqda." },
+      ],
+      en: [
+        { type: "p", text: "The school hosted a presentation of the Eco-Schools Uzbekistan project. The project coordinator, a specialist of the Ministry of Preschool and School Education, spoke about its history, goals, work so far and the role students play in it." },
+        { type: "p", text: "Students were keen to hear that applications are still open. The school is expected to join the project and contribute to environmental initiatives." },
+      ],
+      ru: [
+        { type: "p", text: "В школе прошла презентация проекта Eco-Schools Uzbekistan. Координатор проекта, специалист Министерства дошкольного и школьного образования, рассказал об истории проекта, его целях, проделанной работе и роли учеников." },
+        { type: "p", text: "Ученики с интересом узнали, что приём в проект продолжается. Ожидается, что школа станет его участником и внесёт вклад в экологические инициативы." },
+      ],
+    },
+  },
+  // REAL — source: t.me/piima_xorijiy_tillar/37 (15 Sep 2026); photos from that post
+  {
+    slug: "maktab-internatga-tashrif",
+    date: "2026-09-15",
+    category: "events",
+    image: images.news.visit0,
+    gallery: [images.news.visit2, images.news.visit4, images.news.visit5, images.news.visit8],
+    readingMinutes: 2,
+    title: {
+      uz: "Saida Mirziyoyeva maktab-internat faoliyati bilan tanishdi",
+      en: "Saida Mirziyoyeva visits the school",
+      ru: "Саида Мирзиёева ознакомилась с работой школы-интерната",
+    },
+    excerpt: {
+      uz: "Tashrif chogʻida STEM, xorijiy tillar va milliy madaniyatni uygʻunlashtirgan oʻquv dasturi bilan tanishildi.",
+      en: "The visit looked at a curriculum that brings together STEM, foreign languages and national culture.",
+      ru: "В ходе визита представили программу, объединяющую STEM, иностранные языки и национальную культуру.",
+    },
+    body: {
+      uz: [
+        { type: "p", text: "15-sentabr kuni Saida Mirziyoyeva Xorijiy tillarga ixtisoslashtirilgan maktab-internat faoliyati bilan tanishdi. Maktabda 260 nafardan ziyod iqtidorli oʻgʻil-qiz taʼlim olishni boshlagan." },
+        { type: "p", text: "Oʻquv jarayonida STEM yoʻnalishiga — matematika, fizika, kimyo, biologiya va axborot texnologiyalariga alohida eʼtibor qaratilgan: oʻquvchilar loyihalar ustida ishlaydi va mustaqil tadqiqotlar olib boradi. Ingliz va xitoy tillari kuchaytirilgan tartibda oʻqitiladi." },
+        { type: "p", text: "Dasturning salmoqli qismi ona tili, Oʻzbekiston tarixi, adabiyoti va madaniyatiga ajratilgan — zamonaviy taʼlim vatan tuygʻusi va milliy oʻzlik bilan birga beriladi." },
+      ],
+      en: [
+        { type: "p", text: "On 15 September Saida Mirziyoyeva visited the International Language School, where more than 260 gifted students have begun their studies." },
+        { type: "p", text: "The curriculum puts special weight on STEM — mathematics, physics, chemistry, biology and IT — with project work and independent research. English and Chinese are taught intensively." },
+        { type: "p", text: "A large part of the programme is devoted to the native language, the history of Uzbekistan, literature and culture: modern education goes hand in hand with a sense of home and national identity." },
+      ],
+      ru: [
+        { type: "p", text: "15 сентября Саида Мирзиёева ознакомилась с работой специализированной школы-интерната иностранных языков, где начали учёбу более 260 талантливых детей." },
+        { type: "p", text: "Особое внимание в программе уделено STEM — математике, физике, химии, биологии и IT: ученики работают над проектами и проводят самостоятельные исследования. Английский и китайский изучаются углублённо." },
+        { type: "p", text: "Значительная часть программы посвящена родному языку, истории Узбекистана, литературе и культуре — современное образование соединено с чувством Родины и национальной идентичностью." },
+      ],
+    },
+  },
   // TODO: replace with real data
   {
     slug: "yotoqxonada-ilk-ikki-hafta",
@@ -328,49 +396,52 @@ export const news: NewsItem[] = [
       ],
     },
   },
-  // TODO: replace with real data (the date of 2 September and the quote are placeholders; "more than 260 students" is a fact)
+  // REAL — source: t.me/piima_xorijiy_tillar/24 and /34 (2–3 Sep 2026)
   {
     slug: "yangi-oquv-yili-boshlandi",
     date: "2026-09-02",
     category: "events",
     image: images.classes.highFive,
-    gallery: [images.campus.hero, images.events.ceremony, images.classes.lesson, images.campus.entrance],
-    readingMinutes: 4,
+    gallery: [images.campus.hero, images.events.ceremony, images.classes.lesson, images.classes.board, images.events.groupPhoto, images.chinese.teachers],
+    readingMinutes: 3,
     featured: true,
     title: {
-      uz: "Birinchi oʻquv yili boshlandi: 260 dan ortiq oʻquvchi sinflarda",
-      en: "Our first school year has begun: over 260 students in class",
-      ru: "Начался первый учебный год: более 260 учеников за партами",
+      uz: "Toshkentda Xorijiy tillarga ixtisoslashtirilgan maktab ochildi",
+      en: "The International Language School opens in Tashkent",
+      ru: "В Ташкенте открылась специализированная школа иностранных языков",
     },
     excerpt: {
-      uz: "2-sentabr kuni maktab-internat ilk bor oʻz eshiklarini ochdi. Tanlovdan oʻtgan 5, 6 va 7-sinf oʻquvchilari birinchi darsga keldi.",
-      en: "On 2 September the school opened its doors for the first time, welcoming the Grade 5, 6 and 7 students who came through the selection.",
-      ru: "2 сентября школа-интернат впервые открыла свои двери для учеников 5, 6 и 7 классов, прошедших отбор.",
+      uz: "Agentlik tizimidagi yangi maktabda STEM fanlari ingliz tilida, xitoy tili esa chuqurlashtirilgan holda oʻqitiladi.",
+      en: "At the Agency’s new school, STEM subjects are taught in English and Chinese is studied in depth.",
+      ru: "В новой школе Агентства предметы STEM преподаются на английском, а китайский изучается углублённо.",
     },
     body: {
       uz: [
-        { type: "p", text: "Ixtisoslashtirilgan taʼlim muassasalari agentligi tizimidagi yangi maktab-internat 2026/2027 oʻquv yilidan faoliyat boshladi. Sentabrda 260 dan ortiq iqtidorli oʻquvchi birinchi darsga keldi." },
-        { type: "p", text: "Ularning har biri iyun oyida onlayn ariza topshirgan va Cambridge Assessment bilan hamkorlikda tashkil etilgan kirish imtihonidan muvaffaqiyatli oʻtgan." },
-        { type: "h2", text: "Maktab nimani taklif qiladi" },
-        { type: "list", items: ["Kuchli STEM: matematika, fizika, kimyo, biologiya va informatika", "Loyiha ishlari va mustaqil tadqiqotlar", "Ingliz va xitoy tillarini intensiv oʻrganish", "Ona tili, Oʻzbekiston tarixi, adabiyot va madaniyat"] },
-        { type: "quote", text: "Bugun maktabning birinchi sahifasi yozildi. Keyingi sahifalarni oʻquvchilarimiz bilan birga yozamiz. — maktab rahbariyati" },
-        { type: "p", text: "Birinchi dars kunidan keyin oʻquvchilar yotoqxonaga joylashdi va yangi kun tartibi bilan tanishdi. Maktab hayotidagi voqealar haqida shu sahifada muntazam xabar beramiz." },
+        { type: "p", text: "Ixtisoslashtirilgan taʼlim muassasalari agentligi tizimidagi Xorijiy tillarga ixtisoslashtirilgan maktab-internat Toshkent shahrida 2026/2027 oʻquv yilidan faoliyat boshladi. Maktabda 260 dan ortiq iqtidorli oʻquvchi tahsil olmoqda." },
+        { type: "p", text: "Maktabda STEM fanlari ingliz tilida oʻqitiladi, xitoy tili esa chuqurlashtirilgan holda oʻrganiladi." },
+        { type: "h2", text: "“Yinghua Academy Group” bilan hamkorlik" },
+        { type: "p", text: "Xitoy tilini chuqur oʻrgatish boʻyicha Xitoyning “Yinghua Academy Group” tashkiloti bilan hamkorlik yoʻlga qoʻyilgan. Hamkorlik doirasida zamonaviy xitoy tili dasturlari joriy etiladi, oʻquvchilar HSK xalqaro imtihonlariga tayyorlanadi, pedagoglar malakasi oshiriladi." },
+        { type: "h2", text: "Tillardan zamonaviy texnologiyalargacha" },
+        { type: "list", items: ["Robototexnika va sunʼiy intellekt", "Maʼlumotlar tahlili va kompyuter savodxonligi", "Shaxmat", "Sanʼat va musiqa"] },
+        { type: "p", text: "Taʼlim jarayonida oʻquvchilarning mustaqil fikrlashi, vaqtni boshqarishi, jamoada ishlashi va liderlik qobiliyatlarini rivojlantirishga alohida eʼtibor qaratiladi." },
       ],
       en: [
-        { type: "p", text: "The new boarding school in the system of the Agency of Specialized Educational Institutions opened with the 2026/2027 academic year. In September more than 260 gifted students came to their first lesson." },
-        { type: "p", text: "Each of them applied online in June and passed the entrance exam organised together with Cambridge Assessment." },
-        { type: "h2", text: "What the school offers" },
-        { type: "list", items: ["Strong STEM: maths, physics, chemistry, biology and IT", "Project work and independent research", "Intensive English and Chinese", "Native language, history of Uzbekistan, literature and culture"] },
-        { type: "quote", text: "Today the first page of the school’s story was written. We will write the next ones together with our students. — the school leadership" },
-        { type: "p", text: "After the first day of lessons the students moved into the boarding house and learned their new routine. We will keep posting school news on this page." },
+        { type: "p", text: "The International Language School, part of the Agency of Specialized Educational Institutions, opened in Tashkent with the 2026/2027 academic year. More than 260 gifted students now study here." },
+        { type: "p", text: "STEM subjects are taught in English, and Chinese is studied in depth." },
+        { type: "h2", text: "Partnership with Yinghua Academy Group" },
+        { type: "p", text: "For in-depth Chinese, the school works with China’s Yinghua Academy Group: modern Chinese-language programmes, preparation for the HSK international exams, and professional development for teachers." },
+        { type: "h2", text: "From languages to modern technology" },
+        { type: "list", items: ["Robotics and artificial intelligence", "Data analysis and computer literacy", "Chess", "Art and music"] },
+        { type: "p", text: "Throughout, the school builds independent thinking, time management, teamwork and leadership." },
       ],
       ru: [
-        { type: "p", text: "Новая школа-интернат в системе Агентства специализированных образовательных учреждений начала работу с 2026/2027 учебного года. В сентябре на первый урок пришли более 260 одарённых учеников." },
-        { type: "p", text: "Каждый из них подал заявку онлайн в июне и успешно сдал вступительный экзамен, организованный совместно с Cambridge Assessment." },
-        { type: "h2", text: "Что предлагает школа" },
-        { type: "list", items: ["Сильный STEM: математика, физика, химия, биология и информатика", "Проектная работа и самостоятельные исследования", "Интенсивный английский и китайский", "Родной язык, история Узбекистана, литература и культура"] },
-        { type: "quote", text: "Сегодня написана первая страница истории школы. Следующие мы напишем вместе с нашими учениками. — руководство школы" },
-        { type: "p", text: "После первого учебного дня ученики заселились в интернат и познакомились с новым распорядком. Новости школы мы будем регулярно публиковать на этой странице." },
+        { type: "p", text: "Специализированная школа-интернат иностранных языков в системе Агентства специализированных образовательных учреждений открылась в Ташкенте с 2026/2027 учебного года. Здесь учатся более 260 одарённых детей." },
+        { type: "p", text: "Предметы STEM преподаются на английском языке, китайский изучается углублённо." },
+        { type: "h2", text: "Партнёрство с Yinghua Academy Group" },
+        { type: "p", text: "Для углублённого изучения китайского налажено сотрудничество с китайской организацией Yinghua Academy Group: современные программы по китайскому языку, подготовка к международным экзаменам HSK и повышение квалификации педагогов." },
+        { type: "h2", text: "От языков к современным технологиям" },
+        { type: "list", items: ["Робототехника и искусственный интеллект", "Анализ данных и компьютерная грамотность", "Шахматы", "Искусство и музыка"] },
+        { type: "p", text: "Особое внимание уделяется самостоятельному мышлению, тайм-менеджменту, работе в команде и лидерским качествам." },
       ],
     },
   },

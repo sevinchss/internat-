@@ -32,12 +32,12 @@ export const school = {
   } satisfies L10n,
   // TODO: replace with real coordinates of the campus
   geo: { lat: 41.3385, lng: 69.2862 },
-  // TODO: replace with real accounts
+  // Real accounts, as linked from the school's official Telegram channel
   socials: [
-    { id: "telegram", label: "Telegram", href: "https://t.me/" },
-    { id: "instagram", label: "Instagram", href: "https://instagram.com/" },
-    { id: "facebook", label: "Facebook", href: "https://facebook.com/" },
-    { id: "youtube", label: "YouTube", href: "https://youtube.com/" },
+    { id: "telegram", label: "Telegram", href: "https://t.me/piima_xorijiy_tillar" },
+    { id: "instagram", label: "Instagram", href: "https://instagram.com/piima_xorijiy_tillar" },
+    { id: "facebook", label: "Facebook", href: "https://www.facebook.com/profile.php?id=61593484417178" },
+    { id: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/company/xorijiy-tillarga-ixtisoslashtirilgan-maktab/" },
   ] as const,
   links: {
     piima: "https://piima.uz",

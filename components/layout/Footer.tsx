@@ -28,7 +28,6 @@ export async function Footer() {
             <ul className="flex gap-2">
               {school.socials.map((s) => (
                 <li key={s.id}>
-                  {/* TODO: replace with real accounts */}
                   <a
                     href={s.href}
                     target="_blank"

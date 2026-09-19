@@ -2,11 +2,11 @@
   "meta": {
     "siteName": "Xorijiy tillarga ixtisoslashtirilgan maktab-internati",
     "defaultTitle": "Xorijiy tillarga ixtisoslashtirilgan maktab-internati",
-    "defaultDescription": "Ixtisoslashtirilgan taʼlim muassasalari agentligi tizimidagi yangi maktab-internat: kuchli STEM, ingliz va xitoy tillari, milliy qadriyatlar. 2026/2027 oʻquv yilidan faoliyatda.",
+    "defaultDescription": "Toshkentdagi, Ixtisoslashtirilgan taʼlim muassasalari agentligi tizimidagi yangi maktab-internat: ingliz tilida STEM fanlari, chuqurlashtirilgan xitoy tili va milliy qadriyatlar. 2026/2027 oʻquv yilidan faoliyatda.",
     "pages": {
       "home": {
         "title": "Bosh sahifa",
-        "description": "Kuchli STEM, ingliz va xitoy tillari hamda milliy oʻzlik — bir maktab-internatda. 2026-yil sentabrdan 260 dan ortiq iqtidorli oʻquvchi tahsil olmoqda."
+        "description": "Ingliz tilida STEM fanlari, chuqurlashtirilgan xitoy tili va milliy oʻzlik — Toshkentdagi bir maktab-internatda. 2026-yil sentabrdan 260 dan ortiq iqtidorli oʻquvchi tahsil olmoqda."
       },
       "leadership": {
         "title": "Rahbariyat",
@@ -34,11 +34,11 @@
       },
       "chinese": {
         "title": "Xitoy tili",
-        "description": "5–11-sinflarda xitoy tilini chuqur oʻrganish: HSK darajalari, madaniyat, toʻgaraklar."
+        "description": "5–11-sinflarda xitoy tilini chuqur oʻrganish: Yinghua Academy Group bilan hamkorlik, HSK imtihonlariga tayyorgarlik, madaniyat, toʻgaraklar."
       },
       "english": {
         "title": "Ingliz tili",
-        "description": "Ingliz tilini chuqur oʻrganish: toʻrt koʻnikma, sinflar boʻyicha dastur, xalqaro imtihonlarga yoʻl, toʻgaraklar."
+        "description": "Ingliz tili — STEM fanlarini oʻrganish tili: toʻrt koʻnikma, sinflar boʻyicha dastur, xalqaro imtihonlarga yoʻl, toʻgaraklar."
       },
       "contact": {
         "title": "Bogʻlanish",
@@ -116,7 +116,7 @@
     "zoomOut": "Kichraytirish"
   },
   "footer": {
-    "about": "Ixtisoslashtirilgan taʼlim muassasalari agentligi tizimidagi maktab-internat: aniq fanlar, ikki xorijiy til va milliy qadriyatlar bir maktabda.",
+    "about": "Toshkentdagi, Ixtisoslashtirilgan taʼlim muassasalari agentligi tizimidagi maktab-internat: ingliz tilida STEM fanlari, chuqurlashtirilgan xitoy tili va milliy qadriyatlar bir maktabda.",
     "contacts": "Aloqa",
     "follow": "Ijtimoiy tarmoqlar",
     "partners": "Foydali havolalar",

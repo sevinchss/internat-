@@ -2,11 +2,11 @@
   "meta": {
     "siteName": "International Language School",
     "defaultTitle": "International Language School",
-    "defaultDescription": "A new boarding school of Uzbekistan's Agency of Specialized Educational Institutions: strong STEM, English and Chinese, and national heritage. Open since the 2026/2027 school year.",
+    "defaultDescription": "A new boarding school in Tashkent within Uzbekistan's Agency of Specialized Educational Institutions: STEM taught in English, in-depth Chinese and national heritage. Open since the 2026/2027 school year.",
     "pages": {
       "home": {
         "title": "Home",
-        "description": "Strong STEM, English and Chinese, and a firm sense of national identity — in one boarding school. Over 260 gifted students have studied here since September 2026."
+        "description": "STEM taught in English, in-depth Chinese and a firm sense of national identity — in one boarding school in Tashkent. Over 260 gifted students have studied here since September 2026."
       },
       "leadership": {
         "title": "Leadership",
@@ -34,11 +34,11 @@
       },
       "chinese": {
         "title": "Chinese",
-        "description": "In-depth Chinese from grade 5 to 11: HSK levels, culture and clubs."
+        "description": "In-depth Chinese from grade 5 to 11: partnership with Yinghua Academy Group, HSK exam preparation, culture and clubs."
       },
       "english": {
         "title": "English",
-        "description": "In-depth English: four skills, curriculum by grade, the international exam pathway and clubs."
+        "description": "English as the language of STEM learning: four skills, curriculum by grade, the international exam pathway and clubs."
       },
       "contact": {
         "title": "Contact",
@@ -116,7 +116,7 @@
     "zoomOut": "Zoom out"
   },
   "footer": {
-    "about": "A boarding school of the Agency of Specialized Educational Institutions: sciences, two foreign languages and national heritage under one roof.",
+    "about": "A boarding school in Tashkent within the Agency of Specialized Educational Institutions: STEM in English, in-depth Chinese and national heritage under one roof.",
     "contacts": "Contact",
     "follow": "Follow us",
     "partners": "Useful links",

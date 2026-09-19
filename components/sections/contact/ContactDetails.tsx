@@ -59,7 +59,6 @@ export function ContactDetails({
         <ul className="mt-2 flex flex-wrap gap-x-6">
           {school.socials.map((s) => (
             <li key={s.id}>
-              {/* TODO: replace with real accounts */}
               <a
                 href={s.href}
                 target="_blank"

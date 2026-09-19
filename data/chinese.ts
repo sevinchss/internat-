@@ -1,5 +1,6 @@
 // Content for /yonalishlar/xitoy-tili (Chinese programme).
-// Intensive Chinese is a real part of the curriculum; hours, HSK targets, clubs and teachers are placeholders.
+// Confirmed (official Telegram channel, Sep 2026): Chinese is taught in depth; partnership with Yinghua Academy Group;
+// HSK exam preparation. Still placeholders: hours, per-grade HSK targets, club schedules and teachers.
 import type { L10n } from "@/lib/utils";
 import { images, type ImageSlot } from "@/lib/images";
 
@@ -26,9 +27,9 @@ export const chineseCopy = {
   curriculum: {
     title: { uz: "Sinflar boʻyicha dastur", en: "Programme by grade", ru: "Программа по классам" } satisfies L10n,
     lead: {
-      uz: "Har bir sinf uchun maqsad — HSK darajasi. Halqa boʻylab yurib, 11-sinfda erkin muloqotga yetamiz.",
-      en: "Each grade works towards an HSK level. Step by step around the ring, to confident Chinese by grade 11.",
-      ru: "У каждого класса своя цель — уровень HSK. Шаг за шагом по кругу — к уверенному китайскому к 11 классу.",
+      uz: "Dastur oʻquvchilarni HSK xalqaro imtihonlariga tayyorlaydi. Halqa boʻylab — har bir sinf uchun taxminiy maqsad darajasi.",
+      en: "The programme prepares students for the international HSK exams. Around the ring: an indicative target level for each grade.",
+      ru: "Программа готовит учеников к международным экзаменам HSK. По кругу — ориентировочный целевой уровень для каждого класса.",
     } satisfies L10n,
     tabsLabel: { uz: "Sinflar", en: "Grades", ru: "Классы" } satisfies L10n,
     grade: { uz: "sinf", en: "Grade", ru: "класс" } satisfies L10n,
@@ -84,9 +85,9 @@ export const chineseCopy = {
   teachers: {
     title: { uz: "Oʻqituvchilar", en: "Teachers", ru: "Преподаватели" } satisfies L10n,
     lead: {
-      uz: "Kafedra tarkibi shakllantirilmoqda. Maʼlumotlar tez orada yangilanadi.",
-      en: "The department is being formed; details will be added soon.",
-      ru: "Кафедра формируется, информация скоро появится.",
+      uz: "Yinghua Academy Group bilan hamkorlik doirasida oʻqituvchilar malakasi oshiriladi. Kafedra tarkibi haqidagi maʼlumotlar tez orada qoʻshiladi.",
+      en: "Through the partnership with Yinghua Academy Group, our teachers take part in professional development. Details of the department will be added soon.",
+      ru: "В рамках партнёрства с Yinghua Academy Group преподаватели повышают квалификацию. Информация о составе кафедры скоро появится.",
     } satisfies L10n,
   },
 };
@@ -95,11 +96,11 @@ export const chineseCopy = {
 export const whyPoints: { numeral: string; title: L10n; text: L10n }[] = [
   {
     numeral: "一",
-    title: { uz: "Qoʻshni va hamkor", en: "A neighbour and a partner", ru: "Сосед и партнёр" },
+    title: { uz: "Yinghua Academy Group bilan hamkorlik", en: "Partnership with Yinghua Academy Group", ru: "Партнёрство с Yinghua Academy Group" },
     text: {
-      uz: "Xitoy bilan taʼlim, fan va iqtisodiyotdagi aloqalar kengaymoqda. Tilni bilish taʼlim, fan va ish uchun yangi yoʻllar ochadi.",
-      en: "Ties with China in education, science and the economy keep growing. Knowing the language opens doors in study, science and work.",
-      ru: "Связи с Китаем в образовании, науке и экономике растут. Знание языка открывает дороги в учёбе, науке и работе.",
+      uz: "Maktab Xitoyning Yinghua Academy Group guruhi bilan hamkorlik qiladi: zamonaviy xitoy tili dasturlari, oʻqituvchilar malakasini oshirish va ilgʻor oʻqitish yondashuvlari.",
+      en: "The school works with China's Yinghua Academy Group on modern Chinese-language programmes, professional development for teachers and advanced teaching approaches.",
+      ru: "Школа сотрудничает с китайской Yinghua Academy Group: современные программы китайского языка, повышение квалификации преподавателей и передовые подходы к обучению.",
     },
   },
   {
@@ -114,14 +115,14 @@ export const whyPoints: { numeral: string; title: L10n; text: L10n }[] = [
   {
     numeral: "三",
     title: {
-      uz: "Erta boshlash — katta ustunlik",
-      en: "Starting early pays off",
-      ru: "Раннее начало — большое преимущество",
+      uz: "HSK imtihonlariga tayyorgarlik",
+      en: "Ready for the HSK exams",
+      ru: "Подготовка к экзаменам HSK",
     },
     text: {
-      uz: "Ohanglar va talaffuz 11–12 yoshda oson oʻzlashtiriladi. 5-sinfdan boshlagan oʻquvchi 11-sinfda erkin gapiradi.",
-      en: "Tones and pronunciation come easily at 11–12. A student who starts in grade 5 can speak freely by grade 11.",
-      ru: "Тоны и произношение легко даются в 11–12 лет. Начав в 5 классе, к 11-му ученик говорит свободно.",
+      uz: "Chuqurlashtirilgan dastur oʻquvchilarni HSK xalqaro imtihonlariga tayyorlaydi — til bilish darajasi xalqaro shkala boʻyicha tasdiqlanadi.",
+      en: "The in-depth programme prepares students for the international HSK exams, so their level of Chinese is measured on an international scale.",
+      ru: "Углублённая программа готовит учеников к международным экзаменам HSK — уровень владения языком подтверждается по международной шкале.",
     },
   },
   {
@@ -136,6 +137,7 @@ export const whyPoints: { numeral: string; title: L10n; text: L10n }[] = [
 ];
 
 /* ───────────── Curriculum by grade + HSK path ─────────────
+   HSK exam preparation itself is confirmed (official Telegram channel, Sep 2026).
    TODO: replace with real data (hours per week, topics and the HSK target for each grade are placeholders) */
 export const hskLevels = [1, 2, 3, 4, 5, 6] as const;
 

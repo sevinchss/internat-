@@ -1,5 +1,6 @@
 // Content for /yonalishlar/ingliz-tili (English programme).
-// Intensive English is a real part of the curriculum; hours, CEFR targets, exams, clubs and teachers are placeholders.
+// Confirmed (official Telegram channel, Sep 2026): STEM subjects are taught in English.
+// Still placeholders: hours, CEFR targets, exams, clubs and teachers.
 import type { L10n } from "@/lib/utils";
 import { images, type ImageSlot } from "@/lib/images";
 
@@ -7,9 +8,9 @@ export const englishCopy = {
   hero: {
     title: { uz: "Ingliz tili", en: "English", ru: "Английский язык" } satisfies L10n,
     lead: {
-      uz: "Kuchaytirilgan ingliz tili: toʻrtta koʻnikma, jonli muloqot va xatolardan qoʻrqmaslik. Xato — oʻrganishning bir qismi, uni tuzatish esa eng yaxshi dars.",
-      en: "Intensive English built on four skills, real conversation and not being afraid of mistakes. A mistake is part of learning, and fixing it is the best lesson.",
-      ru: "Углублённый английский: четыре навыка, живое общение и никакого страха ошибок. Ошибка — часть учёбы, а её исправление — лучший урок.",
+      uz: "Ingliz tili bu yerda alohida fan emas: matematika va tabiiy fanlar ham shu tilda oʻqitiladi. Toʻrtta koʻnikma, jonli muloqot va xatolardan qoʻrqmaslik — xato oʻrganishning bir qismi, uni tuzatish esa eng yaxshi dars.",
+      en: "Here English is more than a subject: maths and the sciences are taught in it too. Four skills, real conversation and no fear of mistakes — a mistake is part of learning, and fixing it is the best lesson.",
+      ru: "Здесь английский — не просто предмет: на нём преподаются математика и естественные науки. Четыре навыка, живое общение и никакого страха ошибок — ошибка часть учёбы, а её исправление — лучший урок.",
     } satisfies L10n,
     exampleLabel: { uz: "Misol", en: "Example", ru: "Пример" } satisfies L10n,
   },

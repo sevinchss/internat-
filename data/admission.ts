@@ -180,9 +180,9 @@ export const admissionPage = {
     {
       q: { uz: "Imtihonga qanday tayyorlanish mumkin?", en: "How can my child prepare?", ru: "Как подготовиться к экзамену?" },
       a: {
-        uz: "Rasmiy tayyorgarlik materiallari chiqsa, ular rasmiy portallarda eʼlon qilinadi. Umumiy maslahat — mantiqiy masalalar yechish va ingliz tilida muntazam oʻqish.",
-        en: "If official preparation materials are released, they will be published on the official portals. In general, logic problems and regular reading in English help.",
-        ru: "Если выйдут официальные материалы для подготовки, их опубликуют на официальных порталах. В целом помогают логические задачи и регулярное чтение на английском.",
+        uz: "Rasmiy tayyorgarlik materiallari chiqsa, ular rasmiy portallarda eʼlon qilinadi. Umumiy maslahat — mantiqiy masalalar yechish va ingliz tilida muntazam oʻqish: maktabda STEM fanlari ingliz tilida oʻqitiladi.",
+        en: "If official preparation materials are released, they will be published on the official portals. In general, logic problems and regular reading in English help — at the school, STEM subjects are taught in English.",
+        ru: "Если выйдут официальные материалы для подготовки, их опубликуют на официальных порталах. В целом помогают логические задачи и регулярное чтение на английском — в школе предметы STEM преподаются на английском языке.",
       },
     },
     {

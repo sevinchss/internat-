@@ -87,7 +87,9 @@ const mapped: GalleryPhoto[] = allImages.flatMap((img) => {
   if (!category) return [];
   const { src, alt, ratio, blurDataURL } = img;
   return [{ id: `${img.group}.${img.key}`, category, slot: { src, alt, ratio, blurDataURL }, caption: alt }];
-});
+})
+  // the school's own photos (local /images/…) lead each category, stock placeholders follow
+  .sort((a, b) => Number(!a.slot.src.startsWith("/")) - Number(!b.slot.src.startsWith("/")));
 
 /** Round-robin across categories so the "All" view feels mixed, not grouped. */
 function interleave(list: GalleryPhoto[]) {

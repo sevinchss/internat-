@@ -4,6 +4,8 @@ import type { L10n } from "@/lib/utils";
  * Page copy for /biz-haqimizda/maqsad-va-vazifalar.
  * Goals follow the curriculum facts from the client brief (STEM + research, English & Chinese,
  * national identity, boarding life, gifted students, international-level study) and are phrased as goals, not results.
+ * STEM-in-English, soft skills, Reggio principles, native-language respect, learning outdoors and
+ * Eco-Schools Uzbekistan come from the school's official Telegram channel (posts of 2–18 Sep 2026).
  */
 export const missionCopy = {
   title: { uz: "Maqsad va vazifalar", en: "Mission and goals", ru: "Миссия и задачи" } satisfies L10n,
@@ -14,9 +16,9 @@ export const missionCopy = {
     ru: ["Помогать одарённым детям", "вырасти людьми, которые", "говорят с миром на его", "языках и никогда", "не забывают своих корней."],
   } satisfies L10n<string[]>,
   missionNote: {
-    uz: "Ixtisoslashtirilgan taʼlim muassasalari agentligi tizimidagi maktab-internat sifatida biz 2026/2027 oʻquv yilidan boshlab shu maqsad sari ishlaymiz.",
-    en: "As a boarding school within the Agency of Specialized Educational Institutions, this is what we have been working towards since the 2026/2027 academic year.",
-    ru: "Как школа-интернат в системе Агентства специализированных образовательных учреждений, мы работаем ради этой цели с 2026/2027 учебного года.",
+    uz: "Toshkentdagi, Ixtisoslashtirilgan taʼlim muassasalari agentligi tizimidagi maktab-internat sifatida biz 2026/2027 oʻquv yilidan boshlab xorijiy tillarni egallagan, zamonaviy fan va texnologiyalar bilan ishlay oladigan va mustaqil fikrlaydigan yoshlar uchun mustahkam oʻquv muhitini yaratmoqdamiz.",
+    en: "As a boarding school in Tashkent within the Agency of Specialized Educational Institutions, since the 2026/2027 academic year we have been building a strong place to learn for young people who master foreign languages, can work with modern science and technology, and think for themselves.",
+    ru: "Как школа-интернат в Ташкенте в системе Агентства специализированных образовательных учреждений, с 2026/2027 учебного года мы создаём сильную среду обучения для молодых людей, которые владеют иностранными языками, умеют работать с современной наукой и технологиями и мыслят самостоятельно.",
   } satisfies L10n,
   goalsTitle: { uz: "Vazifalarimiz", en: "Our goals", ru: "Наши задачи" } satisfies L10n,
   goalsIntro: {
@@ -47,27 +49,27 @@ export const goals: Goal[] = [
   {
     title: { uz: "Ikki xorijiy tilni puxta egallash", en: "Real command of two foreign languages", ru: "Свободное владение двумя иностранными языками" },
     text: {
-      uz: "Ingliz va xitoy tillarini jadal oʻqitish orqali oʻquvchilar ikkala tilda erkin oʻqish, yozish va fikrini himoya qilishga oʻrganishini maqsad qilamiz.",
-      en: "Through intensive English and Chinese, we aim for students to read, write and defend their ideas freely in both languages.",
-      ru: "Интенсивно обучая английскому и китайскому, мы стремимся к тому, чтобы ученики свободно читали, писали и отстаивали свою точку зрения на обоих языках.",
+      uz: "STEM fanlari ingliz tilida oʻqitiladi, xitoy tili esa chuqurlashtirilgan dastur asosida oʻrganiladi. Maqsad — oʻquvchilar ikkala tilda erkin oʻqish, yozish va fikrini himoya qilishni oʻrganishi.",
+      en: "STEM subjects are taught in English, and Chinese is studied in depth. The aim is for students to read, write and defend their ideas freely in both languages.",
+      ru: "Предметы STEM преподаются на английском, а китайский изучается углублённо. Наша цель — чтобы ученики свободно читали, писали и отстаивали свою точку зрения на обоих языках.",
     },
     points: {
-      uz: ["Har kuni ikki til bilan ishlash", "Til — fan oʻrganish vositasi ham"],
-      en: ["Both languages every day", "Language as a tool for learning other subjects"],
-      ru: ["Оба языка — каждый день", "Язык как инструмент изучения других предметов"],
+      uz: ["STEM fanlari ingliz tilida", "HSK xalqaro imtihonlariga tayyorgarlik"],
+      en: ["STEM subjects taught in English", "Preparation for the international HSK exams"],
+      ru: ["Предметы STEM на английском", "Подготовка к международным экзаменам HSK"],
     },
   },
   {
     title: { uz: "Aniq fanlarni chuqur oʻrganish va tadqiqot", en: "Depth in science and a habit of research", ru: "Глубокие знания в точных науках и навык исследования" },
     text: {
-      uz: "Matematika, fizika, kimyo, biologiya va informatikani chuqur oʻqitish, loyiha ishi va mustaqil tadqiqot orqali savol qoʻyish va unga javob izlash koʻnikmasini shakllantirish.",
-      en: "Teaching mathematics, physics, chemistry, biology and computer science in depth, and building — through project work and independent research — the habit of asking questions and finding answers.",
-      ru: "Глубоко преподавать математику, физику, химию, биологию и информатику и через проектную работу и самостоятельные исследования учить ставить вопросы и искать ответы.",
+      uz: "Matematika, fizika, kimyo, biologiya va informatikani chuqur oʻqitish, tajriba va mustaqil tadqiqot orqali savol qoʻyish va unga javob izlash koʻnikmasini shakllantirish. Fan faqat sinfda oʻrganilmaydi: tabiat ham sinfxona, bilim real sharoitda kuzatiladi va sinab koʻriladi.",
+      en: "Teaching mathematics, physics, chemistry, biology and computer science in depth, and building — through experiments and independent research — the habit of asking questions and finding answers. Science doesn't stop at the classroom door: nature is a classroom too, where knowledge is observed and tested in real settings.",
+      ru: "Глубоко преподавать математику, физику, химию, биологию и информатику и через опыты и самостоятельные исследования учить ставить вопросы и искать ответы. Наука не заканчивается в классе: природа тоже класс, где знания наблюдают и проверяют в реальных условиях.",
     },
     points: {
-      uz: ["Loyiha ishi har bir fanda", "Mustaqil tadqiqot tajribasi"],
-      en: ["Project work in every science", "First-hand experience of independent research"],
-      ru: ["Проектная работа по каждому предмету", "Опыт самостоятельного исследования"],
+      uz: ["Tajriba orqali oʻrganish", "«Eco-Schools Uzbekistan» loyihasiga qoʻshilish kutilmoqda"],
+      en: ["Learning through experiment", "Expected to join the Eco-Schools Uzbekistan project"],
+      ru: ["Обучение через эксперимент", "Ожидается вступление в проект Eco-Schools Uzbekistan"],
     },
   },
   {
@@ -86,9 +88,9 @@ export const goals: Goal[] = [
   {
     title: { uz: "Milliy oʻzlikni mustahkamlash", en: "A strong sense of national identity", ru: "Укрепление национальной идентичности" },
     text: {
-      uz: "Ona tili, Oʻzbekiston tarixi, adabiyot va madaniyatga oʻquv rejasining katta qismini ajratib, oʻz ildizlarini biladigan va qadrlaydigan yoshlarni tarbiyalash.",
-      en: "Giving a large part of the curriculum to the native language, the history of Uzbekistan, literature and culture, so that students know and value their roots.",
-      ru: "Отводить значительную часть учебного плана родному языку, истории Узбекистана, литературе и культуре, чтобы ученики знали и ценили свои корни.",
+      uz: "Ona tili, Oʻzbekiston tarixi, adabiyot va madaniyatga oʻquv rejasining katta qismini ajratib, oʻz ildizlarini biladigan va qadrlaydigan yoshlarni tarbiyalash. Xorijiy tillarga qiziqish ona tiliga hurmat bilan birga boʻlishi kerak.",
+      en: "Giving a large part of the curriculum to the native language, the history of Uzbekistan, literature and culture, so that students know and value their roots. Interest in foreign languages should go together with respect for the mother tongue.",
+      ru: "Отводить значительную часть учебного плана родному языку, истории Узбекистана, литературе и культуре, чтобы ученики знали и ценили свои корни. Интерес к иностранным языкам должен сочетаться с уважением к родному языку.",
     },
     points: {
       uz: ["Ona tili va adabiyot", "Tarix va madaniy meros"],
@@ -97,29 +99,29 @@ export const goals: Goal[] = [
     },
   },
   {
-    title: { uz: "Mustaqillik va xarakterni tarbiyalash", en: "Character and independence", ru: "Характер и самостоятельность" },
+    title: { uz: "Mustaqil fikrlash va yetakchilik", en: "Independent thinking and leadership", ru: "Самостоятельное мышление и лидерство" },
     text: {
-      uz: "Internat hayoti orqali oʻz vaqtini boshqarish, masʼuliyat, jamoada yashash va bir-biriga gʻamxoʻrlik qilish koʻnikmalarini shakllantirish.",
-      en: "Using boarding life to build time management, responsibility, living well with others and looking out for one another.",
-      ru: "Через жизнь в интернате развивать умение распоряжаться своим временем, ответственность, умение жить в коллективе и заботиться друг о друге.",
+      uz: "Darslar va internat hayoti orqali mustaqil fikrlash, oʻz vaqtini boshqarish, jamoada ishlash va yetakchilik koʻnikmalarini, shuningdek masʼuliyat va bir-biriga gʻamxoʻrlik qilishni shakllantirish.",
+      en: "Using lessons and boarding life to build independent thinking, time management, teamwork and leadership, along with responsibility and looking out for one another.",
+      ru: "Через уроки и жизнь в интернате развивать самостоятельное мышление, умение распоряжаться временем, работать в команде и быть лидером, а также ответственность и заботу друг о друге.",
     },
     points: {
-      uz: ["Kun tartibi va shaxsiy masʼuliyat", "Tarbiyachilar va psixolog koʻmagi"],
-      en: ["A daily routine and personal responsibility", "Support from house staff and a psychologist"],
-      ru: ["Распорядок дня и личная ответственность", "Поддержка воспитателей и психолога"],
+      uz: ["Mustaqil fikrlash va vaqtni boshqarish", "Jamoada ishlash va yetakchilik"],
+      en: ["Independent thinking and time management", "Teamwork and leadership"],
+      ru: ["Самостоятельное мышление и тайм-менеджмент", "Работа в команде и лидерство"],
     },
   },
   {
-    title: { uz: "Iqtidorni aniqlash va qoʻllab-quvvatlash", en: "Finding and supporting talent", ru: "Выявление и поддержка одарённости" },
+    title: { uz: "Har bir bolaning qiziqishini qoʻllab-quvvatlash", en: "Supporting each child's interests", ru: "Поддержка интересов каждого ребёнка" },
     text: {
-      uz: "Har bir oʻquvchining kuchli tomonini erta koʻrish va unga mos yoʻl — chuqurlashtirilgan mashgʻulotlar, olimpiadaga tayyorgarlik, ustoz bilan individual ish — taklif qilish.",
-      en: "Noticing each student's strengths early and offering a path that fits — advanced sessions, olympiad preparation, one-to-one work with a mentor.",
-      ru: "Вовремя замечать сильные стороны каждого ученика и предлагать подходящий путь — углублённые занятия, подготовку к олимпиадам, индивидуальную работу с наставником.",
+      uz: "Reggio pedagogikasi («bolalarning yuz tili») tamoyillariga tayanib, mustaqillik, ijodiy fikrlash va oʻziga ishonchni rivojlantirish. Bola gʻoyasini rasm, musiqa, harakat, loy va konstruksiyalar orqali ifodalaydi, tadqiqot mavzusini oʻzi tanlaydi. Oʻqituvchi — nazoratchi emas, qiziqishini qoʻllab-quvvatlaydigan hamroh.",
+      en: "Drawing on the principles of Reggio pedagogy (“the hundred languages of children”) to develop independence, creative thinking and self-confidence. Children express ideas through drawing, music, movement, clay and construction, and choose their own research topics. The teacher is not a controller but a companion who supports their interests.",
+      ru: "Опираясь на принципы педагогики Реджио («сто языков ребёнка»), развивать самостоятельность, творческое мышление и уверенность в себе. Дети выражают идеи через рисунок, музыку, движение, глину и конструкции и сами выбирают темы исследований. Учитель — не контролёр, а спутник, который поддерживает интересы ребёнка.",
     },
     points: {
-      uz: ["Individual rivojlanish rejasi", "Olimpiada va tanlovlarga tayyorlov"],
-      en: ["An individual development plan", "Preparation for olympiads and competitions"],
-      ru: ["Индивидуальный план развития", "Подготовка к олимпиадам и конкурсам"],
+      uz: ["Tadqiqot mavzusini oʻquvchi tanlaydi", "Oʻqituvchi — hamroh"],
+      en: ["Students choose their research topics", "The teacher as a companion"],
+      ru: ["Темы исследований выбирают ученики", "Учитель — спутник"],
     },
   },
 ];
@@ -128,9 +130,9 @@ export const values: { title: L10n; text: L10n }[] = [
   {
     title: { uz: "Qiziquvchanlik", en: "Curiosity", ru: "Любознательность" },
     text: {
-      uz: "Savol berish — kuchsizlik emas. Biz “bilmayman” deyishdan qoʻrqmaydigan va javobni oʻzi izlab topadigan oʻquvchilarni qadrlaymiz.",
-      en: "Asking is not a weakness. We value students who aren't afraid to say “I don't know yet” and then go and find out.",
-      ru: "Спрашивать — не слабость. Мы ценим учеников, которые не боятся сказать «пока не знаю» и сами ищут ответ.",
+      uz: "Savol berish — kuchsizlik emas. Biz “bilmayman” deyishdan qoʻrqmaydigan va javobni tajriba orqali oʻzi izlab topadigan oʻquvchilarni qadrlaymiz.",
+      en: "Asking is not a weakness. We value students who aren't afraid to say “I don't know yet” and then find out for themselves by experimenting.",
+      ru: "Спрашивать — не слабость. Мы ценим учеников, которые не боятся сказать «пока не знаю» и сами ищут ответ через эксперимент.",
     },
   },
   {
@@ -160,9 +162,9 @@ export const values: { title: L10n; text: L10n }[] = [
   {
     title: { uz: "Dunyoga ochiqlik", en: "Openness to the world", ru: "Открытость миру" },
     text: {
-      uz: "Boshqa tillar, madaniyatlar va fikrlarga qiziqish bilan qaraymiz — oʻz madaniyatimizni ham shu qiziqish bilan oʻrganamiz.",
-      en: "We approach other languages, cultures and ideas with interest — and study our own culture with the same interest.",
-      ru: "Мы с интересом относимся к другим языкам, культурам и взглядам — и с тем же интересом изучаем свою культуру.",
+      uz: "Boshqa tillar, madaniyatlar va fikrlarga qiziqish bilan qaraymiz — ona tilimiz va oʻz madaniyatimizni ham shu qiziqish va hurmat bilan oʻrganamiz.",
+      en: "We approach other languages, cultures and ideas with interest — and treat our mother tongue and our own culture with the same interest and respect.",
+      ru: "Мы с интересом относимся к другим языкам, культурам и взглядам — и с тем же интересом и уважением относимся к родному языку и своей культуре.",
     },
   },
 ];

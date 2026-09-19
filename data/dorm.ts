@@ -89,9 +89,9 @@ export const dormCopy = {
   leisure: {
     title: { uz: "Dam olish kunlari", en: "Weekends and free time", ru: "Выходные и свободное время" } satisfies L10n,
     lead: {
-      uz: "Shanba va yakshanba — sport, sahna, shaxmat, kitob va shahar boʻylab sayohatlar uchun.",
-      en: "Saturdays and Sundays are for sport, the stage, chess, books and trips around the city.",
-      ru: "Суббота и воскресенье — для спорта, сцены, шахмат, книг и поездок по городу.",
+      uz: "Shanba va yakshanba — sport, sahna, shaxmat, sanʼat va musiqa, kitob va shahar boʻylab sayohatlar uchun.",
+      en: "Saturdays and Sundays are for sport, the stage, chess, art and music, books and trips around the city.",
+      ru: "Суббота и воскресенье — для спорта, сцены, шахмат, искусства и музыки, книг и поездок по городу.",
     } satisfies L10n,
   },
 
@@ -230,9 +230,9 @@ export const routine: RoutineItem[] = [
     part: "day",
     title: { uz: "Toʻgaraklar", en: "Clubs", ru: "Кружки" },
     text: {
-      uz: "Robototexnika, debat, xattotlik, shaxmat va boshqalar.",
-      en: "Robotics, debate, calligraphy, chess and more.",
-      ru: "Робототехника, дебаты, каллиграфия, шахматы и другое.",
+      uz: "Robototexnika, sunʼiy intellekt, maʼlumotlar tahlili, kompyuter savodxonligi, shaxmat, sanʼat va musiqa.",
+      en: "Robotics, artificial intelligence, data analysis, computer literacy, chess, art and music.",
+      ru: "Робототехника, искусственный интеллект, анализ данных, компьютерная грамотность, шахматы, искусство и музыка.",
     },
   },
   { time: "16:45", end: "18:00", part: "evening", title: { uz: "Sport", en: "Sport", ru: "Спорт" } },

@@ -1,7 +1,9 @@
 /**
  * EVERY photo on the site is referenced from this file.
  *
- * Right now the slots point to free-licence Unsplash placeholders (https://unsplash.com/license).
+ * Slots with "/images/..." are REAL photos of the school (from its official Telegram channel t.me/piima_xorijiy_tillar;
+ * "Loyiha/Project visual" ones are architect renders from t.me/xorijiytillar600). Telegram only serves 800px previews —
+ * replace them with the original files for sharper large images. The rest are free-licence Unsplash placeholders.
  * To use the school's real photos:
  *   1. put the file in public/images/<group>/..., e.g. public/images/campus/hero.jpg
  *   2. change `src` below to "/images/campus/hero.jpg"
@@ -32,16 +34,18 @@ const img = (id: string, uz: string, en: string, ru: string) => slot(u(id), uz, 
 
 export const images = {
   campus: {
-    hero: img("photo-1737825101103-c35677e6bd45", "Kampusdagi forma kiygan oʻquvchilar", "Students in blazers and ties walking across a bright campus", "Ученики в пиджаках и галстуках идут по светлому кампусу"),
-    main: img("photo-1721814055224-d7165bf5238b", "Yorugʻ zamonaviy oʻquv binosi", "A bright modern school building", "Светлый современный учебный корпус"),
-    lawn: img("photo-1769430886896-dc30842be5a3", "Oʻquv binosi oldidagi keng maysazor", "Wide lawn in front of the teaching block", "Широкая лужайка перед учебным корпусом"),
-    entrance: img("photo-1729284440498-19b2295ac7bb", "Maktab zinapoyasida forma kiygan oʻquvchilar", "Students in uniform on the school steps", "Ученики в форме на ступенях школы"),
-    court: img("photo-1730106469498-a916bbf203e7", "Yugurish yoʻlagi va sport zali", "Running track leading to the sports hall", "Беговая дорожка и спортивный корпус"),
-    stairs: img("photo-1784308992921-045da5443625", "Koʻkalamzor zinapoya va dam olish zonasi", "Green staircase and lounge area", "Лестница в зелени и зона отдыха"),
+    renderAerial: slot("/images/campus/render-aerial.jpg", "Loyiha: kampus yuqoridan", "Project visual: the campus from above", "Проект: кампус с высоты"),
+    renderEntrance: slot("/images/campus/render-entrance.jpg", "Loyiha: bosh kirish", "Project visual: the main entrance", "Проект: главный вход"),
+    hero: slot("/images/campus/aerial.jpg", "Maktab-internat kampusi — yuqoridan koʻrinish", "The school campus from above", "Кампус школы-интерната с высоты"),
+    main: slot("/images/campus/courtyard.jpg", "Maktab binosi va ichki hovli", "The school building and its courtyard", "Здание школы и внутренний двор"),
+    lawn: slot("/images/campus/render-square.jpg", "Loyiha: kampus maydoni va maysazor", "Project visual: campus square and lawns", "Проект: площадь кампуса и газоны"),
+    entrance: slot("/images/campus/facade-logo.jpg", "Bino fasadidagi International Language School belgisi", "The International Language School emblem on the façade", "Эмблема International Language School на фасаде"),
+    court: slot("/images/campus/render-track.jpg", "Loyiha: yugurish yoʻlagi va sport maydoni", "Project visual: running track and sports ground", "Проект: беговая дорожка и спортплощадка"),
+    stairs: slot("/images/campus/render-plaza.jpg", "Loyiha: soyabonli ichki maydon", "Project visual: the canopied inner plaza", "Проект: внутренняя площадь с навесами"),
     library: img("photo-1770307939909-f27b8e4ae9c9", "Zamonaviy kutubxona javonlari", "Modern library shelves", "Стеллажи современной библиотеки"),
-    readingRoom: img("photo-1564981797816-1043664bf78d", "Katta derazali yorugʻ oʻqish zali", "Bright reading room with tall windows", "Светлый читальный зал с высокими окнами"),
+    readingRoom: slot("/images/campus/reading-pod.jpg", "Oʻqish kapsulasida kitob oʻqiyotgan oʻquvchi", "A pupil reading in a study pod", "Ученик читает в капсуле для чтения"),
     libraryHall: img("photo-1722248540590-ba8b7af1d7b2", "Keng kutubxona zali", "A spacious library hall", "Просторный зал библиотеки"),
-    walkway: img("photo-1741622014944-04f164db1041", "Chinorlar soyasidagi yoʻlak", "Tree-lined walkway", "Аллея под платанами"),
+    walkway: slot("/images/campus/render-path.jpg", "Loyiha: kampus yoʻlagi", "Project visual: a campus path", "Проект: дорожка кампуса"),
   },
   heritage: {
     dome: img("photo-1733586092622-1b3201e802a5", "Samarqanddagi moviy gumbaz", "A blue dome in Samarkand", "Голубой купол в Самарканде"),
@@ -49,11 +53,11 @@ export const images = {
     alley: img("photo-1715540335591-8c7db66f7a41", "Moviy gumbazli tor koʻcha", "Narrow street with a blue dome", "Узкая улица с голубым куполом"),
   },
   classes: {
-    lesson: img("photo-1776178320206-f42b9a9cf996", "Dars jarayonida yuqori sinf oʻquvchilari", "Senior students during a lesson", "Старшеклассники на уроке"),
-    teacher: img("photo-1758270704226-db897b180243", "Oʻqituvchi savol beradi, oʻquvchilar qoʻl koʻtaradi", "Students raise their hands to the teacher's question", "Ученики поднимают руки на вопрос учителя"),
+    lesson: slot("/images/classes/classroom.jpg", "Yorugʻ sinfxonada dars", "A lesson in a bright classroom", "Урок в светлом классе"),
+    teacher: slot("/images/classes/teacher.jpg", "Oʻqituvchi oʻquvchi bilan", "A teacher with a pupil", "Учитель с учеником"),
     focus: img("photo-1781331756173-386c128d6f92", "Darsda konspekt yozayotgan forma kiygan oʻquvchilar", "Students in blazers taking notes in class", "Ученики в пиджаках конспектируют урок"),
     seminar: img("photo-1779358296802-715fc9fbc152", "Keng auditoriyada forma kiygan oʻquvchilar", "Students in uniform in a large lecture hall", "Ученики в форме в большой аудитории"),
-    board: img("photo-1758685848261-16a5a9e68811", "Doskada formulalar yechayotgan oʻquvchilar", "Students solving formulas at the blackboard", "Ученики решают формулы у доски"),
+    board: slot("/images/classes/first-lesson.jpg", "Birinchi dars: bayroqchalar bilan oʻquvchilar", "The first lesson: pupils with flags", "Первый урок: ученики с флажками"),
     physics: img("photo-1758685734006-4a3cb9253a2b", "Fizika va kimyo formulalari yozilgan doska", "Physics and chemistry formulas on the blackboard", "Формулы по физике и химии на доске"),
     labPair: img("photo-1758685734030-a31d96462eec", "Oʻqituvchi va oʻquvchi tajriba oʻtkazmoqda", "Teacher and student running an experiment", "Учитель и ученик проводят опыт"),
     labKids: img("photo-1758685734153-132c8620c1bd", "Laboratoriya xalatidagi oʻquvchilar", "Students in lab coats", "Ученики в лабораторных халатах"),
@@ -66,7 +70,7 @@ export const images = {
     notes: img("photo-1460518451285-97b6aa326961", "Kitob oʻqish va konspekt yozish", "Reading and taking notes", "Чтение и конспекты"),
     whiteboard: img("photo-1773489753005-dba9bf8d72bf", "Doskada masala yechayotgan oʻquvchi qiz", "A student working through a problem on the board", "Ученица решает задачу у доски"),
     computers: img("photo-1643199121319-b3b5695e4acb", "Zamonaviy kompyuter sinfi", "Modern computer lab", "Современный компьютерный класс"),
-    highFive: img("photo-1546957221-37816b007052", "Maydonda forma kiygan oʻquvchilar", "Students in uniform on the sports field", "Ученики в форме на спортивном поле"),
+    highFive: slot("/images/classes/pupils.jpg", "Maktab formasidagi oʻquvchilar", "Pupils in the school uniform", "Ученики в школьной форме"),
   },
   dorm: {
     hero: img("photo-1781415980730-bfcf192e38bc", "Tartibli yotoqxona xonasi", "A neat dormitory room", "Аккуратная комната общежития"),
@@ -82,9 +86,10 @@ export const images = {
     meal: img("photo-1785571903557-dce44dcf3eab", "Quruq mevali oʻzbek oshi", "Uzbek plov with dried fruit", "Узбекский плов с сухофруктами"),
   },
   events: {
+    guests: slot("/images/events/guests.jpg", "Ochilish marosimidagi mehmonlar", "Guests at the opening", "Гости на открытии"),
     culture: img("photo-1623065078802-8595aa906f86", "Milliy libosdagi raqqosa bayram sahnasida", "A dancer in Uzbek national dress on a festive stage", "Танцовщица в узбекском национальном костюме на праздничной сцене"),
     choir: img("photo-1769432902785-b17b57e67de0", "Sahnadagi xor", "Choir on stage", "Хор на сцене"),
-    ceremony: img("photo-1780893006073-2f914b1ae832", "Hovlidagi umumiy yigʻilish", "A school gathering in the courtyard", "Общий сбор во дворе школы"),
+    ceremony: slot("/images/events/first-day-flowers.jpg", "Birinchi oʻquv kuni: gullar bilan oʻquvchilar", "First school day: pupils with flowers", "Первый учебный день: ученики с цветами"),
     mic: img("photo-1765020553499-1ec9aeb21298", "Minbarda soʻzlayotgan oʻquvchi", "A student speaking at a podium", "Ученица выступает за трибуной"),
     speech: img("photo-1544531586-fde5298cdd40", "Auditoriya oldida nutq", "A talk in front of an audience", "Выступление перед аудиторией"),
     debate: img("photo-1773841915558-25083446c52e", "Minbar ortidagi munozarachilar", "Debaters at podiums", "Участники дебатов за трибунами"),
@@ -92,7 +97,7 @@ export const images = {
     drama: img("photo-1503095396549-807759245b35", "Sahnadagi uch ijrochi", "Three performers on stage", "Три актёра на сцене"),
     theatre: img("photo-1740867650660-e1a0a677e666", "Teatr sahnasidagi koʻrinish", "A scene on the theatre stage", "Сцена спектакля"),
     lawnStage: img("photo-1782567530577-98d75b4bcb88", "Ochiq havodagi sahna", "Open-air stage", "Сцена под открытым небом"),
-    groupPhoto: img("photo-1769201153045-98827f62996b", "Forma kiygan oʻquvchilarning guruh surati", "Group photo of students in uniform", "Групповое фото учеников в форме"),
+    groupPhoto: slot("/images/events/atrium-panda.jpg", "Atriumda oʻquvchilar va panda", "Pupils and a panda in the atrium", "Ученики и панда в атриуме"),
   },
   sport: {
     football: img("photo-1598880513655-d1c6d4b2dfbf", "Futbol oʻyini", "Football match", "Футбольный матч"),
@@ -105,6 +110,7 @@ export const images = {
     chessGirl: img("photo-1699743570117-91384b4b0400", "Shaxmat turnirida qizlar", "Girls at a chess tournament", "Девушки на шахматном турнире"),
   },
   chinese: {
+    teachers: slot("/images/chinese/chinese-teachers.jpg", "Xitoy tili oʻqituvchilari birinchi oʻquv kunida", "Chinese teachers on the first school day", "Преподаватели китайского в первый учебный день"),
     calligraphy: img("photo-1546638008-efbe0b62c730", "Moʻyqalam bilan xattotlik", "Brush calligraphy", "Каллиграфия кистью"),
     brush: img("photo-1486303954368-398fea0e72cd", "Qogʻozga ieroglif yozilmoqda", "Writing a character on paper", "Иероглиф на бумаге"),
     writing: img("photo-1675149485273-2c3b292c5c2a", "Xitoy ieroglifini yozish", "Writing Chinese characters", "Письмо китайскими иероглифами"),
@@ -118,8 +124,16 @@ export const images = {
     shelf: img("photo-1561379982-c9f0e54ff067", "Kitob javoni oldida oʻquvchi", "A student at the bookshelf", "Ученица у книжной полки"),
     reading: img("photo-1776571661811-c311d42634d9", "Kutubxonada dars tayyorlayotgan oʻquvchilar", "Students studying in the library", "Ученики занимаются в библиотеке"),
     page: img("photo-1547567667-1aa64e6f58dc", "Kitob sahifasini varaqlash", "Turning a page", "Перелистывание страницы"),
-    floor: img("photo-1720659201108-4efe526b289c", "Kutubxonada polda oʻtirib oʻqish", "Reading on the library floor", "Чтение на полу библиотеки"),
+    floor: slot("/images/english/reading-floor.jpg", "Kitob oʻqiyotgan oʻquvchi", "A pupil reading", "Ученик читает книгу"),
     writing: img("photo-1520569495996-b5e1219cb625", "Esse yozish", "Writing an essay", "Написание эссе"),
+  },
+  /** Photos from the school's official Telegram channel for the news item about the 15 Sep 2026 visit. */
+  news: {
+    visit0: slot("/images/news/visit-0.jpg", "Maktab-internatga tashrif, 2026-yil 15-sentabr", "Visit to the school, 15 September 2026", "Визит в школу-интернат, 15 сентября 2026"),
+    visit2: slot("/images/news/visit-2.jpg", "Maktab-internatga tashrif, 2026-yil 15-sentabr", "Visit to the school, 15 September 2026", "Визит в школу-интернат, 15 сентября 2026"),
+    visit4: slot("/images/news/visit-4.jpg", "Maktab-internatga tashrif, 2026-yil 15-sentabr", "Visit to the school, 15 September 2026", "Визит в школу-интернат, 15 сентября 2026"),
+    visit5: slot("/images/news/visit-5.jpg", "Maktab-internatga tashrif, 2026-yil 15-sentabr", "Visit to the school, 15 September 2026", "Визит в школу-интернат, 15 сентября 2026"),
+    visit8: slot("/images/news/visit-8.jpg", "Maktab-internatga tashrif, 2026-yil 15-sentabr", "Visit to the school, 15 September 2026", "Визит в школу-интернат, 15 сентября 2026"),
   },
   /**
    * Staff portraits — intentionally empty: we don't put strangers' faces next to placeholder names.

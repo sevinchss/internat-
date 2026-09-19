@@ -24,9 +24,9 @@ export const hero = {
     ru: "Наука, языки и корни — в одном круге",
   } satisfies L10n,
   lead: {
-    uz: "Ixtisoslashtirilgan taʼlim muassasalari agentligi tizimidagi yangi maktab-internat. Bu yerda iqtidorli bolalar aniq fanlarni chuqur oʻrganadi, ingliz va xitoy tillarida erkin fikrlaydi va oʻz tarixi, adabiyoti, madaniyatini yaxshi biladi.",
-    en: "A new boarding school within Uzbekistan's Agency of Specialized Educational Institutions. Gifted children study the sciences in depth, learn to think freely in English and Chinese, and know their own history, literature and culture well.",
-    ru: "Новая школа-интернат в системе Агентства специализированных образовательных учреждений. Одарённые дети углублённо изучают точные науки, свободно думают на английском и китайском и хорошо знают свою историю, литературу и культуру.",
+    uz: "Toshkentdagi, Ixtisoslashtirilgan taʼlim muassasalari agentligi tizimidagi yangi maktab-internat. Bu yerda iqtidorli bolalar STEM fanlarini ingliz tilida oʻrganadi, xitoy tilini chuqurlashtirilgan dastur asosida egallaydi va oʻz tarixi, adabiyoti, madaniyatini yaxshi biladi.",
+    en: "A new boarding school in Tashkent, within Uzbekistan's Agency of Specialized Educational Institutions. Gifted children study STEM subjects in English, learn Chinese in depth, and know their own history, literature and culture well.",
+    ru: "Новая школа-интернат в Ташкенте, в системе Агентства специализированных образовательных учреждений. Одарённые дети изучают предметы STEM на английском языке, углублённо осваивают китайский и хорошо знают свою историю, литературу и культуру.",
   } satisfies L10n,
   facts: [
     { value: "2026/2027", label: { uz: "birinchi oʻquv yili", en: "our first school year", ru: "первый учебный год" } },
@@ -53,22 +53,22 @@ export const about = {
       id: "stem",
       color: "var(--green)",
       title: { uz: "STEM", en: "STEM", ru: "STEM" },
-      short: { uz: "Matematika, fizika, kimyo, biologiya, IT", en: "Maths, physics, chemistry, biology, IT", ru: "Математика, физика, химия, биология, ИТ" },
+      short: { uz: "Matematika, fizika, kimyo, biologiya, IT — ingliz tilida", en: "Maths, physics, chemistry, biology, IT — in English", ru: "Математика, физика, химия, биология, ИТ — на английском" },
       text: {
-        uz: "Kuchli matematik tayyorgarlik va tabiiy fanlar. Loyiha ishlari va mustaqil tadqiqotlar orqali oʻquvchi savol berishni, tajriba qilishni va natijani himoya qilishni oʻrganadi.",
-        en: "Strong mathematics and natural sciences. Through project work and independent research, students learn to ask questions, run experiments and defend their results.",
-        ru: "Сильная математика и естественные науки. Через проекты и самостоятельные исследования ученики учатся задавать вопросы, ставить опыты и защищать результат.",
+        uz: "Kuchli matematik tayyorgarlik va tabiiy fanlar ingliz tilida oʻqitiladi. Loyiha ishlari, tajribalar va sinfdan tashqaridagi kuzatuvlar orqali oʻquvchi savol berishni, bilimini real sharoitda sinashni va natijani himoya qilishni oʻrganadi.",
+        en: "Strong mathematics and natural sciences, taught in English. Through project work, experiments and observation beyond the classroom, students learn to ask questions, test what they know in real settings and defend their results.",
+        ru: "Сильная математика и естественные науки на английском языке. Через проекты, опыты и наблюдения за пределами класса ученики учатся задавать вопросы, проверять знания в реальных условиях и защищать результат.",
       },
     },
     {
       id: "languages",
       color: "var(--navy)",
       title: { uz: "Xorijiy tillar", en: "Foreign languages", ru: "Иностранные языки" },
-      short: { uz: "Ingliz va xitoy tillari — intensiv", en: "English and Chinese — intensive", ru: "Английский и китайский — интенсивно" },
+      short: { uz: "Ingliz tili — fan tili, xitoy tili — chuqurlashtirilgan", en: "English for learning, Chinese in depth", ru: "Английский — язык обучения, китайский — углублённо" },
       text: {
-        uz: "Ingliz va xitoy tillari intensiv oʻqitiladi: til dars uchun emas, fikrlash, oʻqish va muloqot uchun vosita boʻladi.",
-        en: "English and Chinese are taught intensively, so a language becomes a tool for thinking, reading and talking — not just a subject.",
-        ru: "Английский и китайский преподаются интенсивно: язык становится инструментом мышления, чтения и общения, а не просто предметом.",
+        uz: "Ingliz tili aniq va tabiiy fanlarni oʻrganish tili boʻladi, xitoy tili esa chuqurlashtirilgan dastur asosida oʻqitiladi. Til dars uchun emas, fikrlash, oʻqish va muloqot uchun vosita boʻladi.",
+        en: "English is the language in which maths and science are learned, and Chinese is taught in depth. A language becomes a tool for thinking, reading and talking — not just a subject.",
+        ru: "На английском изучают точные и естественные науки, а китайский преподаётся углублённо. Язык становится инструментом мышления, чтения и общения, а не просто предметом.",
       },
     },
     {
@@ -77,9 +77,9 @@ export const about = {
       title: { uz: "Milliy oʻzlik", en: "National identity", ru: "Национальная идентичность" },
       short: { uz: "Ona tili, tarix, adabiyot, madaniyat", en: "Native language, history, literature, culture", ru: "Родной язык, история, литература, культура" },
       text: {
-        uz: "Dasturning katta va muhim qismi ona tili, Oʻzbekiston tarixi, adabiyot va madaniyatga bagʻishlangan. Zamonaviy taʼlim oʻz ildizlarini bilgan inson qoʻlida kuchli boʻladi.",
-        en: "A large and important part of the programme is given to the native language, the history of Uzbekistan, literature and culture. Modern education is strongest in the hands of someone who knows their roots.",
-        ru: "Большая и важная часть программы отведена родному языку, истории Узбекистана, литературе и культуре. Современное образование сильнее всего у того, кто знает свои корни.",
+        uz: "Dasturning katta va muhim qismi ona tili, Oʻzbekiston tarixi, adabiyot va madaniyatga bagʻishlangan. Xorijiy tillarga qiziqish ona tiliga hurmat bilan birga boʻlishi kerak — zamonaviy taʼlim oʻz ildizlarini bilgan inson qoʻlida kuchli boʻladi.",
+        en: "A large and important part of the programme is given to the native language, the history of Uzbekistan, literature and culture. Interest in foreign languages has to go hand in hand with respect for your mother tongue — modern education is strongest in the hands of someone who knows their roots.",
+        ru: "Большая и важная часть программы отведена родному языку, истории Узбекистана, литературе и культуре. Интерес к иностранным языкам должен идти рука об руку с уважением к родному — современное образование сильнее всего у того, кто знает свои корни.",
       },
     },
   ],
@@ -142,9 +142,9 @@ export const directions = {
         ru: "Чтение, письмо, аудирование и говорение — все четыре навыка на равных.",
       },
       points: {
-        uz: ["Intensiv dastur 5-sinfdan", "Munozara klubi va Model UN", "Xalqaro imtihonlarga yoʻl"],
-        en: ["Intensive programme from grade 5", "Debate club and Model UN", "A path to international exams"],
-        ru: ["Интенсивная программа с 5 класса", "Дебатный клуб и Model UN", "Путь к международным экзаменам"],
+        uz: ["STEM fanlari ingliz tilida", "Munozara klubi va Model UN", "Xalqaro imtihonlarga yoʻl"],
+        en: ["STEM subjects taught in English", "Debate club and Model UN", "A path to international exams"],
+        ru: ["Предметы STEM на английском", "Дебатный клуб и Model UN", "Путь к международным экзаменам"],
       },
     },
     {
@@ -159,16 +159,16 @@ export const directions = {
         ru: "От первого иероглифа до свободного общения — язык и культура вместе.",
       },
       points: {
-        uz: ["Intensiv dastur 5-sinfdan", "HSK darajalari boʻyicha yoʻl", "Xattotlik va choy madaniyati"],
-        en: ["Intensive programme from grade 5", "A path through HSK levels", "Calligraphy and tea culture"],
-        ru: ["Интенсивная программа с 5 класса", "Путь по уровням HSK", "Каллиграфия и чайная культура"],
+        uz: ["Yinghua Academy Group bilan hamkorlikda", "HSK xalqaro imtihonlariga tayyorgarlik", "Xattotlik va choy madaniyati"],
+        en: ["In partnership with Yinghua Academy Group", "Preparation for the international HSK exams", "Calligraphy and tea culture"],
+        ru: ["В партнёрстве с Yinghua Academy Group", "Подготовка к международным экзаменам HSK", "Каллиграфия и чайная культура"],
       },
     },
   ],
   more: { uz: "Yoʻnalish haqida", en: "About the programme", ru: "О направлении" } satisfies L10n,
 };
 
-// TODO: replace with real data — placeholder daily schedule
+// TODO: replace with real data — placeholder daily schedule (times are placeholders; the club list follows the school's official Telegram channel)
 export const day = {
   title: { uz: "Internatda bir kun", en: "A day at the boarding school", ru: "Один день в интернате" } satisfies L10n,
   lead: {
@@ -182,8 +182,8 @@ export const day = {
     { from: 7.5, to: 8, color: "var(--orange)", title: { uz: "Nonushta", en: "Breakfast", ru: "Завтрак" }, text: { uz: "Toʻyimli nonushta oshxonada.", en: "A proper breakfast in the canteen.", ru: "Сытный завтрак в столовой." } },
     { from: 8, to: 13, color: "var(--navy)", title: { uz: "Darslar", en: "Lessons", ru: "Уроки" }, text: { uz: "STEM fanlari, ingliz va xitoy tillari, ona tili, tarix va adabiyot.", en: "STEM subjects, English and Chinese, native language, history and literature.", ru: "Предметы STEM, английский и китайский, родной язык, история и литература." } },
     { from: 13, to: 14, color: "var(--orange)", title: { uz: "Tushlik va dam", en: "Lunch and rest", ru: "Обед и отдых" }, text: { uz: "Issiq tushlik va qisqa tanaffus.", en: "Hot lunch and a short break.", ru: "Горячий обед и короткий перерыв." } },
-    { from: 14, to: 16, color: "var(--purple)", title: { uz: "Toʻgaraklar va loyihalar", en: "Clubs and projects", ru: "Кружки и проекты" }, text: { uz: "Tadqiqot loyihalari, munozara, xattotlik, robototexnika.", en: "Research projects, debate, calligraphy, robotics.", ru: "Исследовательские проекты, дебаты, каллиграфия, робототехника." } },
-    { from: 16, to: 17, color: "var(--green)", title: { uz: "Sport", en: "Sport", ru: "Спорт" }, text: { uz: "Futbol, basketbol, shaxmat va boshqalar.", en: "Football, basketball, chess and more.", ru: "Футбол, баскетбол, шахматы и не только." } },
+    { from: 14, to: 16, color: "var(--purple)", title: { uz: "Toʻgaraklar va loyihalar", en: "Clubs and projects", ru: "Кружки и проекты" }, text: { uz: "Robototexnika, sunʼiy intellekt, maʼlumotlar tahlili, kompyuter savodxonligi, shaxmat, sanʼat va musiqa.", en: "Robotics, artificial intelligence, data analysis, computer literacy, chess, art and music.", ru: "Робототехника, искусственный интеллект, анализ данных, компьютерная грамотность, шахматы, искусство и музыка." } },
+    { from: 16, to: 17, color: "var(--green)", title: { uz: "Sport", en: "Sport", ru: "Спорт" }, text: { uz: "Futbol, basketbol va boshqalar.", en: "Football, basketball and more.", ru: "Футбол, баскетбол и не только." } },
     { from: 17, to: 19, color: "var(--navy)", title: { uz: "Mustaqil tayyorgarlik", en: "Self-study", ru: "Самоподготовка" }, text: { uz: "Tarbiyachi nazoratida uy vazifalari va takrorlash.", en: "Homework and revision with a tutor nearby.", ru: "Домашние задания и повторение под присмотром воспитателя." } },
     { from: 19, to: 20, color: "var(--orange)", title: { uz: "Kechki ovqat", en: "Dinner", ru: "Ужин" }, text: { uz: "Kechki ovqat va suhbat.", en: "Dinner and conversation.", ru: "Ужин и общение." } },
     { from: 20, to: 21.5, color: "var(--red)", title: { uz: "Boʻsh vaqt va oila bilan aloqa", en: "Free time and calling home", ru: "Свободное время и связь с семьёй" }, text: { uz: "Kitob, oʻyinlar, ota-onaga qoʻngʻiroq.", en: "Books, games, a call to parents.", ru: "Книги, игры, звонок родителям." } },
