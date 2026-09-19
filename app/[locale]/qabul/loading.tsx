@@ -12,7 +12,7 @@ export default function Loading() {
           <div className="skeleton mx-auto mt-6 h-14 w-full max-w-[420px]" />
         </div>
       </div>
-      <div className="border-y border-line bg-surface py-20">
+      <div className="py-20">
         <div className="container-x">
           <div className="skeleton h-12 w-1/2" />
           <div className="mt-14 grid gap-10 lg:grid-cols-4">
@@ -29,7 +29,7 @@ export default function Loading() {
       </div>
       <div className="container-x grid gap-10 py-20 lg:grid-cols-12">
         <div className="skeleton h-12 lg:col-span-4" />
-        <div className="skeleton h-80 !rounded-[24px] lg:col-span-8" />
+        <div className="skeleton h-80 !rounded-[20px] lg:col-span-8" />
       </div>
     </div>
   );

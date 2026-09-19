@@ -19,7 +19,7 @@ export default function Loading() {
           </div>
         </div>
       </div>
-      <div className="bg-surface py-20">
+      <div className="py-20">
         <div className="container-x grid items-center gap-12 lg:grid-cols-12">
           <div className="border-surface-2 mx-auto aspect-square w-full max-w-[460px] rounded-full border-[36px] lg:col-span-6 lg:mx-0" />
           <div className="lg:col-span-5 lg:col-start-8">

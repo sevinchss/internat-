@@ -16,7 +16,7 @@ export default function Loading() {
           </div>
         </div>
         <div className="lg:col-span-7 lg:pt-4">
-          <div className="rounded-[28px] border border-line bg-surface p-6 sm:p-10">
+          <div className="glass rounded-[24px] p-6 sm:p-10">
             <div className="skeleton h-8 w-40" />
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               {Array.from({ length: 4 }).map((_, i) => (
@@ -35,7 +35,7 @@ export default function Loading() {
         </div>
       </div>
       <div className="container-x pb-20">
-        <div className="skeleton aspect-[4/5] !rounded-[28px] sm:aspect-[16/9] lg:aspect-[21/8]" />
+        <div className="skeleton aspect-[4/5] !rounded-[6px] sm:aspect-[16/9] lg:aspect-[21/8]" />
       </div>
     </div>
   );

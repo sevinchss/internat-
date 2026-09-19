@@ -8,6 +8,9 @@ export const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-poppins",
   display: "swap",
+  // No auto-generated Arial fallback in the stack: it contains Cyrillic and would win over Montserrat for Russian.
+  adjustFontFallback: false,
+  fallback: [],
 });
 
 export const montserrat = Montserrat({
