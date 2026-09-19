@@ -5,12 +5,13 @@ import { cn } from "@/lib/utils";
 type Variant = "primary" | "outline" | "ghost" | "light";
 
 const base =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-[15px] font-semibold transition-[transform,background-color,color,border-color] duration-200 active:scale-[0.98]";
+  "group/btn relative isolate inline-flex min-h-12 items-center justify-center gap-2 overflow-hidden rounded-full px-6 text-[15px] font-medium tracking-[-0.01em] transition-[transform,color,border-color] duration-300 active:scale-[0.98] before:absolute before:inset-0 before:-z-10 before:translate-y-[102%] before:rounded-[inherit] before:transition-transform before:duration-500 before:ease-[cubic-bezier(0.76,0,0.24,1)] hover:before:translate-y-0";
+// Hover: a fill rises from below (before:) instead of a flat colour swap.
 const variants: Record<Variant, string> = {
-  primary: "bg-primary text-on-primary shadow-[inset_0_1px_0_rgb(255_255_255/0.18)] hover:bg-navy dark:hover:bg-[#2474c9]",
-  outline: "border border-ink/15 text-ink hover:border-primary-ink hover:text-primary-ink dark:border-white/20",
-  ghost: "text-ink underline decoration-line decoration-2 underline-offset-[6px] hover:decoration-primary-ink px-0 min-h-0",
-  light: "bg-white text-navy hover:bg-white/90",
+  primary: "bg-primary text-on-primary before:bg-ink dark:before:bg-white hover:dark:text-navy",
+  outline: "border border-ink/15 text-ink before:bg-ink hover:text-paper hover:border-ink dark:border-white/20",
+  ghost: "min-h-0 px-0 text-ink underline decoration-line decoration-2 underline-offset-[6px] before:hidden hover:decoration-primary-ink",
+  light: "bg-white text-navy before:bg-amber hover:text-[#0b1a33]",
 };
 
 export const buttonClass = (variant: Variant = "primary", className?: string) => cn(base, variants[variant], className);

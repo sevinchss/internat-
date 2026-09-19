@@ -243,7 +243,7 @@ function Dropdown({
             exit={{ opacity: 0, y: -4, scale: 0.98, transition: { duration: 0.12 } }}
             transition={{ type: "spring", stiffness: 420, damping: 32 }}
             style={{ transformOrigin: "top left" }}
-            className="absolute left-0 top-[calc(100%+10px)] w-[340px] rounded-[22px] border border-line bg-surface p-2 shadow-[0_24px_48px_-20px_rgb(var(--shadow)/0.28)]"
+            className="glass absolute left-0 top-[calc(100%+10px)] w-[340px] rounded-[22px] p-2 shadow-[0_24px_48px_-20px_rgb(var(--shadow)/0.28)]"
             onKeyDown={(e) => {
               const links = Array.from(wrap.current?.querySelectorAll<HTMLAnchorElement>("[data-dropdown-link]") ?? []);
               const i = links.indexOf(document.activeElement as HTMLAnchorElement);

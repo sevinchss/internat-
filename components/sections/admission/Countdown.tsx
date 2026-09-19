@@ -53,11 +53,11 @@ export function Countdown({
       <p className="sr-only" aria-live="off">
         {parts ? `${parts.days} ${units.days}, ${parts.hours} ${units.hours}, ${parts.minutes} ${units.minutes}` : ""}
       </p>
-      <dl aria-hidden="true" className="mt-4 grid grid-cols-3 divide-x divide-line rounded-[20px] border border-line bg-surface">
+      <dl aria-hidden="true" className="glass mt-4 grid grid-cols-3 divide-x divide-line rounded-2xl">
         {cells.map((c) => (
           <div key={c.key} className="flex flex-col-reverse items-center px-2 py-4">
             <dt className="mt-1 text-sm text-ink-3">{units[c.key]}</dt>
-            <dd className="font-display text-display-m tabular-nums text-ink">{c.value}</dd>
+            <dd className="text-display-m font-light tabular-nums text-ink">{c.value}</dd>
           </div>
         ))}
       </dl>

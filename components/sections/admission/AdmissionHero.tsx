@@ -89,17 +89,17 @@ export function AdmissionHero({
                 <Countdown target={opensAt} title={countdown.title} openText={countdown.openText} units={countdown.units} />
               ) : (
                 <>
-                  <span className="font-display text-[clamp(2rem,1.4rem+2.6vw,3.2rem)] leading-none tracking-tight text-ink">{year}</span>
-                  <span className="mt-3 inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-sm font-semibold text-ink-2">
-                    <span aria-hidden="true" className="size-2 rounded-full bg-ink-3" />
+                  <span className="text-[clamp(2.25rem,1.5rem+3vw,3.6rem)] leading-none font-light tracking-[-0.045em] text-ink tabular-nums">{year}</span>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-ink-2">
+                    <span aria-hidden="true" className="h-px w-4 bg-ink-3" />
                     {lastRound}: {lastRoundDates}
                   </span>
                 </>
               )}
             </motion.div>
           </div>
-          <motion.div {...rise(0.55)} className="mx-auto mt-6 max-w-[420px] border-l-2 border-primary-ink pl-5">
-            {!opensAt && <p className="font-display text-lg leading-snug text-ink sm:text-xl">{status}</p>}
+          <motion.div {...rise(0.55)} className="mx-auto mt-6 max-w-[420px] border-l border-primary-ink pl-5">
+            {!opensAt && <p className="text-lg leading-snug font-semibold text-ink sm:text-xl">{status}</p>}
             <p className={opensAt ? "text-ink-2" : "mt-2 text-ink-2"}>{statusNote}</p>
           </motion.div>
         </div>

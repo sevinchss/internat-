@@ -16,7 +16,7 @@ export async function Footer() {
   const tc = await getTranslations("common");
 
   return (
-    <footer className="relative isolate overflow-hidden border-t border-line bg-surface">
+    <footer className="relative isolate overflow-hidden border-t border-line">
       <RingArc className="absolute -right-[22vw] -top-[18vw] -z-10 w-[62vw] min-w-[520px] text-ring" strokeWidth={1} opacity={0.7} />
 
       <div className="container-x grid gap-14 pb-10 pt-16 lg:grid-cols-12 lg:gap-8 lg:pt-20">

@@ -32,14 +32,13 @@ export function PortalLinks({
                   newTabLabel={newTabLabel}
                   variant={i === 0 ? "light" : "outline"}
                   className={
-                    // Button.tsx uses clsx (no tailwind-merge) → overrides need the important modifier
-                    "min-h-20! w-full justify-between! rounded-[24px]! px-7! py-3 text-left text-lg! " +
-                    (i === 0 ? "" : "border-white/40! text-white! hover:border-white! hover:bg-white/10")
+                    "min-h-20 w-full justify-between rounded-[20px] px-7 py-3 text-left text-lg " +
+                    (i === 0 ? "" : "border-white/35 text-white before:bg-white hover:border-white hover:text-navy dark:border-white/35")
                   }
                 >
                   <span className="flex flex-col">
-                    <span className="font-display">{p.label}</span>
-                    <span className={"text-sm font-medium " + (i === 0 ? "text-navy/75" : "text-white/75")}>{p.text}</span>
+                    <span className="font-semibold">{p.label}</span>
+                    <span className={"text-sm font-medium " + (i === 0 ? "text-navy/75" : "text-white/75 transition-colors duration-300 group-hover/btn:text-navy/75")}>{p.text}</span>
                   </span>
                 </ExternalButton>
               </li>

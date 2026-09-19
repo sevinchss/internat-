@@ -85,8 +85,8 @@
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
 
-  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-unbounded), var(--font-manrope), ui-sans-serif, sans-serif;
+  --font-sans: var(--font-poppins), var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-poppins), var(--font-montserrat), ui-sans-serif, sans-serif;
   --font-hanzi: var(--font-noto-serif-sc), "Noto Serif SC", "Songti SC", serif;
 
   --text-display-xl: clamp(2.5rem, 1.2rem + 4.2vw, 4.85rem);
@@ -126,8 +126,8 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -147,8 +147,8 @@ h2,
 h3,
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
-  font-weight: 500;
+  letter-spacing: -0.035em;
+  font-weight: 600;
   text-wrap: balance;
 }
 p {
@@ -275,4 +275,91 @@ html.intro-done #intro {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ───────────────────────── Ambient background (components/layout/Ambient.tsx) ───────────────────────── */
+.ambient-dots {
+  --dot: color-mix(in oklab, var(--ink) 16%, transparent);
+  background-image: radial-gradient(circle at center, var(--dot) 1px, transparent 1.4px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 20%, transparent 85%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 20%, transparent 85%);
+}
+.dark .ambient-dots {
+  --dot: color-mix(in oklab, var(--ink) 13%, transparent);
+}
+.ambient-dots--lit {
+  --dot: color-mix(in oklab, var(--primary-ink) 75%, transparent);
+  -webkit-mask-image: radial-gradient(circle 220px at var(--mx, -999px) var(--my, -999px), #000 0%, transparent 100%);
+  mask-image: radial-gradient(circle 220px at var(--mx, -999px) var(--my, -999px), #000 0%, transparent 100%);
+}
+.ambient-spin {
+  animation: ambient-spin 160s linear infinite;
+}
+.ambient-spin-rev {
+  animation: ambient-spin 220s linear infinite reverse;
+}
+@keyframes ambient-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.ambient-glyph {
+  opacity: 0.035;
+  animation-name: ambient-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: transform;
+}
+.dark .ambient-glyph {
+  opacity: 0.05;
+}
+@keyframes ambient-float {
+  from {
+    transform: translate3d(0, 0, 0) rotate(-4deg);
+  }
+  to {
+    transform: translate3d(3vw, -4vh, 0) rotate(5deg);
+  }
+}
+
+/* ───────────────────────── Surfaces over the ambient background ───────────────────────── */
+/* Frosted panel — lets the animated background breathe through */
+@utility glass {
+  background: color-mix(in oklab, var(--surface) 72%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  backdrop-filter: blur(14px) saturate(1.3);
+  border: 1px solid color-mix(in oklab, var(--line) 80%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, white 55%, transparent);
+}
+.dark .glass {
+  box-shadow: inset 0 1px 0 color-mix(in oklab, white 7%, transparent);
+}
+
+/* Hairline frame with registration-mark corners (instead of generic rounded cards) */
+@utility frame {
+  position: relative;
+  border: 1px solid var(--line);
+  --tick: var(--ink-3);
+  background:
+    linear-gradient(var(--tick), var(--tick)) top left / 12px 1px no-repeat,
+    linear-gradient(var(--tick), var(--tick)) top left / 1px 12px no-repeat,
+    linear-gradient(var(--tick), var(--tick)) top right / 12px 1px no-repeat,
+    linear-gradient(var(--tick), var(--tick)) top right / 1px 12px no-repeat,
+    linear-gradient(var(--tick), var(--tick)) bottom left / 12px 1px no-repeat,
+    linear-gradient(var(--tick), var(--tick)) bottom left / 1px 12px no-repeat,
+    linear-gradient(var(--tick), var(--tick)) bottom right / 12px 1px no-repeat,
+    linear-gradient(var(--tick), var(--tick)) bottom right / 1px 12px no-repeat;
+}
+
+/* Small index label: "01 · Title" style, lowercase, not an all-caps eyebrow */
+@utility index-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
 }

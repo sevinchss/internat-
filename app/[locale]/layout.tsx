@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { manrope, unbounded } from "@/lib/fonts";
+import { montserrat, poppins } from "@/lib/fonts";
 import { SITE_URL, school } from "@/lib/site";
 import { alternates } from "@/lib/seo";
 import { pick } from "@/lib/utils";
@@ -11,6 +11,7 @@ import { Providers } from "@/components/layout/Providers";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { IntroLoader } from "@/components/layout/IntroLoader";
+import { Ambient } from "@/components/layout/Ambient";
 import { SchoolJsonLd } from "@/components/seo/JsonLd";
 import "../globals.css";
 
@@ -48,7 +49,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} suppressHydrationWarning className={`${unbounded.variable} ${manrope.variable}`}>
+    <html lang={locale} suppressHydrationWarning className={`${poppins.variable} ${montserrat.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: introScript }} />
       </head>
@@ -56,6 +57,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
         <NextIntlClientProvider>
           <Providers>
             <IntroLoader />
+            <Ambient />
             <Header />
             <main id="main" tabIndex={-1} className="outline-none">
               {children}

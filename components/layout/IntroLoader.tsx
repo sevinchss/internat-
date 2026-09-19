@@ -1,45 +1,39 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, animate, motion, useMotionValue, useMotionTemplate, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useMotionValue, useMotionTemplate, useTransform } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { arcPath } from "@/lib/utils";
-import { RING_END, RING_START } from "@/components/brand/Ring";
 
+const KEY = "ils-intro";
+const MIN_MS = 1500; // progress never completes faster than this
+const FORCE_MS = 2200; // …and never slower (whole intro stays under ~3.2s)
 const GREETINGS = [
   { text: "Salom", lang: "uz" },
   { text: "Hello", lang: "en" },
   { text: "你好", lang: "zh" },
   { text: "Привет", lang: "ru" },
-  { text: "Bonjour", lang: "fr" },
-  { text: "Ciao", lang: "it" },
-  { text: "Salom", lang: "uz" },
 ];
-const KEY = "ils-intro";
-const MIN_MS = 1400; // progress never completes faster than this
-const FORCE_MS = 1900; // …and never slower (total intro stays under ~3.5s)
-const SWEEP = RING_END - RING_START; // 280°
+const ease = [0.76, 0, 0.24, 1] as const;
 
-type Phase = "loading" | "wordmark" | "reveal" | "done";
+type Phase = "loading" | "leaving" | "done";
 
 /**
- * First-visit intro (once per session). The page renders underneath; this is only an overlay,
- * so it never blocks HTML/LCP. Hidden before paint by an inline script when already played.
+ * First-visit intro (once per session), quiet and minimal:
+ * the real emblem (logo-mark.png) resolves from blur while a single hairline ring draws around it —
+ * that ring IS the progress (fonts + images) — a line of greetings settles underneath,
+ * then the paper lifts like a curtain onto the page, which has been rendered underneath all along.
  */
 export function IntroLoader() {
   const t = useTranslations("loader");
   const [phase, setPhase] = useState<Phase>("loading");
   const [reduced, setReduced] = useState(false);
-  const [greet, setGreet] = useState(0);
-  const [wide, setWide] = useState(false);
-  const progress = useMotionValue(0); // 0..1, drives the arc + conic mask
-  const hole = useMotionValue(0); // radius (vmax) of the circular reveal
+  const progress = useMotionValue(0);
   const finished = useRef(false);
 
-  const sweep = useTransform(progress, (p) => `${(p * SWEEP).toFixed(2)}deg`);
-  const conic = useMotionTemplate`conic-gradient(from ${RING_START + 90}deg, #000 ${sweep}, transparent ${sweep})`;
-  const holeMask = useMotionTemplate`radial-gradient(circle at 50% 50%, transparent ${hole}vmax, #000 calc(${hole}vmax + 1px))`;
-  const pct = useTransform(progress, (p) => Math.round(p * 100));
+  const sweep = useTransform(progress, (p) => `${(p * 360).toFixed(1)}deg`);
+  const conic = useMotionTemplate`conic-gradient(from 130deg, #000 ${sweep}, transparent ${sweep})`;
+  const markBlur = useTransform(progress, [0, 0.7], ["blur(10px)", "blur(0px)"]);
+  const markOpacity = useTransform(progress, [0, 0.35], [0, 1]);
 
   const finish = useCallback(() => {
     if (finished.current) return;
@@ -57,7 +51,6 @@ export function IntroLoader() {
     finish();
   }, [finish, progress]);
 
-  // Already played → unmount immediately
   useEffect(() => {
     let played = false;
     try {
@@ -71,16 +64,14 @@ export function IntroLoader() {
       return setPhase("done");
     }
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-    setWide(window.matchMedia("(min-width: 640px)").matches);
     /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
-  // Real load progress: fonts + images present in the document, bounded by MIN_MS / FORCE_MS.
+  // Real load progress (fonts + eager images), bounded by MIN_MS / FORCE_MS.
   useEffect(() => {
     if (phase !== "loading" || finished.current) return;
     const start = performance.now();
     let loaded = 0;
-    let total = 1;
     const tasks: Promise<unknown>[] = [document.fonts?.ready ?? Promise.resolve()];
     document.querySelectorAll("img").forEach((img) => {
       if (img.loading === "lazy") return;
@@ -93,50 +84,30 @@ export function IntroLoader() {
             }),
       );
     });
-    total = tasks.length;
+    const total = tasks.length;
     tasks.forEach((p) => p.then(() => (loaded += 1)));
 
     let raf = 0;
+    let timer: ReturnType<typeof setTimeout>;
     const tick = (now: number) => {
       const elapsed = now - start;
       const timeP = Math.min(1, elapsed / MIN_MS);
-      const loadP = loaded / total;
-      const target = elapsed > FORCE_MS ? 1 : Math.min(timeP, 0.15 + 0.85 * loadP);
-      const current = progress.get();
-      const next = current + (target - current) * 0.2;
-      progress.set(next > 0.995 && target === 1 ? 1 : next);
+      const target = elapsed > FORCE_MS ? 1 : Math.min(timeP, 0.1 + 0.9 * (loaded / total));
+      const cur = progress.get();
+      const next = cur + (target - cur) * 0.14;
+      progress.set(target === 1 && next > 0.996 ? 1 : next);
       if (progress.get() >= 1) {
-        setPhase("wordmark");
+        timer = setTimeout(() => setPhase("leaving"), reduced ? 120 : 380);
         return;
       }
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [phase, progress]);
-
-  // Greeting cycle
-  useEffect(() => {
-    if (phase !== "loading" || reduced) return;
-    const id = setInterval(() => setGreet((g) => Math.min(g + 1, GREETINGS.length - 1)), 300);
-    return () => clearInterval(id);
-  }, [phase, reduced]);
-
-  // Wordmark → circular reveal → done
-  useEffect(() => {
-    if (phase === "wordmark") {
-      const id = setTimeout(() => setPhase("reveal"), reduced ? 150 : 650);
-      return () => clearTimeout(id);
-    }
-    if (phase === "reveal") {
-      if (reduced) {
-        const id = setTimeout(finish, 250);
-        return () => clearTimeout(id);
-      }
-      const controls = animate(hole, 150, { duration: 0.7, ease: [0.76, 0, 0.24, 1], onComplete: finish });
-      return () => controls.stop();
-    }
-  }, [phase, reduced, finish, hole]);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
+  }, [phase, progress, reduced]);
 
   // Esc skips; lock scroll while visible
   useEffect(() => {
@@ -152,97 +123,67 @@ export function IntroLoader() {
     };
   }, [phase, skip]);
 
-  const arc = arcPath(100, 100, 97, RING_START, RING_END);
-
   return (
     <AnimatePresence>
       {phase !== "done" && (
         <motion.div
           id="intro"
           key="intro"
-          exit={{ opacity: 0, transition: { duration: reduced ? 0.3 : 0.2 } }}
-          className="fixed inset-0 z-[80] grid place-items-center bg-paper"
-          style={reduced ? undefined : { WebkitMaskImage: holeMask, maskImage: holeMask }}
+          className="fixed inset-0 z-[80] flex flex-col items-center justify-center bg-paper"
+          initial={false}
+          animate={phase === "leaving" ? (reduced ? { opacity: 0 } : { y: "-100%" }) : { y: "0%", opacity: 1 }}
+          transition={{ duration: reduced ? 0.35 : 0.95, ease }}
+          onAnimationComplete={() => phase === "leaving" && finish()}
         >
           <p className="sr-only" role="status">
             {t("loading")}
           </p>
 
-          {reduced ? (
-            <div className="flex w-[min(78vw,420px)] flex-col items-center gap-8">
-              {/* eslint-disable-next-line @next/next/no-img-element -- must render before hydration, no optimizer round-trip */}
-              <img src="/brand/logo-full.png" alt="" className="w-full dark:hidden" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/brand/logo-full-dark.png" alt="" className="hidden w-full dark:block" />
-              <div className="h-0.5 w-40 overflow-hidden rounded-full bg-line">
-                <motion.div className="h-full origin-left bg-primary-ink" style={{ scaleX: progress }} />
-              </div>
-            </div>
-          ) : (
-            <motion.div
-              className="relative size-[min(64vmin,440px)]"
-              // shift left so ring + wordmark end up centred together (offsets measured from logo.png)
-              animate={
-                phase === "reveal"
-                  ? { scale: 1.6, opacity: 0, x: wide ? "-30%" : "0%" }
-                  : { scale: 1, opacity: 1, x: phase === "wordmark" && wide ? "-30%" : "0%" }
-              }
-              transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-            >
-              {/* progress: the grey arc draws itself clockwise */}
-              <svg viewBox="0 0 200 200" className="absolute -inset-[5%] size-[110%] overflow-visible" aria-hidden="true">
-                <path d={arc} fill="none" stroke="var(--line)" strokeWidth="1" />
-                <motion.path d={arc} fill="none" stroke="var(--ring)" strokeWidth="2.2" style={{ pathLength: progress }} />
-              </svg>
-              {/* the real emblem from logo.png, revealed segment by segment */}
-              <motion.div className="absolute inset-0" style={{ WebkitMaskImage: conic, maskImage: conic }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/brand/logo-mark.png" alt="" className="size-full select-none" draggable={false} />
-              </motion.div>
+          {/* the curtain's lower edge */}
+          <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-line" />
 
-              {/* greeting */}
-              <div className="absolute inset-0 grid place-items-center" aria-hidden="true">
-                <AnimatePresence mode="popLayout" initial={false}>
-                  {phase === "loading" && (
-                    <motion.span
-                      key={greet}
-                      lang={GREETINGS[greet].lang}
-                      initial={{ y: 14, opacity: 0, filter: "blur(4px)" }}
-                      animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                      exit={{ y: -14, opacity: 0, filter: "blur(4px)" }}
-                      transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                      className={`font-display text-[clamp(1.2rem,4.2vmin,2rem)] text-ink ${GREETINGS[greet].lang === "zh" ? "font-hanzi font-semibold" : ""}`}
-                    >
-                      {GREETINGS[greet].text}
-                    </motion.span>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* wordmark slides out of the ring's opening */}
-              <div className="pointer-events-none absolute left-[62%] top-1/2 h-[24%] w-[125%] -translate-y-1/2 overflow-hidden max-sm:hidden">
-                <motion.div
-                  initial={{ x: "-70%", opacity: 0 }}
-                  animate={phase === "loading" ? { x: "-70%", opacity: 0 } : { x: "0%", opacity: 1 }}
-                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                  className="h-full"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/brand/logo-wordmark.png" alt="" className="h-full w-auto dark:hidden" />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/brand/logo-wordmark-dark.png" alt="" className="hidden h-full w-auto dark:block" />
-                </motion.div>
-              </div>
+          <motion.div
+            className="relative size-[clamp(120px,22vmin,168px)]"
+            animate={phase === "leaving" && !reduced ? { y: -40, opacity: 0, scale: 0.94 } : { y: 0, opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease }}
+          >
+            {/* hairline progress ring */}
+            <svg viewBox="0 0 100 100" className="absolute -inset-[22%] size-[144%] -rotate-[50deg] overflow-visible" aria-hidden="true">
+              <circle cx="50" cy="50" r="49" fill="none" stroke="var(--line)" strokeWidth="0.35" />
+              <motion.circle cx="50" cy="50" r="49" fill="none" stroke="var(--ink)" strokeWidth="0.5" strokeLinecap="round" style={{ pathLength: progress }} />
+            </svg>
+            {/* the real emblem, resolving from blur and revealed along the same sweep */}
+            <motion.div className="absolute inset-0" style={reduced ? undefined : { WebkitMaskImage: conic, maskImage: conic, filter: markBlur, opacity: markOpacity }}>
+              {/* eslint-disable-next-line @next/next/no-img-element -- must paint before hydration */}
+              <img src="/brand/logo-mark.png" alt="" className="size-full select-none" draggable={false} />
             </motion.div>
-          )}
+          </motion.div>
 
-          <div className="absolute bottom-6 left-6 font-display text-sm tabular-nums text-ink-3" aria-hidden="true">
-            <motion.span>{pct}</motion.span>%
-          </div>
+          <motion.p
+            aria-hidden="true"
+            className="mt-[clamp(56px,9vmin,84px)] flex items-center gap-3 text-[13px] font-light tracking-[0.18em] text-ink-3"
+            animate={phase === "leaving" && !reduced ? { opacity: 0, y: -16 } : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease }}
+          >
+            {GREETINGS.map((g, i) => (
+              <motion.span
+                key={g.lang}
+                lang={g.lang}
+                className="flex items-center gap-3"
+                initial={reduced ? false : { opacity: 0, filter: "blur(6px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.7, delay: 0.25 + i * 0.28, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {i > 0 && <span className="size-[3px] rounded-full bg-ring" />}
+                {g.text}
+              </motion.span>
+            ))}
+          </motion.p>
+
           <button
             type="button"
             onClick={skip}
-            className="absolute bottom-5 right-5 min-h-11 rounded-full border border-line bg-surface px-5 text-sm font-semibold text-ink transition-colors hover:border-primary-ink hover:text-primary-ink"
+            className="absolute bottom-6 right-6 min-h-11 px-3 text-[13px] font-medium tracking-wide text-ink-3 underline-offset-4 transition-colors hover:text-ink hover:underline"
           >
             {t("skip")}
           </button>

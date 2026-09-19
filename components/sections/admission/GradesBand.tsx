@@ -20,7 +20,7 @@ export function GradesBand({
   dates: string;
 }) {
   return (
-    <section aria-labelledby="grades-title" className="border-t border-line py-20 lg:py-28">
+    <section aria-labelledby="grades-title" className="py-20 lg:py-32">
       <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-7">
           <h2 id="grades-title" className="text-display-m">
@@ -30,10 +30,10 @@ export function GradesBand({
             {grades.map((g) => (
               <li key={g} className="flex flex-col">
                 <span className="sr-only">{gradeWordFirst ? `${gradeWord} ${g}` : `${g} ${gradeWord}`}</span>
-                <span aria-hidden="true" className="font-display text-[clamp(5.5rem,3rem+12vw,11rem)] leading-[0.85] font-medium tracking-[-0.05em] text-ink">
+                <span aria-hidden="true" className="text-[clamp(5.5rem,3rem+12vw,11.5rem)] leading-[0.85] font-light tracking-[-0.06em] text-ink">
                   {g}
                 </span>
-                <span aria-hidden="true" className="mt-3 border-t-2 border-primary-ink pt-2 text-sm font-semibold text-ink-2">
+                <span aria-hidden="true" className="mt-4 border-t border-line pt-3 text-sm font-medium text-ink-2">
                   {gradeWord}
                 </span>
               </li>
@@ -42,16 +42,18 @@ export function GradesBand({
           <p className="mt-10 max-w-[56ch] text-ink-2">{note}</p>
         </div>
 
-        <div className="lg:col-span-5 lg:self-end">
-          <div className="rounded-[28px] border border-line bg-surface p-8 sm:p-10">
-            <p className="text-sm font-semibold text-ink-3">{dates}</p>
-            <p className="mt-4 font-display text-[clamp(3rem,2rem+4vw,4.75rem)] leading-none tracking-tight text-ink tabular-nums">{applications}</p>
-            <p className="mt-3 text-lg text-ink-2">{applicationsLabel}</p>
-            <p className="mt-6 flex flex-wrap gap-2 text-sm">
-              <span className="rounded-full border border-line px-3 py-1 text-ink-2">ariza.piima.uz</span>
-              <span className="rounded-full border border-line px-3 py-1 text-ink-2">my.gov.uz</span>
-            </p>
-          </div>
+        <div className="lg:col-span-5 lg:self-end lg:border-l lg:border-line lg:pl-12">
+          <p className="index-label">
+            <span aria-hidden="true" className="h-px w-8 bg-primary-ink" />
+            {dates}
+          </p>
+          <p className="mt-6 text-[clamp(3.25rem,2rem+4.5vw,5.5rem)] leading-none font-light tracking-[-0.05em] text-ink tabular-nums">{applications}</p>
+          <p className="mt-4 text-lg text-ink-2">{applicationsLabel}</p>
+          <p className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium text-ink-3">
+            <span>ariza.piima.uz</span>
+            <span aria-hidden="true" className="h-px w-4 bg-line" />
+            <span>my.gov.uz</span>
+          </p>
         </div>
       </div>
     </section>

@@ -2,7 +2,22 @@ import type { L10n } from "@/lib/utils";
 
 // Home page copy. Facts here come from the official brief; anything else is marked TODO.
 
+/** Small "01 · label" markers — give the long home page an editorial rhythm. */
+export const labels = {
+  about: { uz: "Maktab haqida", en: "About the school", ru: "О школе" },
+  firstYear: { uz: "Xronika", en: "Timeline", ru: "Хроника" },
+  directions: { uz: "Yoʻnalishlar", en: "Programmes", ru: "Направления" },
+  day: { uz: "Kun tartibi", en: "Daily routine", ru: "Распорядок" },
+  news: { uz: "Yangiliklar", en: "News", ru: "Новости" },
+  strip: { uz: "Fotogalereya", en: "Gallery", ru: "Фотогалерея" },
+} satisfies Record<string, L10n>;
+
 export const hero = {
+  /** Two-line headline: first line in 600, second line in light 300 (weight contrast, never colour). */
+  lines: [
+    { uz: "Ilm, tillar va oʻzlik —", en: "Science, languages and roots —", ru: "Наука, языки и корни —" },
+    { uz: "bir halqada", en: "one circle", ru: "в одном круге" },
+  ] satisfies L10n[],
   title: {
     uz: "Ilm, tillar va oʻzlik — bir halqada",
     en: "Science, languages and roots — one circle",
