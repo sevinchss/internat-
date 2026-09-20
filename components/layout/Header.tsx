@@ -11,7 +11,6 @@ import { cn, pick } from "@/lib/utils";
 import { LogoFull, LogoMark } from "@/components/brand/Logo";
 import { ThemeToggle } from "./ThemeToggle";
 import { LocaleSwitcher } from "./LocaleSwitcher";
-import { ScrollArc } from "./ScrollArc";
 import { MobileMenu } from "./MobileMenu";
 
 export function Header() {
@@ -78,7 +77,6 @@ export function Header() {
               {pick(school.shortName, locale)}
             </span>
           </Link>
-          <ScrollArc size={26} className="ml-1 hidden sm:block" />
 
           <nav aria-label={t("home")} className="ml-auto hidden lg:block">
             <ul className="flex items-center gap-0.5">

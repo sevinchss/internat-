@@ -6,7 +6,6 @@ One motif, taken from the logo: **the open ring** — a segmented grey arc, open
 with six coloured landmark segments. The name flows out of the opening. We reuse it with discipline:
 
 - intro loader (the ring draws itself = progress bar)
-- header scroll-progress arc
 - page transitions (a thin arc sweeps across)
 - structural devices on specific pages (24h day dial, goals ring, skills wheel, HSK arc, 404 broken ring)
 
