@@ -96,7 +96,7 @@ export function Hero() {
       className="relative isolate h-[88svh] min-h-[600px] w-full overflow-hidden pt-[var(--header-h)] lg:h-[100dvh]"
     >
       {/* ── Photos ──────────────────────────────────────────────────── */}
-      <div className="absolute inset-x-0 top-[var(--header-h)] bottom-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.div className="absolute inset-x-0 -top-[170px] -bottom-[170px]" style={{ y: photoY }}>
           {heroSlides.map((s, i) => (
             <div
@@ -127,7 +127,7 @@ export function Hero() {
       {/* Scrim: strong at the top for the text, again at the bottom for the numbers and controls. */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 top-[var(--header-h)] bottom-0 z-[1] bg-[linear-gradient(to_bottom,rgb(4_18_42/0.86)_0%,rgb(4_18_42/0.55)_30%,rgb(4_18_42/0.34)_55%,rgb(4_18_42/0.78)_100%),linear-gradient(to_right,rgb(4_18_42/0.5)_0%,rgb(4_18_42/0.12)_42%,transparent_70%)]"
+        className="absolute inset-0 z-[1] bg-[linear-gradient(to_bottom,rgb(4_18_42/0.86)_0%,rgb(4_18_42/0.55)_30%,rgb(4_18_42/0.34)_55%,rgb(4_18_42/0.78)_100%),linear-gradient(to_right,rgb(4_18_42/0.5)_0%,rgb(4_18_42/0.12)_42%,transparent_70%)]"
       />
 
       {/* ── Content ─────────────────────────────────────────────────── */}

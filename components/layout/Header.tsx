@@ -41,6 +41,10 @@ export function Header() {
     setMobileOpen(false);
   }
 
+  // Over the home hero the header is transparent, so its ink has to become white (globals.css swaps the
+  // colour tokens inside .header-over-photo). It turns back the moment the solid background appears.
+  const overPhoto = pathname === "/" && !solid && !mobileOpen;
+
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 
@@ -57,10 +61,11 @@ export function Header() {
         animate={{ y: hidden ? "-110%" : "0%" }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300",
+          "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter,color] duration-300",
           solid || mobileOpen
             ? "border-line bg-paper/85 border-b backdrop-blur-md"
             : "border-b border-transparent bg-transparent",
+          overPhoto && "header-over-photo",
         )}
       >
         <div className="container-x flex h-[var(--header-h)] items-center gap-3">

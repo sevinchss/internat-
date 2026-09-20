@@ -500,3 +500,26 @@ html.intro-done #intro {
 .hero-fade {
   animation: hero-in 0.45s var(--ease-out-expo) both;
 }
+
+/* ───────────────────────── Header over the home hero photo (components/layout/Header.tsx) ─────────────────────────
+   While the header is transparent above the slider it has to read white — including on the light theme. Rather
+   than a white variant of every control, the scope swaps the colour tokens the header's utilities already use. */
+.header-over-photo {
+  --ink: #ffffff;
+  --ink-2: rgb(255 255 255 / 0.84);
+  --ink-3: rgb(255 255 255 / 0.68);
+  --line: rgb(255 255 255 / 0.3);
+  --ring: rgb(255 255 255 / 0.45);
+  --surface-2: rgb(255 255 255 / 0.16);
+  --primary-ink: #ffffff;
+  --paper: #04122a;
+  --primary: rgb(255 255 255 / 0.14);
+  --on-primary: #ffffff;
+  color: #ffffff;
+}
+.header-over-photo [data-logo="light"] {
+  display: none;
+}
+.header-over-photo [data-logo="dark"] {
+  display: block;
+}

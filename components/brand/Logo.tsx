@@ -24,6 +24,7 @@ export function LogoFull({
         height={height}
         priority={priority}
         sizes={`${width * 2}px`}
+        data-logo="light"
         className="h-full w-full object-contain dark:hidden"
       />
       <Image
@@ -33,6 +34,7 @@ export function LogoFull({
         height={height}
         priority={priority}
         sizes={`${width * 2}px`}
+        data-logo="dark"
         className="hidden h-full w-full object-contain dark:block"
       />
     </span>
