@@ -33,6 +33,37 @@ function slot(src: string, uz: string, en: string, ru: string): ImageSlot {
 const img = (id: string, uz: string, en: string, ru: string) => slot(u(id), uz, en, ru);
 
 export const images = {
+  /**
+   * Home hero slider — real photos of the school (Sep 2026), originals supplied by the school.
+   */
+  hero: {
+    facade: slot(
+      "/images/hero/facade.jpg",
+      "Maktab binosi va bosh kirish",
+      "The school building and its main entrance",
+      "Здание школы и главный вход",
+    ),
+    lesson: slot(
+      "/images/hero/lesson.jpg",
+      "Dars vaqtidagi sinf xonasi",
+      "A classroom during a lesson",
+      "Класс во время урока",
+    ),
+    pupils: slot("/images/hero/pupils.jpg", "Maktab oʻquvchilari", "Pupils of the school", "Ученики школы"),
+    aerial: slot("/images/hero/aerial.jpg", "Kampus yuqoridan", "The campus from above", "Кампус с высоты"),
+    emblem: slot(
+      "/images/hero/emblem.jpg",
+      "Fasaddagi International Language School belgisi",
+      "The International Language School emblem on the façade",
+      "Эмблема International Language School на фасаде",
+    ),
+    readingPods: slot(
+      "/images/hero/reading-pods.jpg",
+      "Kutubxona burchagidagi mutolaa kabinalari",
+      "Reading pods in the library corner",
+      "Кабинки для чтения в библиотечном уголке",
+    ),
+  },
   campus: {
     renderAerial: slot(
       "/images/campus/render-aerial.jpg",

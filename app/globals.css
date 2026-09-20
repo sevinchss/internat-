@@ -452,3 +452,31 @@ html.intro-done #intro {
     stroke-dashoffset: 0;
   }
 }
+
+/* ───────────────────────── Home hero slider (components/sections/home/Hero.tsx) ─────────────────────────
+   The progress rule of the active slide is also the timer: its `animationend` advances the slider, so
+   "pause on hover" and "stop off screen" are one attribute each, and reduced motion simply never starts it. */
+.hero-progress {
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+.hero-progress[data-run="true"] {
+  animation: hero-progress 6.2s linear forwards;
+}
+.hero-progress[data-paused="true"] {
+  animation-play-state: paused;
+}
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-progress {
+    animation: none !important;
+    transform: scaleX(1);
+  }
+}

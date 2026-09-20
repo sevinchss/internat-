@@ -41,6 +41,14 @@ export const hero = {
   ],
 };
 
+/** Home hero slider — four real photos of the school; captions describe the photo, nothing more. */
+export const heroSlides = [
+  { image: "facade", caption: { uz: "Maktab binosi", en: "The school building", ru: "Здание школы" } },
+  { image: "lesson", caption: { uz: "Dars vaqti", en: "In class", ru: "На уроке" } },
+  { image: "pupils", caption: { uz: "Oʻquvchilar", en: "Our pupils", ru: "Ученики" } },
+  { image: "aerial", caption: { uz: "Kampus, yuqoridan", en: "The campus from above", ru: "Кампус с высоты" } },
+] satisfies { image: "facade" | "lesson" | "pupils" | "aerial"; caption: L10n }[];
+
 export const about = {
   title: {
     uz: "Uch yoʻnalish kesishgan joyda maktab boshlanadi",
