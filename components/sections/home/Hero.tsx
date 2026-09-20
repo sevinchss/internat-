@@ -102,7 +102,7 @@ export function Hero() {
             <div
               key={s.image}
               aria-hidden={i !== index}
-              className="ease-out-expo absolute inset-0 transition-[clip-path] duration-[1050ms] motion-reduce:transition-none"
+              className="ease-out-expo absolute inset-0 transition-[clip-path] duration-[1200ms] motion-reduce:transition-none"
               style={{
                 zIndex: i === index ? 3 : i === prev ? 2 : 1,
                 clipPath: i === index || i === prev ? "inset(0% 0% 0% 0%)" : hidden,
@@ -115,7 +115,7 @@ export function Hero() {
                 sizes="100vw"
                 className="size-full"
                 imgClassName={cn(
-                  "origin-center transition-transform duration-[9s] ease-linear motion-reduce:transition-none",
+                  "origin-center transition-transform duration-[11s] ease-linear motion-reduce:transition-none",
                   i === index ? "scale-[1.07]" : "scale-100",
                 )}
               />

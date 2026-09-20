@@ -461,7 +461,7 @@ html.intro-done #intro {
   transform: scaleX(0);
 }
 .hero-progress[data-run="true"] {
-  animation: hero-progress 6.2s linear forwards;
+  animation: hero-progress 8.5s linear forwards;
 }
 .hero-progress[data-paused="true"] {
   animation-play-state: paused;
