@@ -20,17 +20,10 @@ export function Header() {
   const pathname = usePathname();
   const { scrollY } = useScroll();
   const [solid, setSolid] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const [openKey, setOpenKey] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  useMotionValueEvent(scrollY, "change", (y) => {
-    const prev = scrollY.getPrevious() ?? 0;
-    setSolid(y > 24);
-    if (openKey || mobileOpen) return setHidden(false);
-    if (y > 240 && y > prev + 4) setHidden(true);
-    else if (y < prev - 4 || y < 240) setHidden(false);
-  });
+  useMotionValueEvent(scrollY, "change", (y) => setSolid(y > 24));
 
   // close menus on navigation
   const [lastPath, setLastPath] = useState(pathname);
@@ -55,10 +48,7 @@ export function Header() {
       >
         {th("skip")}
       </a>
-      <motion.header
-        initial={false}
-        animate={{ y: hidden ? "-110%" : "0%" }}
-        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      <header
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter,color] duration-300",
           solid || mobileOpen
@@ -73,7 +63,7 @@ export function Header() {
               <LogoFull height={58} priority />
             </span>
             <LogoMark size={40} className="xl:hidden" priority />
-            <span className="font-display text-ink max-w-[9.5rem] text-[13px] leading-[1.15] font-medium tracking-tight sm:max-w-none sm:text-sm xl:hidden">
+            <span className="font-display text-ink max-w-[9.5rem] text-[13px] leading-[1.15] font-medium tracking-tight sm:max-w-none sm:text-sm lg:hidden">
               {pick(school.shortName, locale)}
             </span>
           </Link>
@@ -97,7 +87,7 @@ export function Header() {
                       href={item.href}
                       aria-current={isActive(item.href) ? "page" : undefined}
                       className={cn(
-                        "hover:bg-surface-2 relative flex h-10 items-center rounded-full px-3.5 text-[15px] font-semibold transition-colors",
+                        "hover:bg-surface-2 relative flex h-10 items-center rounded-full px-3 text-[15px] font-semibold whitespace-nowrap transition-colors xl:px-3.5",
                         isActive(item.href) ? "text-primary-ink" : "text-ink",
                       )}
                     >
@@ -116,7 +106,7 @@ export function Header() {
             <Link
               href={contactHref}
               aria-current={isActive(contactHref) ? "page" : undefined}
-              className="bg-primary text-on-primary hover:bg-navy ml-2 hidden h-11 items-center rounded-full px-5 text-[15px] font-semibold shadow-[inset_0_1px_0_rgb(255_255_255/0.18)] transition-[transform,background-color] active:scale-[0.98] lg:flex dark:hover:bg-[#2474c9]"
+              className="bg-primary text-on-primary hover:bg-navy ml-2 hidden h-11 items-center rounded-full px-4 text-[15px] font-semibold whitespace-nowrap shadow-[inset_0_1px_0_rgb(255_255_255/0.18)] transition-[transform,background-color] active:scale-[0.98] lg:flex xl:px-5 dark:hover:bg-[#2474c9]"
             >
               {t("contact")}
             </Link>
@@ -132,7 +122,7 @@ export function Header() {
             </button>
           </div>
         </div>
-      </motion.header>
+      </header>
       <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} isActive={isActive} />
     </>
   );
@@ -243,7 +233,7 @@ function Dropdown({
           }
         }}
         className={cn(
-          "hover:bg-surface-2 relative flex h-10 items-center gap-1 rounded-full px-3.5 text-[15px] font-semibold transition-colors",
+          "hover:bg-surface-2 relative flex h-10 items-center gap-1 rounded-full px-3 text-[15px] font-semibold whitespace-nowrap transition-colors xl:px-3.5",
           active ? "text-primary-ink" : "text-ink",
           open && "bg-surface-2",
         )}
