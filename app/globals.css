@@ -27,7 +27,8 @@
   --accent: var(--navy); /* per-page accent, overridden by .accent-* */
   --accent-ink: var(--primary-ink);
   --shadow: 12 26 51;
-  --header-h: 76px;
+  --header-h: 72px; /* the bar at the top of the page — page content clears this */
+  --header-h-min: 58px; /* … and once it has scrolled under a background */
   color-scheme: light;
 }
 
@@ -45,6 +46,13 @@
   --on-primary: #ffffff;
   --shadow: 0 6 18;
   color-scheme: dark;
+}
+
+@media (width >= 1024px) {
+  :root {
+    --header-h: 84px;
+    --header-h-min: 64px;
+  }
 }
 
 /* Per-page accent (small doses only) */

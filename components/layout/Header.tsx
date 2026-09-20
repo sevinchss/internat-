@@ -57,8 +57,20 @@ export function Header() {
           overPhoto && "header-over-photo",
         )}
       >
-        <div className="container-x flex h-[var(--header-h)] items-center gap-3">
-          <Link href="/" className="group flex items-center gap-2.5 rounded-lg" aria-label={pick(school.name, locale)}>
+        <div
+          className={cn(
+            "container-x flex items-center gap-3 transition-[height] duration-300 ease-out",
+            solid || mobileOpen ? "h-[var(--header-h-min)]" : "h-[var(--header-h)]",
+          )}
+        >
+          <Link
+            href="/"
+            className={cn(
+              "group flex origin-left items-center gap-2.5 rounded-lg transition-transform duration-300 ease-out",
+              (solid || mobileOpen) && "scale-90",
+            )}
+            aria-label={pick(school.name, locale)}
+          >
             <span className="hidden xl:block">
               <LogoFull height={58} priority />
             </span>
