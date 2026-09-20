@@ -1,6 +1,33 @@
 import type { L10n } from "./utils";
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ils.piima.uz"; // TODO: replace with real domain
+/**
+ * Public origin, used for canonical links, the sitemap and Open Graph.
+ *
+ * An env var that is *defined but empty* is the normal state of a fresh Vercel project, and `??` lets it
+ * through — `new URL("")` then throws while prerendering. So: first candidate that is non-empty and parses,
+ * protocol added if it was left off, and the hard-coded domain as the last resort.
+ */
+function resolveSiteUrl(): string {
+  const candidates = [
+    process.env.NEXT_PUBLIC_SITE_URL,
+    process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL,
+    process.env.VERCEL_PROJECT_PRODUCTION_URL,
+    process.env.NEXT_PUBLIC_VERCEL_URL,
+    process.env.VERCEL_URL,
+  ];
+  for (const candidate of candidates) {
+    const value = candidate?.trim();
+    if (!value) continue;
+    try {
+      return new URL(/^https?:\/\//.test(value) ? value : `https://${value}`).origin;
+    } catch {
+      // not a URL — try the next candidate
+    }
+  }
+  return "https://ils.piima.uz"; // TODO: replace with real domain
+}
+
+export const SITE_URL = resolveSiteUrl();
 
 export const school = {
   name: {
