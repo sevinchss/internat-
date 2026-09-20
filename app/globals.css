@@ -480,3 +480,23 @@ html.intro-done #intro {
     transform: scaleX(1);
   }
 }
+
+/* The hero's one orchestrated moment: the kicker and the buttons rise once the intro has lifted.
+   CSS, not JS — a background tab that never gets a frame would otherwise freeze them half-faded. */
+.hero-in {
+  opacity: 0;
+  transform: translateY(10px);
+}
+[data-play="true"] .hero-in {
+  animation: hero-in 0.6s var(--ease-out-expo) forwards;
+}
+@keyframes hero-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* Slide caption: replays on every slide change (the key remounts it). */
+.hero-fade {
+  animation: hero-in 0.45s var(--ease-out-expo) both;
+}

@@ -6,22 +6,24 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { hero, heroSlides } from "@/data/home";
 import { images } from "@/lib/images";
+import { school } from "@/lib/site";
 import { cn, pick } from "@/lib/utils";
 import { useIntroDone } from "@/lib/useIntroDone";
 import { Photo } from "@/components/ui/Photo";
 import { ButtonLink, buttonClass } from "@/components/ui/Button";
-import { RingArc } from "@/components/brand/Ring";
 
-const ease = [0.16, 1, 0.3, 1] as const;
 const COUNT = heroSlides.length;
 const pad = (n: number) => String(n).padStart(2, "0");
 
 /**
- * Home hero — text left, a photo stage anchored to the right edge of the screen.
+ * Home hero — one full-bleed slider under the header.
  *
- * The stage moves through four real photos of the school. The advance is driven by the CSS animation of the
- * progress rule (`.hero-progress`, app/globals.css): no JS timer, so pausing on hover/focus and stopping off
- * screen is a single attribute, and reduced motion simply never starts it.
+ * Four real photos of the school; the new one wipes in over the old one from the side, so the screen never
+ * goes empty between slides. The text sits over the top of the photo: small, on a scrim.
+ *
+ * The advance is driven by the CSS animation of the progress rule (`.hero-progress`, app/globals.css): no JS
+ * timer, so "pause while someone is using the controls" and "stop off screen" are one attribute each, and
+ * reduced motion simply never starts it.
  */
 export function Hero() {
   const locale = useLocale();
@@ -31,225 +33,230 @@ export function Hero() {
   const play = ready || !!reduce;
 
   const ref = useRef<HTMLElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
-  const [index, setIndex] = useState(0);
+  const [{ index, prev, dir }, setSlide] = useState({ index: 0, prev: 0, dir: 1 });
   const [hold, setHold] = useState(false);
   const [inView, setInView] = useState(true);
-  const [pinned, setPinned] = useState(false);
+  const [visible, setVisible] = useState(true);
 
-  const go = (n: number) => setIndex((i) => (i + n + COUNT) % COUNT);
+  const go = (n: number) =>
+    setSlide((s) => ({ index: (s.index + n + COUNT) % COUNT, prev: s.index, dir: n >= 0 ? 1 : -1 }));
+  const jump = (to: number) =>
+    setSlide((s) => (to === s.index ? s : { index: to, prev: s.index, dir: to > s.index ? 1 : -1 }));
 
-  // The photo stage is only pinned to the right edge from lg up; below that it sits in the flow.
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const sync = () => setPinned(mq.matches);
+    const sync = () => setVisible(document.visibilityState === "visible");
     sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
+    document.addEventListener("visibilitychange", sync);
+    return () => document.removeEventListener("visibilitychange", sync);
   }, []);
 
   // The slider only runs while it is actually on screen.
   useEffect(() => {
-    const el = stageRef.current;
+    const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.3 });
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { threshold: 0.25 });
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
-  const running = play && !reduce && inView;
+  const running = play && !reduce && inView && visible;
 
+  // The photo drifts slower than the page, and the text leaves before the photo does.
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const stageY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, 90]);
-  const ringRotate = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, 26]);
+  const photoY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, 140]);
+  const textY = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [0, -40]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.55], reduce ? [1, 1] : [1, 0]);
+
+  // A hidden slide is clipped away on the side it came from — invisible either way, so flipping direction
+  // mid-run costs nothing.
+  const hidden = dir > 0 ? "inset(0% 0% 0% 100%)" : "inset(0% 100% 0% 0%)";
+
+  // swipe, without dragging the photo around
+  const startX = useRef<number | null>(null);
 
   const active = heroSlides[index];
 
   return (
     <section
       ref={ref}
-      className="relative isolate overflow-hidden pt-[calc(var(--header-h)+28px)] pb-20 lg:flex lg:min-h-[100dvh] lg:flex-col lg:justify-center lg:pt-[calc(var(--header-h)+40px)] lg:pb-24"
+      aria-roledescription="carousel"
+      aria-label={pick(hero.title, locale)}
+      onKeyDown={(e) => {
+        if (e.key === "ArrowRight") go(1);
+        if (e.key === "ArrowLeft") go(-1);
+      }}
+      onPointerDown={(e) => {
+        startX.current = e.clientX;
+      }}
+      onPointerUp={(e) => {
+        const dx = e.clientX - (startX.current ?? e.clientX);
+        startX.current = null;
+        if (Math.abs(dx) > 56) go(dx < 0 ? 1 : -1);
+      }}
+      className="relative isolate h-[88svh] min-h-[600px] w-full overflow-hidden pt-[var(--header-h)] lg:h-[100dvh]"
     >
-      <div className="container-x relative">
-        <div className="lg:max-w-[47%]">
-          {/* Text is visible immediately (it is the LCP element) — the stage carries the motion. */}
-          <h1 className="text-display-xl text-ink">
+      {/* ── Photos ──────────────────────────────────────────────────── */}
+      <div className="absolute inset-x-0 top-[var(--header-h)] bottom-0 z-0 overflow-hidden">
+        <motion.div className="absolute inset-x-0 -top-[170px] -bottom-[170px]" style={{ y: photoY }}>
+          {heroSlides.map((s, i) => (
+            <div
+              key={s.image}
+              aria-hidden={i !== index}
+              className="ease-out-expo absolute inset-0 transition-[clip-path] duration-[1050ms] motion-reduce:transition-none"
+              style={{
+                zIndex: i === index ? 3 : i === prev ? 2 : 1,
+                clipPath: i === index || i === prev ? "inset(0% 0% 0% 0%)" : hidden,
+              }}
+            >
+              <Photo
+                slot={images.hero[s.image]}
+                priority={i === 0}
+                quality={75}
+                sizes="100vw"
+                className="size-full"
+                imgClassName={cn(
+                  "origin-center transition-transform duration-[9s] ease-linear motion-reduce:transition-none",
+                  i === index ? "scale-[1.07]" : "scale-100",
+                )}
+              />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Scrim: strong at the top for the text, again at the bottom for the numbers and controls. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-[var(--header-h)] bottom-0 z-[1] bg-[linear-gradient(to_bottom,rgb(4_18_42/0.86)_0%,rgb(4_18_42/0.55)_30%,rgb(4_18_42/0.34)_55%,rgb(4_18_42/0.78)_100%),linear-gradient(to_right,rgb(4_18_42/0.5)_0%,rgb(4_18_42/0.12)_42%,transparent_70%)]"
+      />
+
+      {/* ── Content ─────────────────────────────────────────────────── */}
+      <div className="container-x relative z-[2] flex h-full flex-col justify-between py-8 lg:py-12">
+        <motion.div
+          data-play={play ? "true" : "false"}
+          style={{ y: textY, opacity: textOpacity }}
+          className="max-w-[44rem]"
+        >
+          <p
+            className="hero-in flex items-center gap-3 text-[13px] font-medium text-white/70"
+            style={{ animationDelay: "0.1s" }}
+          >
+            <span aria-hidden="true" className="h-px w-8 bg-white/40" />
+            {pick(school.name, locale)}
+          </p>
+
+          <h1 className="mt-4 text-[clamp(1.6rem,1.05rem+1.9vw,2.9rem)] leading-[1.1] text-white">
             {hero.lines.map((line, li) => (
-              <span key={li} className={cn("block", li === 1 && "font-light tracking-[-0.03em]")}>
+              <span key={li} className={cn("block", li === 1 && "font-light tracking-[-0.03em] text-white/85")}>
                 {pick(line, locale)}
                 {li < hero.lines.length - 1 ? " " : null}
               </span>
             ))}
           </h1>
 
-          <p className="text-body-l text-ink-2 mt-8 max-w-[54ch]">{pick(hero.lead, locale)}</p>
+          <p className="mt-5 hidden max-w-[52ch] text-[15px] leading-relaxed text-white/75 sm:block">
+            {pick(hero.lead, locale)}
+          </p>
 
-          <div className="mt-10 flex flex-wrap gap-3">
-            <ButtonLink href="/qabul">{t("aboutAdmission")}</ButtonLink>
-            <a href="#yonalishlar" className={buttonClass("outline")}>
+          <div className="hero-in mt-7 flex flex-wrap gap-3" style={{ animationDelay: "0.3s" }}>
+            <ButtonLink href="/qabul" variant="light">
+              {t("aboutAdmission")}
+            </ButtonLink>
+            <a
+              href="#yonalishlar"
+              className={buttonClass(
+                "outline",
+                "hover:text-navy border-white/35 text-white before:bg-white hover:border-white",
+              )}
+            >
               {t("directions")}
             </a>
           </div>
+        </motion.div>
 
-          {/* ── Photo stage ───────────────────────────────────────────────
-              In flow on small screens; on lg it is pinned to the right edge of the viewport
-              (right: 50% − 50vw measured from the centred container). */}
-          <motion.div
-            ref={stageRef}
-            role="group"
-            aria-roledescription="carousel"
-            aria-label={pick(hero.title, locale)}
+        {/* ── Bottom row: the real numbers, then the slider controls ── */}
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between sm:gap-10">
+          <dl className="flex flex-wrap items-end gap-x-6 gap-y-3 sm:gap-x-9">
+            {hero.facts.map((f) => (
+              <div key={f.value} className="sm:border-l sm:border-white/25 sm:pl-5 sm:first:border-l-0 sm:first:pl-0">
+                <dd className="text-[clamp(1.35rem,1.1rem+0.9vw,2rem)] leading-none font-light tracking-[-0.04em] text-white tabular-nums">
+                  {f.value}
+                </dd>
+                <dt className="mt-1.5 max-w-[18ch] text-[12px] leading-snug text-white/65">{pick(f.label, locale)}</dt>
+              </div>
+            ))}
+          </dl>
+
+          <div
             onPointerEnter={() => setHold(true)}
             onPointerLeave={() => setHold(false)}
             onFocusCapture={() => setHold(true)}
             onBlurCapture={() => setHold(false)}
-            onKeyDown={(e) => {
-              if (e.key === "ArrowRight") go(1);
-              if (e.key === "ArrowLeft") go(-1);
-            }}
-            drag={reduce ? false : "x"}
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.06}
-            dragMomentum={false}
-            onDragEnd={(_, info) => {
-              if (info.offset.x < -60) go(1);
-              else if (info.offset.x > 60) go(-1);
-            }}
-            style={{ y: pinned ? stageY : 0 }}
-            className="relative mt-14 aspect-[4/3] w-full touch-pan-y lg:absolute lg:top-1/2 lg:right-[calc(50%-50vw)] lg:mt-0 lg:aspect-auto lg:h-[min(74vh,700px)] lg:w-[min(49vw,780px)] lg:-translate-y-1/2"
+            className="flex shrink-0 flex-col items-start gap-3 sm:items-end"
           >
-            {/* segmented brand arc behind the panel's left edge */}
-            <motion.div
-              style={{ rotate: ringRotate }}
-              aria-hidden="true"
-              className="text-ring pointer-events-none absolute top-1/2 -left-[22%] -z-10 aspect-square h-[128%] -translate-y-1/2"
-            >
-              <RingArc strokeWidth={1} className="size-full" />
-            </motion.div>
+            <p aria-live="polite" className="text-[12px] text-white/60">
+              <span key={active.image} className="hero-fade block">
+                {pick(active.caption, locale)}
+              </span>
+            </p>
 
-            <motion.div
-              className="bg-surface-2 ring-ink/5 relative size-full overflow-hidden rounded-[26px] shadow-[0_40px_90px_-48px_rgb(var(--shadow)/0.45)] ring-1 lg:rounded-l-[44px] lg:rounded-r-none"
-              initial={false}
-              animate={{ clipPath: play ? "inset(0% 0% 0% 0%)" : "inset(0% 0% 100% 0%)" }}
-              transition={{ duration: 1.1, ease }}
-            >
-              {heroSlides.map((s, i) => (
-                <motion.div
-                  key={s.image}
-                  aria-hidden={i !== index}
-                  className="absolute inset-0"
-                  initial={false}
-                  animate={{ opacity: i === index ? 1 : 0 }}
-                  transition={{ duration: 0.85, ease }}
-                >
-                  <Photo
-                    slot={images.hero[s.image]}
-                    priority={i === 0}
-                    quality={75}
-                    sizes="(min-width: 1024px) 49vw, 100vw"
-                    className="size-full"
-                    imgClassName={cn(
-                      "origin-center transition-transform duration-[9s] ease-linear motion-reduce:transition-none",
-                      i === index ? "scale-[1.06]" : "scale-100",
-                    )}
-                  />
-                </motion.div>
-              ))}
+            <div className="flex items-center gap-4">
+              <span className="text-[13px] font-medium text-white tabular-nums">{pad(index + 1)}</span>
 
-              {/* caption — describes the photo on screen */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4 lg:p-6">
-                <div
-                  aria-live="polite"
-                  className="text-ink glass inline-flex max-w-full items-center rounded-full px-4 py-2 text-[13px] font-medium"
-                >
-                  <motion.span
-                    key={active.image}
-                    initial={reduce ? false : { opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.45, ease }}
-                    className="truncate"
+              <div className="flex items-center gap-2">
+                {heroSlides.map((s, i) => (
+                  <button
+                    key={s.image}
+                    type="button"
+                    onClick={() => jump(i)}
+                    aria-label={pick(s.caption, locale)}
+                    aria-current={i === index}
+                    className="group relative h-6 w-10 cursor-pointer sm:w-14"
                   >
-                    {pick(active.caption, locale)}
-                  </motion.span>
-                </div>
+                    <span className="absolute inset-x-0 top-1/2 block h-px -translate-y-1/2 bg-white/30 transition-colors group-hover:bg-white/60" />
+                    {i === index ? (
+                      <span
+                        key={index}
+                        data-run={running ? "true" : "false"}
+                        data-paused={hold ? "true" : "false"}
+                        onAnimationEnd={() => go(1)}
+                        className="hero-progress absolute inset-x-0 top-1/2 block h-[2px] -translate-y-1/2 bg-white"
+                      />
+                    ) : (
+                      <span
+                        className={cn(
+                          "absolute inset-x-0 top-1/2 block h-[2px] origin-left -translate-y-1/2 bg-white/80 transition-transform duration-500",
+                          i < index ? "scale-x-100" : "scale-x-0",
+                        )}
+                      />
+                    )}
+                  </button>
+                ))}
               </div>
-            </motion.div>
-          </motion.div>
 
-          {/* ── Slider controls ───────────────────────────────────────── */}
-          <div className="mt-6 flex items-center gap-5 lg:mt-12">
-            <span className="text-ink text-[13px] font-medium tabular-nums">{pad(index + 1)}</span>
+              <span className="text-[13px] text-white/55 tabular-nums">{pad(COUNT)}</span>
 
-            <div className="flex flex-1 items-center gap-2">
-              {heroSlides.map((s, i) => (
+              <div className="ml-1 flex items-center gap-2">
                 <button
-                  key={s.image}
                   type="button"
-                  onClick={() => setIndex(i)}
-                  aria-label={pick(s.caption, locale)}
-                  aria-current={i === index}
-                  className="group relative h-6 min-w-6 flex-1 cursor-pointer"
+                  onClick={() => go(-1)}
+                  aria-label={t("prev")}
+                  className="hover:text-navy flex size-11 cursor-pointer items-center justify-center rounded-full border border-white/35 text-white transition-colors hover:bg-white"
                 >
-                  <span className="bg-line group-hover:bg-ink-3 absolute inset-x-0 top-1/2 block h-px -translate-y-1/2 transition-colors" />
-                  {i === index ? (
-                    <span
-                      key={index}
-                      data-run={running ? "true" : "false"}
-                      data-paused={hold ? "true" : "false"}
-                      onAnimationEnd={() => go(1)}
-                      className="hero-progress bg-primary absolute inset-x-0 top-1/2 block h-[2px] -translate-y-1/2"
-                    />
-                  ) : (
-                    <span
-                      className={cn(
-                        "bg-ink absolute inset-x-0 top-1/2 block h-[2px] origin-left -translate-y-1/2 transition-transform duration-500",
-                        i < index ? "scale-x-100" : "scale-x-0",
-                      )}
-                    />
-                  )}
+                  <ArrowLeft className="size-4" aria-hidden="true" />
                 </button>
-              ))}
-            </div>
-
-            <span className="text-ink-3 text-[13px] tabular-nums">{pad(COUNT)}</span>
-
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => go(-1)}
-                aria-label={t("prev")}
-                className="border-ink/15 text-ink hover:bg-ink hover:text-paper flex size-11 cursor-pointer items-center justify-center rounded-full border transition-colors dark:border-white/20"
-              >
-                <ArrowLeft className="size-4" aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                onClick={() => go(1)}
-                aria-label={t("next")}
-                className="border-ink/15 text-ink hover:bg-ink hover:text-paper flex size-11 cursor-pointer items-center justify-center rounded-full border transition-colors dark:border-white/20"
-              >
-                <ArrowRight className="size-4" aria-hidden="true" />
-              </button>
+                <button
+                  type="button"
+                  onClick={() => go(1)}
+                  aria-label={t("next")}
+                  className="hover:text-navy flex size-11 cursor-pointer items-center justify-center rounded-full border border-white/35 text-white transition-colors hover:bg-white"
+                >
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* three real facts: light numerals over hairlines */}
-        <dl className="mt-14 grid max-w-[700px] sm:grid-cols-3 lg:mt-16 lg:max-w-[47%]">
-          {hero.facts.map((f) => (
-            <div
-              key={f.value}
-              className="border-line flex flex-row-reverse items-baseline justify-between gap-6 border-t py-4 sm:flex-col-reverse sm:items-start sm:justify-end sm:gap-2 sm:border-t-0 sm:border-l sm:py-1 sm:pl-6 sm:first:border-l-0 sm:first:pl-0"
-            >
-              <dt className="text-ink-2 max-w-[18ch] text-right text-[13px] leading-snug sm:text-left">
-                {pick(f.label, locale)}
-              </dt>
-              <dd className="text-ink text-[clamp(1.75rem,1.3rem+1.4vw,2.6rem)] leading-none font-light tracking-[-0.04em] tabular-nums">
-                {f.value}
-              </dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </section>
   );

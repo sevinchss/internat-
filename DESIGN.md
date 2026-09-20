@@ -55,7 +55,8 @@ Skip / Esc at any time. Reduced motion: static emblem, fade out.
 - No per-frame JavaScript for decoration: loader and ambient background are CSS animations on transforms.
 - No backdrop-filter over the animated background (the `glass` utility is a near-opaque surface).
 - No third-party iframes on load: maps are click-to-load (`components/ui/MapPreview.tsx`).
-- Hero text is never hidden behind an entrance animation (it is the LCP element).
+- Hero text is never hidden behind an entrance animation (it is the LCP element), and neither is the hero
+  photo: only the kicker and the buttons rise, in CSS, so a tab that gets no frames cannot freeze them.
 - Marquees / loops pause when off screen.
 - Pages are static (SSG) and prefetched, so there are no route `loading.tsx` skeletons — a Suspense boundary
   there would hide the prerendered HTML until JS runs.
@@ -65,8 +66,10 @@ Skip / Esc at any time. Reduced motion: static emblem, fade out.
 ### Home
 
 ```
-[ HERO ] text left ─────────── | huge circle-masked campus photo bleeding off right edge
-                                  faint oversized ring arc behind; parallax
+[ HERO ] full-bleed slider under the header: 4 real photos, the new one wipes in over the old one
+         small text over the top-left (school name, headline, lead, two buttons) on a scrim
+         bottom: the three numbers left, caption + 01/04 + four hairline segments + arrows right
+         the active segment's CSS animation is the timer — its animationend advances the slider
 [ ABOUT ] statement left | Venn: STEM ∩ Xorijiy tillar ∩ Milliy oʻzlik (hover/tap)
 [ FIRST YEAR ] sticky horizontal scroll: 1–15 Jun → 22 315 → Cambridge → Sep 260+
 [ DIRECTIONS ] English ▌▌▌▌▌▌ | ▌▌▌▌ Chinese  (hover expands 60/40, accent + photo)
